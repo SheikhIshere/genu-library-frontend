@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary-fixed-dim": "#ffb59e", "tertiary-container": "#049fb5", "tertiary-fixed-dim": "#61d6ed", "surface": "#211a17", "outline-variant": "#58423b", "background": "#18120f", "secondary-fixed": "#ffdead", "text-on-accent": "#16110f", "surface-container-highest": "#3b3330", "on-secondary-fixed": "#281900", "primary-hover": "#d45a30", "surface-active": "#332a24", "surface-container-high": "#302825", "on-tertiary-container": "#002f36", "on-surface-variant": "#dfc0b7", "surface-container": "#251e1b", "border": "#3a322d", "outline": "#a68b82", "error-container": "#93000a", "on-secondary-fixed-variant": "#604100", "on-primary-fixed-variant": "#842500", "secondary": "#f3be67", "on-secondary-container": "#ffcd7d", "on-tertiary-fixed-variant": "#004e5a", "surface-variant": "#3b3330", "text-muted": "#7a706a", "on-primary-fixed": "#3a0b00", "tertiary-fixed": "a4eeff", "primary-fixed": "#ffdbd0", "inverse-surface": "#eee0da", "on-background": "#eee0da", "tertiary": "#61d6ed", "on-error": "#690005", "surface-dim": "#18120f", "text-secondary": "#a89c93", "inverse-on-surface": "#372f2b", "secondary-container": "#7c5400", "on-secondary": "#432c00", "surface-tint": "#ffb59e", "error": "#ffb4ab", "on-primary": "#5e1700", "text-primary": "#ece0dc", "on-primary-container": "#521300", "status-warning": "#d4a24e", "on-tertiary-fixed": "#001f25", "secondary-fixed-dim": "#f3be67", "status-success": "#4a7c59", "surface-container-low": "#211a17", "surface-bright": "#403734", "border-hover": "#4d433d", "canvas": "#16110f", "surface-hover": "#2a211c", "status-info": "#5b8fb9", "on-surface": "#eee0da", "on-error-container": "#ffdad6", "on-tertiary": "#00363f", "inverse-primary": "#a73a13", "primary-container": "#ea6a40", "status-error": "#c44d4d", "primary": "#ffb59e", "surface-container-lowest": "#130d0a" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1.5rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "margin": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2rem" }, fontFamily: { "overline": ["JetBrains Mono"], "caption": ["Inter"], "body-default": ["Inter"], "display-xl-mobile": ["Playfair Display"], "display-xl": ["Playfair Display"], "headline-3": ["Playfair Display"], "body-large": ["Inter"], "headline-1": ["Playfair Display"], "headline-2": ["Playfair Display"], "display-mobile": ["Playfair Display"], "body-small": ["Inter"], "label-mono": ["JetBrains Mono"], "display": ["Playfair Display"] }, fontSize: { "overline": ["11px", { "lineHeight": "14px", "letterSpacing": "0.1em", "fontWeight": "600" }], "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "body-default": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "display-xl-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "display-xl": ["60px", { "lineHeight": "68px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "headline-3": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-large": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "headline-1": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-2": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "display-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-small": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }], "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#16110f;color:#eee0da;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-canvas font-body-default text-body-default text-on-surface antialiased flex flex-col min-h-screen items-center"><div class="w-full max-w-[640px] relative flex flex-col min-h-screen"><header class="fixed top-0 w-full max-w-[640px] z-50 bg-canvas/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-[24px]">local_fire_department</span><span class="font-headline-2 text-headline-2 text-on-surface font-semibold tracking-tight">Playlists</span></div><div class="flex items-center gap-space-sm"><button aria-label="Notifications" class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full px-gutter-mobile pt-16 pb-28 bg-canvas flex-1"><div class="flex flex-col w-full text-on-surface">
+<!-- Playlist Detail Header Component -->
+<div class="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md pb-4 pt-1 flex flex-col gap-3 shadow-[0_4px_16px_rgba(0,0,0,0.4)]">
+<!-- Top Action Row -->
+<div class="flex items-center justify-between gap-space-sm">
+<button aria-label="Return to Playlists" class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg bg-surface-container-low flex items-center justify-center text-text-secondary hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[24px]">chevron_left</span>
+</button>
+<div class="flex-1 min-w-0 px-space-xs text-center">
+<h1 class="font-headline-3 text-headline-3 text-on-surface truncate font-semibold">
+          Ars Alchemica &amp; Metallurgy Folios
+        </h1>
+</div>
+<button aria-label="Edit Playlist Metadata" class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg bg-surface-container-low flex items-center justify-center text-text-secondary hover:text-primary active:scale-95 transition-all" id="edit-playlist-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<!-- Description & Curation Meta -->
+<div class="bg-surface p-space-md rounded-xl shadow-sm flex flex-col gap-2">
+<p class="font-body-small text-body-small text-text-secondary line-clamp-2">
+        A curated sequence of late medieval guild treatises, chemical transformation records, and foundry logs from North Sanctum.
+      </p>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-mono text-[11px]">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span id="playlist-count-badge">6 treatises</span>
+</span>
+<span class="font-caption text-caption text-text-muted">· Curated by @alistair_vance</span>
+</div>
+<button class="flex items-center gap-1 px-2 py-1 rounded-lg bg-surface-hover text-text-secondary hover:text-primary text-caption font-caption transition-colors" id="reorder-trigger-btn" type="button">
+<span class="material-symbols-outlined text-[14px]">swap_vert</span>
+<span>Order</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Swipe Instruction Tip -->
+<div class="flex items-center justify-between px-space-xs py-2 mb-1 text-text-muted font-caption text-caption">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">swipe_left</span>
+<span>Swipe left on any folio to remove</span>
+</span>
+<span class="font-label-mono text-[10px] uppercase tracking-wider text-text-secondary">Guild Vault #07</span>
+</div>
+<!-- Interactive Swipeable Book List -->
+<div class="flex flex-col gap-3 pb-16" id="treatise-list-container">
+<!-- Item 1 -->
+<div class="swipeable-wrapper relative overflow-hidden rounded-xl bg-status-error select-none" data-id="item-1" data-title="The Alchemist's Codex">
+<div class="absolute inset-y-0 right-0 w-24 bg-status-error flex items-center justify-center gap-1.5 text-on-error font-body-small text-body-small font-medium pr-3 cursor-pointer delete-action-btn">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+<span>Remove</span>
+</div>
+<div class="swipeable-card relative bg-surface p-space-sm rounded-xl flex items-center gap-3 transition-transform duration-200 ease-out z-10">
+<img alt="The Alchemist's Codex" class="w-14 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k"/>
+<div class="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-3 text-[15px] leading-snug text-on-surface font-medium truncate">
+                The Alchemist's Codex: Arcane Wisdom
+              </h2>
+<span class="material-symbols-outlined text-text-muted text-[16px] flex-shrink-0">drag_indicator</span>
+</div>
+<p class="font-body-small text-[13px] text-text-secondary truncate mt-0.5">Hermes Trismegistus</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-mono text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              Folio #084 · Guild Sealed
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="swipeable-wrapper relative overflow-hidden rounded-xl bg-status-error select-none" data-id="item-2" data-title="Chronicles of the Iron Foundry">
+<div class="absolute inset-y-0 right-0 w-24 bg-status-error flex items-center justify-center gap-1.5 text-on-error font-body-small text-body-small font-medium pr-3 cursor-pointer delete-action-btn">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+<span>Remove</span>
+</div>
+<div class="swipeable-card relative bg-surface p-space-sm rounded-xl flex items-center gap-3 transition-transform duration-200 ease-out z-10">
+<img class="w-14 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container shadow-sm" data-alt="Woodcut illustration cover of a Renaissance molten iron forge foundry with glowing crucible fires and master artisans at anvils, tactile dark charcoal and rust sepia tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXEnmGDAoLjzwRb7AxowtqeXjDropFjE5FcFeGzjitvD7Tw9Ry7o21WaPse8CcII0kRdsd_yeI1BRjPX9MAaiSoffNMfDcPSFs4EaVNaPHkL9_NVEaXReykffeW30drRSEn6vkyo9ktc2Y6gVOroA63AklYW9rWMVjJQlwP5bRhAP8f1gyXSLSDP8aJjTB7YJY2QbPzWwoltOj-zPrju75nnbaSt1VfbRfSGqjnSXkM4xp8mPscBPz"/>
+<div class="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-3 text-[15px] leading-snug text-on-surface font-medium truncate">
+                Chronicles of the Iron Foundry
+              </h2>
+<span class="material-symbols-outlined text-text-muted text-[16px] flex-shrink-0">drag_indicator</span>
+</div>
+<p class="font-body-small text-[13px] text-text-secondary truncate mt-0.5">Master Vane</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-text-muted font-label-mono text-[11px]">
+              14 Woodcut Scans
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="swipeable-wrapper relative overflow-hidden rounded-xl bg-status-error select-none" data-id="item-3" data-title="De Sphaera Mundi">
+<div class="absolute inset-y-0 right-0 w-24 bg-status-error flex items-center justify-center gap-1.5 text-on-error font-body-small text-body-small font-medium pr-3 cursor-pointer delete-action-btn">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+<span>Remove</span>
+</div>
+<div class="swipeable-card relative bg-surface p-space-sm rounded-xl flex items-center gap-3 transition-transform duration-200 ease-out z-10">
+<img class="w-14 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container shadow-sm" data-alt="Astronomical brass celestial sphere diagram printed on aged parchment paper with hand-drawn planetary orbits and copperplate calligraphy in dark amber lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxg_LghQErcxbvIIwcf8BX2nauGmOmPNX7iIe29UmTHCG1S-2k9V4d_asy9oXvq0e4BWoEAT8tWqnKmJC2U35PjAW7B33eGIZe_oUe7g0SRJ2Q00encTceDJjIOeo19IuAH7kXYn60uI8BcQUgM0EvScihp3B7DYC2KFUu2_UrFfHKHDz_3EUAHs8GS2Ix-2nmWMn0cOzAqUbZdEpFLtg-PjTKjXBhqhcb2ZRMKO3b7gvBnHDgfmE3"/>
+<div class="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-3 text-[15px] leading-snug text-on-surface font-medium truncate">
+                De Sphaera Mundi: Astronomical Tables
+              </h2>
+<span class="material-symbols-outlined text-text-muted text-[16px] flex-shrink-0">drag_indicator</span>
+</div>
+<p class="font-body-small text-[13px] text-text-secondary truncate mt-0.5">Sacrobosco</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed-dim font-label-mono text-[11px]">
+              Restored 1482 Edition
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="swipeable-wrapper relative overflow-hidden rounded-xl bg-status-error select-none" data-id="item-4" data-title="Compendium of Metallurgical Alloys">
+<div class="absolute inset-y-0 right-0 w-24 bg-status-error flex items-center justify-center gap-1.5 text-on-error font-body-small text-body-small font-medium pr-3 cursor-pointer delete-action-btn">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+<span>Remove</span>
+</div>
+<div class="swipeable-card relative bg-surface p-space-sm rounded-xl flex items-center gap-3 transition-transform duration-200 ease-out z-10">
+<img class="w-14 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container shadow-sm" data-alt="Antique botanical and mineral alchemical tome cover featuring embossed bronze sigils, burnt amber leather corners, and weathered gold leaf lettering" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtMKhbotx78rZ9-bWwuSbORyJXkGwgnRiGo-8WItqIokaQ9UhCPqK8NTOOtHioac0s4Ld8Lx8tsryXyrPcwlPyGVY_pynD9cSACow3SCmmuaKAscEWgXyHQfofklIqmVHeYgGWTHd_2n2NQ3RFZralrZXP_vOzGcYJ-KGTTtW8yW-fMVGQ3WIIQz-oF7WkLen661Ar6lPOl9tn97ajqcdlDHBhKXxfFDbRTJR4D2vdlaQsNwoLuDwM"/>
+<div class="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-3 text-[15px] leading-snug text-on-surface font-medium truncate">
+                Compendium of Metallurgical Alloys
+              </h2>
+<span class="material-symbols-outlined text-text-muted text-[16px] flex-shrink-0">drag_indicator</span>
+</div>
+<p class="font-body-small text-[13px] text-text-secondary truncate mt-0.5">Paracelsus</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-text-muted font-label-mono text-[11px]">
+              Latin Translation
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="swipeable-wrapper relative overflow-hidden rounded-xl bg-status-error select-none" data-id="item-5" data-title="Gutenberg Typography">
+<div class="absolute inset-y-0 right-0 w-24 bg-status-error flex items-center justify-center gap-1.5 text-on-error font-body-small text-body-small font-medium pr-3 cursor-pointer delete-action-btn">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+<span>Remove</span>
+</div>
+<div class="swipeable-card relative bg-surface p-space-sm rounded-xl flex items-center gap-3 transition-transform duration-200 ease-out z-10">
+<img class="w-14 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container shadow-sm" data-alt="High contrast macro shot of early movable metal type printer blocks with soot-black ink stains, glowing molten lead reflections, and deep oak desk grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRYBybNrJwR07LEZVMLMRgTDTt6aJ-puDJNRZv4aDRu2WbDo4ciaYGNyp9HdSKyQCGwtcpTt8ftHEa_Q8s437LFMH2BcV7UYWZ6s4mRS8ZW5IvRFWhWg2apD1U-Nu35NIyBC2_cvyfyci5Jgd19RlnYLVTdBFa0p90f6O81uLAQmOtRf8WxRVtWkDSvqqXuKi_GFm1jkkCI5KwcNPuI1beoS-omYU1QipCBjarYu9-O4acdm8TKbS3"/>
+<div class="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-3 text-[15px] leading-snug text-on-surface font-medium truncate">
+                Gutenberg Typography &amp; Ink Spectrometry
+              </h2>
+<span class="material-symbols-outlined text-text-muted text-[16px] flex-shrink-0">drag_indicator</span>
+</div>
+<p class="font-body-small text-[13px] text-text-secondary truncate mt-0.5">Archivist Vance</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-primary-fixed-dim font-label-mono text-[11px]">
+              Original Treatise
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="swipeable-wrapper relative overflow-hidden rounded-xl bg-status-error select-none" data-id="item-6" data-title="Lexicon of Antiquity">
+<div class="absolute inset-y-0 right-0 w-24 bg-status-error flex items-center justify-center gap-1.5 text-on-error font-body-small text-body-small font-medium pr-3 cursor-pointer delete-action-btn">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+<span>Remove</span>
+</div>
+<div class="swipeable-card relative bg-surface p-space-sm rounded-xl flex items-center gap-3 transition-transform duration-200 ease-out z-10">
+<img class="w-14 h-20 rounded-lg object-cover flex-shrink-0 bg-surface-container shadow-sm" data-alt="Wax sealed archival document with red vermilion stamp impression, metallic ribbon marker, and aged manuscript script in warm tungsten illumination" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmRZBSXVnduA4b1KdNOUS2vWi3ZhDhOvPFesfH0onDwZVd1ViBxtygWu6AKpM2ZuD3_Kswv2siekYV6ofjlz29ENh6HgkOdmi6F8-4hBzsuwP0cXy0rdOQ-Uh-wsgG8BszMFJT4QrlVr6WHedj5v7imJMT8LBlWsFtO-dZE_EglHPYvkNFGqmQZQucckbES65i_dUhAkphNjAby-LzMyCDZxVVl6WsANQoru6gx_QQvCcvpDatAxr8"/>
+<div class="flex-1 min-w-0 flex flex-col justify-between h-20 py-0.5">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-3 text-[15px] leading-snug text-on-surface font-medium truncate">
+                Lexicon of Antiquity &amp; Guild Seals
+              </h2>
+<span class="material-symbols-outlined text-text-muted text-[16px] flex-shrink-0">drag_indicator</span>
+</div>
+<p class="font-body-small text-[13px] text-text-secondary truncate mt-0.5">High Guild Council</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-status-success font-label-mono text-[11px]">
+              Block #9,481 Verified
+            </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State Placeholder (hidden initially) -->
+<div class="hidden flex-col items-center justify-center text-center py-12 px-6 my-4 bg-surface rounded-2xl" id="empty-state-view">
+<div class="w-24 h-24 rounded-full bg-surface-container-high flex items-center justify-center mb-4 shadow-[0_0_24px_rgba(232,105,63,0.12)]">
+<span class="material-symbols-outlined text-primary text-[44px]">auto_stories</span>
+</div>
+<h2 class="font-headline-2 text-headline-2 text-on-surface mb-2">No books in this playlist</h2>
+<p class="font-body-default text-body-default text-text-secondary max-w-xs mb-6">
+      Your archive shelf is currently quiet. Deposit manuscripts and metallurgical folios from the catalog.
+    </p>
+<button class="px-6 py-3 rounded-lg bg-primary-container text-on-primary font-body-default text-body-default font-semibold shadow-[0_0_20px_rgba(232,105,63,0.25)] hover:bg-primary-hover active:scale-95 transition-all flex items-center gap-2" id="empty-add-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Deposit Treatises</span>
+</button>
+</div>
+<!-- Floating Action Button (FAB) -->
+<button aria-label="Add Book to Playlist" class="fixed right-5 bottom-20 z-40 w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-primary-container flex items-center justify-center text-on-primary shadow-[0_4px_24px_rgba(232,105,63,0.4)] active:scale-90 transition-transform focus:outline-none" id="fab-add-treatise" type="button">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+<!-- Interactive Toast Notification Component -->
+<div class="fixed bottom-20 left-4 right-4 z-50 transform translate-y-28 opacity-0 transition-all duration-300 pointer-events-none" id="removal-toast">
+<div class="bg-surface-bright text-on-surface px-4 py-3 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-between pointer-events-auto">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px]">check_circle</span>
+<span class="font-body-small text-body-small text-on-surface truncate" id="toast-message">
+          Treatise removed from playlist
+        </span>
+</div>
+<button class="font-label-mono text-label-mono font-semibold text-primary hover:text-primary-hover active:scale-95 px-2 py-1 transition-all" id="toast-undo-btn" type="button">
+        UNDO
+      </button>
+</div>
+</div>
+<!-- Add Treatise Sheet Modal (Interactive Delight) -->
+<div class="fixed inset-0 z-50 bg-canvas/80 backdrop-blur-sm hidden flex-col justify-end transition-opacity duration-300" id="add-modal">
+<div class="bg-surface rounded-t-2xl p-space-lg flex flex-col gap-4 shadow-2xl max-h-[80vh] overflow-y-auto">
+<div class="w-12 h-1.5 bg-surface-container-highest rounded-full mx-auto mb-1"></div>
+<div class="flex items-center justify-between">
+<h3 class="font-headline-3 text-headline-3 text-on-surface">Deposit to Playlist</h3>
+<button class="w-9 h-9 flex items-center justify-center rounded-full bg-surface-container text-text-secondary" id="close-modal-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-text-muted text-body-small font-body-small px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search archive ledger by title or seal..." type="text"/>
+<span class="material-symbols-outlined text-text-muted absolute right-3 top-2.5 text-[20px]">search</span>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<p class="font-overline text-overline uppercase tracking-widest text-text-muted">Recommended for Metallurgy</p>
+<div class="p-3 bg-surface-container-low rounded-xl flex items-center justify-between">
+<div class="min-w-0">
+<h4 class="font-headline-3 text-[14px] text-on-surface truncate">De Re Metallica (Book IX)</h4>
+<p class="font-caption text-caption text-text-secondary">Georgius Agricola · 1556</p>
+</div>
+<button class="quick-add-sample-btn px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-mono text-[12px] font-medium hover:bg-primary-hover active:scale-95 transition-all" type="button">
+            + Add
+          </button>
+</div>
+<div class="p-3 bg-surface-container-low rounded-xl flex items-center justify-between">
+<div class="min-w-0">
+<h4 class="font-headline-3 text-[14px] text-on-surface truncate">Pirotechnia &amp; Smelting Arts</h4>
+<p class="font-caption text-caption text-text-secondary">Vannoccio Biringuccio · 1540</p>
+</div>
+<button class="quick-add-sample-btn px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-mono text-[12px] font-medium hover:bg-primary-hover active:scale-95 transition-all" type="button">
+            + Add
+          </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initPlaylistTouchFlow() {
+    const listContainer = document.getElementById('treatise-list-container');
+    const emptyView = document.getElementById('empty-state-view');
+    const countBadge = document.getElementById('playlist-count-badge');
+    const toast = document.getElementById('removal-toast');
+    const toastMsg = document.getElementById('toast-message');
+    const toastUndoBtn = document.getElementById('toast-undo-btn');
+    const fabBtn = document.getElementById('fab-add-treatise');
+    const emptyAddBtn = document.getElementById('empty-add-btn');
+    const addModal = document.getElementById('add-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+    let lastRemovedNode = null;
+    let lastRemovedIndex = -1;
+    let toastTimeout = null;
+
+    function updateBadgeCount() {
+      const currentCount = listContainer.querySelectorAll('.swipeable-wrapper').length;
+      countBadge.textContent = `${currentCount} treatise${currentCount === 1 ? '' : 's'}`;
+      if (currentCount === 0) {
+        listContainer.classList.add('hidden');
+        emptyView.classList.remove('hidden');
+        emptyView.classList.add('flex');
+      } else {
+        listContainer.classList.remove('hidden');
+        emptyView.classList.add('hidden');
+        emptyView.classList.remove('flex');
+      }
+    }
+
+    function showToast(title) {
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastMsg.textContent = `"${title}" removed`;
+      toast.classList.remove('opacity-0', 'translate-y-28', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      toastTimeout = setTimeout(() => {
+        hideToast();
+      }, 4500);
+    }
+
+    function hideToast() {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'translate-y-28', 'pointer-events-none');
+      lastRemovedNode = null;
+      lastRemovedIndex = -1;
+    }
+
+    toastUndoBtn.addEventListener('click', () => {
+      if (lastRemovedNode) {
+        if (lastRemovedIndex >= 0 && lastRemovedIndex < listContainer.children.length) {
+          listContainer.insertBefore(lastRemovedNode, listContainer.children[lastRemovedIndex]);
+        } else {
+          listContainer.appendChild(lastRemovedNode);
+        }
+        
+        // Reset translation of returned card
+        const card = lastRemovedNode.querySelector('.swipeable-card');
+        if (card) {
+          card.style.transform = 'translateX(0px)';
+        }
+        
+        setupSwipeRow(lastRemovedNode);
+        updateBadgeCount();
+        hideToast();
+      }
+    });
+
+    function setupSwipeRow(wrapper) {
+      const card = wrapper.querySelector('.swipeable-card');
+      const delBtn = wrapper.querySelector('.delete-action-btn');
+      let startX = 0;
+      let currentX = 0;
+      let isSwiping = false;
+      let isOpen = false;
+
+      function onTouchStart(e) {
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        isSwiping = true;
+        card.style.transition = 'none';
+      }
+
+      function onTouchMove(e) {
+        if (!isSwiping) return;
+        currentX = e.touches ? e.touches[0].clientX : e.clientX;
+        let deltaX = currentX - startX;
+
+        // Apply resistance if swiping right
+        if (deltaX > 0) {
+          deltaX = deltaX * 0.2;
+        }
+
+        // Apply resistance past action limit
+        if (deltaX < -110) {
+          deltaX = -110 + (deltaX + 110) * 0.25;
+        }
+
+        card.style.transform = `translateX(${deltaX}px)`;
+      }
+
+      function onTouchEnd(e) {
+        if (!isSwiping) return;
+        isSwiping = false;
+        card.style.transition = 'transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+
+        const deltaX = (e.changedTouches ? e.changedTouches[0].clientX : currentX) - startX;
+
+        if (deltaX < -65) {
+          // Snap open
+          card.style.transform = 'translateX(-90px)';
+          isOpen = true;
+          if (navigator.vibrate) navigator.vibrate(12);
+        } else {
+          // Snap back
+          card.style.transform = 'translateX(0px)';
+          isOpen = false;
+        }
+      }
+
+      function removeItem() {
+        const title = wrapper.getAttribute('data-title') || 'Folio';
+        lastRemovedNode = wrapper;
+        lastRemovedIndex = Array.from(listContainer.children).indexOf(wrapper);
+
+        wrapper.style.transition = 'all 0.25s ease';
+        wrapper.style.opacity = '0';
+        wrapper.style.transform = 'scale(0.92)';
+
+        setTimeout(() => {
+          if (wrapper.parentNode) {
+            wrapper.parentNode.removeChild(wrapper);
+          }
+          updateBadgeCount();
+          showToast(title);
+        }, 220);
+      }
+
+      // Touch listener attachments
+      card.addEventListener('touchstart', onTouchStart, { passive: true });
+      card.addEventListener('touchmove', onTouchMove, { passive: true });
+      card.addEventListener('touchend', onTouchEnd);
+
+      // Mouse fallback for responsive preview testing
+      card.addEventListener('mousedown', onTouchStart);
+      window.addEventListener('mousemove', onTouchMove);
+      window.addEventListener('mouseup', onTouchEnd);
+
+      // Direct delete button click
+      delBtn.addEventListener('click', removeItem);
+    }
+
+    // Initialize all existing rows
+    document.querySelectorAll('.swipeable-wrapper').forEach(setupSwipeRow);
+
+    // Modal behavior for Adding treaties
+    function openModal() {
+      addModal.classList.remove('hidden');
+      addModal.classList.add('flex');
+    }
+
+    function closeModal() {
+      addModal.classList.add('hidden');
+      addModal.classList.remove('flex');
+    }
+
+    fabBtn.addEventListener('click', openModal);
+    emptyAddBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    addModal.addEventListener('click', (e) => {
+      if (e.target === addModal) closeModal();
+    });
+
+    document.querySelectorAll('.quick-add-sample-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeModal();
+        if (emptyView.classList.contains('flex')) {
+          location.reload();
+        }
+      });
+    });
+  })();
+</script></main><nav class="fixed bottom-0 w-full max-w-[640px] z-50 pb-safe bg-canvas/80 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.4)]" data-active-classes="text-primary-container font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center gap-1 w-16 h-11 min-w-[44px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[22px]">cottage</span><span class="font-caption text-caption">Home</span></a><a class="flex flex-col items-center justify-center gap-1 w-16 h-11 min-w-[44px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="search" href="#"><span class="material-symbols-outlined text-[22px]">explore</span><span class="font-caption text-caption">Search</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-1 w-16 h-11 min-w-[44px] min-h-[44px] transition-colors text-primary-container font-semibold" data-path="playlists" href="#"><span class="material-symbols-outlined text-[22px]">auto_stories</span><span class="font-caption text-caption">Playlists</span></a><a class="flex flex-col items-center justify-center gap-1 w-16 h-11 min-w-[44px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[22px]">person_outline</span><span class="font-caption text-caption">Profile</span></a></div></nav></div></body></html>

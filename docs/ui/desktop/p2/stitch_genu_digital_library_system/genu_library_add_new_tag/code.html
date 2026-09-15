@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#251e1b","text-on-accent":"#16110f","text-muted":"#7a706a","inverse-surface":"#eee0da","status-info":"#5b8fb9","border":"#3a322d","secondary-fixed":"#ffdead","on-tertiary":"#00363f","on-surface":"#eee0da","primary-container":"#ea6a40","error":"#ffb4ab","on-error-container":"#ffdad6","surface":"#211a17","outline":"#a68b82","surface-container-high":"#302825","surface-dim":"#18120f","outline-variant":"#58423b","inverse-primary":"#a73a13","on-background":"#eee0da","on-tertiary-fixed":"#001f25","status-warning":"#d4a24e","on-secondary-fixed":"#281900","canvas":"#16110f","secondary-fixed-dim":"#f3be67","on-primary-fixed-variant":"#842500","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","text-secondary":"#a89c93","background":"#18120f","primary":"#ffb59e","surface-tint":"#ffb59e","surface-container-highest":"#3b3330","on-primary-container":"#521300","tertiary-fixed-dim":"#61d6ed","text-primary":"#ece0dc","surface-container-low":"#211a17","on-tertiary-container":"#002f36","surface-variant":"#3b3330","on-secondary-container":"#ffcd7d","tertiary-container":"#049fb5","status-success":"#4a7c59","inverse-on-surface":"#372f2b","on-secondary":"#432c00","tertiary":"#61d6ed","surface-bright":"#403734","primary-fixed-dim":"#ffb59e","status-error":"#c44d4d","on-tertiary-fixed-variant":"#004e5a","on-primary":"#5e1700","secondary":"#f3be67","error-container":"#93000a","surface-container-lowest":"#130d0a","primary-hover":"#d45a30","on-error":"#690005","on-secondary-fixed-variant":"#604100","tertiary-fixed":"#a4eeff","secondary-container":"#7c5400","border-hover":"#4d433d","surface-active":"#332a24","surface-hover":"#2a211c","on-surface-variant":"#dfc0b7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","margin-mobile":"1rem","space-xl":"2rem","space-sm":"0.5rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem"},"fontFamily":{"display":["Playfair Display"],"headline-1":["Playfair Display"],"body-large":["Inter"],"headline-2":["Playfair Display"],"overline":["JetBrains Mono"],"body-default":["Inter"],"caption":["Inter"],"display-mobile":["Playfair Display"],"display-xl-mobile":["Playfair Display"],"headline-3":["Playfair Display"],"display-xl":["Playfair Display"],"label-mono":["JetBrains Mono"],"body-small":["Inter"]},"fontSize":{"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-1":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-large":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-2":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"body-default":["16px",{"lineHeight":"24px","fontWeight":"400"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-xl-mobile":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-3":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-xl":["60px",{"lineHeight":"68px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-mono":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}],"body-small":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-canvas font-body-default text-body-default text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-canvas/80 backdrop-blur-xl border-b border-border transition-colors duration-200"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg shrink-0"><a class="flex items-center gap-space-sm group text-text-primary" data-path="home" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border group-hover:border-primary transition-colors"><span class="material-symbols-outlined text-primary text-[22px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary tracking-tight">Genu Library</span></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary border-b-2 border-primary"><a aria-current="page" class="font-body-default transition-colors py-space-xs text-primary border-b-2 border-primary" data-path="home" href="#">Home</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="books" href="#">Books</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="playlists" href="#">Playlists</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="upload" href="#">Upload</a></nav></div><div class="hidden md:flex flex-1 max-w-md mx-space-md relative"><div class="w-full flex items-center bg-canvas border border-border rounded-lg px-space-sm py-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all"><span class="material-symbols-outlined text-text-muted text-[20px] mr-2">search</span><input class="w-full bg-transparent border-none outline-none font-body-small text-body-small text-text-primary placeholder:text-text-muted" placeholder="Search codex, folio, author, or seal..." type="text"/><span class="font-label-mono text-overline text-text-muted bg-surface-container border border-border px-1.5 py-0.5 rounded">⌘K</span></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-1.5 bg-surface-container border border-border px-space-sm py-1.5 rounded-lg"><span class="text-secondary text-[16px]">🪙</span><span class="font-label-mono text-label-mono font-medium text-secondary">1.4K</span></div><div class="flex items-center gap-space-sm"><div class="relative group cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></div></header><main class="w-full pt-20 bg-canvas min-h-screen"><div class="flex flex-col w-full">
+<div class="relative w-full overflow-hidden">
+<div class="pointer-events-none absolute -top-40 left-1/4 h-96 w-96 rounded-full bg-primary-container/10 blur-3xl"></div>
+<div class="pointer-events-none absolute top-48 right-10 h-72 w-72 rounded-full bg-secondary/5 blur-3xl"></div>
+<div class="mx-auto w-full max-w-6xl px-margin py-space-xl">
+<!-- Breadcrumb Navigation -->
+<nav aria-label="Breadcrumb" class="mb-space-md flex items-center gap-2">
+<a class="font-body-small text-body-small text-text-muted transition-colors hover:text-text-primary" href="#">Home</a>
+<span class="font-label-mono text-overline text-outline-variant">/</span>
+<a class="font-body-small text-body-small text-text-muted transition-colors hover:text-text-primary" href="#">Tags</a>
+<span class="font-label-mono text-overline text-outline-variant">/</span>
+<span class="font-body-small text-body-small text-primary">Add New</span>
+</nav>
+<!-- Page Header with Guild Flourish -->
+<header class="mb-space-xl flex flex-col justify-between gap-space-md md:flex-row md:items-end">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-overline text-overline uppercase tracking-widest text-primary">Archive Lexicon Forge</span>
+<span class="h-1 w-1 rounded-full bg-primary"></span>
+<span class="font-label-mono text-caption text-text-muted">Codex Registry Sec-04</span>
+</div>
+<h1 class="font-display text-display text-text-primary">Add New Tag</h1>
+<p class="max-w-2xl font-body-default text-body-default text-text-secondary">
+            Curate taxonomy codices and thematic lexicons for classifying rare treatises, illuminated folios, and auditory scrolls across the archives.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm self-start rounded-lg bg-surface-container px-space-md py-space-sm md:self-auto">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_stories</span>
+<div class="flex flex-col">
+<span class="font-label-mono text-caption font-medium text-text-muted">Catalog Coverage</span>
+<span class="font-label-mono text-body-small font-semibold text-text-primary">1,842 Works Tagged</span>
+</div>
+</div>
+</header>
+<!-- Main Workspace: Two-Column Responsive Layout -->
+<div class="grid grid-cols-1 gap-space-xl lg:grid-cols-12">
+<!-- Left Column (5 cols): Tag Creation Panel -->
+<section class="flex flex-col gap-space-lg lg:col-span-5">
+<div class="relative overflow-hidden rounded-xl bg-surface p-space-lg shadow-xl transition-all">
+<div class="pointer-events-none absolute top-0 right-0 h-28 w-28 translate-x-8 -translate-y-8 rounded-full bg-primary/10 blur-2xl"></div>
+<div class="mb-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<h2 class="font-headline-3 text-headline-3 text-text-primary">Guild Taxonomy Tag</h2>
+</div>
+<span class="rounded-full bg-surface-container px-2.5 py-0.5 font-label-mono text-overline text-secondary">SEAL OF INGRESS</span>
+</div>
+<form class="space-y-space-lg" id="tag-form" onsubmit="event.preventDefault(); handleAddTag();">
+<!-- Tag Name Field -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="font-body-small text-body-small font-medium text-text-primary" for="tag-name">
+                    Tag Name <span class="text-primary-container">*</span>
+</label>
+<span class="font-label-mono text-caption text-text-muted" id="char-counter">0 / 100</span>
+</div>
+<div class="relative">
+<input class="w-full rounded-lg bg-canvas px-3.5 py-2.5 font-body-default text-body-default text-text-primary placeholder:text-text-muted focus:outline-none transition-all" id="tag-name" maxlength="100" oninput="handleInput(this)" placeholder="e.g. Hermetic Philosophy, Celestial Cartography" type="text"/>
+<div class="pointer-events-none absolute right-3 top-2.5 text-text-muted">
+<span class="material-symbols-outlined text-[20px]" id="validation-icon">edit_note</span>
+</div>
+</div>
+<div class="flex items-start gap-1.5 pt-1 text-text-muted">
+<span class="material-symbols-outlined mt-0.5 text-[15px] shrink-0">info</span>
+<p class="font-body-small text-caption text-text-muted leading-tight">
+                    Tag names must be unique across the Sovereign Guild Lexicon and remain casing-agnostic during search lookups.
+                  </p>
+</div>
+</div>
+<!-- Lexicon Pillar / Domain Selector -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-body-small text-body-small font-medium text-text-primary">Lexicon Domain (Discipline)</span>
+<span class="font-label-mono text-caption text-text-muted">Quick Stamp</span>
+</div>
+<div class="flex flex-wrap gap-2" id="category-pills">
+<button class="category-chip rounded-full bg-surface-container px-3 py-1 font-body-small text-body-small text-text-secondary transition-all hover:text-text-primary" data-selected="false" onclick="selectCategory(this, 'Arcana')" type="button">
+                    ✧ Arcana
+                  </button>
+<button class="category-chip rounded-full bg-surface-container px-3 py-1 font-body-small text-body-small text-text-secondary transition-all hover:text-text-primary" data-selected="false" onclick="selectCategory(this, 'Craft &amp; Foundry')" type="button">
+                    ⚒ Craft &amp; Foundry
+                  </button>
+<button class="category-chip rounded-full bg-surface-container px-3 py-1 font-body-small text-body-small text-text-secondary transition-all hover:text-text-primary" data-selected="false" onclick="selectCategory(this, 'Natural Philosophy')" type="button">
+                    ⚖ Philosophy
+                  </button>
+<button class="category-chip rounded-full bg-surface-container px-3 py-1 font-body-small text-body-small text-text-secondary transition-all hover:text-text-primary" data-selected="false" onclick="selectCategory(this, 'Historiography')" type="button">
+                    📜 History
+                  </button>
+<button class="category-chip rounded-full bg-surface-container px-3 py-1 font-body-small text-body-small text-text-secondary transition-all hover:text-text-primary" data-selected="false" onclick="selectCategory(this, 'Aetheric Sciences')" type="button">
+                    ✦ Aetheric
+                  </button>
+</div>
+</div>
+<!-- Scope Description Mockup -->
+<div class="space-y-1.5">
+<label class="font-body-small text-body-small font-medium text-text-secondary" for="tag-scope">
+                  Scholarly Annotation <span class="text-caption text-text-muted">(Optional)</span>
+</label>
+<textarea class="w-full resize-none rounded-lg bg-canvas px-3.5 py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:outline-none transition-all" id="tag-scope" placeholder="Summarize taxonomy parameters for apprentices and catalogers..." rows="2"></textarea>
+</div>
+<!-- Live Validation Banner -->
+<div class="flex items-center gap-2.5 rounded-lg bg-surface-container px-3 py-2.5" id="status-banner">
+<span class="material-symbols-outlined text-[18px] text-status-success shrink-0">verified_user</span>
+<p class="font-body-small text-caption text-text-secondary leading-snug">
+                  Duplicate verification active: ready for ingestion into the archival codex.
+                </p>
+</div>
+<!-- Primary Submit Button -->
+<button class="group relative flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-space-md py-3 font-body-default text-body-default font-semibold text-text-on-accent transition-all hover:bg-primary-hover active:scale-[0.98]" id="submit-btn" type="submit">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-12">bookmark_add</span>
+<span>Add Tag to Lexicon</span>
+<span class="font-label-mono text-caption opacity-80">↵</span>
+</button>
+</form>
+</div>
+<!-- Guild Preservation Note with Monospace Ledger Style -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container p-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px] shrink-0">shield_with_heart</span>
+<div class="space-y-1">
+<h4 class="font-headline-3 text-body-default font-semibold text-text-primary">Archival Consensus Rule</h4>
+<p class="font-body-small text-caption text-text-secondary">
+                  Once registered, newly minted tags are propagated across federated reading desks and catalog indices within three ticks of the guild water clock.
+                </p>
+<div class="pt-1 font-label-mono text-overline text-text-muted">
+                  REGISTRY PROTOCOL · REV 4.8.19
+                </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column (7 cols): Existing Tags Display Panel -->
+<section class="flex flex-col gap-space-md lg:col-span-7">
+<div class="flex flex-col rounded-xl bg-surface p-space-lg shadow-xl">
+<!-- Header & Counter -->
+<div class="mb-space-md flex flex-col justify-between gap-space-sm sm:flex-row sm:items-center">
+<div>
+<h3 class="font-headline-2 text-headline-2 text-text-primary">Existing Archive Tags</h3>
+<p class="font-body-small text-caption text-text-muted">Curated vocabulary currently indexed across the shelves</p>
+</div>
+<span class="inline-flex items-center gap-1.5 self-start rounded-full bg-primary/10 px-3 py-1 font-label-mono text-caption font-semibold text-primary sm:self-auto" id="active-tag-count">
+<span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+                28 Lexicon Tags Active
+              </span>
+</div>
+<!-- Toolbar: Search and Filter Controls -->
+<div class="mb-space-lg flex flex-col gap-space-sm sm:flex-row sm:items-center">
+<div class="relative flex-1">
+<span class="material-symbols-outlined pointer-events-none absolute left-3 top-2.5 text-text-muted text-[18px]">search</span>
+<input class="w-full rounded-lg bg-canvas pl-9 pr-3.5 py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:outline-none transition-all" id="tag-search" oninput="filterTags(this.value)" placeholder="Filter existing tags..." type="text"/>
+</div>
+<!-- Sort Selection Buttons -->
+<div class="flex items-center rounded-lg bg-canvas p-1">
+<button class="sort-tab rounded-md bg-surface-container px-2.5 py-1 font-label-mono text-overline font-medium text-primary transition-all" data-sort="folios" onclick="sortTags('folios', this)" type="button">
+                  Most Folios
+                </button>
+<button class="sort-tab rounded-md px-2.5 py-1 font-label-mono text-overline font-medium text-text-muted transition-all hover:text-text-primary" data-sort="alpha" onclick="sortTags('alpha', this)" type="button">
+                  A–Z
+                </button>
+<button class="sort-tab rounded-md px-2.5 py-1 font-label-mono text-overline font-medium text-text-muted transition-all hover:text-text-primary" data-sort="recent" onclick="sortTags('recent', this)" type="button">
+                  Recent
+                </button>
+</div>
+</div>
+<!-- Visual Tag Cloud & Quantitative Folio Counters -->
+<div class="flex flex-wrap gap-2.5 py-space-xs min-h-[300px] content-start" id="tags-container">
+<!-- Tag Pills populated with rich counts and tactile states -->
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="42" data-name="Alchemical Transmutation" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Alchemical Transmutation</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">42</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="38" data-name="Sacred Geometry" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Sacred Geometry</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">38</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="29" data-name="Blacksmithing &amp; Foundry" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Blacksmithing &amp; Foundry</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">29</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="24" data-name="Celestial Navigation" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Celestial Navigation</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">24</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="19" data-name="Hermetic Treatises" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Hermetic Treatises</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">19</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="17" data-name="Ancient Cartography" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Ancient Cartography</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">17</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="15" data-name="Herbalism &amp; Botany" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Herbalism &amp; Botany</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">15</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="14" data-name="Philosopher's Stone" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Philosopher's Stone</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">14</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="12" data-name="Guild Chronicles" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Guild Chronicles</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">12</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="11" data-name="Illuminated Manuscripts" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Illuminated Manuscripts</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">11</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="9" data-name="Cryptanalysis" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Cryptanalysis</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">9</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="8" data-name="Glassmaking" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Glassmaking</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">8</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="6" data-name="Steam Automata" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Steam Automata</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">6</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="5" data-name="Aetheric Theory" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Aetheric Theory</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">5</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="4" data-name="Calligraphy" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Calligraphy</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">4</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="3" data-name="Timekeeping Horology" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Timekeeping Horology</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">3</span>
+</button>
+<button class="tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover" data-count="3" data-name="Binding &amp; Vellum" type="button">
+<span class="font-body-small text-body-small text-text-primary group-hover:text-primary">Binding &amp; Vellum</span>
+<span class="rounded-full bg-surface-container px-2 py-0.2 font-label-mono text-overline font-medium text-secondary">3</span>
+</button>
+</div>
+<!-- Empty Search State -->
+<div class="hidden flex-col items-center justify-center py-12 text-center" id="empty-state">
+<span class="material-symbols-outlined text-text-muted text-[36px] mb-2">find_in_page</span>
+<p class="font-headline-3 text-headline-3 text-text-primary">No Matching Lexicon Tags</p>
+<p class="font-body-small text-body-small text-text-secondary max-w-sm mt-1">
+                No archived tags match your query. You can mint this as a new term using the forge panel on the left.
+              </p>
+</div>
+<!-- Footer Summary & Quick Action -->
+<div class="mt-space-lg flex flex-col justify-between gap-space-sm rounded-lg bg-surface-container px-space-md py-space-sm sm:flex-row sm:items-center">
+<div class="flex items-center gap-2 text-text-secondary">
+<span class="material-symbols-outlined text-secondary text-[18px]">touch_app</span>
+<span class="font-body-small text-caption text-text-secondary">Click any tag to inspect related codices in the catalog.</span>
+</div>
+<a class="inline-flex items-center gap-1 font-label-mono text-overline font-semibold text-primary hover:text-primary-hover transition-colors" href="#">
+<span>OPEN TAXONOMY MATRIX</span>
+<span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+</div>
+</div>
+<!-- Live Archival Metrics Grid (Tactile Data Enrichment) -->
+<div class="grid grid-cols-3 gap-space-md">
+<div class="flex flex-col rounded-xl bg-surface p-space-md shadow-sm">
+<span class="font-overline text-overline uppercase text-text-muted">Active Lexicographers</span>
+<div class="mt-1 flex items-baseline gap-2">
+<span class="font-headline-2 text-headline-2 text-text-primary">14</span>
+<span class="font-label-mono text-caption text-status-success">Online</span>
+</div>
+</div>
+<div class="flex flex-col rounded-xl bg-surface p-space-md shadow-sm">
+<span class="font-overline text-overline uppercase text-text-muted">Unclassified Folios</span>
+<div class="mt-1 flex items-baseline gap-2">
+<span class="font-headline-2 text-headline-2 text-text-primary">19</span>
+<span class="font-label-mono text-caption text-status-warning">Awaiting Tag</span>
+</div>
+</div>
+<div class="flex flex-col rounded-xl bg-surface p-space-md shadow-sm">
+<span class="font-overline text-overline uppercase text-text-muted">Consensus Rate</span>
+<div class="mt-1 flex items-baseline gap-2">
+<span class="font-headline-2 text-headline-2 text-text-primary">99.4%</span>
+<span class="font-label-mono text-caption text-secondary">Verified</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let selectedCategoryName = '';
+
+  function handleInput(input) {
+    const counter = document.getElementById('char-counter');
+    const val = input.value.trim();
+    counter.textContent = `${input.value.length} / 100`;
+
+    const banner = document.getElementById('status-banner');
+    const icon = document.getElementById('validation-icon');
+    
+    // Check if tag already exists
+    const existingChips = Array.from(document.querySelectorAll('.tag-chip'));
+    const isDuplicate = existingChips.some(chip => 
+      chip.getAttribute('data-name').toLowerCase() === val.toLowerCase()
+    );
+
+    if (val.length === 0) {
+      banner.className = 'flex items-center gap-2.5 rounded-lg bg-surface-container px-3 py-2.5';
+      banner.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] text-status-success shrink-0">verified_user</span>
+        <p class="font-body-small text-caption text-text-secondary leading-snug">
+          Duplicate verification active: ready for ingestion into the archival codex.
+        </p>
+      `;
+      icon.textContent = 'edit_note';
+      icon.className = 'material-symbols-outlined text-[20px] text-text-muted';
+    } else if (isDuplicate) {
+      banner.className = 'flex items-center gap-2.5 rounded-lg bg-error-container/30 px-3 py-2.5 text-error';
+      banner.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] text-error shrink-0">warning</span>
+        <p class="font-body-small text-caption text-error leading-snug">
+          Tag &ldquo;${val}&rdquo; already exists within the Sovereign Codex. Duplicates are restricted.
+        </p>
+      `;
+      icon.textContent = 'cancel';
+      icon.className = 'material-symbols-outlined text-[20px] text-error';
+    } else {
+      banner.className = 'flex items-center gap-2.5 rounded-lg bg-status-success/20 px-3 py-2.5 text-text-primary';
+      banner.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] text-status-success shrink-0">check_circle</span>
+        <p class="font-body-small text-caption text-text-primary leading-snug">
+          &ldquo;${val}&rdquo; is unique and eligible for guild registration.
+        </p>
+      `;
+      icon.textContent = 'check';
+      icon.className = 'material-symbols-outlined text-[20px] text-status-success';
+    }
+  }
+
+  function selectCategory(button, category) {
+    const pills = document.querySelectorAll('.category-chip');
+    const isCurrentlySelected = button.getAttribute('data-selected') === 'true';
+
+    pills.forEach(p => {
+      p.setAttribute('data-selected', 'false');
+      p.className = 'category-chip rounded-full bg-surface-container px-3 py-1 font-body-small text-body-small text-text-secondary transition-all hover:text-text-primary';
+    });
+
+    if (!isCurrentlySelected) {
+      button.setAttribute('data-selected', 'true');
+      button.className = 'category-chip rounded-full bg-primary/20 px-3 py-1 font-body-small text-body-small text-primary font-semibold transition-all shadow-sm';
+      selectedCategoryName = category;
+    } else {
+      selectedCategoryName = '';
+    }
+  }
+
+  function handleAddTag() {
+    const input = document.getElementById('tag-name');
+    const tagName = input.value.trim();
+    if (!tagName) return;
+
+    // Check duplicate
+    const container = document.getElementById('tags-container');
+    const existingChips = Array.from(document.querySelectorAll('.tag-chip'));
+    const isDuplicate = existingChips.some(chip => 
+      chip.getAttribute('data-name').toLowerCase() === tagName.toLowerCase()
+    );
+
+    if (isDuplicate) {
+      alert('This tag is already cataloged within the guild archives.');
+      return;
+    }
+
+    // Create new tag chip
+    const newChip = document.createElement('button');
+    newChip.type = 'button';
+    newChip.className = 'tag-chip group inline-flex items-center gap-2 rounded-full bg-canvas px-3.5 py-1.5 text-left transition-all hover:-translate-y-0.5 hover:bg-surface-hover';
+    newChip.setAttribute('data-name', tagName);
+    newChip.setAttribute('data-count', '1');
+    newChip.innerHTML = `
+      <span class="font-body-small text-body-small text-text-primary group-hover:text-primary">${tagName}</span>
+      <span class="rounded-full bg-primary/20 px-2 py-0.2 font-label-mono text-overline font-medium text-primary">1</span>
+    `;
+
+    // Insert at front
+    container.insertBefore(newChip, container.firstChild);
+
+    // Reset input
+    input.value = '';
+    document.getElementById('char-counter').textContent = '0 / 100';
+    document.getElementById('tag-scope').value = '';
+    
+    // Update counter
+    const countBadge = document.getElementById('active-tag-count');
+    const currentCount = container.querySelectorAll('.tag-chip').length;
+    countBadge.innerHTML = `
+      <span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+      ${currentCount} Lexicon Tags Active
+    `;
+
+    // Reset banner
+    handleInput(input);
+  }
+
+  function filterTags(query) {
+    const term = query.toLowerCase().trim();
+    const chips = document.querySelectorAll('.tag-chip');
+    let visibleCount = 0;
+
+    chips.forEach(chip => {
+      const name = chip.getAttribute('data-name').toLowerCase();
+      if (name.includes(term)) {
+        chip.style.display = 'inline-flex';
+        visibleCount++;
+      } else {
+        chip.style.display = 'none';
+      }
+    });
+
+    const empty = document.getElementById('empty-state');
+    if (visibleCount === 0) {
+      empty.classList.remove('hidden');
+      empty.classList.add('flex');
+    } else {
+      empty.classList.add('hidden');
+      empty.classList.remove('flex');
+    }
+  }
+
+  function sortTags(type, button) {
+    const container = document.getElementById('tags-container');
+    const chips = Array.from(container.querySelectorAll('.tag-chip'));
+
+    document.querySelectorAll('.sort-tab').forEach(tab => {
+      tab.className = 'sort-tab rounded-md px-2.5 py-1 font-label-mono text-overline font-medium text-text-muted transition-all hover:text-text-primary';
+    });
+    button.className = 'sort-tab rounded-md bg-surface-container px-2.5 py-1 font-label-mono text-overline font-medium text-primary transition-all';
+
+    if (type === 'folios') {
+      chips.sort((a, b) => parseInt(b.getAttribute('data-count')) - parseInt(a.getAttribute('data-count')));
+    } else if (type === 'alpha') {
+      chips.sort((a, b) => a.getAttribute('data-name').localeCompare(b.getAttribute('data-name')));
+    } else if (type === 'recent') {
+      chips.reverse();
+    }
+
+    chips.forEach(chip => container.appendChild(chip));
+  }
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-border mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 space-y-space-md"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center border border-border"><span class="material-symbols-outlined text-primary text-[18px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary">Genu Library</span></div><p class="font-body-default text-body-small text-text-secondary max-w-sm">An artisan guild repository and deluxe reading sanctum curated for digital archivists, scholars, and craftspeople safeguarding rare manuscripts and auditory codices.</p><div class="flex items-center gap-space-sm text-text-muted"><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">terminal</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">hub</span></a></div></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Navigation</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="home" href="#">Home</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="books" href="#">Books Catalog</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="playlists" href="#">Auditory Playlists</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="upload" href="#">Upload Folio</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Guild Archive</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Guild Concordat</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Ledger Rarity</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Archivist API</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Terms of Preservation</a></li></ul></div><div class="space-y-space-md"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">The Monthly Dispatch</h4><p class="font-body-small text-body-small text-text-secondary">Receive curated codex summaries and ledger updates directly to your station.</p><form class="space-y-2"><div class="flex flex-col gap-2"><input class="w-full bg-canvas border border-border rounded-lg px-space-sm py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors" placeholder="archivist@guild.internal" type="email"/><button class="w-full bg-primary text-text-on-accent font-body-default text-body-small font-semibold px-space-md py-2 rounded-lg hover:bg-primary-hover transition-colors" type="button">Subscribe</button></div></form></div></div><div class="border-t border-border mt-space-xl pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-small text-caption text-text-muted">© 2025 Genu Library Guild. All rights reserved under the Sovereign Archives.</p><div class="flex items-center gap-space-md font-body-small text-caption text-text-muted"><a class="hover:text-text-secondary transition-colors" href="#">Sanctum Privacy</a><a class="hover:text-text-secondary transition-colors" href="#">Ledger Index</a><a class="hover:text-text-secondary transition-colors" href="#">Status Core</a></div></div></div></footer></body></html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#251e1b","text-on-accent":"#16110f","text-muted":"#7a706a","inverse-surface":"#eee0da","status-info":"#5b8fb9","border":"#3a322d","secondary-fixed":"#ffdead","on-tertiary":"#00363f","on-surface":"#eee0da","primary-container":"#ea6a40","error":"#ffb4ab","on-error-container":"#ffdad6","surface":"#211a17","outline":"#a68b82","surface-container-high":"#302825","surface-dim":"#18120f","outline-variant":"#58423b","inverse-primary":"#a73a13","on-background":"#eee0da","on-tertiary-fixed":"#001f25","status-warning":"#d4a24e","on-secondary-fixed":"#281900","canvas":"#16110f","secondary-fixed-dim":"#f3be67","on-primary-fixed-variant":"#842500","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","text-secondary":"#a89c93","background":"#18120f","primary":"#ffb59e","surface-tint":"#ffb59e","surface-container-highest":"#3b3330","on-primary-container":"#521300","tertiary-fixed-dim":"#61d6ed","text-primary":"#ece0dc","surface-container-low":"#211a17","on-tertiary-container":"#002f36","surface-variant":"#3b3330","on-secondary-container":"#ffcd7d","tertiary-container":"#049fb5","status-success":"#4a7c59","inverse-on-surface":"#372f2b","on-secondary":"#432c00","tertiary":"#61d6ed","surface-bright":"#403734","primary-fixed-dim":"#ffb59e","status-error":"#c44d4d","on-tertiary-fixed-variant":"#004e5a","on-primary":"#5e1700","secondary":"#f3be67","error-container":"#93000a","surface-container-lowest":"#130d0a","primary-hover":"#d45a30","on-error":"#690005","on-secondary-fixed-variant":"#604100","tertiary-fixed":"#a4eeff","secondary-container":"#7c5400","border-hover":"#4d433d","surface-active":"#332a24","surface-hover":"#2a211c","on-surface-variant":"#dfc0b7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","margin-mobile":"1rem","space-xl":"2rem","space-sm":"0.5rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem"},"fontFamily":{"display":["Playfair Display"],"headline-1":["Playfair Display"],"body-large":["Inter"],"headline-2":["Playfair Display"],"overline":["JetBrains Mono"],"body-default":["Inter"],"caption":["Inter"],"display-mobile":["Playfair Display"],"display-xl-mobile":["Playfair Display"],"headline-3":["Playfair Display"],"display-xl":["Playfair Display"],"label-mono":["JetBrains Mono"],"body-small":["Inter"]},"fontSize":{"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-1":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-large":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-2":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"body-default":["16px",{"lineHeight":"24px","fontWeight":"400"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-xl-mobile":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-3":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-xl":["60px",{"lineHeight":"68px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-mono":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}],"body-small":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-canvas font-body-default text-body-default text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-canvas/80 backdrop-blur-xl border-b border-border transition-colors duration-200"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg shrink-0"><a class="flex items-center gap-space-sm group text-text-primary" data-path="home" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border group-hover:border-primary transition-colors"><span class="material-symbols-outlined text-primary text-[22px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary tracking-tight">Genu Library</span></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary border-b-2 border-primary"><a aria-current="page" class="font-body-default transition-colors py-space-xs text-primary border-b-2 border-primary" data-path="home" href="#">Home</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="books" href="#">Books</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="playlists" href="#">Playlists</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="upload" href="#">Upload</a></nav></div><div class="hidden md:flex flex-1 max-w-md mx-space-md relative"><div class="w-full flex items-center bg-canvas border border-border rounded-lg px-space-sm py-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all"><span class="material-symbols-outlined text-text-muted text-[20px] mr-2">search</span><input class="w-full bg-transparent border-none outline-none font-body-small text-body-small text-text-primary placeholder:text-text-muted" placeholder="Search codex, folio, author, or seal..." type="text"/><span class="font-label-mono text-overline text-text-muted bg-surface-container border border-border px-1.5 py-0.5 rounded">⌘K</span></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-1.5 bg-surface-container border border-border px-space-sm py-1.5 rounded-lg"><span class="text-secondary text-[16px]">🪙</span><span class="font-label-mono text-label-mono font-medium text-secondary">1.4K</span></div><div class="flex items-center gap-space-sm"><div class="relative group cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></div></header><main class="w-full pt-20 bg-canvas min-h-screen"><div class="flex flex-col w-full">
+<!-- Sanctum Ambiance & Atmospheric Radiance -->
+<div class="relative w-full overflow-hidden pb-16">
+<div class="pointer-events-none absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-primary-container/10 blur-[120px]"></div>
+<div class="pointer-events-none absolute top-48 right-12 h-80 w-80 rounded-full bg-status-success/10 blur-[100px]"></div>
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Breadcrumb Navigation -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs py-space-md text-caption font-body-small text-text-muted">
+<a class="hover:text-text-primary transition-colors flex items-center gap-1" data-path="home" href="#">
+<span class="material-symbols-outlined text-[16px]">roofing</span>
+<span>Home</span>
+</a>
+<span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span>
+<a class="hover:text-text-primary transition-colors" data-path="upload" href="#">Bulk Upload</a>
+<span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span>
+<span class="text-primary font-medium">Tags &amp; Taxonomy</span>
+</nav>
+<!-- Editorial Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pt-2 pb-space-lg">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-1 text-headline-1 text-text-primary tracking-tight font-semibold">Bulk Tag Upload</h1>
+<span class="inline-flex items-center gap-1 bg-surface-container-highest/70 text-secondary border border-secondary-container/40 px-2.5 py-0.5 rounded-full font-label-mono text-overline uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">shield_lock</span>
+              Admin Only
+            </span>
+<span class="inline-flex items-center gap-1 bg-surface-container text-text-secondary border border-border px-2 py-0.5 rounded-full font-label-mono text-overline">
+<span class="h-1.5 w-1.5 rounded-full bg-status-success animate-pulse"></span>
+              Ledger v4.9 Active
+            </span>
+</div>
+<p class="font-body-default text-body-default text-text-secondary">
+            Batch-ingest vocabulary, esoteric topics, and canonical taxonomy records into the Sanctum archives with automated deduplication and lexical hygiene.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="inline-flex items-center gap-1.5 bg-surface-container hover:bg-surface-hover border border-border px-3 py-2 rounded-lg text-text-secondary hover:text-text-primary font-body-small text-body-small transition-all" id="guideToggleBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span>Taxonomy Standards</span>
+</button>
+<a class="inline-flex items-center gap-1.5 bg-surface-container hover:bg-surface-hover border border-border px-3 py-2 rounded-lg text-text-secondary hover:text-text-primary font-body-small text-body-small transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Audit Trail</span>
+</a>
+</div>
+</header>
+<!-- Main Two-Column Workbench -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Tag Ingestion & Live Parser (7 Cols on desktop) -->
+<section class="lg:col-span-6 xl:col-span-5 space-y-gutter">
+<!-- Ingestion Form Card -->
+<div class="bg-surface rounded-xl border border-border p-6 shadow-xl relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-container via-status-success to-secondary"></div>
+<!-- Panel Header -->
+<div class="flex items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">post_add</span>
+</div>
+<h2 class="font-headline-3 text-headline-3 text-text-primary">Batch Ingestion</h2>
+</div>
+<span class="font-label-mono text-caption px-2 py-0.5 rounded-full bg-surface-container border border-border text-text-secondary" id="detectedBadge">
+                8 terms loaded
+              </span>
+</div>
+<!-- Syntax Helper Strip -->
+<div class="bg-surface-container-lowest border border-border/80 rounded-lg p-space-sm mb-space-md flex items-start gap-space-sm text-caption">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">info</span>
+<p class="font-body-small text-text-secondary">
+                Delimit by comma (<span class="font-label-mono text-primary">,</span>) or newline. Whitespace is stripped, slugs are normalized, and casing is harmonized automatically.
+              </p>
+</div>
+<!-- Textarea with Line Marker styling -->
+<div class="relative group">
+<label class="block font-body-small text-body-small text-text-secondary mb-1.5" for="rawTagsInput">
+                Taxonomy Entries (Raw Monospace Input)
+              </label>
+<textarea class="w-full bg-canvas border border-border rounded-lg p-3.5 font-label-mono text-label-mono text-text-primary placeholder:text-text-muted focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 focus:outline-none transition-all leading-relaxed resize-y selection:bg-primary-container selection:text-on-primary-container" id="rawTagsInput" placeholder="e.g. occult-astronomy, illuminated-manuscripts, bookbinding" rows="7" spellcheck="false">hermetic-philosophy, celestial-cartography, arcane-foundry
+metallurgy, illuminated-manuscripts
+computational-theology, antiquarian-restoration
+alchemical-transmutation, hermetic-philosophy</textarea>
+<div class="flex items-center justify-between pt-1.5 px-0.5 text-caption font-body-small text-text-muted">
+<span>Auto-normalization enabled</span>
+<span class="font-label-mono text-overline" id="charCountLabel">246 chars</span>
+</div>
+</div>
+<!-- Live Parsing Preview Component -->
+<div class="mt-space-md pt-space-md border-t border-border">
+<div class="flex items-center justify-between mb-2.5">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<h3 class="font-body-default font-semibold text-body-small text-text-primary">Parsed Ingestion Queue</h3>
+</div>
+<div class="flex items-center gap-2 font-label-mono text-overline">
+<span class="text-status-success font-medium" id="statNewCount">6 new</span>
+<span class="text-text-muted">•</span>
+<span class="text-status-warning font-medium" id="statSkipCount">2 existing</span>
+</div>
+</div>
+<!-- Tags Preview Chips Container -->
+<div class="min-h-[108px] bg-canvas border border-border rounded-lg p-3 flex flex-wrap gap-2 content-start" id="tagChipsPreview">
+<!-- Dynamically populated via JS, server fallback rendered below -->
+<span class="inline-flex items-center gap-1.5 bg-status-success/15 border border-status-success/30 text-text-primary px-2.5 py-1 rounded-full text-caption font-label-mono">
+<span class="material-symbols-outlined text-[14px] text-status-success">add_circle</span>
+<span>arcane-foundry</span>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-status-success/15 border border-status-success/30 text-text-primary px-2.5 py-1 rounded-full text-caption font-label-mono">
+<span class="material-symbols-outlined text-[14px] text-status-success">add_circle</span>
+<span>celestial-cartography</span>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-status-success/15 border border-status-success/30 text-text-primary px-2.5 py-1 rounded-full text-caption font-label-mono">
+<span class="material-symbols-outlined text-[14px] text-status-success">add_circle</span>
+<span>computational-theology</span>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-status-success/15 border border-status-success/30 text-text-primary px-2.5 py-1 rounded-full text-caption font-label-mono">
+<span class="material-symbols-outlined text-[14px] text-status-success">add_circle</span>
+<span>illuminated-manuscripts</span>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-status-success/15 border border-status-success/30 text-text-primary px-2.5 py-1 rounded-full text-caption font-label-mono">
+<span class="material-symbols-outlined text-[14px] text-status-success">add_circle</span>
+<span>antiquarian-restoration</span>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-status-success/15 border border-status-success/30 text-text-primary px-2.5 py-1 rounded-full text-caption font-label-mono">
+<span class="material-symbols-outlined text-[14px] text-status-success">add_circle</span>
+<span>alchemical-transmutation</span>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-status-warning/15 border border-status-warning/40 text-secondary px-2.5 py-1 rounded-full text-caption font-label-mono" title="Already in catalogue under ID #TAG-004">
+<span class="material-symbols-outlined text-[14px] text-status-warning">link_off</span>
+<span>hermetic-philosophy (In Archive)</span>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-status-warning/15 border border-status-warning/40 text-secondary px-2.5 py-1 rounded-full text-caption font-label-mono" title="Already in catalogue under ID #TAG-018">
+<span class="material-symbols-outlined text-[14px] text-status-warning">link_off</span>
+<span>metallurgy (In Archive)</span>
+</span>
+</div>
+</div>
+<!-- Ingestion Configurations / Directives -->
+<div class="mt-space-md space-y-2 pt-space-sm border-t border-border">
+<label class="flex items-center gap-2.5 cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded bg-canvas border-border text-primary-container focus:ring-primary accent-primary-container" type="checkbox"/>
+<span class="font-body-small text-body-small text-text-secondary">Auto-bind to general Codex Subject classification</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded bg-canvas border-border text-primary-container focus:ring-primary accent-primary-container" type="checkbox"/>
+<span class="font-body-small text-body-small text-text-secondary">Discard redundant internal duplicates without raising warnings</span>
+</label>
+</div>
+<!-- Action Trigger Row -->
+<div class="mt-6 pt-4 flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-2 bg-status-success hover:bg-[#3d6a4a] text-text-primary px-6 py-2.5 rounded-lg font-body-default text-body-small font-semibold shadow-lg hover:shadow-status-success/20 active:scale-[0.98] transition-all" id="uploadCommitBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+<span id="uploadBtnText">Upload 6 Unique Tags</span>
+</button>
+<button class="inline-flex items-center gap-1.5 bg-transparent hover:bg-surface-hover border border-border hover:border-text-secondary text-text-primary px-4 py-2.5 rounded-lg font-body-small text-body-small font-medium transition-all" id="validateBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">spellcheck</span>
+<span>Validate Syntax</span>
+</button>
+</div>
+<button class="inline-flex items-center gap-1 text-text-muted hover:text-error transition-colors px-2 py-1 font-body-small text-body-small" id="clearBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset</span>
+</button>
+</div>
+</div>
+<!-- Execution Feedback & Ledger Log Card -->
+<div class="bg-surface rounded-xl border border-border p-5 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-info text-[20px]">database</span>
+<h4 class="font-headline-3 text-body-default font-semibold text-text-primary">Ingestion Ledger &amp; Telemetry</h4>
+</div>
+<span class="font-label-mono text-overline text-text-muted">ID: #OP-88419</span>
+</div>
+<!-- Visual Execution Metric Bar -->
+<div class="bg-canvas border border-border rounded-lg p-3 space-y-2">
+<div class="flex justify-between items-center text-body-small">
+<span class="text-text-secondary font-medium">Batch Ingestion Success Ratio</span>
+<span class="font-label-mono text-text-primary font-semibold">78%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden flex">
+<div class="bg-status-success h-full transition-all duration-500" style="width: 78%"></div>
+<div class="bg-status-warning h-full transition-all duration-500" style="width: 22%"></div>
+</div>
+<div class="flex items-center justify-between text-caption font-label-mono pt-1 text-text-muted">
+<span class="text-status-success flex items-center gap-1">
+<span class="h-1.5 w-1.5 rounded-full bg-status-success"></span>
+                  14 Composed
+                </span>
+<span class="text-status-warning flex items-center gap-1">
+<span class="h-1.5 w-1.5 rounded-full bg-status-warning"></span>
+                  4 Normalized Collisions
+                </span>
+<span class="text-text-muted">0 Rejections</span>
+</div>
+</div>
+<!-- Recent Ingestion Events -->
+<div class="space-y-2 pt-1">
+<div class="text-overline uppercase font-label-mono text-text-muted tracking-wider">Sanctum Telemetry Stream</div>
+<div class="space-y-1.5 font-label-mono text-caption">
+<div class="flex items-center justify-between py-1 px-2.5 bg-surface-container rounded border border-border/40 text-text-secondary">
+<span class="flex items-center gap-2 truncate">
+<span class="text-status-success">✓</span>
+<span class="truncate">Ingested folio tag <span class="text-text-primary">'renaissance-optics'</span></span>
+</span>
+<span class="text-text-muted shrink-0 ml-2">10:42:19 AM</span>
+</div>
+<div class="flex items-center justify-between py-1 px-2.5 bg-surface-container rounded border border-border/40 text-text-secondary">
+<span class="flex items-center gap-2 truncate">
+<span class="text-status-warning">⚠</span>
+<span class="truncate">Deduplicated tag <span class="text-secondary">'metallurgy'</span> against Codex</span>
+</span>
+<span class="text-text-muted shrink-0 ml-2">10:41:55 AM</span>
+</div>
+<div class="flex items-center justify-between py-1 px-2.5 bg-surface-container rounded border border-border/40 text-text-secondary">
+<span class="flex items-center gap-2 truncate">
+<span class="text-status-success">✓</span>
+<span class="truncate">Created folio tag <span class="text-text-primary">'paleography-cyphers'</span></span>
+</span>
+<span class="text-text-muted shrink-0 ml-2">10:40:02 AM</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Existing Tags Cloud & Taxonomy Directory (7 cols on large screens) -->
+<section class="lg:col-span-6 xl:col-span-7 space-y-gutter">
+<div class="bg-surface rounded-xl border border-border p-6 shadow-xl space-y-space-md">
+<!-- Directory Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm border-b border-border pb-4">
+<div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">shelves</span>
+</div>
+<h2 class="font-headline-3 text-headline-3 text-text-primary">Sanctum Taxonomy Directory</h2>
+</div>
+<p class="font-body-small text-caption text-text-muted mt-1">
+                  142 active registry terms linked to rare codices, folios, and manuscripts.
+                </p>
+</div>
+<!-- Pill Counter Indicator -->
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 bg-surface-container border border-border text-text-primary px-3 py-1 rounded-full font-label-mono text-caption font-medium">
+<span class="material-symbols-outlined text-primary text-[16px]">label</span>
+<span id="activeCountDisplay">142 Active Records</span>
+</span>
+</div>
+</div>
+<!-- Search & Sort Controls Toolbar -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-text-muted text-[18px]">search</span>
+<input class="w-full bg-canvas border border-border rounded-lg pl-9 pr-8 py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary-container focus:ring-1 focus:ring-primary-container/20 focus:outline-none transition-all" id="tagSearchInput" placeholder="Filter existing tags, topics, or book weights..." type="text"/>
+<button class="hidden absolute right-2.5 top-2.5 text-text-muted hover:text-text-primary text-[16px]" id="clearSearchBtn">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Sorting Switcher -->
+<div class="flex items-center gap-1 bg-canvas p-1 rounded-lg border border-border self-start sm:self-auto shrink-0">
+<button class="sort-btn px-2.5 py-1 rounded text-caption font-body-small font-medium bg-surface-container-high text-primary border border-primary/20" data-sort="weight">
+                  Most Used
+                </button>
+<button class="sort-btn px-2.5 py-1 rounded text-caption font-body-small font-medium text-text-muted hover:text-text-primary hover:bg-surface-hover transition-colors" data-sort="alpha">
+                  A-Z
+                </button>
+<button class="sort-btn px-2.5 py-1 rounded text-caption font-body-small font-medium text-text-muted hover:text-text-primary hover:bg-surface-hover transition-colors" data-sort="recent">
+                  Recent
+                </button>
+</div>
+</div>
+<!-- Taxonomy Cloud & Density Grid -->
+<div class="relative">
+<div class="flex flex-wrap gap-2.5 py-2 max-h-[460px] overflow-y-auto pr-1" id="tagsCloudGrid">
+<!-- Tag Item Component Cards -->
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="42" data-tag="philosophy">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Philosophy</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-secondary">42 vol</span>
+<button aria-label="Inspect Philosophy tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="38" data-tag="hermetic arts">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Hermetic Arts</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-secondary">38 vol</span>
+<button aria-label="Inspect Hermetic Arts tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="29" data-tag="alchemy">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Alchemy</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-secondary">29 vol</span>
+<button aria-label="Inspect Alchemy tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="24" data-tag="cartography">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Cartography</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-secondary">24 vol</span>
+<button aria-label="Inspect Cartography tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="19" data-tag="ancient manuscripts">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Ancient Manuscripts</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">19 vol</span>
+<button aria-label="Inspect Ancient Manuscripts tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="16" data-tag="forgework">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Forgework</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">16 vol</span>
+<button aria-label="Inspect Forgework tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="14" data-tag="astrology &amp; stars">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Astrology &amp; Stars</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">14 vol</span>
+<button aria-label="Inspect Astrology tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="12" data-tag="natural sciences">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Natural Sciences</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">12 vol</span>
+<button aria-label="Inspect Natural Sciences tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="11" data-tag="guild history">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Guild History</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">11 vol</span>
+<button aria-label="Inspect Guild History tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="9" data-tag="typography">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Typography</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">9 vol</span>
+<button aria-label="Inspect Typography tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="8" data-tag="iron casting">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Iron Casting</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">8 vol</span>
+<button aria-label="Inspect Iron Casting tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="7" data-tag="codex preservation">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Codex Preservation</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">7 vol</span>
+<button aria-label="Inspect Codex Preservation tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="6" data-tag="classical rhetoric">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Classical Rhetoric</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">6 vol</span>
+<button aria-label="Inspect Rhetoric tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="5" data-tag="botanical studies">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Botanical Studies</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">5 vol</span>
+<button aria-label="Inspect Botanical Studies tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<div class="tag-card group inline-flex items-center gap-2 bg-surface-container hover:bg-surface-hover border border-border hover:border-primary/40 rounded-full pl-3 pr-2 py-1.5 transition-all duration-200 cursor-pointer" data-count="4" data-tag="leather craft">
+<span class="text-body-small font-body-default font-medium text-text-primary group-hover:text-primary transition-colors">Leather Craft</span>
+<span class="font-label-mono text-overline bg-canvas border border-border px-2 py-0.5 rounded-full text-text-secondary">4 vol</span>
+<button aria-label="Inspect Leather Craft tag" class="opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity text-text-muted ml-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Fallback no-results state (hidden initially) -->
+<div class="hidden py-12 text-center space-y-2" id="noTagsState">
+<span class="material-symbols-outlined text-text-muted text-[36px]">filter_list_off</span>
+<p class="font-body-small text-text-secondary">No catalog taxonomy matches your search criteria.</p>
+<button class="text-primary font-body-small text-caption hover:underline" id="resetSearchFilterBtn" type="button">Reset search filter</button>
+</div>
+</div>
+<!-- Fast Utilities & Operations Bottom Strip -->
+<div class="border-t border-border pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-caption">
+<div class="flex items-center gap-4 text-text-secondary">
+<a class="inline-flex items-center gap-1.5 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export Taxonomy (.CSV)</span>
+</a>
+<span class="text-border">•</span>
+<a class="inline-flex items-center gap-1.5 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">merge</span>
+<span>Merge Duplicates</span>
+</a>
+</div>
+<div class="font-label-mono text-overline text-text-muted">
+                Taxonomy Schema: Dublin Core / Guild Ext.
+              </div>
+</div>
+</div>
+<!-- Deluxe Guild Preservation Narrative Box -->
+<div class="bg-surface-container-lowest/70 border border-border rounded-xl p-5 flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary shrink-0 border border-border/60">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-body-default font-semibold text-body-small text-text-primary">Archivist Concordat Notice</h3>
+<p class="font-body-small text-caption text-text-secondary leading-relaxed">
+                Ingested tags are committed directly to the decentralized ledger index. Tag descriptors exceeding 48 characters will be automatically slugified and cross-referenced with the Sovereign Scriptorium dictionary.
+              </p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Engine -->
+<script>
+    (function() {
+      // Known existing tags in catalog (lowercase normalized)
+      const existingCatalog = new Map([
+        ["hermetic-philosophy", 14],
+        ["metallurgy", 8],
+        ["philosophy", 42],
+        ["hermetic arts", 38],
+        ["alchemy", 29],
+        ["cartography", 24],
+        ["ancient manuscripts", 19],
+        ["forgework", 16],
+        ["astrology & stars", 14],
+        ["natural sciences", 12],
+        ["guild history", 11],
+        ["typography", 9],
+        ["iron casting", 8],
+        ["codex preservation", 7],
+        ["classical rhetoric", 6],
+        ["botanical studies", 5],
+        ["leather craft", 4]
+      ]);
+
+      const textarea = document.getElementById('rawTagsInput');
+      const previewContainer = document.getElementById('tagChipsPreview');
+      const statNew = document.getElementById('statNewCount');
+      const statSkip = document.getElementById('statSkipCount');
+      const uploadBtn = document.getElementById('uploadCommitBtn');
+      const uploadBtnText = document.getElementById('uploadBtnText');
+      const detectedBadge = document.getElementById('detectedBadge');
+      const charCountLabel = document.getElementById('charCountLabel');
+      const clearBtn = document.getElementById('clearBtn');
+      const validateBtn = document.getElementById('validateBtn');
+      const tagSearchInput = document.getElementById('tagSearchInput');
+      const clearSearchBtn = document.getElementById('clearSearchBtn');
+      const noTagsState = document.getElementById('noTagsState');
+      const tagCards = document.querySelectorAll('.tag-card');
+      const sortBtns = document.querySelectorAll('.sort-btn');
+
+      function parseInput(raw) {
+        if (!raw.trim()) return [];
+        // Split by commas or newlines
+        return raw
+          .split(/[\n,]+/)
+          .map(t => t.trim().toLowerCase())
+          .filter(t => t.length > 0);
+      }
+
+      function updatePreview() {
+        const rawText = textarea.value;
+        charCountLabel.textContent = rawText.length + ' chars';
+        const parsed = parseInput(rawText);
+
+        const seenInBatch = new Set();
+        let newCount = 0;
+        let skipCount = 0;
+
+        previewContainer.innerHTML = '';
+
+        if (parsed.length === 0) {
+          previewContainer.innerHTML = '<span class="text-caption font-body-small text-text-muted italic py-1">Enter comma or newline separated tags above to preview normalization.</span>';
+          statNew.textContent = '0 new';
+          statSkip.textContent = '0 existing';
+          detectedBadge.textContent = '0 terms loaded';
+          uploadBtnText.textContent = 'Upload Tags (0)';
+          uploadBtn.classList.add('opacity-50', 'pointer-events-none');
+          return;
+        }
+
+        uploadBtn.classList.remove('opacity-50', 'pointer-events-none');
+        detectedBadge.textContent = `${parsed.length} terms loaded`;
+
+        parsed.forEach(tag => {
+          const isInternalDuplicate = seenInBatch.has(tag);
+          const isExisting = existingCatalog.has(tag) || isInternalDuplicate;
+
+          seenInBatch.add(tag);
+
+          const chip = document.createElement('span');
+          chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-caption font-label-mono transition-all';
+
+          if (!isExisting) {
+            newCount++;
+            chip.classList.add('bg-status-success/15', 'border', 'border-status-success/30', 'text-text-primary');
+            chip.innerHTML = `<span class="material-symbols-outlined text-[14px] text-status-success">add_circle</span><span>${escapeHtml(tag)}</span>`;
+          } else {
+            skipCount++;
+            const existingVol = existingCatalog.get(tag);
+            const detailText = existingVol ? `In Archive - ${existingVol} vol` : 'Duplicate in Batch';
+            chip.classList.add('bg-status-warning/15', 'border', 'border-status-warning/40', 'text-secondary');
+            chip.setAttribute('title', `${tag}: ${detailText}`);
+            chip.innerHTML = `<span class="material-symbols-outlined text-[14px] text-status-warning">link_off</span><span>${escapeHtml(tag)} (${detailText})</span>`;
+          }
+
+          previewContainer.appendChild(chip);
+        });
+
+        statNew.textContent = `${newCount} new`;
+        statSkip.textContent = `${skipCount} existing`;
+        uploadBtnText.textContent = `Upload ${newCount} Unique Tags`;
+      }
+
+      function escapeHtml(text) {
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      // Input listening
+      textarea.addEventListener('input', updatePreview);
+
+      clearBtn.addEventListener('click', function() {
+        textarea.value = '';
+        updatePreview();
+        textarea.focus();
+      });
+
+      validateBtn.addEventListener('click', function() {
+        updatePreview();
+        // Visual feedback flash on preview container
+        previewContainer.classList.add('ring-2', 'ring-primary/40');
+        setTimeout(() => {
+          previewContainer.classList.remove('ring-2', 'ring-primary/40');
+        }, 500);
+      });
+
+      uploadBtn.addEventListener('click', function() {
+        const raw = textarea.value;
+        const parsed = parseInput(raw);
+        if (parsed.length === 0) return;
+
+        // Feedback on submission
+        const originalText = uploadBtnText.textContent;
+        uploadBtn.disabled = true;
+        uploadBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Securing to Ledger...</span>';
+
+        setTimeout(() => {
+          uploadBtn.disabled = false;
+          uploadBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span><span>Ingestion Complete!</span>';
+          uploadBtn.classList.remove('bg-status-success');
+          uploadBtn.classList.add('bg-primary-container', 'text-on-primary-container');
+
+          setTimeout(() => {
+            uploadBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">cloud_upload</span><span id="uploadBtnText">Upload 0 Unique Tags</span>';
+            uploadBtn.classList.remove('bg-primary-container', 'text-on-primary-container');
+            uploadBtn.classList.add('bg-status-success');
+            textarea.value = '';
+            updatePreview();
+          }, 1800);
+        }, 1200);
+      });
+
+      // Filter existing tags in directory
+      tagSearchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        if (query.length > 0) {
+          clearSearchBtn.classList.remove('hidden');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+        }
+
+        tagCards.forEach(card => {
+          const tagName = card.getAttribute('data-tag') || '';
+          if (tagName.toLowerCase().includes(query)) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (visibleCount === 0) {
+          noTagsState.classList.remove('hidden');
+        } else {
+          noTagsState.classList.add('hidden');
+        }
+      });
+
+      clearSearchBtn.addEventListener('click', function() {
+        tagSearchInput.value = '';
+        tagSearchInput.dispatchEvent(new Event('input'));
+        tagSearchInput.focus();
+      });
+
+      const resetFilterLink = document.getElementById('resetSearchFilterBtn');
+      if (resetFilterLink) {
+        resetFilterLink.addEventListener('click', function() {
+          tagSearchInput.value = '';
+          tagSearchInput.dispatchEvent(new Event('input'));
+        });
+      }
+
+      // Sort Toggle Behavior
+      sortBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          sortBtns.forEach(b => {
+            b.classList.remove('bg-surface-container-high', 'text-primary', 'border', 'border-primary/20');
+            b.classList.add('text-text-muted');
+          });
+          btn.classList.add('bg-surface-container-high', 'text-primary', 'border', 'border-primary/20');
+          btn.classList.remove('text-text-muted');
+
+          const mode = btn.getAttribute('data-sort');
+          const grid = document.getElementById('tagsCloudGrid');
+          const items = Array.from(grid.querySelectorAll('.tag-card'));
+
+          items.sort((a, b) => {
+            if (mode === 'alpha') {
+              return a.getAttribute('data-tag').localeCompare(b.getAttribute('data-tag'));
+            } else if (mode === 'weight') {
+              return parseInt(b.getAttribute('data-count')) - parseInt(a.getAttribute('data-count'));
+            } else {
+              // Synthetic recent sort
+              return a.getAttribute('data-tag').length - b.getAttribute('data-tag').length;
+            }
+          });
+
+          items.forEach(el => grid.appendChild(el));
+        });
+      });
+
+      // Initialize
+      updatePreview();
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-border mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 space-y-space-md"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center border border-border"><span class="material-symbols-outlined text-primary text-[18px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary">Genu Library</span></div><p class="font-body-default text-body-small text-text-secondary max-w-sm">An artisan guild repository and deluxe reading sanctum curated for digital archivists, scholars, and craftspeople safeguarding rare manuscripts and auditory codices.</p><div class="flex items-center gap-space-sm text-text-muted"><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">terminal</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">hub</span></a></div></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Navigation</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="home" href="#">Home</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="books" href="#">Books Catalog</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="playlists" href="#">Auditory Playlists</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="upload" href="#">Upload Folio</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Guild Archive</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Guild Concordat</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Ledger Rarity</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Archivist API</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Terms of Preservation</a></li></ul></div><div class="space-y-space-md"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">The Monthly Dispatch</h4><p class="font-body-small text-body-small text-text-secondary">Receive curated codex summaries and ledger updates directly to your station.</p><form class="space-y-2"><div class="flex flex-col gap-2"><input class="w-full bg-canvas border border-border rounded-lg px-space-sm py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors" placeholder="archivist@guild.internal" type="email"/><button class="w-full bg-primary text-text-on-accent font-body-default text-body-small font-semibold px-space-md py-2 rounded-lg hover:bg-primary-hover transition-colors" type="button">Subscribe</button></div></form></div></div><div class="border-t border-border mt-space-xl pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-small text-caption text-text-muted">© 2025 Genu Library Guild. All rights reserved under the Sovereign Archives.</p><div class="flex items-center gap-space-md font-body-small text-caption text-text-muted"><a class="hover:text-text-secondary transition-colors" href="#">Sanctum Privacy</a><a class="hover:text-text-secondary transition-colors" href="#">Ledger Index</a><a class="hover:text-text-secondary transition-colors" href="#">Status Core</a></div></div></div></footer></body></html>

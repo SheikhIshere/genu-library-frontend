@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>New Book — Genu Library</title>
+  <!-- Google Fonts: Playfair Display, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            'surface-hover': '#2a211c',
+            'surface-active': '#332a24',
+            primary: '#e8693f',
+            'primary-hover': '#d45a30',
+            border: '#3a322d',
+            'border-hover': '#4d433d',
+            'text-primary': '#ece0dc',
+            'text-secondary': '#a89c93',
+            'text-muted': '#7a706a',
+            error: '#c44d4d',
+            success: '#4a7c59',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar and animations */
+    body {
+      background-color: #16110f;
+      color: #ece0dc;
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .pb-safe {
+      padding-bottom: calc(env(safe-area-inset-bottom, 16px) + 72px);
+    }
+    .pt-safe {
+      padding-top: max(env(safe-area-inset-top, 0px), 12px);
+    }
+    /* Smooth transitions */
+    .sheet-transition {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    }
+    .fade-transition {
+      transition: opacity 0.25s ease;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-canvas flex justify-center text-text-primary antialiased selection:bg-primary/30">
+
+  <!-- Mobile Screen Frame (Max-w-md / 640px viewport container) -->
+  <div class="w-full max-w-[640px] min-h-screen bg-canvas flex flex-col relative border-x border-border/30 shadow-2xl">
+    
+    <!-- Top Bar: Back link + Title -->
+    <header class="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md border-b border-border px-4 py-2.5 flex items-center justify-between pt-safe">
+      <a href="/books" id="backBtn" class="flex items-center gap-2 min-h-[44px] min-w-[44px] -ml-1 text-text-secondary hover:text-text-primary active:scale-95 transition-all text-sm font-medium">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+        </svg>
+        <span>Catalog</span>
+      </a>
+      <h1 class="font-display font-semibold text-base text-text-primary tracking-tight">New Book</h1>
+      <!-- Top Action / Reset button -->
+      <button type="button" id="resetBtn" class="min-h-[44px] px-2 text-xs font-medium text-text-muted hover:text-text-secondary active:scale-95 transition-colors">
+        Drafts
+      </button>
+    </header>
+
+    <!-- Main Scrollable Form Area -->
+    <main class="flex-1 px-4 py-5 pb-safe overflow-y-auto space-y-6" id="formScrollContainer">
+
+      <form id="newBookForm" onsubmit="event.preventDefault();" class="space-y-6">
+
+        <!-- 1. Cover Image Upload Area -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-medium tracking-wide uppercase text-text-secondary">Book Cover *</label>
+            <span id="coverBadge" class="text-[11px] text-text-muted">High-res folio recommended</span>
+          </div>
+          
+          <div id="coverUploadBox" class="relative group w-full h-48 rounded-xl bg-surface border-2 border-dashed border-border flex flex-col items-center justify-center cursor-pointer overflow-hidden active:scale-[0.99] hover:border-border-hover transition-all">
+            
+            <!-- Default Placeholder View -->
+            <div id="coverPlaceholder" class="flex flex-col items-center justify-center p-4 text-center">
+              <div class="w-12 h-12 rounded-full bg-canvas/80 border border-border flex items-center justify-center mb-2.5 text-text-secondary group-hover:text-primary group-hover:border-primary/50 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"></path>
+                </svg>
+              </div>
+              <p class="text-sm font-medium text-text-primary">Tap to add cover</p>
+              <p class="text-xs text-text-muted mt-0.5">JPG, PNG, WebP up to 10MB</p>
+            </div>
+
+            <!-- Preview Image (Initially Hidden) -->
+            <img id="coverPreviewImg" src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k" alt="Cover Preview" class="hidden absolute inset-0 w-full h-full object-cover rounded-xl fade-transition" />
+            
+            <!-- Change Cover Overlay Button (Visible when preview active) -->
+            <div id="coverChangeOverlay" class="hidden absolute bottom-3 right-3 z-10">
+              <button type="button" class="min-h-[44px] px-3.5 rounded-lg bg-surface/90 backdrop-blur-md border border-border text-xs font-semibold text-text-primary flex items-center gap-1.5 shadow-lg active:scale-95 transition-transform">
+                <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
+                </svg>
+                Change Cover
+              </button>
+            </div>
+
+            <!-- Hidden file input with camera capture support -->
+            <input type="file" id="coverFileInput" accept="image/*" class="hidden" />
+          </div>
+          <p id="coverError" class="hidden text-xs text-error mt-1">Please select an illuminated book cover.</p>
+        </div>
+
+        <!-- 2. Title Input -->
+        <div class="space-y-1">
+          <label for="bookTitle" class="block text-xs font-medium tracking-wide uppercase text-text-secondary">Title *</label>
+          <input
+            type="text"
+            id="bookTitle"
+            placeholder="Book title..."
+            value="The Secret Geometry of Folios"
+            class="w-full min-h-[46px] px-3.5 py-2.5 bg-canvas border border-border rounded-lg text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm transition-all"
+            required
+          />
+          <p id="titleError" class="hidden text-xs text-error mt-1">Book title is required.</p>
+        </div>
+
+        <!-- 3. Author Input -->
+        <div class="space-y-1">
+          <label for="bookAuthor" class="block text-xs font-medium tracking-wide uppercase text-text-secondary">Author *</label>
+          <input
+            type="text"
+            id="bookAuthor"
+            placeholder="Author name..."
+            value="Prof. Alistair Vance"
+            class="w-full min-h-[46px] px-3.5 py-2.5 bg-canvas border border-border rounded-lg text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm transition-all"
+            required
+          />
+        </div>
+
+        <!-- 4. Description Textarea with Auto-Resize -->
+        <div class="space-y-1">
+          <div class="flex justify-between items-center">
+            <label for="bookDescription" class="block text-xs font-medium tracking-wide uppercase text-text-secondary">Description</label>
+            <span class="text-[11px] text-text-muted">Markdown enabled</span>
+          </div>
+          <textarea
+            id="bookDescription"
+            rows="4"
+            placeholder="Tell readers about this book..."
+            class="w-full px-3.5 py-3 bg-canvas border border-border rounded-lg text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm resize-none transition-all leading-relaxed"
+          >Recovered from the lower crypts of Mainz, this illuminated codex documents harmonic ratios, alchemical furnaces, and geometric astronomical diagrams across 32 vellum folios.</textarea>
+        </div>
+
+        <!-- 5. Tag Selector Trigger -->
+        <div class="space-y-1.5">
+          <label class="block text-xs font-medium tracking-wide uppercase text-text-secondary">Tags</label>
+          <div
+            id="tagTrigger"
+            class="w-full min-h-[48px] px-3.5 py-2.5 bg-canvas border border-border rounded-lg flex items-center justify-between cursor-pointer hover:border-border-hover active:bg-surface transition-all"
+          >
+            <div id="selectedTagsDisplay" class="flex items-center gap-1.5 overflow-x-auto scrollbar-hide py-0.5">
+              <!-- Selected pills rendered here dynamically -->
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/40">
+                Alchemy
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/40">
+                Manuscripts
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/40">
+                Geometry
+              </span>
+            </div>
+            
+            <button type="button" class="min-h-[44px] min-w-[44px] -mr-2 flex items-center justify-center text-text-secondary hover:text-primary transition-colors" aria-label="Add tags">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 6. Visibility Segmented Control -->
+        <div class="space-y-1.5">
+          <label class="block text-xs font-medium tracking-wide uppercase text-text-secondary">Visibility</label>
+          <div class="w-full bg-canvas border border-border rounded-lg p-1 flex items-center gap-1 relative">
+            <button
+              type="button"
+              data-visibility="public"
+              class="visibility-btn flex-1 min-h-[44px] rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-all bg-primary text-canvas shadow-sm"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"></path>
+              </svg>
+              Public
+            </button>
+            <button
+              type="button"
+              data-visibility="private"
+              class="visibility-btn flex-1 min-h-[44px] rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-all text-text-secondary hover:text-text-primary"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"></path>
+              </svg>
+              Private
+            </button>
+            <button
+              type="button"
+              data-visibility="unlisted"
+              class="visibility-btn flex-1 min-h-[44px] rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-all text-text-secondary hover:text-text-primary"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path>
+              </svg>
+              Unlisted
+            </button>
+          </div>
+        </div>
+
+        <!-- 7. Price Input (with Gold Coin SVG) -->
+        <div class="space-y-1">
+          <div class="flex items-center justify-between">
+            <label for="bookPrice" class="block text-xs font-medium tracking-wide uppercase text-text-secondary">Price (Guild Coins)</label>
+            <span class="text-[11px] text-text-muted">Set 0 for Free Edition</span>
+          </div>
+          <div class="w-full min-h-[48px] px-3.5 py-2.5 bg-canvas border border-border rounded-lg flex items-center focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+            <!-- Inline Gold Coin Icon -->
+            <svg class="w-5 h-5 text-primary mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.736 6.979C9.208 6.193 9.696 6 10 6c.304 0 .792.193 1.264.979a1 1 0 001.715-1.029C12.279 4.784 11.232 4 10 4s-2.279.784-2.979 1.95a1 1 0 101.715 1.029zM6.5 10a1 1 0 011-1h5a1 1 0 110 2h-5a1 1 0 01-1-1zm1.264 4.021a1 1 0 00-1.715-1.029C6.721 14.216 7.768 15 9 15s2.279-.784 2.979-1.95a1 1 0 10-1.715-1.029C9.792 12.807 9.304 13 9 13c-.304 0-.792-.193-1.264-.979z" clip-rule="evenodd"/>
+            </svg>
+            <input
+              type="number"
+              id="bookPrice"
+              min="0"
+              placeholder="0"
+              value="250"
+              class="w-full bg-transparent border-none text-text-primary placeholder:text-text-muted focus:outline-none font-mono text-base font-semibold"
+            />
+            <span class="text-xs font-mono text-primary font-bold px-2 py-0.5 rounded bg-primary/10">GN</span>
+          </div>
+        </div>
+
+        <!-- 8. PDF File Upload Area -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-medium tracking-wide uppercase text-text-secondary">Manuscript PDF *</label>
+            <span class="text-[11px] text-text-muted">Digital Codex Facsimile</span>
+          </div>
+          
+          <div id="pdfUploadBox" class="relative group w-full h-32 rounded-xl bg-surface border-2 border-dashed border-border flex flex-col items-center justify-center cursor-pointer p-4 hover:border-border-hover transition-all active:scale-[0.99]">
+            
+            <!-- Default PDF placeholder -->
+            <div id="pdfPlaceholder" class="flex flex-col items-center text-center">
+              <div class="w-10 h-10 rounded-full bg-canvas border border-border flex items-center justify-center mb-1.5 text-text-secondary group-hover:text-primary transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
+                </svg>
+              </div>
+              <p class="text-xs font-medium text-text-primary">Tap to upload PDF</p>
+              <p class="text-[11px] text-text-muted">Vector scanned folio (up to 50MB)</p>
+            </div>
+
+            <!-- PDF File Info Selected State (Active by default for demonstration) -->
+            <div id="pdfSelectedInfo" class="flex items-center justify-between w-full bg-canvas/80 border border-border rounded-lg px-3.5 py-3">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-8 h-8 rounded bg-primary/10 text-primary border border-primary/20 flex items-center justify-center flex-shrink-0 font-mono text-xs font-bold">
+                  PDF
+                </div>
+                <div class="truncate">
+                  <p class="text-xs font-semibold text-text-primary truncate">alchemists-codex-v4.pdf</p>
+                  <p class="text-[10px] text-text-muted font-mono">18.4 MB • 148 Pages</p>
+                </div>
+              </div>
+              <button type="button" id="removePdfBtn" class="min-h-[44px] min-w-[44px] -mr-2 flex items-center justify-center text-text-muted hover:text-error active:scale-90 transition-all" aria-label="Remove PDF">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+
+            <input type="file" id="pdfFileInput" accept=".pdf" class="hidden" />
+          </div>
+          <p id="pdfError" class="hidden text-xs text-error mt-1">PDF manuscript file is required.</p>
+        </div>
+
+        <!-- 9. Submit Primary Button in Thumb Zone -->
+        <div class="pt-2">
+          <button
+            type="submit"
+            id="submitBookBtn"
+            class="w-full min-h-[52px] rounded-lg bg-primary text-canvas font-semibold text-sm hover:bg-primary-hover active:scale-[0.97] transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+          >
+            <span id="btnText">Publish Book</span>
+            <svg id="btnSpinner" class="hidden w-5 h-5 text-canvas animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </button>
+          <p class="text-[11px] text-text-muted text-center mt-2.5">
+            By publishing, you affirm this codex complies with the Sanctum Archival Concordat.
+          </p>
+        </div>
+
+      </form>
+    </main>
+
+    <!-- Bottom Navigation Bar (Fixed, iOS Safe-Area Compatible) -->
+    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 bg-canvas/95 backdrop-blur-md border-t border-border" style="padding-bottom: env(safe-area-inset-bottom, 8px);">
+      <div class="flex items-center justify-around h-14">
+        <a href="/" class="flex flex-col items-center justify-center min-h-[44px] min-w-[44px] text-text-secondary hover:text-text-primary active:scale-95 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
+          </svg>
+          <span class="text-[10px] mt-0.5 font-medium">Home</span>
+        </a>
+        <a href="/books" class="flex flex-col items-center justify-center min-h-[44px] min-w-[44px] text-primary active:scale-95 transition-all relative">
+          <span class="absolute top-0 w-6 h-[2px] bg-primary rounded-full"></span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path>
+          </svg>
+          <span class="text-[10px] mt-0.5 font-medium">Books</span>
+        </a>
+        <a href="/playlists" class="flex flex-col items-center justify-center min-h-[44px] min-w-[44px] text-text-secondary hover:text-text-primary active:scale-95 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+          </svg>
+          <span class="text-[10px] mt-0.5 font-medium">Lists</span>
+        </a>
+        <a href="/profile" class="flex flex-col items-center justify-center min-h-[44px] min-w-[44px] text-text-secondary hover:text-text-primary active:scale-95 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+          </svg>
+          <span class="text-[10px] mt-0.5 font-medium">Me</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- 10. Tag Bottom Sheet & Overlay Modal -->
+    <div id="tagBottomSheetBackdrop" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+    <div
+      id="tagBottomSheet"
+      class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 bg-surface border-t border-border rounded-t-2xl max-h-[82vh] flex flex-col translate-y-full sheet-transition shadow-2xl"
+      style="padding-bottom: env(safe-area-inset-bottom, 16px);"
+    >
+      <!-- Sheet Handle & Header -->
+      <div class="p-4 pb-2 border-b border-border/50">
+        <div class="w-10 h-1 rounded-full bg-border mx-auto mb-3"></div>
+        <div class="flex items-center justify-between">
+          <h2 class="font-display font-semibold text-lg text-text-primary">Select Tags</h2>
+          <button type="button" id="closeTagSheetBtn" class="min-h-[44px] min-w-[44px] -mr-2 flex items-center justify-center text-text-secondary hover:text-text-primary active:scale-95">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Tag Search Input -->
+        <div class="mt-3 relative">
+          <svg class="w-4 h-4 text-text-muted absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+          </svg>
+          <input
+            type="search"
+            id="tagSearchInput"
+            placeholder="Search taxonomies..."
+            class="w-full min-h-[44px] pl-9 pr-3 py-2 bg-canvas border border-border rounded-lg text-xs text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30"
+          />
+        </div>
+      </div>
+
+      <!-- Tag Pill Cloud (Scrollable) -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4">
+        <div>
+          <span class="text-[11px] font-medium uppercase tracking-wider text-text-muted block mb-2">Guild Disciplines</span>
+          <div class="flex flex-wrap gap-2" id="tagCloudContainer">
+            <!-- Dynamically rendered or prefilled pills -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="p-4 pt-2 border-t border-border/50 bg-surface">
+        <button
+          type="button"
+          id="doneTagBtn"
+          class="w-full min-h-[48px] rounded-lg bg-primary text-canvas font-semibold text-sm active:scale-[0.98] transition-transform shadow-md"
+        >
+          Done (<span id="sheetSelectedCount">3</span> selected)
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastNotification" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-[-10px] transition-all duration-300">
+      <div class="px-4 py-2.5 rounded-lg bg-surface border border-primary/50 text-text-primary shadow-xl flex items-center gap-2 text-xs font-medium">
+        <span class="w-2 h-2 rounded-full bg-success"></span>
+        <span id="toastMsg">Manuscript draft published!</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive Client-side Script -->
+  <script>
+    // State
+    const state = {
+      coverFile: true, // preloaded demonstration
+      title: 'The Secret Geometry of Folios',
+      author: 'Prof. Alistair Vance',
+      description: 'Recovered from the lower crypts of Mainz, this illuminated codex documents harmonic ratios...',
+      tags: ['Alchemy', 'Manuscripts', 'Geometry'],
+      allTags: [
+        'Alchemy', 'Metallurgy', 'Astronomy', 'Manuscripts', 'Geometry',
+        'Philosophy', 'Optics', 'Astrolabes', 'First Order', 'Blacksmithing',
+        'Forgework', 'Illumination', 'Latin Treatises', 'Gutenberg'
+      ],
+      visibility: 'public',
+      price: 250,
+      pdfFile: { name: 'alchemists-codex-v4.pdf', size: '18.4 MB' },
+      isSubmitting: false
+    };
+
+    // DOM Elements
+    const coverUploadBox = document.getElementById('coverUploadBox');
+    const coverFileInput = document.getElementById('coverFileInput');
+    const coverPlaceholder = document.getElementById('coverPlaceholder');
+    const coverPreviewImg = document.getElementById('coverPreviewImg');
+    const coverChangeOverlay = document.getElementById('coverChangeOverlay');
+    const coverError = document.getElementById('coverError');
+
+    const bookDescription = document.getElementById('bookDescription');
+    const bookTitle = document.getElementById('bookTitle');
+    const titleError = document.getElementById('titleError');
+
+    const tagTrigger = document.getElementById('tagTrigger');
+    const tagBottomSheet = document.getElementById('tagBottomSheet');
+    const tagBottomSheetBackdrop = document.getElementById('tagBottomSheetBackdrop');
+    const closeTagSheetBtn = document.getElementById('closeTagSheetBtn');
+    const doneTagBtn = document.getElementById('doneTagBtn');
+    const tagCloudContainer = document.getElementById('tagCloudContainer');
+    const tagSearchInput = document.getElementById('tagSearchInput');
+    const selectedTagsDisplay = document.getElementById('selectedTagsDisplay');
+    const sheetSelectedCount = document.getElementById('sheetSelectedCount');
+
+    const visibilityBtns = document.querySelectorAll('.visibility-btn');
+
+    const pdfUploadBox = document.getElementById('pdfUploadBox');
+    const pdfFileInput = document.getElementById('pdfFileInput');
+    const pdfPlaceholder = document.getElementById('pdfPlaceholder');
+    const pdfSelectedInfo = document.getElementById('pdfSelectedInfo');
+    const removePdfBtn = document.getElementById('removePdfBtn');
+    const pdfError = document.getElementById('pdfError');
+
+    const submitBookBtn = document.getElementById('submitBookBtn');
+    const btnText = document.getElementById('btnText');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const toastNotification = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMsg');
+
+    // Haptic feedback helper
+    function triggerHaptic(duration = 10) {
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate(duration);
+      }
+    }
+
+    // Initialize Cover Preview
+    function setupCoverState() {
+      if (state.coverFile) {
+        coverPlaceholder.classList.add('hidden');
+        coverPreviewImg.classList.remove('hidden');
+        coverChangeOverlay.classList.remove('hidden');
+      } else {
+        coverPlaceholder.classList.remove('hidden');
+        coverPreviewImg.classList.add('hidden');
+        coverChangeOverlay.classList.add('hidden');
+      }
+    }
+    setupCoverState();
+
+    coverUploadBox.addEventListener('click', () => {
+      coverFileInput.click();
+    });
+
+    coverFileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          coverPreviewImg.src = evt.target.result;
+          state.coverFile = true;
+          setupCoverState();
+          coverError.classList.add('hidden');
+          triggerHaptic(15);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+
+    // Description Auto-Resize
+    function autoResizeTextarea() {
+      bookDescription.style.height = 'auto';
+      bookDescription.style.height = Math.min(bookDescription.scrollHeight, 220) + 'px';
+    }
+    bookDescription.addEventListener('input', autoResizeTextarea);
+    autoResizeTextarea();
+
+    // Tag Pill Cloud Rendering
+    function renderTagCloud(query = '') {
+      tagCloudContainer.innerHTML = '';
+      const filtered = state.allTags.filter(t => t.toLowerCase().includes(query.toLowerCase()));
+      
+      filtered.forEach(tag => {
+        const isSelected = state.tags.includes(tag);
+        const pill = document.createElement('button');
+        pill.type = 'button';
+        pill.className = `min-h-[44px] px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all active:scale-95 flex items-center gap-1.5 ${
+          isSelected 
+            ? 'border-primary text-primary bg-primary/10 shadow-sm' 
+            : 'border-border text-text-secondary bg-surface hover:border-border-hover'
+        }`;
+        pill.innerHTML = `
+          <span>${tag}</span>
+          ${isSelected ? '<svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>' : ''}
+        `;
+        
+        pill.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (state.tags.includes(tag)) {
+            state.tags = state.tags.filter(t => t !== tag);
+          } else {
+            state.tags.push(tag);
+          }
+          triggerHaptic(8);
+          renderTagCloud(tagSearchInput.value);
+          updateSelectedTagsUI();
+        });
+
+        tagCloudContainer.appendChild(pill);
+      });
+      sheetSelectedCount.textContent = state.tags.length;
+    }
+
+    function updateSelectedTagsUI() {
+      selectedTagsDisplay.innerHTML = '';
+      if (state.tags.length === 0) {
+        selectedTagsDisplay.innerHTML = '<span class="text-xs text-text-muted">Select tags...</span>';
+      } else {
+        state.tags.forEach(tag => {
+          const chip = document.createElement('span');
+          chip.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/30 flex-shrink-0';
+          chip.textContent = tag;
+          selectedTagsDisplay.appendChild(chip);
+        });
+      }
+      sheetSelectedCount.textContent = state.tags.length;
+    }
+
+    tagTrigger.addEventListener('click', () => {
+      openTagSheet();
+    });
+
+    function openTagSheet() {
+      tagBottomSheetBackdrop.classList.remove('hidden');
+      setTimeout(() => {
+        tagBottomSheetBackdrop.classList.remove('opacity-0');
+        tagBottomSheetBackdrop.classList.add('opacity-100');
+        tagBottomSheet.classList.remove('translate-y-full');
+      }, 10);
+      renderTagCloud();
+    }
+
+    function closeTagSheet() {
+      tagBottomSheetBackdrop.classList.remove('opacity-100');
+      tagBottomSheetBackdrop.classList.add('opacity-0');
+      tagBottomSheet.classList.add('translate-y-full');
+      setTimeout(() => {
+        tagBottomSheetBackdrop.classList.add('hidden');
+      }, 300);
+      updateSelectedTagsUI();
+    }
+
+    tagBottomSheetBackdrop.addEventListener('click', closeTagSheet);
+    closeTagSheetBtn.addEventListener('click', closeTagSheet);
+    doneTagBtn.addEventListener('click', closeTagSheet);
+
+    tagSearchInput.addEventListener('input', (e) => {
+      renderTagCloud(e.target.value);
+    });
+
+    // Visibility Selector
+    visibilityBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        triggerHaptic(10);
+        visibilityBtns.forEach(b => {
+          b.className = 'visibility-btn flex-1 min-h-[44px] rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-all text-text-secondary hover:text-text-primary';
+        });
+        btn.className = 'visibility-btn flex-1 min-h-[44px] rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-all bg-primary text-canvas shadow-sm';
+        state.visibility = btn.dataset.visibility;
+      });
+    });
+
+    // PDF Management
+    pdfUploadBox.addEventListener('click', (e) => {
+      if (!state.pdfFile) {
+        pdfFileInput.click();
+      }
+    });
+
+    pdfFileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        const file = e.target.files[0];
+        state.pdfFile = {
+          name: file.name,
+          size: (file.size / (1024 * 1024)).toFixed(1) + ' MB'
+        };
+        pdfPlaceholder.classList.add('hidden');
+        pdfSelectedInfo.classList.remove('hidden');
+        pdfSelectedInfo.querySelector('p.text-xs').textContent = state.pdfFile.name;
+        pdfSelectedInfo.querySelector('p.text-[10px]').textContent = state.pdfFile.size + ' • Ready to archive';
+        pdfError.classList.add('hidden');
+        triggerHaptic(15);
+      }
+    });
+
+    removePdfBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      state.pdfFile = null;
+      pdfPlaceholder.classList.remove('hidden');
+      pdfSelectedInfo.classList.add('hidden');
+      triggerHaptic(10);
+    });
+
+    // Submit Validation & Processing
+    submitBookBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      let hasError = false;
+      if (!bookTitle.value.trim()) {
+        titleError.classList.remove('hidden');
+        hasError = true;
+      } else {
+        titleError.classList.add('hidden');
+      }
+
+      if (!state.coverFile) {
+        coverError.classList.remove('hidden');
+        hasError = true;
+      } else {
+        coverError.classList.add('hidden');
+      }
+
+      if (!state.pdfFile) {
+        pdfError.classList.remove('hidden');
+        hasError = true;
+      } else {
+        pdfError.classList.add('hidden');
+      }
+
+      if (hasError) {
+        triggerHaptic(30);
+        return;
+      }
+
+      // Start Loading Simulation
+      state.isSubmitting = true;
+      submitBookBtn.disabled = true;
+      submitBookBtn.classList.add('opacity-75');
+      btnText.textContent = 'Publishing to Sanctum...';
+      btnSpinner.classList.remove('hidden');
+      triggerHaptic(15);
+
+      setTimeout(() => {
+        state.isSubmitting = false;
+        submitBookBtn.disabled = false;
+        submitBookBtn.classList.remove('opacity-75');
+        btnText.textContent = 'Codex Published!';
+        btnSpinner.classList.add('hidden');
+
+        // Show Toast
+        toastNotification.classList.remove('opacity-0', 'translate-y-[-10px]');
+        toastNotification.classList.add('opacity-100', 'translate-y-0');
+        triggerHaptic([20, 50, 20]);
+
+        setTimeout(() => {
+          toastNotification.classList.add('opacity-0', 'translate-y-[-10px]');
+          toastNotification.classList.remove('opacity-100', 'translate-y-0');
+          btnText.textContent = 'Publish Book';
+        }, 3200);
+
+      }, 1400);
+
+    });
+
+    // Keyboard Avoidance Scroll handler
+    document.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('focus', () => {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 250);
+      });
+    });
+
+  </script>
+</body>
+</html>

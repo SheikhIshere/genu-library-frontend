@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#251e1b","text-on-accent":"#16110f","text-muted":"#7a706a","inverse-surface":"#eee0da","status-info":"#5b8fb9","border":"#3a322d","secondary-fixed":"#ffdead","on-tertiary":"#00363f","on-surface":"#eee0da","primary-container":"#ea6a40","error":"#ffb4ab","on-error-container":"#ffdad6","surface":"#211a17","outline":"#a68b82","surface-container-high":"#302825","surface-dim":"#18120f","outline-variant":"#58423b","inverse-primary":"#a73a13","on-background":"#eee0da","on-tertiary-fixed":"#001f25","status-warning":"#d4a24e","on-secondary-fixed":"#281900","canvas":"#16110f","secondary-fixed-dim":"#f3be67","on-primary-fixed-variant":"#842500","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","text-secondary":"#a89c93","background":"#18120f","primary":"#ffb59e","surface-tint":"#ffb59e","surface-container-highest":"#3b3330","on-primary-container":"#521300","tertiary-fixed-dim":"#61d6ed","text-primary":"#ece0dc","surface-container-low":"#211a17","on-tertiary-container":"#002f36","surface-variant":"#3b3330","on-secondary-container":"#ffcd7d","tertiary-container":"#049fb5","status-success":"#4a7c59","inverse-on-surface":"#372f2b","on-secondary":"#432c00","tertiary":"#61d6ed","surface-bright":"#403734","primary-fixed-dim":"#ffb59e","status-error":"#c44d4d","on-tertiary-fixed-variant":"#004e5a","on-primary":"#5e1700","secondary":"#f3be67","error-container":"#93000a","surface-container-lowest":"#130d0a","primary-hover":"#d45a30","on-error":"#690005","on-secondary-fixed-variant":"#604100","tertiary-fixed":"#a4eeff","secondary-container":"#7c5400","border-hover":"#4d433d","surface-active":"#332a24","surface-hover":"#2a211c","on-surface-variant":"#dfc0b7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","margin-mobile":"1rem","space-xl":"2rem","space-sm":"0.5rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem"},"fontFamily":{"display":["Playfair Display"],"headline-1":["Playfair Display"],"body-large":["Inter"],"headline-2":["Playfair Display"],"overline":["JetBrains Mono"],"body-default":["Inter"],"caption":["Inter"],"display-mobile":["Playfair Display"],"display-xl-mobile":["Playfair Display"],"headline-3":["Playfair Display"],"display-xl":["Playfair Display"],"label-mono":["JetBrains Mono"],"body-small":["Inter"]},"fontSize":{"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-1":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-large":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-2":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"body-default":["16px",{"lineHeight":"24px","fontWeight":"400"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-xl-mobile":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-3":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-xl":["60px",{"lineHeight":"68px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-mono":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}],"body-small":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-canvas font-body-default text-body-default text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-canvas/80 backdrop-blur-xl border-b border-border transition-colors duration-200"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg shrink-0"><a class="flex items-center gap-space-sm group text-text-primary" data-path="home" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border group-hover:border-primary transition-colors"><span class="material-symbols-outlined text-primary text-[22px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary tracking-tight">Genu Library</span></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary border-b-2 border-primary"><a aria-current="page" class="font-body-default transition-colors py-space-xs text-primary border-b-2 border-primary" data-path="home" href="#">Home</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="books" href="#">Books</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="playlists" href="#">Playlists</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="upload" href="#">Upload</a></nav></div><div class="hidden md:flex flex-1 max-w-md mx-space-md relative"><div class="w-full flex items-center bg-canvas border border-border rounded-lg px-space-sm py-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all"><span class="material-symbols-outlined text-text-muted text-[20px] mr-2">search</span><input class="w-full bg-transparent border-none outline-none font-body-small text-body-small text-text-primary placeholder:text-text-muted" placeholder="Search codex, folio, author, or seal..." type="text"/><span class="font-label-mono text-overline text-text-muted bg-surface-container border border-border px-1.5 py-0.5 rounded">⌘K</span></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-1.5 bg-surface-container border border-border px-space-sm py-1.5 rounded-lg"><span class="text-secondary text-[16px]">🪙</span><span class="font-label-mono text-label-mono font-medium text-secondary">1.4K</span></div><div class="flex items-center gap-space-sm"><div class="relative group cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></div></header><main class="w-full pt-20 bg-canvas min-h-screen"><div class="flex flex-col w-full">
+<!-- Subtle decorative amber atmospheric glow behind top section -->
+<div class="relative w-full max-w-7xl mx-auto px-margin-mobile md:px-margin pt-6 pb-20 overflow-hidden">
+<div class="absolute top-12 left-1/3 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-48 right-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- 1. BREADCRUMBS & CONTEXT HEADER -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 font-body-small text-body-small text-text-muted mb-4">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Books</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-text-primary font-medium">Bulk Upload</span>
+</nav>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
+<div class="space-y-2 max-w-2xl">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary font-overline text-overline uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+            Archivist Guild • Admin Only
+          </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container font-label-mono text-overline text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success inline-block animate-pulse"></span>
+            Node v4.18 Active
+          </span>
+</div>
+<h1 class="font-display text-headline-1 md:text-display text-text-primary tracking-tight">
+          Bulk Book Upload
+        </h1>
+<p class="font-body-default text-body-default text-text-secondary">
+          Batch-ingest folios, treatises, and rare manuscripts into the library archives via structured plaintext manifests paired with digital folios.
+        </p>
+</div>
+<!-- Quick Tips & Rarity Index Pill -->
+<div class="flex flex-wrap items-center gap-3 shrink-0">
+<div class="bg-surface-container px-4 py-2.5 rounded-xl shadow-sm flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[22px]">auto_stories</span>
+<div>
+<div class="font-label-mono text-overline text-text-muted uppercase">Guild Quota</div>
+<div class="font-label-mono text-label-mono text-text-primary font-semibold">150 Folios / Day</div>
+</div>
+</div>
+<button class="bg-surface-container-high hover:bg-surface-bright text-text-primary font-body-small text-body-small font-medium px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm" id="toggle-guide-btn">
+<span class="material-symbols-outlined text-primary text-[18px]">help_outline</span>
+<span>Manifest Syntax</span>
+</button>
+</div>
+</div>
+<!-- Quick Tip Strip -->
+<div class="w-full bg-surface-container p-3.5 rounded-xl mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-text-secondary">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">tips_and_updates</span>
+<p class="font-body-small text-body-small">
+<span class="text-text-primary font-medium">Archivist Protocol:</span> Manuscripts will auto-pair with PDF folios based on title or explicit filename tokens. Use delimiter <code class="font-label-mono text-primary bg-canvas px-1.5 py-0.5 rounded">---</code> between folios.
+        </p>
+</div>
+<div class="flex items-center gap-2 text-text-muted font-label-mono text-overline shrink-0">
+<span>ENCODING: UTF-8</span>
+<span>•</span>
+<span>MAX RECURSION: 50 ENTRIES</span>
+</div>
+</div>
+<!-- 2. TWO-COLUMN WORKBENCH SECTION -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-10">
+<!-- LEFT COLUMN: Structured Manifest Input (7 cols) -->
+<div class="lg:col-span-7 flex flex-col space-y-4">
+<div class="bg-surface-container rounded-xl shadow-md p-5 flex flex-col h-full">
+<div class="flex items-center justify-between pb-4">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</div>
+<div>
+<h3 class="font-headline-3 text-headline-3 text-text-primary">Structured Book Manifest</h3>
+<p class="font-caption text-caption text-text-muted">Plaintext key-value declarations delimited by triple hyphens</p>
+</div>
+</div>
+<!-- Validation Chip -->
+<div class="flex items-center gap-1.5 bg-canvas px-2.5 py-1 rounded-full text-status-success font-label-mono text-overline font-semibold" id="manifest-badge">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>2 MANUSCRIPTS DETECTED</span>
+</div>
+</div>
+<!-- Line numbers + Textarea Editor Box -->
+<div class="relative flex-1 bg-canvas rounded-lg overflow-hidden shadow-inner flex flex-row min-h-[380px]">
+<!-- Gutter / Line Numbers -->
+<div class="w-10 bg-surface-container-lowest text-text-muted font-label-mono text-caption select-none pt-3 pb-3 flex flex-col items-center gap-[6px] opacity-70">
+<span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span>
+<span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span>
+<span>13</span><span>14</span><span>15</span>
+</div>
+<!-- Monospace Code / Textarea -->
+<textarea class="w-full bg-transparent p-3 font-label-mono text-body-small text-text-primary resize-y focus:outline-none leading-[26px] selection:bg-primary-container selection:text-on-primary-container" id="manifest-input" spellcheck="false">Title: The Alchemist's Codex
+Author: Master Corvus
+Description: Ancient treatises on transmutation, alloy forging, and celestial glyphs.
+Tags: Alchemy, Metallurgy, Arcana
+Price: 250
+---
+Title: Architecture of Thought
+Author: Sophia Vance
+Description: Foundational exploration into structural philosophy and architectural cognition.
+Tags: Philosophy, Architecture, Design
+Price: 180</textarea>
+</div>
+<!-- Manifest Controls / Helper Tools -->
+<div class="mt-4 pt-3 flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<button class="bg-surface hover:bg-surface-hover text-text-secondary hover:text-text-primary font-body-small text-body-small px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5" id="btn-load-sample">
+<span class="material-symbols-outlined text-[16px] text-secondary">history_edu</span>
+                Load Sample Data
+              </button>
+<button class="bg-surface hover:bg-surface-hover text-text-muted hover:text-error font-body-small text-body-small px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5" id="btn-clear-manifest">
+<span class="material-symbols-outlined text-[16px]">backspace</span>
+                Clear
+              </button>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-mono text-caption text-text-muted">Lines: 12 • Chars: 374</span>
+<button class="bg-primary hover:bg-primary-hover text-text-on-accent font-body-default text-body-small font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm hover:shadow-md" id="btn-preview-validate">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                Parse &amp; Validate
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Digital Folios & PDF Archives Drop Zone (5 cols) -->
+<div class="lg:col-span-5 flex flex-col space-y-4">
+<div class="bg-surface-container rounded-xl shadow-md p-5 flex flex-col h-full justify-between">
+<div>
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</div>
+<div>
+<h3 class="font-headline-3 text-headline-3 text-text-primary">Digital Folios</h3>
+<p class="font-caption text-caption text-text-muted">PDF Manuscript Archives</p>
+</div>
+</div>
+<span class="font-label-mono text-caption text-secondary bg-surface px-2.5 py-1 rounded-md">
+                3 files • 18.9 MB
+              </span>
+</div>
+<!-- Drag & Drop Zone -->
+<div class="relative group cursor-pointer mt-2 bg-canvas hover:bg-surface-hover p-6 rounded-xl transition-all duration-200 text-center flex flex-col items-center justify-center min-h-[170px]" id="drop-zone">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+</div>
+<p class="font-body-default text-body-small font-semibold text-text-primary mb-1">
+                Drag &amp; drop PDF manuscripts here, or <span class="text-primary underline underline-offset-2">Browse Folios</span>
+</p>
+<p class="font-caption text-caption text-text-muted">
+                Accepts encrypted &amp; raw <span class="font-label-mono text-text-secondary">.pdf</span> documents up to 100MB each
+              </p>
+<input accept=".pdf" class="absolute inset-0 opacity-0 cursor-pointer" multiple="" type="file"/>
+</div>
+<!-- Queue Progress Metric -->
+<div class="mt-4 bg-surface p-3 rounded-lg flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-mono text-caption">
+<span class="text-text-secondary">Batch Archival Readiness</span>
+<span class="text-primary font-medium">2 of 3 Matched (66%)</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-300" style="width: 66%;"></div>
+</div>
+</div>
+<!-- Uploaded Files List -->
+<div class="mt-4 space-y-2.5" id="file-queue-list">
+<!-- Item 1 -->
+<div class="bg-canvas hover:bg-surface-container-high p-3 rounded-lg flex items-center justify-between gap-3 transition-colors shadow-sm">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div class="truncate">
+<div class="font-label-mono text-body-small text-text-primary truncate">alchemists_codex_vol1.pdf</div>
+<div class="flex items-center gap-2 font-caption text-caption text-text-muted">
+<span>6.2 MB</span>
+<span>•</span>
+<span class="text-status-success font-medium inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Matched to Entry #1
+                      </span>
+</div>
+</div>
+</div>
+<button class="text-text-muted hover:text-error p-1 rounded transition-colors" title="Remove folio">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="bg-canvas hover:bg-surface-container-high p-3 rounded-lg flex items-center justify-between gap-3 transition-colors shadow-sm">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div class="truncate">
+<div class="font-label-mono text-body-small text-text-primary truncate">architecture_of_thought_draft.pdf</div>
+<div class="flex items-center gap-2 font-caption text-caption text-text-muted">
+<span>8.6 MB</span>
+<span>•</span>
+<span class="text-status-success font-medium inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Matched to Entry #2
+                      </span>
+</div>
+</div>
+</div>
+<button class="text-text-muted hover:text-error p-1 rounded transition-colors" title="Remove folio">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Item 3: Unmatched -->
+<div class="bg-canvas hover:bg-surface-container-high p-3 rounded-lg flex items-center justify-between gap-3 transition-colors shadow-sm">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-status-warning shrink-0">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div class="truncate">
+<div class="font-label-mono text-body-small text-text-primary truncate">metallurgy_principles.pdf</div>
+<div class="flex items-center gap-2 font-caption text-caption text-text-muted">
+<span>4.1 MB</span>
+<span>•</span>
+<span class="text-status-warning font-medium inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">help</span> Unmatched / Standalone
+                      </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="text-text-muted hover:text-secondary p-1 rounded transition-colors" title="Manual Link">
+<span class="material-symbols-outlined text-[18px]">link</span>
+</button>
+<button class="text-text-muted hover:text-error p-1 rounded transition-colors" title="Remove folio">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between font-caption text-caption text-text-muted">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-text-muted">lock_clock</span>
+              Storage: Guild Vault #3 (Encrypted)
+            </span>
+<button class="text-primary hover:underline">Re-run Matcher</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. INTERACTIVE MANIFEST PARSED PREVIEW SECTION -->
+<div class="bg-surface-container rounded-xl p-6 shadow-lg mb-10">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">fact_check</span>
+<h2 class="font-headline-2 text-headline-2 text-text-primary">Parsed Folio Staging</h2>
+</div>
+<p class="font-body-small text-body-small text-text-secondary mt-1">
+            Real-time interpretation of manifest data mapped with associated binary artifacts.
+          </p>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-canvas px-3 py-1.5 rounded-lg flex items-center gap-2 text-text-muted font-label-mono text-caption">
+<span>SHOWING: 2 VALIDATED</span>
+</div>
+<button class="bg-surface hover:bg-surface-hover text-text-secondary hover:text-text-primary font-body-small text-body-small px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]">view_module</span>
+            Grid View
+          </button>
+</div>
+</div>
+<!-- Live Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="parsed-grid">
+<!-- Card 1 -->
+<div class="bg-canvas rounded-xl p-5 shadow-md flex flex-col justify-between group hover:bg-surface-container-high transition-all duration-200">
+<div class="space-y-3">
+<div class="flex items-start justify-between gap-3">
+<div>
+<span class="font-overline text-overline uppercase text-primary tracking-wider">ENTRY #01</span>
+<h3 class="font-headline-3 text-headline-3 text-text-primary font-semibold mt-0.5 group-hover:text-primary transition-colors">
+                  The Alchemist's Codex
+                </h3>
+<div class="font-body-small text-body-small text-text-secondary">by <span class="text-text-primary font-medium">Master Corvus</span></div>
+</div>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full text-status-success font-label-mono text-caption font-semibold shrink-0">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Ready
+              </span>
+</div>
+<p class="font-body-small text-body-small text-text-muted line-clamp-2">
+              Ancient treatises on transmutation, alloy forging, and celestial glyphs.
+            </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-caption text-caption text-text-secondary">Alchemy</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-caption text-caption text-text-secondary">Metallurgy</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-caption text-caption text-text-secondary">Arcana</span>
+</div>
+</div>
+<div class="mt-5 pt-4 bg-surface-container/50 -mx-5 -mb-5 px-5 py-3 rounded-b-xl flex items-center justify-between text-caption">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">attachment</span>
+<span class="font-label-mono text-text-secondary truncate max-w-[160px] sm:max-w-[200px]">alchemists_codex_vol1.pdf</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="text-secondary text-[14px]">🪙</span>
+<span class="font-label-mono text-label-mono font-semibold text-secondary">250</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-canvas rounded-xl p-5 shadow-md flex flex-col justify-between group hover:bg-surface-container-high transition-all duration-200">
+<div class="space-y-3">
+<div class="flex items-start justify-between gap-3">
+<div>
+<span class="font-overline text-overline uppercase text-primary tracking-wider">ENTRY #02</span>
+<h3 class="font-headline-3 text-headline-3 text-text-primary font-semibold mt-0.5 group-hover:text-primary transition-colors">
+                  Architecture of Thought
+                </h3>
+<div class="font-body-small text-body-small text-text-secondary">by <span class="text-text-primary font-medium">Sophia Vance</span></div>
+</div>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full text-status-success font-label-mono text-caption font-semibold shrink-0">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Ready
+              </span>
+</div>
+<p class="font-body-small text-body-small text-text-muted line-clamp-2">
+              Foundational exploration into structural philosophy and architectural cognition.
+            </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-caption text-caption text-text-secondary">Philosophy</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-caption text-caption text-text-secondary">Architecture</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-caption text-caption text-text-secondary">Design</span>
+</div>
+</div>
+<div class="mt-5 pt-4 bg-surface-container/50 -mx-5 -mb-5 px-5 py-3 rounded-b-xl flex items-center justify-between text-caption">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">attachment</span>
+<span class="font-label-mono text-text-secondary truncate max-w-[160px] sm:max-w-[200px]">architecture_of_thought_draft.pdf</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="text-secondary text-[14px]">🪙</span>
+<span class="font-label-mono text-label-mono font-semibold text-secondary">180</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Summary Metric Bar -->
+<div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-4 text-text-muted font-label-mono text-caption">
+<div class="flex items-center gap-4">
+<span>TOTAL ESTIMATED WEIGHT: <strong>14.8 MB</strong></span>
+<span>•</span>
+<span>ESTIMATED GAS/PLEDGE: <strong class="text-secondary">430 🪙</strong></span>
+</div>
+<div class="flex items-center gap-2 text-status-success">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Zero metadata collisions discovered</span>
+</div>
+</div>
+</div>
+<!-- 4. COLLAPSIBLE POWERSHELL & CLI AUTOMATION ACCORDION -->
+<div class="bg-surface-container rounded-xl shadow-md overflow-hidden mb-10">
+<button class="w-full p-5 text-left flex items-center justify-between hover:bg-surface-hover transition-colors" id="cli-accordion-toggle">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+<div>
+<h3 class="font-headline-3 text-headline-3 text-text-primary">Automated Ingestion Script &amp; AI Prompt Generator</h3>
+<p class="font-caption text-caption text-text-muted">Execute batch preprocessing via terminal or generate structured manifests with local LLMs</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="hidden sm:inline font-label-mono text-overline text-primary">POWERSHELL / BASH</span>
+<span class="material-symbols-outlined text-text-muted transform transition-transform duration-200" id="cli-chevron">expand_more</span>
+</div>
+</button>
+<div class="hidden p-5 pt-0" id="cli-content">
+<div class="bg-canvas rounded-lg p-4 font-label-mono text-body-small text-text-secondary relative shadow-inner">
+<div class="flex items-center justify-between pb-3 text-text-muted font-caption text-caption">
+<span>Terminal Automation / scripts/batch_pack.ps1</span>
+<button class="flex items-center gap-1 text-primary hover:text-primary-hover transition-colors" id="btn-copy-code">
+<span class="material-symbols-outlined text-[15px]">content_copy</span>
+<span>Copy Script</span>
+</button>
+</div>
+<pre class="overflow-x-auto text-text-primary leading-relaxed"><code class="text-text-secondary"># Genu Library Bulk Archival CLI Dispatch
+$manifest = Get-ChildItem ./folios/*.pdf | ForEach-Object {
+    [PSCustomObject]@{
+        Title       = $_.BaseName -replace '_',' '
+        Author      = 'Archivist Guild'
+        Description = "Archived folio manuscript: $($_.Name)"
+        Tags        = 'Archive, Treatise'
+        Price       = 150
+    }
+}
+$manifest | Out-File -Encoding utf8 ./library_manifest.txt</code></pre>
+</div>
+<!-- Secondary LLM prompt helper -->
+<div class="mt-4 bg-surface p-3.5 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-caption">
+<div class="flex items-center gap-2 text-text-secondary">
+<span class="material-symbols-outlined text-primary text-[18px]">neurology</span>
+<span>Tip: Instruct your local Claude/GPT archivist with: <em class="text-text-primary">"Convert this bibliography table to Genu YAML-style manifest blocks"</em></span>
+</div>
+<button class="text-primary hover:underline font-body-small text-caption shrink-0">View LLM Template</button>
+</div>
+</div>
+</div>
+<!-- 5. POST-UPLOAD / RECENT BATCH NOTIFICATION CARD -->
+<div class="bg-surface-container rounded-xl p-4 shadow-sm mb-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-status-success/15 flex items-center justify-center text-status-success shrink-0">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-body-small text-body-small font-semibold text-text-primary">Batch #4109 Completed</span>
+<span class="font-label-mono text-overline px-2 py-0.5 bg-status-success/20 text-status-success rounded">Success</span>
+</div>
+<p class="font-caption text-caption text-text-muted">
+            12 Manuscripts Published to Ledger • 1 Non-fatal metadata warning resolved automatically • 14 mins ago
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0 self-end sm:self-auto">
+<a class="font-body-small text-body-small text-primary hover:underline flex items-center gap-1" href="#">
+          Inspect Ledger Log
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 6. DOCKED EXECUTION ACTION CONTROL FOOTER -->
+<div class="sticky bottom-4 z-40 w-full bg-surface-container/95 backdrop-blur-md rounded-2xl shadow-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">publish</span>
+</div>
+<div>
+<div class="font-body-default text-body-default font-semibold text-text-primary flex items-center gap-2">
+<span>2 Validated Manuscripts Ready</span>
+<span class="w-2 h-2 rounded-full bg-status-success inline-block"></span>
+</div>
+<div class="font-caption text-caption text-text-muted">
+            1 unmatched folio will be queued as raw digital parchment asset
+          </div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<button class="bg-surface hover:bg-surface-hover text-text-muted hover:text-text-primary font-body-small text-body-small px-4 py-2.5 rounded-lg transition-colors" id="btn-ghost-clear">
+          Clear All
+        </button>
+<button class="bg-surface-container-high hover:bg-surface-bright text-text-primary font-body-small text-body-small font-medium px-4 py-2.5 rounded-lg transition-colors flex items-center gap-1.5" id="btn-secondary-preview">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+          Inspect JSON
+        </button>
+<button class="bg-primary-container hover:bg-primary-hover text-text-on-accent font-body-default text-body-small font-bold px-6 py-2.5 rounded-lg transition-all transform active:scale-95 shadow-md flex items-center gap-2" id="btn-primary-upload">
+<span class="material-symbols-outlined text-[20px]">cloud_done</span>
+<span>Upload All to Archives</span>
+</button>
+</div>
+</div>
+</div>
+<!-- POPUP FORMAT GUIDE MODAL -->
+<div class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4" id="guide-modal">
+<div class="bg-surface-container max-w-xl w-full rounded-2xl shadow-2xl p-6 relative animate-in fade-in zoom-in-95 duration-150">
+<button class="absolute top-4 right-4 text-text-muted hover:text-text-primary p-1 rounded" id="guide-modal-close">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-xl bg-surface flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">menu_book</span>
+</div>
+<div>
+<h3 class="font-headline-2 text-headline-2 text-text-primary">Manifest Specification</h3>
+<p class="font-caption text-caption text-text-muted">Guild Archival Manifest Standard v2.4</p>
+</div>
+</div>
+<div class="space-y-4 text-body-small text-text-secondary">
+<p>Each codex manuscript record is identified by key-value headers separated by a new line. Multiple records are delimited by a single line with <code class="text-primary font-label-mono">---</code>.</p>
+<div class="bg-canvas p-3 rounded-lg font-label-mono text-caption text-text-primary space-y-1">
+<div><strong class="text-secondary">Title:</strong> Name of the manuscript folio [Mandatory]</div>
+<div><strong class="text-secondary">Author:</strong> Scribe, scholar, or guild house [Mandatory]</div>
+<div><strong class="text-secondary">Description:</strong> Synopsis, bindings, and abstract [Optional]</div>
+<div><strong class="text-secondary">Tags:</strong> Comma-separated categorical disciplines [Optional]</div>
+<div><strong class="text-secondary">Price:</strong> Guild Coin value in JetBrains format [Optional]</div>
+</div>
+<p class="font-caption text-caption text-text-muted">
+          Manuscript PDF matching runs automatically on exact or fuzzy Title-to-Filename heuristics. You may re-bind any mislinked folios in the parsed staging table.
+        </p>
+</div>
+<div class="mt-6 flex justify-end">
+<button class="bg-primary hover:bg-primary-hover text-text-on-accent font-body-small text-body-small font-semibold px-5 py-2 rounded-lg transition-colors" id="guide-modal-ack">
+          Understood, Return to Folios
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Accordion interaction
+    const toggleBtn = document.getElementById('cli-accordion-toggle');
+    const cliContent = document.getElementById('cli-content');
+    const chevron = document.getElementById('cli-chevron');
+
+    if (toggleBtn && cliContent && chevron) {
+      toggleBtn.addEventListener('click', () => {
+        const isHidden = cliContent.classList.contains('hidden');
+        if (isHidden) {
+          cliContent.classList.remove('hidden');
+          chevron.style.transform = 'rotate(180deg)';
+        } else {
+          cliContent.classList.add('hidden');
+          chevron.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+
+    // Modal interaction
+    const guideBtn = document.getElementById('toggle-guide-btn');
+    const guideModal = document.getElementById('guide-modal');
+    const guideClose = document.getElementById('guide-modal-close');
+    const guideAck = document.getElementById('guide-modal-ack');
+
+    function openModal() {
+      guideModal.classList.remove('hidden');
+      guideModal.classList.add('flex');
+    }
+    function closeModal() {
+      guideModal.classList.add('hidden');
+      guideModal.classList.remove('flex');
+    }
+
+    if (guideBtn) guideBtn.addEventListener('click', openModal);
+    if (guideClose) guideClose.addEventListener('click', closeModal);
+    if (guideAck) guideAck.addEventListener('click', closeModal);
+    if (guideModal) {
+      guideModal.addEventListener('click', (e) => {
+        if (e.target === guideModal) closeModal();
+      });
+    }
+
+    // Load Sample Manifest
+    const manifestInput = document.getElementById('manifest-input');
+    const loadSampleBtn = document.getElementById('btn-load-sample');
+    const clearBtn = document.getElementById('btn-clear-manifest');
+    const ghostClear = document.getElementById('btn-ghost-clear');
+
+    const sampleManifest = `Title: The Alchemist's Codex
+Author: Master Corvus
+Description: Ancient treatises on transmutation, alloy forging, and celestial glyphs.
+Tags: Alchemy, Metallurgy, Arcana
+Price: 250
+---
+Title: Architecture of Thought
+Author: Sophia Vance
+Description: Foundational exploration into structural philosophy and architectural cognition.
+Tags: Philosophy, Architecture, Design
+Price: 180
+---
+Title: Principles of High Metallurgy
+Author: Kaelen Vance
+Description: Guild blueprints of forge temperatures and crucible construction.
+Tags: Metallurgy, Craft, Metallurgy
+Price: 320`;
+
+    if (loadSampleBtn && manifestInput) {
+      loadSampleBtn.addEventListener('click', () => {
+        manifestInput.value = sampleManifest;
+        alert('Loaded 3 sample treatises into the manifest buffer.');
+      });
+    }
+
+    if (clearBtn && manifestInput) {
+      clearBtn.addEventListener('click', () => {
+        manifestInput.value = '';
+      });
+    }
+
+    if (ghostClear && manifestInput) {
+      ghostClear.addEventListener('click', () => {
+        if (confirm('Clear all queued folios and manifest entries?')) {
+          manifestInput.value = '';
+        }
+      });
+    }
+
+    // Copy script button
+    const copyBtn = document.getElementById('btn-copy-code');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const text = `# Genu Library Bulk Archival CLI Dispatch
+$manifest = Get-ChildItem ./folios/*.pdf | ForEach-Object {
+    [PSCustomObject]@{
+        Title       = $_.BaseName -replace '_',' '
+        Author      = 'Archivist Guild'
+        Description = "Archived folio manuscript: $($_.Name)"
+        Tags        = 'Archive, Treatise'
+        Price       = 150
+    }
+}
+$manifest | Out-File -Encoding utf8 ./library_manifest.txt`;
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.innerHTML = '<span class="material-symbols-outlined text-[15px]">check</span> Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = '<span class="material-symbols-outlined text-[15px]">content_copy</span> Copy Script';
+          }, 2000);
+        });
+      });
+    }
+
+    // Upload simulation
+    const uploadBtn = document.getElementById('btn-primary-upload');
+    if (uploadBtn) {
+      uploadBtn.addEventListener('click', () => {
+        uploadBtn.disabled = true;
+        uploadBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span> Ingesting Batch...';
+        setTimeout(() => {
+          uploadBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span> Ingestion Complete!';
+          uploadBtn.classList.remove('bg-primary-container');
+          uploadBtn.classList.add('bg-status-success');
+          setTimeout(() => {
+            uploadBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">cloud_done</span> Upload All to Archives';
+            uploadBtn.classList.add('bg-primary-container');
+            uploadBtn.classList.remove('bg-status-success');
+            uploadBtn.disabled = false;
+          }, 3000);
+        }, 1800);
+      });
+    }
+
+    // Drag-and-drop hover styling
+    const dropZone = document.getElementById('drop-zone');
+    if (dropZone) {
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.add('bg-surface-hover');
+        }, false);
+      });
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove('bg-surface-hover');
+        }, false);
+      });
+    }
+  })();
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-border mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 space-y-space-md"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center border border-border"><span class="material-symbols-outlined text-primary text-[18px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary">Genu Library</span></div><p class="font-body-default text-body-small text-text-secondary max-w-sm">An artisan guild repository and deluxe reading sanctum curated for digital archivists, scholars, and craftspeople safeguarding rare manuscripts and auditory codices.</p><div class="flex items-center gap-space-sm text-text-muted"><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">terminal</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">hub</span></a></div></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Navigation</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="home" href="#">Home</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="books" href="#">Books Catalog</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="playlists" href="#">Auditory Playlists</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="upload" href="#">Upload Folio</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Guild Archive</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Guild Concordat</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Ledger Rarity</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Archivist API</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Terms of Preservation</a></li></ul></div><div class="space-y-space-md"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">The Monthly Dispatch</h4><p class="font-body-small text-body-small text-text-secondary">Receive curated codex summaries and ledger updates directly to your station.</p><form class="space-y-2"><div class="flex flex-col gap-2"><input class="w-full bg-canvas border border-border rounded-lg px-space-sm py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors" placeholder="archivist@guild.internal" type="email"/><button class="w-full bg-primary text-text-on-accent font-body-default text-body-small font-semibold px-space-md py-2 rounded-lg hover:bg-primary-hover transition-colors" type="button">Subscribe</button></div></form></div></div><div class="border-t border-border mt-space-xl pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-small text-caption text-text-muted">© 2025 Genu Library Guild. All rights reserved under the Sovereign Archives.</p><div class="flex items-center gap-space-md font-body-small text-caption text-text-muted"><a class="hover:text-text-secondary transition-colors" href="#">Sanctum Privacy</a><a class="hover:text-text-secondary transition-colors" href="#">Ledger Index</a><a class="hover:text-text-secondary transition-colors" href="#">Status Core</a></div></div></div></footer></body></html>

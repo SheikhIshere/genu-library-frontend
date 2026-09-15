@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books Catalog (Tablet) — Genu Library</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Phosphor / Lucide Icons via inline SVGs and Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: {
+              DEFAULT: '#211a17',
+              hover: '#2a211c',
+              active: '#332a24',
+              container: '#28201c',
+              'container-lowest': '#130d0a',
+              'container-high': '#322722'
+            },
+            primary: {
+              DEFAULT: '#e8693f',
+              hover: '#d45a30',
+              muted: 'rgba(232, 105, 63, 0.12)',
+              glow: 'rgba(232, 105, 63, 0.15)'
+            },
+            border: {
+              DEFAULT: '#3a322d',
+              hover: '#4d433d',
+              focus: '#e8693f'
+            },
+            text: {
+              primary: '#ece0dc',
+              secondary: '#a89c93',
+              muted: '#7a706a',
+              'on-accent': '#16110f'
+            },
+            status: {
+              success: '#4a7c59',
+              error: '#c44d4d',
+              warning: '#d4a24e',
+              info: '#5b8fb9'
+            }
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #16110f;
+      color: #ece0dc;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #16110f;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #3a322d;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #4d433d;
+    }
+
+    /* Spring-like transition classes */
+    .card-transition {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  background-color 0.15s ease,
+                  border-color 0.15s ease,
+                  box-shadow 0.2s ease;
+    }
+    .btn-press:active {
+      transform: scale(0.97);
+    }
+    .focus-ring:focus-visible {
+      outline: none;
+      border-color: #e8693f;
+      box-shadow: 0 0 0 3px rgba(232, 105, 63, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-canvas text-text-primary antialiased selection:bg-primary selection:text-canvas">
+
+  <!-- ========================================================================= -->
+  <!-- 1. Horizontal Top Navigation Bar (Tablet: 641px - 1024px, no bottom nav)  -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 bg-[#16110f] border-b border-[#3a322d]">
+    <div class="max-w-5xl mx-auto flex items-center justify-between h-14 px-6 gap-6">
+      <!-- Logo -->
+      <a href="/books" class="flex-shrink-0 flex items-center gap-2.5 group focus-ring rounded-lg p-1" aria-label="Genu Library Home">
+        <div class="w-7 h-7 rounded bg-[#e8693f20] border border-[#e8693f]/40 flex items-center justify-center text-primary group-hover:border-primary transition-colors">
+          <svg class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+            <path d="M6 6h10"></path>
+            <path d="M6 10h10"></path>
+          </svg>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-text-primary font-display">Genu</span>
+      </a>
+
+      <!-- Search bar (expanded for tablet) -->
+      <div class="flex-1 max-w-md relative">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-text-muted pointer-events-none">search</span>
+        <input
+          id="nav-search-input"
+          type="search"
+          placeholder="Search by title, author, codex..."
+          value=""
+          class="w-full h-10 pl-10 pr-4 rounded-lg bg-[#211a17] border border-[#3a322d] text-sm text-[#ece0dc] placeholder:text-[#7a706a] focus:outline-none focus:border-[#e8693f] focus:shadow-[0_0_0_3px_rgba(232,105,63,0.15)] transition-colors hover:border-[#4d433d] focus-ring"
+          aria-label="Search books"
+        />
+        <div id="search-clear-btn" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 cursor-pointer text-text-muted hover:text-text-primary p-1">
+          <span class="material-symbols-outlined text-[16px]">close</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="flex items-center gap-1.5">
+        <a href="/" class="h-10 px-4 rounded-lg text-[#a89c93] text-sm font-medium flex items-center justify-center min-h-[40px] min-w-[40px] hover:bg-[#2a211c] hover:text-[#ece0dc] transition-colors focus-ring">
+          Home
+        </a>
+        <a href="/books" class="h-10 px-4 rounded-lg bg-[#e8693f20] text-[#e8693f] border border-[#e8693f]/30 text-sm font-semibold flex items-center justify-center min-h-[40px] min-w-[40px] transition-colors focus-ring">
+          Books
+        </a>
+        <a href="/playlists" class="h-10 px-4 rounded-lg text-[#a89c93] text-sm font-medium flex items-center justify-center min-h-[40px] min-w-[40px] hover:bg-[#2a211c] hover:text-[#ece0dc] transition-colors focus-ring">
+          Lists
+        </a>
+      </div>
+
+      <!-- Profile Avatar -->
+      <a href="/profile" class="flex-shrink-0 w-9 h-9 rounded-full bg-[#e8693f20] border border-[#3a322d] flex items-center justify-center text-[#e8693f] text-sm font-bold hover:border-[#e8693f] hover:shadow-[0_0_12px_rgba(232,105,63,0.2)] transition-all min-h-[40px] min-w-[40px] focus-ring" title="Archivist Profile">
+        AV
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. Inline Filter Bar (Tablet: Horizontal Row with Dropdown Menus)          -->
+  <!-- ========================================================================= -->
+  <div class="border-b border-[#3a322d] bg-[#16110f] sticky top-14 z-40">
+    <div class="max-w-5xl mx-auto px-6 py-3 flex items-center gap-3 flex-wrap">
+      
+      <!-- Price Dropdown Trigger -->
+      <div class="relative dropdown-container">
+        <button
+          id="btn-filter-price"
+          class="h-10 px-4 rounded-lg bg-[#211a17] border border-[#3a322d] text-sm text-[#a89c93] flex items-center gap-2 hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] transition-colors min-h-[40px] min-w-[40px] focus-ring"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="material-symbols-outlined text-[16px] text-[#e8693f]">toll</span>
+          <span id="label-price">Price</span>
+          <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div id="menu-price" class="hidden absolute top-full left-0 mt-1.5 w-44 rounded-xl bg-[#211a17] border border-[#3a322d] shadow-[0_8px_32px_rgba(0,0,0,0.6)] z-50 overflow-hidden py-1">
+          <button data-price="all" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#e8693f] font-medium price-option">
+            All Treatises
+            <span class="material-symbols-outlined text-[16px] check-icon">check</span>
+          </button>
+          <button data-price="free" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] price-option">
+            Free (Sanctum)
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-price="premium" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] price-option">
+            Guild Paid (Coins)
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Rating Dropdown Trigger -->
+      <div class="relative dropdown-container">
+        <button
+          id="btn-filter-rating"
+          class="h-10 px-4 rounded-lg bg-[#211a17] border border-[#3a322d] text-sm text-[#a89c93] flex items-center gap-2 hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] transition-colors min-h-[40px] min-w-[40px] focus-ring"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="material-symbols-outlined text-[16px] text-[#d4a24e]">star</span>
+          <span id="label-rating">Rating</span>
+          <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div id="menu-rating" class="hidden absolute top-full left-0 mt-1.5 w-40 rounded-xl bg-[#211a17] border border-[#3a322d] shadow-[0_8px_32px_rgba(0,0,0,0.6)] z-50 overflow-hidden py-1">
+          <button data-rating="0" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#e8693f] font-medium rating-option">
+            Any Rating
+            <span class="material-symbols-outlined text-[16px] check-icon">check</span>
+          </button>
+          <button data-rating="4.8" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] rating-option">
+            4.8+ Stars
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-rating="4.5" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] rating-option">
+            4.5+ Stars
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-rating="4.0" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] rating-option">
+            4.0+ Stars
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Genre Dropdown Trigger -->
+      <div class="relative dropdown-container">
+        <button
+          id="btn-filter-genre"
+          class="h-10 px-4 rounded-lg bg-[#211a17] border border-[#3a322d] text-sm text-[#a89c93] flex items-center gap-2 hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] transition-colors min-h-[40px] min-w-[40px] focus-ring"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="material-symbols-outlined text-[16px] text-text-muted">sell</span>
+          <span id="label-genre">Discipline</span>
+          <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
+        </button>
+
+        <!-- Dropdown Menu (scrollable) -->
+        <div id="menu-genre" class="hidden absolute top-full left-0 mt-1.5 w-52 rounded-xl bg-[#211a17] border border-[#3a322d] shadow-[0_8px_32px_rgba(0,0,0,0.6)] z-50 max-h-64 overflow-y-auto custom-scrollbar py-1">
+          <button data-genre="all" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#e8693f] font-medium genre-option">
+            All Disciplines
+            <span class="material-symbols-outlined text-[16px] check-icon">check</span>
+          </button>
+          <button data-genre="Alchemy" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] genre-option">
+            Alchemy & Hermetica
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-genre="Astronomy" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] genre-option">
+            Astronomy & Celestial
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-genre="Metallurgy" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] genre-option">
+            Metallurgy & Foundry
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-genre="Philosophy" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] genre-option">
+            Dialectics & Philosophy
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-genre="Typography" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] genre-option">
+            Incunabula & Print
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sort Dropdown Trigger (Pushed to Right) -->
+      <div class="relative ml-auto dropdown-container">
+        <button
+          id="btn-sort"
+          class="h-10 px-4 rounded-lg bg-[#211a17] border border-[#3a322d] text-sm text-[#a89c93] flex items-center gap-2 hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] transition-colors min-h-[40px] min-w-[40px] focus-ring"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="material-symbols-outlined text-[16px] text-text-muted">swap_vert</span>
+          <span id="label-sort">Sort: Most Acclaimed</span>
+          <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div id="menu-sort" class="hidden absolute top-full right-0 mt-1.5 w-52 rounded-xl bg-[#211a17] border border-[#3a322d] shadow-[0_8px_32px_rgba(0,0,0,0.6)] z-50 overflow-hidden py-1">
+          <button data-sort="rating-desc" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#e8693f] font-medium sort-option">
+            Highest Rating
+            <span class="material-symbols-outlined text-[16px] check-icon">check</span>
+          </button>
+          <button data-sort="newest" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] sort-option">
+            Recently Cataloged
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-sort="price-asc" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] sort-option">
+            Price: Low to High
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-sort="price-desc" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] sort-option">
+            Price: High to Low
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+          <button data-sort="favorites" class="w-full h-10 px-4 text-left text-sm flex items-center justify-between hover:bg-[#2a211c] transition-colors text-[#ece0dc] sort-option">
+            Most Favorited
+            <span class="material-symbols-outlined text-[16px] check-icon hidden">check</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 3. Active Filter Chips Row (Rendered inline with remove buttons)          -->
+  <!-- ========================================================================= -->
+  <div id="active-filters-bar" class="border-b border-[#3a322d] bg-[#16110f]/90">
+    <div class="max-w-5xl mx-auto px-6 py-2 flex items-center gap-2 flex-wrap">
+      <span class="text-xs uppercase tracking-wider text-text-muted font-mono mr-1">Active:</span>
+
+      <div id="chips-container" class="flex items-center gap-2 flex-wrap">
+        <!-- Default sample chip -->
+        <span class="inline-flex items-center gap-1.5 h-8 pl-3 pr-1.5 rounded-full bg-[#e8693f20] border border-[#e8693f] text-[#e8693f] text-xs font-medium" data-chip="rating">
+          ★ 4.0+ Stars
+          <button onclick="removeFilter('rating')" class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-[#e8693f30] text-[#e8693f] transition-colors ml-0.5" title="Remove filter">
+            <span class="material-symbols-outlined text-[14px]">close</span>
+          </button>
+        </span>
+      </div>
+
+      <button id="btn-clear-all" onclick="clearAllFilters()" class="text-xs text-[#7a706a] hover:text-[#e8693f] transition-colors ml-2 py-1 px-2 rounded hover:bg-[#211a17] min-h-[32px] flex items-center">
+        Clear all filters
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 4. Results Count & View Mode Toggle                                       -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-5xl w-full mx-auto pb-12">
+    <div class="px-6 pt-5 pb-3 flex items-center justify-between">
+      <div class="flex items-baseline gap-2">
+        <h1 class="text-lg font-bold font-display text-text-primary tracking-tight">Archive Holdings</h1>
+        <span class="text-sm text-[#a89c93]">
+          (<span id="total-count-num" class="text-[#ece0dc] font-semibold font-mono">12</span> illuminated folios found)
+        </span>
+      </div>
+
+      <!-- Grid / List View Toggle -->
+      <div class="flex items-center gap-1 rounded-lg bg-[#211a17] border border-[#3a322d] p-0.5" role="group" aria-label="View layout switch">
+        <button
+          id="toggle-grid"
+          onclick="setViewMode('grid')"
+          class="h-8 w-8 rounded-md flex items-center justify-center bg-[#e8693f20] text-[#e8693f] transition-colors hover:bg-[#e8693f30] focus-ring"
+          title="2-Column Grid View"
+          aria-pressed="true"
+        >
+          <span class="material-symbols-outlined text-[18px]">grid_view</span>
+        </button>
+        <button
+          id="toggle-list"
+          onclick="setViewMode('list')"
+          class="h-8 w-8 rounded-md flex items-center justify-center text-[#7a706a] transition-colors hover:text-[#ece0dc] hover:bg-[#2a211c] focus-ring"
+          title="Compact List View"
+          aria-pressed="false"
+        >
+          <span class="material-symbols-outlined text-[18px]">view_list</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 5. Main Catalog Container (Grid / List views dynamically toggled)        -->
+    <!-- ========================================================================= -->
+    <div id="books-container" class="px-6 grid grid-cols-2 gap-4">
+
+      <!-- Book Card 1 -->
+      <article class="book-card block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] card-transition group" data-genre="Alchemy" data-price="0" data-rating="5.0" data-year="1484">
+        <div class="relative w-full h-48 bg-[#16110f] overflow-hidden">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k" alt="The Alchemist's Codex" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" loading="lazy">
+          <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-[#4a7c59] text-[#ece0dc] text-[11px] font-semibold shadow-md">Free</span>
+          <span class="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#16110f]/80 backdrop-blur-sm border border-[#3a322d] text-[10px] font-mono text-[#a89c93]">1484 AD</span>
+        </div>
+        <div class="p-4">
+          <div class="flex items-start justify-between gap-2">
+            <h2 class="text-base font-semibold text-[#ece0dc] truncate font-display group-hover:text-primary transition-colors">The Alchemist's Codex</h2>
+          </div>
+          <p class="mt-0.5 text-sm text-[#a89c93] truncate">Prof. Alistair Vance</p>
+          
+          <div class="mt-2.5 flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-[#d4a24e]">star</span>
+              <span class="text-sm text-[#ece0dc] font-medium font-mono">5.0</span>
+            </div>
+            <span class="text-xs text-[#7a706a]">(84 reviews)</span>
+            <span class="text-[#3a322d]">•</span>
+            <span class="text-xs text-[#a89c93]">Mainz Folio</span>
+          </div>
+
+          <div class="mt-3 flex items-center gap-1.5 flex-wrap">
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#alchemy</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#hermetic</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#illuminated</span>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[#3a322d]/60 flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#4a7c59] font-mono flex items-center gap-1">
+              Free Access
+            </span>
+            <span class="text-xs text-[#a89c93] hover:text-[#ece0dc] flex items-center gap-1 font-mono">
+              <span class="material-symbols-outlined text-[14px] text-primary">favorite</span> 342
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Book Card 2 -->
+      <article class="book-card block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] card-transition group" data-genre="Astronomy" data-price="120" data-rating="4.9" data-year="1230">
+        <div class="relative w-full h-48 bg-[#16110f] overflow-hidden flex items-center justify-center">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#16110f] via-transparent to-transparent z-10 opacity-70"></div>
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1W4yQFU67wjBEOSOrrlL77VB7gipZTq_XwAUuULlYvCh9NLhkOLznQ8ZVnPe0Wee1BfFRxB1YO3uYj5ClyL8HT_rm6yR_p-KkFiiVvOGq0dFmiOPL9aQ1xDi_O63RD4CCln0jwq35Of4WXzY_gXbTv9j05S-Bi0oT5axVtHWO-josiesaQEEH5Gi4Ze_7L4jeg0T5akgg9Agd-jBC03h6FBT22S8plc-zlP6Wr6nilka402IRMQn7IliD0" alt="De Sphaera Mundi" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" loading="lazy">
+          <span class="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#16110f]/80 backdrop-blur-sm border border-[#3a322d] text-[10px] font-mono text-[#a89c93]">1230 AD</span>
+        </div>
+        <div class="p-4">
+          <h2 class="text-base font-semibold text-[#ece0dc] truncate font-display group-hover:text-primary transition-colors">De Sphaera Mundi</h2>
+          <p class="mt-0.5 text-sm text-[#a89c93] truncate">Johannes de Sacrobosco</p>
+
+          <div class="mt-2.5 flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-[#d4a24e]">star</span>
+              <span class="text-sm text-[#ece0dc] font-medium font-mono">4.9</span>
+            </div>
+            <span class="text-xs text-[#7a706a]">(62 reviews)</span>
+            <span class="text-[#3a322d]">•</span>
+            <span class="text-xs text-[#a89c93]">Paris Archive</span>
+          </div>
+
+          <div class="mt-3 flex items-center gap-1.5 flex-wrap">
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#astronomy</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#astrolabe</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#quadrivium</span>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[#3a322d]/60 flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#e8693f] font-mono flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">monetization_on</span> 120 coins
+            </span>
+            <span class="text-xs text-[#a89c93] flex items-center gap-1 font-mono">
+              <span class="material-symbols-outlined text-[14px] text-primary">favorite</span> 289
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Book Card 3 -->
+      <article class="book-card block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] card-transition group" data-genre="Metallurgy" data-price="250" data-rating="4.8" data-year="1510">
+        <div class="relative w-full h-48 bg-[#16110f] overflow-hidden">
+          <div class="w-full h-full bg-[#211a17] flex flex-col items-center justify-center border-b border-[#3a322d] text-center p-4">
+            <span class="material-symbols-outlined text-[44px] text-[#e8693f]/40 mb-2">hardware</span>
+            <span class="text-xs text-[#a89c93] font-display italic">Rare Copperplate Treatise</span>
+          </div>
+          <span class="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#16110f]/80 backdrop-blur-sm border border-[#3a322d] text-[10px] font-mono text-[#a89c93]">1510 AD</span>
+        </div>
+        <div class="p-4">
+          <h2 class="text-base font-semibold text-[#ece0dc] truncate font-display group-hover:text-primary transition-colors">Chronicles of the Iron Foundry</h2>
+          <p class="mt-0.5 text-sm text-[#a89c93] truncate">Master Valerius of Nuremberg</p>
+
+          <div class="mt-2.5 flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-[#d4a24e]">star</span>
+              <span class="text-sm text-[#ece0dc] font-medium font-mono">4.8</span>
+            </div>
+            <span class="text-xs text-[#7a706a]">(47 reviews)</span>
+            <span class="text-[#3a322d]">•</span>
+            <span class="text-xs text-[#a89c93]">Guild Archive</span>
+          </div>
+
+          <div class="mt-3 flex items-center gap-1.5 flex-wrap">
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#metallurgy</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#foundry</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#ores</span>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[#3a322d]/60 flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#e8693f] font-mono flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">monetization_on</span> 250 coins
+            </span>
+            <span class="text-xs text-[#a89c93] flex items-center gap-1 font-mono">
+              <span class="material-symbols-outlined text-[14px] text-primary">favorite</span> 194
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Book Card 4 -->
+      <article class="book-card block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] card-transition group" data-genre="Philosophy" data-price="0" data-rating="4.7" data-year="1380">
+        <div class="relative w-full h-48 bg-[#16110f] overflow-hidden">
+          <div class="w-full h-full bg-[#18120f] flex flex-col items-center justify-center border-b border-[#3a322d] p-4 text-center">
+            <span class="material-symbols-outlined text-[44px] text-[#d4a24e]/40 mb-2">auto_stories</span>
+            <span class="text-xs text-[#a89c93] font-display italic">The Architecture of Thought</span>
+          </div>
+          <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-[#4a7c59] text-[#ece0dc] text-[11px] font-semibold shadow-md">Free</span>
+          <span class="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#16110f]/80 backdrop-blur-sm border border-[#3a322d] text-[10px] font-mono text-[#a89c93]">1380 AD</span>
+        </div>
+        <div class="p-4">
+          <h2 class="text-base font-semibold text-[#ece0dc] truncate font-display group-hover:text-primary transition-colors">The Architecture of Thought</h2>
+          <p class="mt-0.5 text-sm text-[#a89c93] truncate">Archivist Vance & Guild Council</p>
+
+          <div class="mt-2.5 flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-[#d4a24e]">star</span>
+              <span class="text-sm text-[#ece0dc] font-medium font-mono">4.7</span>
+            </div>
+            <span class="text-xs text-[#7a706a]">(112 reviews)</span>
+            <span class="text-[#3a322d]">•</span>
+            <span class="text-xs text-[#a89c93]">Monastic Codex</span>
+          </div>
+
+          <div class="mt-3 flex items-center gap-1.5 flex-wrap">
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#philosophy</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#dialectics</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#scholastic</span>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[#3a322d]/60 flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#4a7c59] font-mono flex items-center gap-1">
+              Free Access
+            </span>
+            <span class="text-xs text-[#a89c93] flex items-center gap-1 font-mono">
+              <span class="material-symbols-outlined text-[14px] text-primary">favorite</span> 512
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Book Card 5 -->
+      <article class="book-card block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] card-transition group" data-genre="Typography" data-price="450" data-rating="4.9" data-year="1455">
+        <div class="relative w-full h-48 bg-[#16110f] overflow-hidden flex items-center justify-center">
+          <div class="w-full h-full bg-[#241c18] flex flex-col items-center justify-center border-b border-[#3a322d] p-4 text-center">
+            <span class="material-symbols-outlined text-[44px] text-[#e8693f]/50 mb-2">match_word</span>
+            <span class="text-xs text-[#a89c93] font-mono tracking-widest uppercase">Gutenberg movable type</span>
+          </div>
+          <span class="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#16110f]/80 backdrop-blur-sm border border-[#3a322d] text-[10px] font-mono text-[#a89c93]">1455 AD</span>
+        </div>
+        <div class="p-4">
+          <h2 class="text-base font-semibold text-[#ece0dc] truncate font-display group-hover:text-primary transition-colors">Lexicon of Antiquity: Type Specimen</h2>
+          <p class="mt-0.5 text-sm text-[#a89c93] truncate">Johannes Gutenberg & Peter Schöffer</p>
+
+          <div class="mt-2.5 flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-[#d4a24e]">star</span>
+              <span class="text-sm text-[#ece0dc] font-medium font-mono">4.9</span>
+            </div>
+            <span class="text-xs text-[#7a706a]">(95 reviews)</span>
+            <span class="text-[#3a322d]">•</span>
+            <span class="text-xs text-[#a89c93]">Incunabulum #01</span>
+          </div>
+
+          <div class="mt-3 flex items-center gap-1.5 flex-wrap">
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#incunabula</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#typography</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#print</span>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[#3a322d]/60 flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#e8693f] font-mono flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">monetization_on</span> 450 coins
+            </span>
+            <span class="text-xs text-[#a89c93] flex items-center gap-1 font-mono">
+              <span class="material-symbols-outlined text-[14px] text-primary">favorite</span> 408
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Book Card 6 -->
+      <article class="book-card block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] card-transition group" data-genre="Astronomy" data-price="180" data-rating="4.6" data-year="1492">
+        <div class="relative w-full h-48 bg-[#16110f] overflow-hidden flex items-center justify-center">
+          <div class="w-full h-full bg-[#1c1512] flex flex-col items-center justify-center border-b border-[#3a322d] p-4 text-center">
+            <span class="material-symbols-outlined text-[44px] text-[#5b8fb9]/40 mb-2">public</span>
+            <span class="text-xs text-[#a89c93] font-display italic">Nuremberg Cosmography</span>
+          </div>
+          <span class="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#16110f]/80 backdrop-blur-sm border border-[#3a322d] text-[10px] font-mono text-[#a89c93]">1492 AD</span>
+        </div>
+        <div class="p-4">
+          <h2 class="text-base font-semibold text-[#ece0dc] truncate font-display group-hover:text-primary transition-colors">Cosmographia & Celestial Charts</h2>
+          <p class="mt-0.5 text-sm text-[#a89c93] truncate">Sebastian Münster & Guild Astrologers</p>
+
+          <div class="mt-2.5 flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-[#d4a24e]">star</span>
+              <span class="text-sm text-[#ece0dc] font-medium font-mono">4.6</span>
+            </div>
+            <span class="text-xs text-[#7a706a]">(38 reviews)</span>
+            <span class="text-[#3a322d]">•</span>
+            <span class="text-xs text-[#a89c93]">Basel Press</span>
+          </div>
+
+          <div class="mt-3 flex items-center gap-1.5 flex-wrap">
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#cartography</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#astronomy</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[11px] text-[#a89c93]">#woodcuts</span>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[#3a322d]/60 flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#e8693f] font-mono flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">monetization_on</span> 180 coins
+            </span>
+            <span class="text-xs text-[#a89c93] flex items-center gap-1 font-mono">
+              <span class="material-symbols-outlined text-[14px] text-primary">favorite</span> 165
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Empty State (hidden by default) -->
+    <div id="empty-state" class="hidden px-6 mt-12 text-center">
+      <div class="max-w-md mx-auto rounded-2xl bg-[#211a17] border border-[#3a322d] p-8">
+        <div class="w-14 h-14 mx-auto rounded-full bg-[#16110f] border border-[#3a322d] flex items-center justify-center text-text-muted mb-4">
+          <span class="material-symbols-outlined text-[28px]">search_off</span>
+        </div>
+        <h3 class="text-lg font-bold text-[#ece0dc] font-display">No Treatises Discovered</h3>
+        <p class="mt-2 text-sm text-[#a89c93] leading-relaxed">No scrolls match your selected criteria. Reset your query or clear current taxonomy tags to inspect the broader archive.</p>
+        <button onclick="clearAllFilters()" class="mt-5 h-10 px-5 rounded-lg bg-[#e8693f] text-[#16110f] text-sm font-semibold hover:bg-[#d45a30] active:scale-[0.98] transition-all min-h-[40px] min-w-[40px] inline-flex items-center gap-1.5 focus-ring">
+          <span class="material-symbols-outlined text-[16px]">restart_alt</span>
+          Clear All Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 6. Visible Page Pagination (Tablet Expected Pattern: Prev, 1 2 3..., Next) -->
+    <!-- ========================================================================= -->
+    <nav class="max-w-5xl mx-auto px-6 pt-10 pb-6 flex items-center justify-center gap-2" aria-label="Catalog pagination">
+      <button
+        id="btn-prev"
+        onclick="changePage(currentPage - 1)"
+        class="h-10 px-3.5 rounded-lg bg-[#211a17] border border-[#3a322d] text-sm text-[#a89c93] flex items-center gap-1.5 hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] disabled:opacity-30 disabled:pointer-events-none transition-colors min-h-[40px] focus-ring"
+        disabled
+      >
+        <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+        Prev
+      </button>
+
+      <button
+        onclick="changePage(1)"
+        class="page-btn h-10 w-10 rounded-lg text-sm font-semibold flex items-center justify-center transition-colors min-h-[40px] min-w-[40px] bg-[#e8693f] text-[#16110f] focus-ring"
+        data-page="1"
+      >
+        1
+      </button>
+
+      <button
+        onclick="changePage(2)"
+        class="page-btn h-10 w-10 rounded-lg text-sm font-medium flex items-center justify-center transition-colors min-h-[40px] min-w-[40px] bg-[#211a17] border border-[#3a322d] text-[#a89c93] hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] focus-ring"
+        data-page="2"
+      >
+        2
+      </button>
+
+      <button
+        onclick="changePage(3)"
+        class="page-btn h-10 w-10 rounded-lg text-sm font-medium flex items-center justify-center transition-colors min-h-[40px] min-w-[40px] bg-[#211a17] border border-[#3a322d] text-[#a89c93] hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] focus-ring"
+        data-page="3"
+      >
+        3
+      </button>
+
+      <span class="px-1 text-sm text-[#7a706a] font-mono">...</span>
+
+      <button
+        onclick="changePage(8)"
+        class="page-btn h-10 w-10 rounded-lg text-sm font-medium flex items-center justify-center transition-colors min-h-[40px] min-w-[40px] bg-[#211a17] border border-[#3a322d] text-[#a89c93] hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] focus-ring"
+        data-page="8"
+      >
+        8
+      </button>
+
+      <button
+        id="btn-next"
+        onclick="changePage(currentPage + 1)"
+        class="h-10 px-3.5 rounded-lg bg-[#211a17] border border-[#3a322d] text-sm text-[#a89c93] flex items-center gap-1.5 hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] disabled:opacity-30 disabled:pointer-events-none transition-colors min-h-[40px] focus-ring"
+      >
+        Next
+        <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+      </button>
+    </nav>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- Toast Notification                                                        -->
+  <!-- ========================================================================= -->
+  <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 transform -translate-y-24 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-[#211a17] border border-[#e8693f] shadow-[0_8px_30px_rgba(0,0,0,0.5)] text-sm text-text-primary">
+    <span class="material-symbols-outlined text-[#e8693f] text-[18px]">info</span>
+    <span id="toast-message">Catalog re-indexed</span>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- JavaScript Interactions                                                   -->
+  <!-- ========================================================================= -->
+  <script>
+    // State
+    let currentViewMode = 'grid';
+    let currentPage = 1;
+    let selectedPrice = 'all';
+    let selectedRating = '4.0'; // starts with sample active chip
+    let selectedGenre = 'all';
+    let selectedSort = 'rating-desc';
+    let searchQuery = '';
+
+    const priceNames = { all: 'All Treatises', free: 'Free', premium: 'Paid (Coins)' };
+    const ratingNames = { '0': 'Any', '4.0': '4.0+ Stars', '4.5': '4.5+ Stars', '4.8': '4.8+ Stars' };
+
+    // Dropdowns Management
+    const dropdownContainers = document.querySelectorAll('.dropdown-container');
+
+    function closeAllDropdowns() {
+      dropdownContainers.forEach(container => {
+        const menu = container.querySelector('[id^="menu-"]');
+        const btn = container.querySelector('button');
+        if (menu) menu.classList.add('hidden');
+        if (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+          const chevron = btn.querySelector('.material-symbols-outlined:last-child');
+          if (chevron && chevron.innerText === 'expand_more') {
+            chevron.style.transform = 'rotate(0deg)';
+          }
+        }
+      });
+    }
+
+    dropdownContainers.forEach(container => {
+      const btn = container.querySelector('button');
+      const menu = container.querySelector('[id^="menu-"]');
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = menu.classList.contains('hidden');
+        closeAllDropdowns();
+        if (isHidden) {
+          menu.classList.remove('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+          const chevron = btn.querySelector('.material-symbols-outlined:last-child');
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      closeAllDropdowns();
+    });
+
+    // Price Filter Selection
+    document.querySelectorAll('.price-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedPrice = btn.getAttribute('data-price');
+        updateFilterUI();
+        closeAllDropdowns();
+        applyFilters();
+        showToast(`Filtered by Price: ${priceNames[selectedPrice]}`);
+      });
+    });
+
+    // Rating Filter Selection
+    document.querySelectorAll('.rating-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedRating = btn.getAttribute('data-rating');
+        updateFilterUI();
+        closeAllDropdowns();
+        applyFilters();
+        showToast(`Filtered by Rating: ${ratingNames[selectedRating]}`);
+      });
+    });
+
+    // Genre Filter Selection
+    document.querySelectorAll('.genre-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedGenre = btn.getAttribute('data-genre');
+        updateFilterUI();
+        closeAllDropdowns();
+        applyFilters();
+        showToast(`Filtered by Discipline: ${selectedGenre}`);
+      });
+    });
+
+    // Sort Selection
+    document.querySelectorAll('.sort-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedSort = btn.getAttribute('data-sort');
+        const sortLabel = btn.innerText.trim().replace('check', '').trim();
+        document.getElementById('label-sort').innerText = `Sort: ${sortLabel}`;
+        
+        document.querySelectorAll('.sort-option').forEach(b => {
+          const chk = b.querySelector('.check-icon');
+          if (b.getAttribute('data-sort') === selectedSort) {
+            b.classList.add('text-[#e8693f]', 'font-medium');
+            b.classList.remove('text-[#ece0dc]');
+            chk.classList.remove('hidden');
+          } else {
+            b.classList.remove('text-[#e8693f]', 'font-medium');
+            b.classList.add('text-[#ece0dc]');
+            chk.classList.add('hidden');
+          }
+        });
+
+        closeAllDropdowns();
+        applyFilters();
+        showToast(`Sorted by ${sortLabel}`);
+      });
+    });
+
+    // Sync Filter UI & Active Chips
+    function updateFilterUI() {
+      // Update checkmarks in menus
+      document.querySelectorAll('.price-option').forEach(b => {
+        const isMatch = b.getAttribute('data-price') === selectedPrice;
+        b.querySelector('.check-icon').classList.toggle('hidden', !isMatch);
+        b.classList.toggle('text-[#e8693f]', isMatch);
+        b.classList.toggle('font-medium', isMatch);
+        b.classList.toggle('text-[#ece0dc]', !isMatch);
+      });
+
+      document.querySelectorAll('.rating-option').forEach(b => {
+        const isMatch = b.getAttribute('data-rating') === selectedRating;
+        b.querySelector('.check-icon').classList.toggle('hidden', !isMatch);
+        b.classList.toggle('text-[#e8693f]', isMatch);
+        b.classList.toggle('font-medium', isMatch);
+        b.classList.toggle('text-[#ece0dc]', !isMatch);
+      });
+
+      document.querySelectorAll('.genre-option').forEach(b => {
+        const isMatch = b.getAttribute('data-genre') === selectedGenre;
+        b.querySelector('.check-icon').classList.toggle('hidden', !isMatch);
+        b.classList.toggle('text-[#e8693f]', isMatch);
+        b.classList.toggle('font-medium', isMatch);
+        b.classList.toggle('text-[#ece0dc]', !isMatch);
+      });
+
+      // Update Top Button Labels
+      document.getElementById('label-price').innerText = selectedPrice === 'all' ? 'Price' : priceNames[selectedPrice];
+      document.getElementById('label-rating').innerText = selectedRating === '0' ? 'Rating' : `★ ${ratingNames[selectedRating]}`;
+      document.getElementById('label-genre').innerText = selectedGenre === 'all' ? 'Discipline' : selectedGenre;
+
+      // Render Chips
+      const chipsContainer = document.getElementById('chips-container');
+      const activeBar = document.getElementById('active-filters-bar');
+      chipsContainer.innerHTML = '';
+      let hasFilters = false;
+
+      if (selectedPrice !== 'all') {
+        hasFilters = true;
+        chipsContainer.innerHTML += `
+          <span class="inline-flex items-center gap-1.5 h-8 pl-3 pr-1.5 rounded-full bg-[#e8693f20] border border-[#e8693f] text-[#e8693f] text-xs font-medium">
+            Price: ${priceNames[selectedPrice]}
+            <button onclick="removeFilter('price')" class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-[#e8693f30] text-[#e8693f] transition-colors ml-0.5">
+              <span class="material-symbols-outlined text-[14px]">close</span>
+            </button>
+          </span>
+        `;
+      }
+
+      if (selectedRating !== '0') {
+        hasFilters = true;
+        chipsContainer.innerHTML += `
+          <span class="inline-flex items-center gap-1.5 h-8 pl-3 pr-1.5 rounded-full bg-[#e8693f20] border border-[#e8693f] text-[#e8693f] text-xs font-medium">
+            ★ ${ratingNames[selectedRating]}
+            <button onclick="removeFilter('rating')" class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-[#e8693f30] text-[#e8693f] transition-colors ml-0.5">
+              <span class="material-symbols-outlined text-[14px]">close</span>
+            </button>
+          </span>
+        `;
+      }
+
+      if (selectedGenre !== 'all') {
+        hasFilters = true;
+        chipsContainer.innerHTML += `
+          <span class="inline-flex items-center gap-1.5 h-8 pl-3 pr-1.5 rounded-full bg-[#e8693f20] border border-[#e8693f] text-[#e8693f] text-xs font-medium">
+            #${selectedGenre.toLowerCase()}
+            <button onclick="removeFilter('genre')" class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-[#e8693f30] text-[#e8693f] transition-colors ml-0.5">
+              <span class="material-symbols-outlined text-[14px]">close</span>
+            </button>
+          </span>
+        `;
+      }
+
+      if (searchQuery.trim() !== '') {
+        hasFilters = true;
+        chipsContainer.innerHTML += `
+          <span class="inline-flex items-center gap-1.5 h-8 pl-3 pr-1.5 rounded-full bg-[#e8693f20] border border-[#e8693f] text-[#e8693f] text-xs font-medium">
+            "${searchQuery}"
+            <button onclick="clearSearch()" class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-[#e8693f30] text-[#e8693f] transition-colors ml-0.5">
+              <span class="material-symbols-outlined text-[14px]">close</span>
+            </button>
+          </span>
+        `;
+      }
+
+      activeBar.style.display = hasFilters ? 'block' : 'none';
+    }
+
+    function removeFilter(type) {
+      if (type === 'price') selectedPrice = 'all';
+      if (type === 'rating') selectedRating = '0';
+      if (type === 'genre') selectedGenre = 'all';
+      updateFilterUI();
+      applyFilters();
+      showToast('Filter removed');
+    }
+
+    function clearSearch() {
+      searchQuery = '';
+      document.getElementById('nav-search-input').value = '';
+      document.getElementById('search-clear-btn').classList.add('hidden');
+      updateFilterUI();
+      applyFilters();
+    }
+
+    function clearAllFilters() {
+      selectedPrice = 'all';
+      selectedRating = '0';
+      selectedGenre = 'all';
+      searchQuery = '';
+      document.getElementById('nav-search-input').value = '';
+      document.getElementById('search-clear-btn').classList.add('hidden');
+      updateFilterUI();
+      applyFilters();
+      showToast('All filters cleared');
+    }
+
+    // Filter Logic & DOM Updates
+    function applyFilters() {
+      const cards = document.querySelectorAll('.book-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cardGenre = card.getAttribute('data-genre');
+        const cardPrice = parseFloat(card.getAttribute('data-price'));
+        const cardRating = parseFloat(card.getAttribute('data-rating'));
+        const cardText = card.innerText.toLowerCase();
+
+        let match = true;
+
+        if (selectedGenre !== 'all' && cardGenre !== selectedGenre) match = false;
+        if (selectedPrice === 'free' && cardPrice > 0) match = false;
+        if (selectedPrice === 'premium' && cardPrice === 0) match = false;
+        if (selectedRating !== '0' && cardRating < parseFloat(selectedRating)) match = false;
+        if (searchQuery.trim() !== '' && !cardText.includes(searchQuery.toLowerCase())) match = false;
+
+        if (match) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('total-count-num').innerText = visibleCount;
+      const emptyState = document.getElementById('empty-state');
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+      }
+    }
+
+    // View Mode Toggle (Grid vs List)
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      const container = document.getElementById('books-container');
+      const gridBtn = document.getElementById('toggle-grid');
+      const listBtn = document.getElementById('toggle-list');
+      const cards = document.querySelectorAll('.book-card');
+
+      if (mode === 'grid') {
+        container.className = 'px-6 grid grid-cols-2 gap-4';
+        gridBtn.className = 'h-8 w-8 rounded-md flex items-center justify-center bg-[#e8693f20] text-[#e8693f] transition-colors focus-ring';
+        gridBtn.setAttribute('aria-pressed', 'true');
+        listBtn.className = 'h-8 w-8 rounded-md flex items-center justify-center text-[#7a706a] hover:text-[#ece0dc] hover:bg-[#2a211c] transition-colors focus-ring';
+        listBtn.setAttribute('aria-pressed', 'false');
+
+        // Revert cards to standard vertical grid card layout
+        cards.forEach(card => {
+          card.classList.remove('flex');
+          card.classList.add('block');
+          const coverWrapper = card.querySelector('div:first-child');
+          if (coverWrapper) {
+            coverWrapper.className = 'relative w-full h-48 bg-[#16110f] overflow-hidden';
+          }
+        });
+        showToast('Switched to 2-Column Grid');
+      } else {
+        container.className = 'px-6 flex flex-col space-y-3';
+        listBtn.className = 'h-8 w-8 rounded-md flex items-center justify-center bg-[#e8693f20] text-[#e8693f] transition-colors focus-ring';
+        listBtn.setAttribute('aria-pressed', 'true');
+        gridBtn.className = 'h-8 w-8 rounded-md flex items-center justify-center text-[#7a706a] hover:text-[#ece0dc] hover:bg-[#2a211c] transition-colors focus-ring';
+        gridBtn.setAttribute('aria-pressed', 'false');
+
+        // Transform cards to horizontal list layout
+        cards.forEach(card => {
+          card.classList.remove('block');
+          card.classList.add('flex');
+          const coverWrapper = card.querySelector('div:first-child');
+          if (coverWrapper) {
+            coverWrapper.className = 'relative w-36 h-44 flex-shrink-0 bg-[#16110f] overflow-hidden';
+          }
+        });
+        showToast('Switched to Compact List View');
+      }
+    }
+
+    // Pagination
+    function changePage(page) {
+      if (page < 1 || page > 8) return;
+      currentPage = page;
+
+      document.querySelectorAll('.page-btn').forEach(btn => {
+        const p = parseInt(btn.getAttribute('data-page'));
+        if (p === currentPage) {
+          btn.className = 'page-btn h-10 w-10 rounded-lg text-sm font-semibold flex items-center justify-center transition-colors min-h-[40px] min-w-[40px] bg-[#e8693f] text-[#16110f] focus-ring';
+        } else {
+          btn.className = 'page-btn h-10 w-10 rounded-lg text-sm font-medium flex items-center justify-center transition-colors min-h-[40px] min-w-[40px] bg-[#211a17] border border-[#3a322d] text-[#a89c93] hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] focus-ring';
+        }
+      });
+
+      document.getElementById('btn-prev').disabled = (currentPage === 1);
+      document.getElementById('btn-next').disabled = (currentPage === 8);
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+      showToast(`Navigated to Folio Page ${currentPage}`);
+    }
+
+    // Search Input Handling with Debounce
+    let searchTimeout;
+    const searchInput = document.getElementById('nav-search-input');
+    const searchClearBtn = document.getElementById('search-clear-btn');
+
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      const val = e.target.value;
+      searchClearBtn.classList.toggle('hidden', val.length === 0);
+
+      searchTimeout = setTimeout(() => {
+        searchQuery = val;
+        updateFilterUI();
+        applyFilters();
+      }, 250);
+    });
+
+    searchClearBtn.addEventListener('click', () => {
+      clearSearch();
+    });
+
+    // Toast Helper
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.innerText = msg;
+      toast.classList.remove('opacity-0', '-translate-y-24');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('opacity-0', '-translate-y-24');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2200);
+    }
+
+    // Initialize UI
+    updateFilterUI();
+    applyFilters();
+  </script>
+</body>
+</html>

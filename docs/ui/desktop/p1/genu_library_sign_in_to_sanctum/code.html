@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#16110f]" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Genu Library — Sign In to Sanctum</title>
+<!-- Google Fonts: Playfair Display, Inter, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with forms & container queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            borderDefault: '#3a322d',
+            accent: '#e8693f',
+            accentHover: '#d45a30',
+            textPrimary: '#ece0dc',
+            textMuted: '#a89c93',
+            textSubtle: '#786c63'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          boxShadow: {
+            'forge-glow': '0 0 25px rgba(232, 105, 63, 0.35)',
+            'forge-lg': '0 10px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(232, 105, 63, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="custom-typography-and-scroll">
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #ece0dc;
+      background-color: #16110f;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+<style data-purpose="glow-and-ambient-animations">
+    @keyframes emberPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 0.95; transform: scale(1.05); }
+    }
+    .animate-ember-glow {
+      animation: emberPulse 6s ease-in-out infinite;
+    }
+    .input-field:-webkit-autofill,
+    .input-field:-webkit-autofill:hover, 
+    .input-field:-webkit-autofill:focus {
+      -webkit-text-fill-color: #ece0dc;
+      -webkit-box-shadow: 0 0 0px 1000px #16110f inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="h-full antialiased selection:bg-[#e8693f] selection:text-[#16110f]">
+<!-- BEGIN: MainContainer -->
+<main class="min-h-screen flex flex-col lg:flex-row bg-[#16110f] overflow-x-hidden">
+<!-- BEGIN: LeftHeroPanel (Atmospheric Storytelling) -->
+<section aria-label="Sanctum Codex Overview" class="relative lg:w-[45%] xl:w-[42%] flex flex-col justify-between p-8 sm:p-12 lg:p-14 overflow-hidden border-b lg:border-b-0 lg:border-r border-[#3a322d]">
+<!-- Background Image with Dark Vignette & Atmospheric Gradients -->
+<div class="absolute inset-0 z-0 pointer-events-none">
+<img alt="Dark fantasy atmospheric interior of an ancient grand library guild sanctuary, warm candlelight, glowing embers, floating golden dust particles" class="w-full h-full object-cover object-center transform scale-105 filter brightness-90 contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvL_Wofr8ALOB0MUUffcGsCmhV06xY4tOgl8o5u1qZtwp03S5yvwEKJ1JgmULKsKC3VTe82ltR72kl6A6_s37td-BuCYDU1G-ahxcYNAocG-Etc5H5cgiU820pqQEZ-3lvmp3leJgAS2pbkkLT_SpqHJg0kxud1C_KCqGmEA4wsaskabq8vB_ageDGISGypu1jZO1QfQwxkk8jXlC_-ukE3BJ__bKuHmWTAipiIq1f7aeE0HzREaS1"/>
+<!-- Vignette & Tint Overlays -->
+<div class="absolute inset-0 bg-[#16110f]/60 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#16110f] via-[#16110f]/75 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-[#16110f]/80 via-transparent to-[#16110f]"></div>
+<!-- Warm Forge Amber Ambience -->
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-[#e8693f]/20 rounded-full blur-3xl pointer-events-none animate-ember-glow"></div>
+</div>
+<!-- Top Header / Guild Pill Badge -->
+<div class="relative z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#211a17]/80 backdrop-blur-md border border-[#3a322d] shadow-sm">
+<span class="w-2 h-2 rounded-full bg-[#e8693f] animate-pulse"></span>
+<span class="font-mono text-[10px] tracking-widest uppercase font-semibold text-[#ece0dc]/90">
+            The Guild Sanctuary • Archivist Concordat
+          </span>
+</div>
+</div>
+<!-- Middle Core Editorial Poetry -->
+<div class="relative z-10 my-12 lg:my-0 max-w-lg">
+<h1 class="font-serif text-3xl sm:text-4xl xl:text-5xl font-bold tracking-tight text-[#ece0dc] leading-[1.15]">
+          Return to the <br class="hidden sm:inline"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#e8693f] via-[#f79d74] to-[#ece0dc]">
+            Hall of Living Ink.
+          </span>
+</h1>
+<p class="mt-4 text-[#a89c93] text-sm sm:text-base leading-relaxed">
+          Enter the private codex vaults. Retrieve annotated manuscripts, decipher illuminated folios, and commune with the global guild of scholars.
+        </p>
+</div>
+<!-- Bottom Card / Archivist Quote -->
+<div class="relative z-10">
+<div class="p-4 sm:p-5 rounded-xl bg-[#211a17]/85 backdrop-blur-md border border-[#3a322d] shadow-lg flex items-start gap-4">
+<!-- Guild Seal Icon -->
+<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-[#16110f] border border-[#e8693f]/40 flex items-center justify-center text-[#e8693f]">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewbox="0 0 24 24">
+<path d="M12 2l3 6 6 .8-4.5 4.2 1.3 6.3L12 16.2 6.2 19.3 7.5 13 3 8.8l6-.8L12 2z"></path>
+</svg>
+</div>
+<!-- Quote text -->
+<div>
+<blockquote class="text-xs sm:text-sm italic text-[#ece0dc]/90 font-serif leading-snug">
+              “Knowledge preserved is eternity forged.”
+            </blockquote>
+<p class="mt-1.5 font-mono text-[11px] tracking-wider text-[#a89c93]">
+              Archivist M. Vane — <span class="text-[#e8693f]">3rd Order</span>
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: LeftHeroPanel -->
+<!-- BEGIN: RightAuthPanel (Login Form) -->
+<section aria-label="Sign In Authentication" class="flex-1 flex flex-col justify-between p-6 sm:p-10 lg:p-14 bg-[#16110f] relative z-10">
+<!-- Top Action Navigation -->
+<nav aria-label="Sanctum secondary navigation" class="flex items-center justify-between sm:justify-end gap-4 text-xs font-mono tracking-wider text-[#a89c93]">
+<a class="inline-flex items-center gap-1.5 hover:text-[#ece0dc] transition-colors py-1" href="#return-sanctum">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+          Sanctum Home
+        </a>
+<span class="text-[#3a322d] hidden sm:inline">•</span>
+<a class="hover:text-[#e8693f] transition-colors py-1" href="#codex-registry">
+          Need assistance? Codex Registry
+        </a>
+</nav>
+<!-- Center Auth Form Container -->
+<div class="max-w-md w-full mx-auto my-auto py-8">
+<!-- Brand Emblem & Card -->
+<div class="rounded-2xl bg-[#211a17] border border-[#3a322d] shadow-forge-lg p-7 sm:p-9 relative overflow-hidden" data-purpose="auth-card">
+<!-- Subtle Top Accent Flame Line -->
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#e8693f] to-transparent"></div>
+<!-- Card Header -->
+<div class="text-center mb-7">
+<!-- Brand Icon -->
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#16110f] border border-[#3a322d] text-[#e8693f] shadow-inner mb-3">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+<path d="M6 6h10"></path>
+<path d="M6 10h10"></path>
+<path d="M12 14h4"></path>
+</svg>
+</div>
+<p class="font-serif tracking-wide text-xs text-[#e8693f] uppercase font-semibold">Genu Library</p>
+<h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#ece0dc] mt-1 tracking-tight">Welcome Back</h2>
+<p class="text-xs sm:text-sm text-[#a89c93] mt-1.5">Sign in to continue to Genu Library</p>
+</div>
+<!-- Authentication Form -->
+<form class="space-y-4" id="sanctumLoginForm" novalidate="">
+<!-- Email / Identity Field -->
+<div class="space-y-1.5" data-purpose="form-group-email">
+<label class="block text-xs font-mono font-medium text-[#ece0dc] tracking-wide" for="scholarEmail">
+                Guild Identity / Scribe Email
+              </label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#786c63]">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</div>
+<input autocomplete="username" class="input-field w-full pl-10 pr-3.5 py-2.5 text-sm bg-[#16110f] border border-[#3a322d] rounded-lg text-[#ece0dc] placeholder-[#786c63] focus:outline-none focus:ring-1 focus:ring-[#e8693f] focus:border-[#e8693f] transition-all" id="scholarEmail" name="scholarEmail" placeholder="scholar@genulibrary.org" required="" type="email"/>
+</div>
+<p class="text-[11px] text-red-400 font-mono hidden mt-1" id="emailError"></p>
+</div>
+<!-- Password Field -->
+<div class="space-y-1.5" data-purpose="form-group-password">
+<label class="block text-xs font-mono font-medium text-[#ece0dc] tracking-wide" for="archivalPasskey">
+                Archival Passkey
+              </label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#786c63]">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</div>
+<input autocomplete="current-password" class="input-field w-full pl-10 pr-10 py-2.5 text-sm bg-[#16110f] border border-[#3a322d] rounded-lg text-[#ece0dc] placeholder-[#786c63] focus:outline-none focus:ring-1 focus:ring-[#e8693f] focus:border-[#e8693f] transition-all" id="archivalPasskey" name="archivalPasskey" placeholder="••••••••••••" required="" type="password"/>
+<!-- Toggle Password Visibility Button -->
+<button aria-label="Toggle passkey visibility" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#786c63] hover:text-[#ece0dc] focus:outline-none transition-colors" id="togglePasswordBtn" type="button">
+<!-- Eye Open Icon -->
+<svg class="w-4 h-4" fill="none" id="eyeIcon" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<!-- Eye Closed Icon (Hidden initially) -->
+<svg class="w-4 h-4 hidden" fill="none" id="eyeOffIcon" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</button>
+</div>
+<p class="text-[11px] text-red-400 font-mono hidden mt-1" id="passwordError"></p>
+</div>
+<!-- Utility Row: Remember Me & Forgot Password -->
+<div class="flex items-center justify-between pt-1">
+<label class="inline-flex items-center gap-2 cursor-pointer select-none">
+<input class="w-4 h-4 rounded bg-[#16110f] border-[#3a322d] text-[#e8693f] focus:ring-[#e8693f] focus:ring-offset-0 focus:ring-opacity-40 transition" id="rememberMe" name="rememberMe" type="checkbox"/>
+<span class="text-xs text-[#a89c93] hover:text-[#ece0dc] transition-colors">Remember me</span>
+</label>
+<a class="text-xs text-[#e8693f] hover:text-[#d45a30] transition-colors font-medium" href="#forgot-passkey">
+                Forgot password?
+              </a>
+</div>
+<!-- Submit Primary CTA -->
+<div class="pt-2">
+<button class="w-full py-3 px-4 rounded-lg bg-gradient-to-r from-[#e8693f] to-[#f07b53] hover:from-[#d45a30] hover:to-[#e8693f] text-[#16110f] font-semibold text-sm tracking-wide shadow-forge-glow hover:shadow-lg transition-all transform active:scale-[0.99] flex items-center justify-center gap-2 relative overflow-hidden" id="submitBtn" type="submit">
+<!-- Spinner (Hidden by default) -->
+<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-[#16110f] hidden" fill="none" id="loadingSpinner" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+<span id="btnText">Sign In to Sanctum</span>
+<svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" id="arrowIcon" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Success Notification Banner (Simulated) -->
+<div class="hidden p-3 rounded-lg bg-emerald-950/70 border border-emerald-700/50 text-emerald-300 text-xs text-center font-mono" id="authStatusBanner">
+              Authentication accepted. Decrypting codex index...
+            </div>
+</form>
+<!-- Divider -->
+<div class="relative my-6">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-[#3a322d]"></div>
+</div>
+<div class="relative flex justify-center text-xs">
+<span class="bg-[#211a17] px-3 text-[#786c63] font-mono uppercase tracking-wider text-[11px]">
+                or authenticate via ledger
+              </span>
+</div>
+</div>
+<!-- Social / Guild Authentication Buttons -->
+<div class="grid grid-cols-2 gap-3" data-purpose="oauth-providers">
+<!-- Google Button -->
+<button class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg bg-[#16110f] border border-[#3a322d] text-[#ece0dc] hover:border-[#e8693f] hover:bg-[#1a1412] text-xs font-medium transition-all" type="button">
+<svg class="w-4 h-4" viewbox="0 0 24 24">
+<path d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z" fill="#EA4335"></path>
+<path d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z" fill="#4285F4"></path>
+<path d="M5.3 14.7c-.2-.7-.4-1.4-.4-2.2s.2-1.5.4-2.2L1.6 7.4C.6 9.4 0 11.6 0 14s.6 4.6 1.6 6.6l3.7-2.9z" fill="#FBBC05"></path>
+<path d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z" fill="#34A853"></path>
+</svg>
+<span>Google</span>
+</button>
+<!-- GitHub Button -->
+<button class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg bg-[#16110f] border border-[#3a322d] text-[#ece0dc] hover:border-[#e8693f] hover:bg-[#1a1412] text-xs font-medium transition-all" type="button">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+<span>GitHub</span>
+</button>
+</div>
+<!-- Card Bottom Link -->
+<div class="mt-6 text-center text-xs text-[#a89c93]">
+            Don't have an account? 
+            <a class="text-[#e8693f] font-medium hover:underline hover:text-[#d45a30] transition-colors ml-1" href="#request-credentials">
+              Sign Up
+            </a>
+</div>
+</div>
+</div>
+<!-- Security / Protocol Watermark Footer -->
+<footer aria-label="Security Status" class="text-center font-mono text-[11px] text-[#786c63] tracking-wider pt-4">
+<span>🔒 256-bit Immutable Cipher • Guild Ledger Verified</span>
+</footer>
+</section>
+<!-- END: RightAuthPanel -->
+</main>
+<!-- END: MainContainer -->
+<!-- BEGIN: Interactive Scripts -->
+<script data-purpose="password-visibility-toggle">
+    document.addEventListener('DOMContentLoaded', () => {
+      const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+      const archivalPasskey = document.getElementById('archivalPasskey');
+      const eyeIcon = document.getElementById('eyeIcon');
+      const eyeOffIcon = document.getElementById('eyeOffIcon');
+
+      if (togglePasswordBtn && archivalPasskey) {
+        togglePasswordBtn.addEventListener('click', () => {
+          const isPassword = archivalPasskey.getAttribute('type') === 'password';
+          archivalPasskey.setAttribute('type', isPassword ? 'text' : 'password');
+          
+          if (isPassword) {
+            eyeIcon.classList.add('hidden');
+            eyeOffIcon.classList.remove('hidden');
+          } else {
+            eyeIcon.classList.remove('hidden');
+            eyeOffIcon.classList.add('hidden');
+          }
+        });
+      }
+    });
+  </script>
+<script data-purpose="form-validation-and-feedback">
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('sanctumLoginForm');
+      const emailInput = document.getElementById('scholarEmail');
+      const passwordInput = document.getElementById('archivalPasskey');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const submitBtn = document.getElementById('submitBtn');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      const btnText = document.getElementById('btnText');
+      const arrowIcon = document.getElementById('arrowIcon');
+      const statusBanner = document.getElementById('authStatusBanner');
+
+      // Helper function to reset validation errors
+      function clearErrors() {
+        emailError.classList.add('hidden');
+        emailError.textContent = '';
+        emailInput.classList.remove('border-red-500', 'focus:ring-red-500');
+        
+        passwordError.classList.add('hidden');
+        passwordError.textContent = '';
+        passwordInput.classList.remove('border-red-500', 'focus:ring-red-500');
+      }
+
+      // Live validation clearing upon user typing
+      emailInput.addEventListener('input', () => {
+        if (!emailError.classList.contains('hidden')) {
+          emailError.classList.add('hidden');
+          emailInput.classList.remove('border-red-500', 'focus:ring-red-500');
+        }
+      });
+
+      passwordInput.addEventListener('input', () => {
+        if (!passwordError.classList.contains('hidden')) {
+          passwordError.classList.add('hidden');
+          passwordInput.classList.remove('border-red-500', 'focus:ring-red-500');
+        }
+      });
+
+      // Simple regex for email validation
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        let hasError = false;
+        const emailVal = emailInput.value.trim();
+        const passVal = passwordInput.value;
+
+        // Email validation
+        if (!emailVal) {
+          emailError.textContent = 'Guild Identity / Email is required to commune.';
+          emailError.classList.remove('hidden');
+          emailInput.classList.add('border-red-500');
+          hasError = true;
+        } else if (!isValidEmail(emailVal)) {
+          emailError.textContent = 'Please provide a valid archival scribe address.';
+          emailError.classList.remove('hidden');
+          emailInput.classList.add('border-red-500');
+          hasError = true;
+        }
+
+        // Password validation
+        if (!passVal) {
+          passwordError.textContent = 'Archival Passkey cipher cannot be blank.';
+          passwordError.classList.remove('hidden');
+          passwordInput.classList.add('border-red-500');
+          hasError = true;
+        } else if (passVal.length < 6) {
+          passwordError.textContent = 'Passkey must contain at least 6 rune characters.';
+          passwordError.classList.remove('hidden');
+          passwordInput.classList.add('border-red-500');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        // Simulate successful authenticating state
+        submitBtn.disabled = true;
+        btnText.textContent = 'Verifying Cipher...';
+        loadingSpinner.classList.remove('hidden');
+        arrowIcon.classList.add('hidden');
+
+        setTimeout(() => {
+          loadingSpinner.classList.add('hidden');
+          btnText.textContent = 'Access Granted';
+          statusBanner.classList.remove('hidden');
+          
+          setTimeout(() => {
+            btnText.textContent = 'Sign In to Sanctum';
+            arrowIcon.classList.remove('hidden');
+            submitBtn.disabled = false;
+            statusBanner.classList.add('hidden');
+          }, 3500);
+        }, 1200);
+      });
+    });
+  </script>
+<!-- END: Interactive Scripts -->
+</body></html>

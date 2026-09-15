@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <title>Genu Library — Report Book (Mobile)</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: {
+              DEFAULT: '#211a17',
+              hover: '#2a211c',
+              container: '#2a211c',
+              'container-high': '#332a24',
+              'container-lowest': '#130d0a',
+            },
+            primary: {
+              DEFAULT: '#e8693f',
+              hover: '#d45a30',
+              muted: 'rgba(232, 105, 63, 0.12)',
+            },
+            border: {
+              DEFAULT: '#3a322d',
+              hover: '#4d433d',
+            },
+            text: {
+              primary: '#ece0dc',
+              secondary: '#a89c93',
+              muted: '#7a706a',
+              'on-accent': '#16110f',
+            },
+            status: {
+              success: '#4a7c59',
+              error: '#ef4444',
+              warning: '#d4a24e',
+            }
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Safe area utilities */
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 16px);
+    }
+    .pt-safe {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+    /* Smooth transitions */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-canvas text-text-primary font-sans antialiased selection:bg-primary selection:text-text-on-accent min-h-screen flex justify-center">
+
+  <!-- Mobile Device Container (Max 640px) -->
+  <div id="app" class="w-full max-w-[640px] min-h-screen bg-canvas relative flex flex-col shadow-2xl border-x border-border/40 overflow-x-hidden">
+
+    <!-- 1. Sticky Header Bar -->
+    <header class="fixed top-0 left-0 right-0 max-w-[640px] mx-auto z-40 bg-canvas/90 backdrop-blur-md border-b border-border pt-safe transition-all duration-200">
+      <div class="h-14 px-4 flex items-center justify-between">
+        <button id="btn-back" class="min-h-[44px] min-w-[44px] -ml-2 flex items-center justify-center text-text-secondary hover:text-text-primary active:scale-95 transition-transform" aria-label="Go back">
+          <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+        </button>
+        <h1 class="font-display font-semibold text-lg sm:text-xl text-text-primary text-center tracking-tight truncate flex-1 px-2">
+          Report Book
+        </h1>
+        <div class="w-11 min-w-[44px] flex items-center justify-end">
+          <span class="text-xs font-mono text-primary/80 border border-primary/20 bg-primary/10 px-2 py-0.5 rounded-full">#084</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. Main Scrollable Content Area -->
+    <main class="flex-1 px-4 pt-20 pb-44 space-y-5">
+
+      <!-- a. Book Preview Card (Compact) -->
+      <section class="bg-surface border border-border rounded-xl p-3.5 flex items-center gap-3.5 shadow-sm relative overflow-hidden group">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary/40"></div>
+        <div class="w-16 h-22 rounded-lg overflow-hidden flex-shrink-0 border border-border/70 bg-surface-container relative">
+          <!-- Real Book Cover https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k -->
+          <img 
+            src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k" 
+            alt="The Alchemist's Codex" 
+            class="w-full h-full object-cover"
+            onerror="this.src='https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&auto=format&fit=crop'"
+          />
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="font-mono text-[10px] tracking-wider uppercase text-primary bg-primary/10 px-2 py-0.5 rounded">Codex Sanctum</span>
+            <span class="text-text-muted text-[11px]">• 1484 AD</span>
+          </div>
+          <h2 class="font-display text-base font-semibold text-text-primary truncate tracking-tight">
+            The Alchemist's Codex
+          </h2>
+          <p class="font-sans text-xs text-text-secondary truncate mt-0.5">
+            Archivist Vance &bull; Arcane Wisdom & Hermetic Arts
+          </p>
+          <div class="flex items-center gap-2 mt-2 text-[11px] text-text-muted">
+            <span class="flex items-center gap-0.5 text-amber-500/90 font-mono">
+              <span class="material-symbols-outlined text-[13px] fill text-amber-500">star</span> 5.0
+            </span>
+            <span>&bull;</span>
+            <span class="font-mono">84 Codices</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- b. Reason Selector Trigger -->
+      <section class="space-y-1.5">
+        <label class="block font-sans text-xs font-semibold uppercase tracking-wider text-text-secondary">
+          Reason for Report <span class="text-primary">*</span>
+        </label>
+        
+        <button 
+          id="trigger-reason-sheet"
+          type="button"
+          class="w-full min-h-[56px] bg-surface hover:bg-surface-hover border border-border focus:border-primary focus:ring-2 focus:ring-primary/15 rounded-xl px-4 py-3 flex items-center justify-between text-left transition-all active:scale-[0.99] group cursor-pointer"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+        >
+          <div class="flex items-center gap-3 min-w-0">
+            <div id="selected-reason-icon-wrap" class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-text-muted group-hover:text-primary transition-colors flex-shrink-0">
+              <span id="selected-reason-icon" class="material-symbols-outlined text-[20px]">flag</span>
+            </div>
+            <div class="min-w-0">
+              <span id="selected-reason-label" class="block font-sans text-sm text-text-muted truncate">
+                Select reason...
+              </span>
+              <span id="selected-reason-sub" class="hidden text-[11px] text-primary/80 font-mono mt-0.5">
+                Verified category selected
+              </span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-text-muted group-hover:text-text-secondary transition-colors text-[20px] flex-shrink-0">
+            chevron_right
+          </span>
+        </button>
+      </section>
+
+      <!-- c. Description Textarea with Live Character Count -->
+      <section class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label for="report-description" class="font-sans text-xs font-semibold uppercase tracking-wider text-text-secondary flex items-center gap-1.5">
+            Description 
+            <span class="text-[10px] font-normal tracking-normal text-text-muted lowercase bg-surface-container px-1.5 py-0.5 rounded border border-border/50">(optional)</span>
+          </label>
+          <span id="char-counter" class="font-mono text-xs text-text-muted">0 / 500</span>
+        </div>
+        
+        <div class="relative">
+          <textarea
+            id="report-description"
+            rows="4"
+            maxlength="500"
+            placeholder="Provide specific details about the issue, folios affected, or timestamps to aid the Master Archivists in reviewing this manuscript..."
+            class="w-full min-h-[110px] max-h-[220px] bg-surface border border-border rounded-xl p-3.5 text-sm text-text-primary placeholder:text-text-muted/80 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all resize-none leading-relaxed font-sans"
+          ></textarea>
+        </div>
+        <p class="text-[11px] text-text-muted/80 pl-1">
+          Detailed excerpts help moderators expedite verification against the Sanctuary Charter.
+        </p>
+      </section>
+
+      <!-- d. Trust & Archival Covenant Note -->
+      <section class="p-4 rounded-xl bg-surface-container/60 border border-primary/20 flex items-start gap-3 shadow-inner">
+        <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+          <span class="material-symbols-outlined text-[18px]">verified_user</span>
+        </div>
+        <div class="text-xs leading-relaxed space-y-1">
+          <p class="font-medium text-text-primary font-display">
+            Sanctuary Review Protocol
+          </p>
+          <p class="text-text-secondary text-[12px]">
+            Reports are thoroughly inspected by the Guild Council of Archivists to maintain canon fidelity. All submissions remain anonymous to public patrons.
+          </p>
+        </div>
+      </section>
+
+      <!-- Quick Tips Pill List -->
+      <div class="pt-1">
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 text-[11px] text-text-muted font-mono no-scrollbar">
+          <span class="bg-surface border border-border px-2.5 py-1 rounded-full whitespace-nowrap flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Fast review &lt; 24h
+          </span>
+          <span class="bg-surface border border-border px-2.5 py-1 rounded-full whitespace-nowrap flex items-center gap-1">
+            <span class="material-symbols-outlined text-[12px]">lock</span> Encrypted ledger
+          </span>
+          <span class="bg-surface border border-border px-2.5 py-1 rounded-full whitespace-nowrap">
+            Charters § 4.12
+          </span>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 3. Fixed Bottom Submit Area (Pinned above nav bar) -->
+    <div class="fixed bottom-[60px] left-0 right-0 max-w-[640px] mx-auto z-30 px-4 py-3 bg-canvas/95 backdrop-blur-md border-t border-border/80 pb-safe">
+      <button
+        id="btn-submit-report"
+        type="button"
+        disabled
+        class="w-full h-12 rounded-xl bg-primary text-text-on-accent font-semibold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all duration-200 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none disabled:active:scale-100"
+      >
+        <span id="btn-submit-icon" class="material-symbols-outlined text-[20px]">send</span>
+        <span id="btn-submit-text">Submit Report</span>
+      </button>
+    </div>
+
+    <!-- 4. Fixed Bottom Navigation (5 Mobile Tabs matching Genu Library) -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-[640px] mx-auto z-40 bg-canvas/95 backdrop-blur-md border-t border-border pb-safe">
+      <div class="h-14 px-2 grid grid-cols-5 items-center">
+        <!-- 1. Library -->
+        <a href="#" class="min-h-[44px] flex flex-col items-center justify-center text-text-muted hover:text-text-primary active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[22px]">local_library</span>
+          <span class="text-[10px] font-sans tracking-tight mt-0.5">Library</span>
+        </a>
+        <!-- 2. Browse / Books -->
+        <a href="#" class="min-h-[44px] flex flex-col items-center justify-center text-text-muted hover:text-text-primary active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[22px]">auto_stories</span>
+          <span class="text-[10px] font-sans tracking-tight mt-0.5">Browse</span>
+        </a>
+        <!-- 3. Search -->
+        <a href="#" class="min-h-[44px] flex flex-col items-center justify-center text-text-muted hover:text-text-primary active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+          <span class="text-[10px] font-sans tracking-tight mt-0.5">Search</span>
+        </a>
+        <!-- 4. Tags -->
+        <a href="#" class="min-h-[44px] flex flex-col items-center justify-center text-text-muted hover:text-text-primary active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[22px]">sell</span>
+          <span class="text-[10px] font-sans tracking-tight mt-0.5">Tags</span>
+        </a>
+        <!-- 5. Profile (Active) -->
+        <a href="#" class="min-h-[44px] flex flex-col items-center justify-center text-primary active:scale-95 transition-all relative">
+          <span class="material-symbols-outlined text-[22px] fill">person</span>
+          <span class="text-[10px] font-sans font-medium tracking-tight mt-0.5">Profile</span>
+          <span class="absolute top-1.5 right-4 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-canvas"></span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- ======================================================== -->
+    <!-- MODALS & BOTTOM SHEETS                                   -->
+    <!-- ======================================================== -->
+
+    <!-- Backdrop Overlay for Reason Bottom Sheet -->
+    <div id="sheet-backdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-xs"></div>
+
+    <!-- Reason Selection Bottom Sheet -->
+    <div 
+      id="reason-sheet" 
+      class="fixed bottom-0 left-0 right-0 max-w-[640px] mx-auto bg-surface rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 ease-out border-t border-border flex flex-col shadow-2xl max-h-[85vh] pb-safe"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="sheet-title"
+    >
+      <!-- Drag Handle -->
+      <div id="sheet-drag-handle" class="w-full py-3 flex justify-center cursor-grab active:cursor-grabbing">
+        <div class="w-12 h-1.5 rounded-full bg-text-muted/40"></div>
+      </div>
+
+      <!-- Sheet Header -->
+      <div class="px-6 pb-3 pt-1 flex items-center justify-between border-b border-border/50">
+        <div>
+          <h3 id="sheet-title" class="font-display text-lg font-semibold text-text-primary">
+            Select Reason
+          </h3>
+          <p class="text-xs text-text-secondary mt-0.5">
+            Identify the primary concern for Guild inspection
+          </p>
+        </div>
+        <button id="btn-close-sheet" class="min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2 text-text-muted hover:text-text-primary">
+          <span class="material-symbols-outlined text-[22px]">close</span>
+        </button>
+      </div>
+
+      <!-- Options Radio List -->
+      <div class="px-5 py-4 space-y-2.5 overflow-y-auto">
+        
+        <!-- Option 1: Copyright Infringement -->
+        <label 
+          class="reason-option flex items-center justify-between p-3.5 rounded-xl border border-border bg-surface hover:bg-surface-hover cursor-pointer transition-all active:scale-[0.99]"
+          data-value="Copyright Infringement"
+          data-icon="balance"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-text-secondary flex-shrink-0">
+              <span class="material-symbols-outlined text-[20px]">balance</span>
+            </div>
+            <div class="min-w-0">
+              <p class="font-sans text-sm font-medium text-text-primary">Copyright Infringement</p>
+              <p class="text-xs text-text-muted truncate">Unauthorized folio duplication, pirated codex</p>
+            </div>
+          </div>
+          <!-- Custom Radio Indicator -->
+          <div class="radio-indicator w-5 h-5 rounded-full border-2 border-border bg-canvas flex items-center justify-center flex-shrink-0 transition-all ml-2">
+            <div class="radio-dot w-2.5 h-2.5 rounded-full bg-canvas scale-0 transition-transform"></div>
+          </div>
+        </label>
+
+        <!-- Option 2: Adult Content -->
+        <label 
+          class="reason-option flex items-center justify-between p-3.5 rounded-xl border border-border bg-surface hover:bg-surface-hover cursor-pointer transition-all active:scale-[0.99]"
+          data-value="Adult or Explicit Content"
+          data-icon="warning"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-text-secondary flex-shrink-0">
+              <span class="material-symbols-outlined text-[20px]">warning</span>
+            </div>
+            <div class="min-w-0">
+              <p class="font-sans text-sm font-medium text-text-primary">Adult or Explicit Content</p>
+              <p class="text-xs text-text-muted truncate">Violates Guild age-gate or sanctuary decency</p>
+            </div>
+          </div>
+          <div class="radio-indicator w-5 h-5 rounded-full border-2 border-border bg-canvas flex items-center justify-center flex-shrink-0 transition-all ml-2">
+            <div class="radio-dot w-2.5 h-2.5 rounded-full bg-canvas scale-0 transition-transform"></div>
+          </div>
+        </label>
+
+        <!-- Option 3: Spam -->
+        <label 
+          class="reason-option flex items-center justify-between p-3.5 rounded-xl border border-border bg-surface hover:bg-surface-hover cursor-pointer transition-all active:scale-[0.99]"
+          data-value="Spam or Fabricated Metadata"
+          data-icon="error_outline"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-text-secondary flex-shrink-0">
+              <span class="material-symbols-outlined text-[20px]">error_outline</span>
+            </div>
+            <div class="min-w-0">
+              <p class="font-sans text-sm font-medium text-text-primary">Spam or Fabricated Metadata</p>
+              <p class="text-xs text-text-muted truncate">Automated junk, malicious links, false bindings</p>
+            </div>
+          </div>
+          <div class="radio-indicator w-5 h-5 rounded-full border-2 border-border bg-canvas flex items-center justify-center flex-shrink-0 transition-all ml-2">
+            <div class="radio-dot w-2.5 h-2.5 rounded-full bg-canvas scale-0 transition-transform"></div>
+          </div>
+        </label>
+
+        <!-- Option 4: Other -->
+        <label 
+          class="reason-option flex items-center justify-between p-3.5 rounded-xl border border-border bg-surface hover:bg-surface-hover cursor-pointer transition-all active:scale-[0.99]"
+          data-value="Other Grievance"
+          data-icon="flag"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-text-secondary flex-shrink-0">
+              <span class="material-symbols-outlined text-[20px]">flag</span>
+            </div>
+            <div class="min-w-0">
+              <p class="font-sans text-sm font-medium text-text-primary">Other Grievance</p>
+              <p class="text-xs text-text-muted truncate">Defamation, corrupted parchment scans, misc</p>
+            </div>
+          </div>
+          <div class="radio-indicator w-5 h-5 rounded-full border-2 border-border bg-canvas flex items-center justify-center flex-shrink-0 transition-all ml-2">
+            <div class="radio-dot w-2.5 h-2.5 rounded-full bg-canvas scale-0 transition-transform"></div>
+          </div>
+        </label>
+
+      </div>
+
+      <!-- Sheet Footer Confirm Button -->
+      <div class="px-5 pt-2 pb-5 border-t border-border/50">
+        <button 
+          id="btn-confirm-reason" 
+          type="button" 
+          disabled
+          class="w-full h-12 rounded-xl bg-primary text-text-on-accent font-semibold text-sm tracking-wide flex items-center justify-center shadow-lg shadow-primary/10 transition-all active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Confirm Reason
+        </button>
+      </div>
+    </div>
+
+    <!-- Discard Confirmation Bottom Sheet (Triggered on back navigation with dirty form) -->
+    <div id="discard-backdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-200"></div>
+    <div 
+      id="discard-sheet" 
+      class="fixed bottom-0 left-0 right-0 max-w-[640px] mx-auto bg-surface rounded-t-2xl z-50 transform translate-y-full transition-transform duration-200 ease-out border-t border-border flex flex-col p-6 space-y-4 pb-safe shadow-2xl"
+    >
+      <div class="flex items-center gap-3 text-status-error">
+        <div class="w-10 h-10 rounded-full bg-status-error/15 flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-[24px]">delete_forever</span>
+        </div>
+        <div>
+          <h3 class="font-display font-semibold text-base text-text-primary">Discard Report?</h3>
+          <p class="text-xs text-text-muted">Unsaved details and selection will be lost.</p>
+        </div>
+      </div>
+      <div class="space-y-2 pt-2">
+        <button id="btn-confirm-discard" class="w-full min-h-[48px] rounded-xl bg-status-error text-white font-medium text-sm flex items-center justify-center active:scale-98 transition-transform">
+          Discard
+        </button>
+        <button id="btn-cancel-discard" class="w-full min-h-[48px] rounded-xl bg-surface-container text-text-primary font-medium text-sm flex items-center justify-center active:scale-98 transition-transform">
+          Keep Editing
+        </button>
+      </div>
+    </div>
+
+    <!-- Full-Screen Submission Success Overlay -->
+    <div 
+      id="success-overlay" 
+      class="fixed inset-0 max-w-[640px] mx-auto bg-canvas z-50 flex flex-col items-center justify-center p-6 text-center opacity-0 pointer-events-none transition-opacity duration-300"
+    >
+      <!-- Circular Success Icon with Animated Checkmark -->
+      <div class="w-24 h-24 rounded-full bg-primary/15 border-2 border-primary flex items-center justify-center mb-6 relative">
+        <span class="material-symbols-outlined text-[52px] text-primary animate-bounce">
+          check_circle
+        </span>
+        <div class="absolute inset-0 rounded-full bg-primary/10 animate-ping opacity-75"></div>
+      </div>
+
+      <span class="font-mono text-xs text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-3">
+        Ledger Sealed #REP-9481
+      </span>
+
+      <h2 class="font-display text-2xl font-bold text-text-primary mb-2">
+        Thank You
+      </h2>
+      <p class="font-sans text-sm text-text-secondary max-w-xs mb-8 leading-relaxed">
+        Your report for <span class="text-text-primary font-medium italic">"The Alchemist's Codex"</span> has been transmitted to the Guild Council for immediate review.
+      </p>
+
+      <div class="w-full max-w-xs space-y-3">
+        <button 
+          id="btn-return-sanctum" 
+          class="w-full h-12 rounded-xl bg-primary text-text-on-accent font-semibold text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-lg shadow-primary/20"
+        >
+          <span>Return to Codex Overview</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </button>
+        <p class="text-[11px] font-mono text-text-muted">
+          Auto-redirecting to library in 3 seconds...
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript Interaction Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // DOM Elements
+      const triggerReasonBtn = document.getElementById('trigger-reason-sheet');
+      const reasonSheet = document.getElementById('reason-sheet');
+      const sheetBackdrop = document.getElementById('sheet-backdrop');
+      const btnCloseSheet = document.getElementById('btn-close-sheet');
+      const reasonOptions = document.querySelectorAll('.reason-option');
+      const btnConfirmReason = document.getElementById('btn-confirm-reason');
+      
+      const selectedReasonLabel = document.getElementById('selected-reason-label');
+      const selectedReasonSub = document.getElementById('selected-reason-sub');
+      const selectedReasonIcon = document.getElementById('selected-reason-icon');
+      const selectedReasonIconWrap = document.getElementById('selected-reason-icon-wrap');
+
+      const textarea = document.getElementById('report-description');
+      const charCounter = document.getElementById('char-counter');
+      const btnSubmit = document.getElementById('btn-submit-report');
+      const btnSubmitText = document.getElementById('btn-submit-text');
+      const btnSubmitIcon = document.getElementById('btn-submit-icon');
+
+      const btnBack = document.getElementById('btn-back');
+      const discardSheet = document.getElementById('discard-sheet');
+      const discardBackdrop = document.getElementById('discard-backdrop');
+      const btnConfirmDiscard = document.getElementById('btn-confirm-discard');
+      const btnCancelDiscard = document.getElementById('btn-cancel-discard');
+
+      const successOverlay = document.getElementById('success-overlay');
+      const btnReturn = document.getElementById('btn-return-sanctum');
+
+      // State
+      let pendingReason = null;
+      let pendingIcon = null;
+      let activeReason = null;
+      let isDirty = false;
+
+      // 1. Open / Close Bottom Sheet for Reasons
+      function openReasonSheet() {
+        sheetBackdrop.classList.remove('pointer-events-none', 'opacity-0');
+        sheetBackdrop.classList.add('opacity-100');
+        reasonSheet.classList.remove('translate-y-full');
+        reasonSheet.classList.add('translate-y-0');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeReasonSheet() {
+        sheetBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        sheetBackdrop.classList.remove('opacity-100');
+        reasonSheet.classList.add('translate-y-full');
+        reasonSheet.classList.remove('translate-y-0');
+        document.body.style.overflow = '';
+      }
+
+      triggerReasonBtn.addEventListener('click', openReasonSheet);
+      btnCloseSheet.addEventListener('click', closeReasonSheet);
+      sheetBackdrop.addEventListener('click', closeReasonSheet);
+
+      // Swipe down gesture to dismiss reason sheet
+      let startY = 0;
+      let currentY = 0;
+      const dragHandle = document.getElementById('sheet-drag-handle');
+      
+      dragHandle.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+      }, { passive: true });
+
+      dragHandle.addEventListener('touchmove', (e) => {
+        currentY = e.touches[0].clientY;
+        const diff = currentY - startY;
+        if (diff > 0) {
+          reasonSheet.style.transform = `translateY(${diff}px)`;
+        }
+      }, { passive: true });
+
+      dragHandle.addEventListener('touchend', () => {
+        const diff = currentY - startY;
+        if (diff > 80) {
+          closeReasonSheet();
+        }
+        reasonSheet.style.transform = '';
+        startY = 0;
+        currentY = 0;
+      });
+
+      // 2. Select Reason Option
+      reasonOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          // Deselect others
+          reasonOptions.forEach(opt => {
+            opt.classList.remove('bg-primary/10', 'border-primary');
+            opt.classList.add('bg-surface', 'border-border');
+            const dot = opt.querySelector('.radio-dot');
+            const ind = opt.querySelector('.radio-indicator');
+            dot.classList.remove('scale-100');
+            dot.classList.add('scale-0');
+            ind.classList.remove('border-primary', 'bg-primary');
+            ind.classList.add('border-border', 'bg-canvas');
+          });
+
+          // Select clicked
+          option.classList.remove('bg-surface', 'border-border');
+          option.classList.add('bg-primary/10', 'border-primary');
+          const dot = option.querySelector('.radio-dot');
+          const ind = option.querySelector('.radio-indicator');
+          dot.classList.remove('scale-0');
+          dot.classList.add('scale-100');
+          ind.classList.remove('border-border', 'bg-canvas');
+          ind.classList.add('border-primary', 'bg-primary');
+
+          pendingReason = option.getAttribute('data-value');
+          pendingIcon = option.getAttribute('data-icon');
+          btnConfirmReason.removeAttribute('disabled');
+
+          if (navigator.vibrate) {
+            navigator.vibrate(10);
+          }
+        });
+      });
+
+      // Confirm Reason from sheet
+      btnConfirmReason.addEventListener('click', () => {
+        if (!pendingReason) return;
+        activeReason = pendingReason;
+        isDirty = true;
+
+        // Update trigger UI
+        selectedReasonLabel.textContent = activeReason;
+        selectedReasonLabel.classList.remove('text-text-muted');
+        selectedReasonLabel.classList.add('text-text-primary', 'font-medium');
+        selectedReasonSub.classList.remove('hidden');
+
+        if (pendingIcon) {
+          selectedReasonIcon.textContent = pendingIcon;
+          selectedReasonIconWrap.classList.add('text-primary', 'bg-primary/10');
+          selectedReasonIconWrap.classList.remove('text-text-muted');
+        }
+
+        closeReasonSheet();
+        checkValidation();
+      });
+
+      // 3. Description auto-grow and counter
+      textarea.addEventListener('input', () => {
+        isDirty = true;
+        const length = textarea.value.length;
+        charCounter.textContent = `${length} / 500`;
+
+        if (length >= 450 && length < 500) {
+          charCounter.classList.remove('text-text-muted', 'text-status-error');
+          charCounter.classList.add('text-status-warning');
+        } else if (length >= 500) {
+          charCounter.classList.remove('text-text-muted', 'text-status-warning');
+          charCounter.classList.add('text-status-error');
+        } else {
+          charCounter.classList.remove('text-status-warning', 'text-status-error');
+          charCounter.classList.add('text-text-muted');
+        }
+
+        // Auto-resize
+        textarea.style.height = 'auto';
+        textarea.style.height = `${Math.max(110, Math.min(textarea.scrollHeight, 220))}px`;
+
+        checkValidation();
+      });
+
+      function checkValidation() {
+        if (activeReason) {
+          btnSubmit.removeAttribute('disabled');
+        } else {
+          btnSubmit.setAttribute('disabled', 'true');
+        }
+      }
+
+      // 4. Submit Flow
+      btnSubmit.addEventListener('click', () => {
+        if (!activeReason) return;
+
+        // Button Loading State
+        btnSubmit.setAttribute('disabled', 'true');
+        btnSubmitIcon.textContent = 'progress_activity';
+        btnSubmitIcon.classList.add('animate-spin');
+        btnSubmitText.textContent = 'Submitting to Guild...';
+
+        setTimeout(() => {
+          if (navigator.vibrate) {
+            navigator.vibrate(50);
+          }
+
+          // Show Success Fullscreen
+          successOverlay.classList.remove('opacity-0', 'pointer-events-none');
+          successOverlay.classList.add('opacity-100');
+
+          // Auto redirect simulation after 3s
+          setTimeout(() => {
+            console.log("Navigating back to codex detail...");
+          }, 3000);
+        }, 1000);
+      });
+
+      // 5. Back Navigation with Dirty Check
+      btnBack.addEventListener('click', () => {
+        if (isDirty && (activeReason || textarea.value.trim().length > 0)) {
+          discardBackdrop.classList.remove('pointer-events-none', 'opacity-0');
+          discardBackdrop.classList.add('opacity-100');
+          discardSheet.classList.remove('translate-y-full');
+          discardSheet.classList.add('translate-y-0');
+        } else {
+          window.history.back ? window.history.back() : console.log("Back navigation");
+        }
+      });
+
+      btnCancelDiscard.addEventListener('click', () => {
+        discardBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        discardBackdrop.classList.remove('opacity-100');
+        discardSheet.classList.add('translate-y-full');
+        discardSheet.classList.remove('translate-y-0');
+      });
+
+      btnConfirmDiscard.addEventListener('click', () => {
+        discardBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        discardSheet.classList.add('translate-y-full');
+        // Reset and simulate back
+        textarea.value = '';
+        activeReason = null;
+        isDirty = false;
+        checkValidation();
+        window.history.back ? window.history.back() : console.log("Discarded and exited");
+      });
+
+      btnReturn.addEventListener('click', () => {
+        console.log("Returned to Book Detail screen");
+      });
+
+    });
+  </script>
+</body>
+</html>

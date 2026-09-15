@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Create Tags — Genu Library (Tablet)</title>
+  
+  <!-- Fonts: Playfair Display, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            'surface-hover': '#2a211c',
+            'surface-active': '#332a24',
+            primary: '#e8693f',
+            'primary-hover': '#d45a30',
+            'primary-muted': 'rgba(232, 105, 63, 0.12)',
+            border: '#3a322d',
+            'border-hover': '#4d433d',
+            'text-primary': '#ece0dc',
+            'text-secondary': '#a89c93',
+            'text-muted': '#7a706a',
+            'text-on-accent': '#16110f',
+            'status-success': '#4a7c59',
+            'status-error': '#c44d4d',
+            'status-warning': '#d4a24e',
+            'status-info': '#5b8fb9',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #16110f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3a322d;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4d433d;
+    }
+    /* Keyframes for animations */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      70% { transform: scale(1.03); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .animate-slide-down { animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .animate-pop-in { animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+  </style>
+</head>
+<body class="bg-canvas text-text-primary min-h-screen font-sans selection:bg-primary/30 selection:text-text-primary flex flex-col antialiased">
+
+  <!-- TOP NAVIGATION BAR (STICKY TABLET HEADER) -->
+  <nav class="sticky top-0 z-40 h-16 bg-canvas/90 backdrop-blur-md border-b border-border px-6 transition-all duration-200">
+    <div class="max-w-[960px] mx-auto h-full flex items-center justify-between">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <a href="#home" class="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-lg p-1">
+          <div class="w-8 h-8 rounded-lg bg-primary/15 border border-primary/40 flex items-center justify-center text-primary group-hover:bg-primary/25 transition-colors shadow-[0_0_15px_rgba(232,105,63,0.15)]">
+            <span class="material-symbols-outlined text-[20px]">local_library</span>
+          </div>
+          <span class="font-serif text-lg font-bold tracking-tight text-text-primary group-hover:text-primary transition-colors">
+            Genu Library
+          </span>
+        </a>
+        <span class="hidden sm:inline-block font-mono text-[10px] tracking-widest uppercase text-primary/80 bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full ml-1 font-semibold">
+          Tablet Admin
+        </span>
+      </div>
+
+      <!-- Nav Links -->
+      <div class="flex items-center gap-1">
+        <a href="#library" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover min-h-[40px] transition-colors">
+          <span class="material-symbols-outlined text-[18px]">auto_stories</span>
+          <span>Library</span>
+        </a>
+        <a href="#browse" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover min-h-[40px] transition-colors">
+          <span class="material-symbols-outlined text-[18px]">explore</span>
+          <span>Browse</span>
+        </a>
+        <a href="#search" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover min-h-[40px] transition-colors">
+          <span class="material-symbols-outlined text-[18px]">search</span>
+          <span>Search</span>
+        </a>
+        <!-- Active Tab: Tags -->
+        <a href="#tags" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm text-primary bg-primary/10 font-semibold min-h-[40px] transition-colors border border-primary/30 shadow-[0_0_12px_rgba(232,105,63,0.12)]">
+          <span class="material-symbols-outlined text-[18px] fill">label</span>
+          <span>Tags</span>
+        </a>
+        <a href="#profile" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover min-h-[40px] transition-colors">
+          <span class="material-symbols-outlined text-[18px]">account_circle</span>
+          <span>Profile</span>
+        </a>
+      </div>
+
+      <!-- Right Action & Token Count -->
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface border border-border text-xs font-mono text-text-secondary" title="Archivist Guild Allocation">
+          <span class="text-primary font-bold">🪙</span>
+          <span>1,480 <span class="text-text-muted">GN</span></span>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-surface-hover border border-border flex items-center justify-center text-text-primary text-xs font-serif font-bold ring-2 ring-primary/20">
+          AV
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN VIEWPORT CONTAINER (max-w-[960px] mx-auto with px-6) -->
+  <main class="flex-1 max-w-[960px] w-full mx-auto px-6 pt-8 pb-16">
+
+    <!-- PAGE HEADER -->
+    <header class="pb-6 border-b border-border/60 mb-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <!-- Breadcrumbs -->
+          <nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-xs text-text-muted mb-2 font-sans">
+            <a href="#home" class="hover:text-text-primary transition-colors">Home</a>
+            <span class="text-border">/</span>
+            <a href="#admin" class="hover:text-text-primary transition-colors">Admin</a>
+            <span class="text-border">/</span>
+            <span class="text-text-secondary font-medium">Bulk Tags</span>
+          </nav>
+          <!-- Heading -->
+          <h1 class="font-serif text-2xl md:text-3xl font-bold text-text-primary tracking-tight flex items-center gap-3">
+            <span>Bulk Create Tags</span>
+            <span class="font-mono text-xs font-normal text-text-secondary bg-surface border border-border px-2.5 py-0.5 rounded-full">
+              Sanctum Scriptorium #084
+            </span>
+          </h1>
+          <p class="text-sm text-text-secondary mt-1">
+            Ingest multiple taxonomy descriptors into the Genu Codex index simultaneously. Comma or newline separated.
+          </p>
+        </div>
+
+        <!-- Quick Switch to Single Tag / Bulk Books -->
+        <div class="flex items-center gap-2">
+          <a href="#tags-new" class="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-border hover:border-border-hover bg-surface text-xs text-text-secondary hover:text-text-primary transition-colors min-h-[36px]">
+            <span class="material-symbols-outlined text-[16px]">add</span>
+            <span>Single Tag</span>
+          </a>
+          <a href="#bulk-upload" class="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-border hover:border-border-hover bg-surface text-xs text-text-secondary hover:text-text-primary transition-colors min-h-[36px]">
+            <span class="material-symbols-outlined text-[16px]">upload_file</span>
+            <span>Bulk Books</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: TAG NAMES TEXTAREA (FULL WIDTH) -->
+    <section class="mb-6">
+      <div class="flex items-center justify-between mb-2">
+        <label for="tag-input" class="block font-sans text-sm font-semibold text-text-primary flex items-center gap-1.5">
+          <span>Tag Names</span>
+          <span class="text-primary font-bold" aria-hidden="true">*</span>
+        </label>
+        <!-- Dynamic Parsing Live Indicator -->
+        <div class="flex items-center gap-2 font-mono text-xs text-text-muted">
+          <span class="inline-flex items-center gap-1 text-primary/90 bg-primary/10 border border-primary/20 px-2 py-0.5 rounded">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Auto-Deduplication
+          </span>
+        </div>
+      </div>
+
+      <!-- Textarea Container -->
+      <div class="relative group">
+        <textarea
+          id="tag-input"
+          rows="8"
+          placeholder="fantasy&#10;sci-fi, romance, ancient alchemy&#10;hermeticism, illuminated manuscript&#10;cartography"
+          class="w-full min-h-[200px] max-h-[40vh] p-4 bg-surface border border-border rounded-xl text-text-primary placeholder:text-text-muted font-mono text-sm leading-relaxed focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-border-hover transition-all duration-150 resize-y shadow-inner"
+        >astronomical tables, hermetic arts
+parchment restoration
+gothic typography
+codicology, medieval bindery
+astronomical tables</textarea>
+
+        <!-- Visual corner indicator for monospace layout -->
+        <div class="absolute top-3 right-3 pointer-events-none text-border group-hover:text-border-hover font-mono text-[10px] tracking-widest uppercase transition-colors">
+          UTF-8
+        </div>
+      </div>
+
+      <!-- Sub-Textarea Metadata Bar: Hint + Live Counter -->
+      <div class="flex items-center justify-between mt-2.5 px-1 font-sans text-xs">
+        <p class="text-text-muted flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[15px] text-primary">info</span>
+          <span>One tag per line or comma-separated. Special characters will be sanitized.</span>
+        </p>
+        <p id="stats-counter" class="font-mono text-text-secondary bg-surface px-2 py-0.5 rounded border border-border/80">
+          <span id="line-count">4</span> lines · <span id="char-count">124</span> characters · <span id="parsed-count" class="text-primary font-medium">5 unique</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: EXISTING TAGS CLOUD (FLEX-WRAP, 4-6 CHIPS PER ROW ON TABLET) -->
+    <section class="mb-8">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <h2 class="font-serif text-lg font-bold text-text-primary tracking-tight">
+            Existing Tags
+          </h2>
+          <span id="existing-count-badge" class="font-mono text-xs text-text-secondary bg-surface border border-border px-2.5 py-0.5 rounded-full font-medium">
+            24 tags indexed
+          </span>
+        </div>
+
+        <!-- Filter Sub-Search for Existing Tags -->
+        <div class="relative w-48">
+          <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[16px] text-text-muted">filter_list</span>
+          <input
+            id="filter-tags-input"
+            type="text"
+            placeholder="Quick search..."
+            class="w-full h-8 pl-8 pr-3 bg-surface border border-border rounded-lg text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-colors"
+          />
+        </div>
+      </div>
+
+      <!-- Chip Container with Scrollable Max Height -->
+      <div class="p-4 bg-surface border border-border rounded-xl shadow-sm">
+        <!-- Skeleton State (Hidden after simulated mount load) -->
+        <div id="tags-skeleton" class="hidden flex flex-wrap gap-2 animate-pulse">
+          <div class="h-8 w-24 bg-surface-hover rounded-full"></div>
+          <div class="h-8 w-28 bg-surface-hover rounded-full"></div>
+          <div class="h-8 w-20 bg-surface-hover rounded-full"></div>
+          <div class="h-8 w-32 bg-surface-hover rounded-full"></div>
+          <div class="h-8 w-24 bg-surface-hover rounded-full"></div>
+          <div class="h-8 w-28 bg-surface-hover rounded-full"></div>
+          <div class="h-8 w-20 bg-surface-hover rounded-full"></div>
+          <div class="h-8 w-32 bg-surface-hover rounded-full"></div>
+        </div>
+
+        <!-- Rendered Chips List (flex-wrap, natural grid on tablet) -->
+        <div id="chips-cloud" class="flex flex-wrap gap-2 max-h-[200px] overflow-y-auto pr-1">
+          <!-- Tag chips injected with counts -->
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="fantasy">
+            <span>fantasy</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">12</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="historical">
+            <span>historical</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">8</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="mystery">
+            <span>mystery</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">5</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="sci-fi">
+            <span>sci-fi</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">15</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="romance">
+            <span>romance</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">7</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="philosophy">
+            <span>philosophy</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">3</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="poetry">
+            <span>poetry</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">9</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="alchemy">
+            <span>alchemy</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">11</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="astronomy">
+            <span>astronomy</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">14</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="metallurgy">
+            <span>metallurgy</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">6</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="biography">
+            <span>biography</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">6</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="culinary arts">
+            <span>culinary arts</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">4</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="drama">
+            <span>drama</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">2</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="travelogue">
+            <span>travelogue</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">8</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="astronomical tables">
+            <span class="text-primary font-medium">astronomical tables</span>
+            <span class="font-mono text-[10px] text-primary/80 bg-primary/10 px-1.5 py-0.2 rounded-full border border-primary/30">19</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="illuminated folio">
+            <span>illuminated folio</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">12</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="rare manuscript">
+            <span>rare manuscript</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">7</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="greek dialectics">
+            <span>greek dialectics</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">5</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="latin codex">
+            <span>latin codex</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">18</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="cartography">
+            <span>cartography</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">9</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="botany">
+            <span>botany</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">6</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="guild archive">
+            <span>guild archive</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">22</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="theology">
+            <span>theology</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">10</span>
+          </span>
+          <span class="tag-chip px-3 py-1.5 rounded-full bg-canvas border border-border font-sans text-xs text-text-secondary hover:bg-surface-hover hover:border-border-hover hover:text-text-primary cursor-default transition-all flex items-center gap-1.5 group" data-tag="astrolabe design">
+            <span>astrolabe design</span>
+            <span class="font-mono text-[10px] text-text-muted group-hover:text-primary transition-colors bg-surface px-1.5 py-0.2 rounded-full border border-border/60">4</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 & 4: ACTION BUTTONS (SUBMIT + CLEAR, FULL WIDTH PROMINENT) -->
+    <section class="space-y-3 mb-8">
+      <!-- 4.5 Submit Button -->
+      <button
+        id="submit-btn"
+        type="button"
+        class="w-full h-12 rounded-xl bg-primary text-text-on-accent font-sans font-semibold text-sm hover:bg-primary-hover active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2 min-h-[44px] shadow-[0_4px_20px_rgba(232,105,63,0.25)] focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+      >
+        <span id="submit-icon" class="material-symbols-outlined text-[20px]">library_add</span>
+        <span id="submit-spinner" class="hidden material-symbols-outlined animate-spin text-[20px]">progress_activity</span>
+        <span id="submit-label">Create Tags</span>
+      </button>
+
+      <!-- 4.6 Clear Button -->
+      <button
+        id="clear-btn"
+        type="button"
+        class="w-full h-12 rounded-xl bg-transparent border border-border text-text-secondary font-sans text-sm hover:border-status-error/60 hover:text-status-error hover:bg-status-error/5 active:scale-[0.99] transition-colors flex items-center justify-center gap-2 min-h-[44px] focus:outline-none focus:ring-1 focus:ring-status-error/30"
+      >
+        <span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+        <span>Clear Editor</span>
+      </button>
+    </section>
+
+    <!-- SECTION 5: RESULTS SECTION (2-COLUMN TABLET GRID, ANIMATES IN) -->
+    <section id="results-section" class="pt-6 border-t border-border/80">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2.5">
+          <h2 class="font-serif text-xl font-bold text-text-primary tracking-tight">
+            Batch Results
+          </h2>
+          <span id="results-summary-badge" class="font-mono text-xs text-text-secondary bg-surface border border-border px-2.5 py-0.5 rounded-full font-medium">
+            4 processed
+          </span>
+        </div>
+        <div class="flex items-center gap-3 text-xs font-mono text-text-muted">
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-success"></span> 3 created</span>
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-warning"></span> 1 duplicate</span>
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-error"></span> 0 failed</span>
+        </div>
+      </div>
+
+      <!-- 2-Column Grid for Results -->
+      <div id="results-grid" class="grid grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-1">
+        
+        <!-- 1. Success Card -->
+        <div class="flex items-center justify-between p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-success shadow-sm hover:bg-surface-hover transition-colors">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-status-success text-[22px] flex-shrink-0">check_circle</span>
+            <div class="min-w-0">
+              <h3 class="font-sans text-sm font-medium text-text-primary truncate">hermetic arts</h3>
+              <p class="font-mono text-[11px] text-text-muted">Codex #TG-9204 · Published to Index</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-status-success text-[16px]">done</span>
+        </div>
+
+        <!-- 2. Success Card -->
+        <div class="flex items-center justify-between p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-success shadow-sm hover:bg-surface-hover transition-colors">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-status-success text-[22px] flex-shrink-0">check_circle</span>
+            <div class="min-w-0">
+              <h3 class="font-sans text-sm font-medium text-text-primary truncate">parchment restoration</h3>
+              <p class="font-mono text-[11px] text-text-muted">Codex #TG-9205 · Published to Index</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-status-success text-[16px]">done</span>
+        </div>
+
+        <!-- 3. Duplicate Card (Warning) -->
+        <div class="flex items-center justify-between p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-warning shadow-sm hover:bg-surface-hover transition-colors">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-status-warning text-[22px] flex-shrink-0">warning</span>
+            <div class="min-w-0">
+              <h3 class="font-sans text-sm font-medium text-text-primary truncate flex items-center gap-1.5">
+                <span>astronomical tables</span>
+                <span class="text-[11px] font-mono text-status-warning bg-status-warning/10 px-1.5 py-0.2 rounded border border-status-warning/20">exists</span>
+              </h3>
+              <p class="font-mono text-[11px] text-text-muted">Already indexed with 19 folio associations</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-status-warning text-[16px]">sync_saved_locally</span>
+        </div>
+
+        <!-- 4. Success Card -->
+        <div class="flex items-center justify-between p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-success shadow-sm hover:bg-surface-hover transition-colors">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-status-success text-[22px] flex-shrink-0">check_circle</span>
+            <div class="min-w-0">
+              <h3 class="font-sans text-sm font-medium text-text-primary truncate">codicology</h3>
+              <p class="font-mono text-[11px] text-text-muted">Codex #TG-9206 · Published to Index</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-status-success text-[16px]">done</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CLEAR CONFIRMATION MODAL -->
+  <div id="clear-modal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-6 hidden animate-fadeIn">
+    <div class="bg-surface border border-border rounded-2xl p-6 max-w-sm w-full shadow-[0_12px_48px_rgba(0,0,0,0.6)] animate-pop-in relative">
+      <div class="w-10 h-10 rounded-xl bg-status-error/10 border border-status-error/20 flex items-center justify-center text-status-error mb-4">
+        <span class="material-symbols-outlined text-[24px]">delete_forever</span>
+      </div>
+      <h3 class="font-serif text-lg font-bold text-text-primary mb-1.5">
+        Clear all tags?
+      </h3>
+      <p class="font-sans text-sm text-text-secondary mb-6 leading-relaxed">
+        All entered tag names and current batch results will be removed from your active work session.
+      </p>
+      <div class="flex gap-3">
+        <button
+          id="modal-cancel-btn"
+          type="button"
+          class="flex-1 h-11 rounded-xl bg-surface-hover border border-border text-text-primary font-sans text-sm font-medium hover:bg-surface-active hover:border-border-hover transition-colors min-h-[44px]"
+        >
+          Cancel
+        </button>
+        <button
+          id="modal-confirm-btn"
+          type="button"
+          class="flex-1 h-11 rounded-xl bg-status-error text-white font-sans text-sm font-semibold hover:bg-status-error/90 transition-all shadow-[0_4px_16px_rgba(196,77,77,0.3)] min-h-[44px]"
+        >
+          Clear Editor
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-20 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-surface border border-status-success/40 text-text-primary shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all duration-300 opacity-0 translate-y-[-10px] pointer-events-none">
+    <span class="material-symbols-outlined text-status-success text-[20px]">check_circle</span>
+    <span id="toast-text" class="text-xs font-sans font-medium">Batch tags created and catalog synchronized.</span>
+  </div>
+
+  <!-- JAVASCRIPT: LOGIC FOR REAL-TIME STATS, PARSING, DEDUPLICATION, MODALS & TOASTS -->
+  <script>
+    (function() {
+      const textarea = document.getElementById('tag-input');
+      const lineCountEl = document.getElementById('line-count');
+      const charCountEl = document.getElementById('char-count');
+      const parsedCountEl = document.getElementById('parsed-count');
+      const submitBtn = document.getElementById('submit-btn');
+      const submitIcon = document.getElementById('submit-icon');
+      const submitSpinner = document.getElementById('submit-spinner');
+      const submitLabel = document.getElementById('submit-label');
+      const clearBtn = document.getElementById('clear-btn');
+      const clearModal = document.getElementById('clear-modal');
+      const modalCancelBtn = document.getElementById('modal-cancel-btn');
+      const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+      const resultsSection = document.getElementById('results-section');
+      const resultsGrid = document.getElementById('results-grid');
+      const resultsSummaryBadge = document.getElementById('results-summary-badge');
+      const filterInput = document.getElementById('filter-tags-input');
+      const chipsCloud = document.getElementById('chips-cloud');
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+
+      // Set of existing library tags (normalized lowercase)
+      const existingTags = new Set([
+        "fantasy", "historical", "mystery", "sci-fi", "romance",
+        "philosophy", "poetry", "alchemy", "astronomy", "metallurgy",
+        "biography", "culinary arts", "drama", "travelogue", "astronomical tables",
+        "illuminated folio", "rare manuscript", "greek dialectics", "latin codex",
+        "cartography", "botany", "guild archive", "theology", "astrolabe design"
+      ]);
+
+      function parseTags(text) {
+        if (!text.trim()) return [];
+        // Split on newlines and commas
+        const raw = text.split(/[\n,]+/);
+        const set = new Set();
+        raw.forEach(item => {
+          const cleaned = item.trim().toLowerCase().replace(/\s+/g, ' ');
+          if (cleaned.length > 0) {
+            set.add(cleaned);
+          }
+        });
+        return Array.from(set);
+      }
+
+      function updateStats() {
+        const text = textarea.value;
+        const lines = text ? text.split('\n').length : 0;
+        const chars = text.length;
+        const parsed = parseTags(text);
+
+        lineCountEl.textContent = lines;
+        charCountEl.textContent = chars;
+        parsedCountEl.textContent = `${parsed.length} unique`;
+
+        if (parsed.length === 0) {
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      }
+
+      // Initial stats calculation
+      updateStats();
+      textarea.addEventListener('input', updateStats);
+
+      // Filter existing tags cloud
+      filterInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        const chips = chipsCloud.querySelectorAll('.tag-chip');
+        chips.forEach(chip => {
+          const tag = chip.getAttribute('data-tag');
+          if (!query || tag.includes(query)) {
+            chip.style.display = 'flex';
+          } else {
+            chip.style.display = 'none';
+          }
+        });
+      });
+
+      // Submit execution
+      submitBtn.addEventListener('click', () => {
+        const tags = parseTags(textarea.value);
+        if (tags.length === 0) return;
+
+        // UI Loading State
+        submitBtn.disabled = true;
+        submitIcon.classList.add('hidden');
+        submitSpinner.classList.remove('hidden');
+        submitLabel.textContent = 'Cataloging Tags...';
+
+        setTimeout(() => {
+          // Process tags
+          let createdCount = 0;
+          let dupCount = 0;
+          const newHtmlCards = [];
+
+          tags.forEach((tag, idx) => {
+            const isDup = existingTags.has(tag);
+            if (isDup) {
+              dupCount++;
+              newHtmlCards.push(`
+                <div class="flex items-center justify-between p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-warning shadow-sm hover:bg-surface-hover transition-colors animate-slide-down" style="animation-delay: ${idx * 40}ms">
+                  <div class="flex items-center gap-3 min-w-0">
+                    <span class="material-symbols-outlined text-status-warning text-[22px] flex-shrink-0">warning</span>
+                    <div class="min-w-0">
+                      <h3 class="font-sans text-sm font-medium text-text-primary truncate flex items-center gap-1.5">
+                        <span>${tag}</span>
+                        <span class="text-[11px] font-mono text-status-warning bg-status-warning/10 px-1.5 py-0.2 rounded border border-status-warning/20">already exists</span>
+                      </h3>
+                      <p class="font-mono text-[11px] text-text-muted">Retained existing record in Genu index</p>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-status-warning text-[16px]">sync_saved_locally</span>
+                </div>
+              `);
+            } else {
+              createdCount++;
+              existingTags.add(tag);
+              const tagId = Math.floor(1000 + Math.random() * 9000);
+              newHtmlCards.push(`
+                <div class="flex items-center justify-between p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-success shadow-sm hover:bg-surface-hover transition-colors animate-slide-down" style="animation-delay: ${idx * 40}ms">
+                  <div class="flex items-center gap-3 min-w-0">
+                    <span class="material-symbols-outlined text-status-success text-[22px] flex-shrink-0">check_circle</span>
+                    <div class="min-w-0">
+                      <h3 class="font-sans text-sm font-medium text-text-primary truncate">${tag}</h3>
+                      <p class="font-mono text-[11px] text-text-muted">Codex #TG-${tagId} · Published to Index</p>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-status-success text-[16px]">done</span>
+                </div>
+              `);
+
+              // Add newly minted chip to cloud
+              const newChip = document.createElement('span');
+              newChip.className = 'tag-chip px-3 py-1.5 rounded-full bg-canvas border border-primary/40 font-sans text-xs text-primary hover:bg-surface-hover cursor-default transition-all flex items-center gap-1.5 group animate-pop-in';
+              newChip.setAttribute('data-tag', tag);
+              newChip.innerHTML = `
+                <span>${tag}</span>
+                <span class="font-mono text-[10px] text-primary/80 bg-primary/10 px-1.5 py-0.2 rounded-full border border-primary/20">1</span>
+              `;
+              chipsCloud.prepend(newChip);
+            }
+          });
+
+          // Update existing tags badge count
+          document.getElementById('existing-count-badge').textContent = `${existingTags.size} tags indexed`;
+
+          // Replace results in grid
+          resultsGrid.innerHTML = newHtmlCards.join('');
+          resultsSummaryBadge.textContent = `${tags.length} processed`;
+          resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+          // Reset button state
+          submitBtn.disabled = false;
+          submitIcon.classList.remove('hidden');
+          submitSpinner.classList.add('hidden');
+          submitLabel.textContent = 'Create Tags';
+
+          // Show Toast
+          showToast(`Successfully registered ${createdCount} new tags (${dupCount} duplicate notice)`);
+        }, 800);
+      });
+
+      // Clear Modal Management
+      clearBtn.addEventListener('click', () => {
+        clearModal.classList.remove('hidden');
+      });
+
+      modalCancelBtn.addEventListener('click', () => {
+        clearModal.classList.add('hidden');
+      });
+
+      clearModal.addEventListener('click', (e) => {
+        if (e.target === clearModal) {
+          clearModal.classList.add('hidden');
+        }
+      });
+
+      modalConfirmBtn.addEventListener('click', () => {
+        textarea.value = '';
+        updateStats();
+        resultsGrid.innerHTML = `
+          <div class="col-span-2 py-8 text-center border border-dashed border-border rounded-xl bg-surface/50">
+            <span class="material-symbols-outlined text-text-muted text-[32px] mb-1">playlist_add_check</span>
+            <p class="text-sm text-text-secondary font-medium">Batch cleared</p>
+            <p class="text-xs text-text-muted font-mono mt-0.5">Enter new tags above to process another batch</p>
+          </div>
+        `;
+        resultsSummaryBadge.textContent = '0 processed';
+        clearModal.classList.add('hidden');
+        showToast('Editor workspace and results cleared.');
+      });
+
+      // Toast Display Function
+      let toastTimeout;
+      function showToast(msg) {
+        clearTimeout(toastTimeout);
+        toastText.textContent = msg;
+        toast.classList.remove('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        toastTimeout = setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 2600);
+      }
+
+      // Keyboard Accessibility: Escape closes modal
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !clearModal.classList.contains('hidden')) {
+          clearModal.classList.add('hidden');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

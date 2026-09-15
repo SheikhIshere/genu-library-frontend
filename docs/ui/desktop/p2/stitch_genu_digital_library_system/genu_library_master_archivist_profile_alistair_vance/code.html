@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prof. Alistair Vance — Master Archivist | Genu Library</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "canvas": "#16110f",
+            "surface": "#211a17",
+            "surface-container": "#251e1b",
+            "surface-container-low": "#211a17",
+            "surface-container-high": "#302825",
+            "surface-container-highest": "#3b3330",
+            "surface-container-lowest": "#130d0a",
+            "surface-hover": "#2a211c",
+            "surface-active": "#332a24",
+            "surface-bright": "#403734",
+            "border": "#3a322d",
+            "border-hover": "#4d433d",
+            "text-primary": "#ece0dc",
+            "text-secondary": "#a89c93",
+            "text-muted": "#7a706a",
+            "primary": "#ffb59e",
+            "primary-container": "#e8693f",
+            "primary-hover": "#d45a30",
+            "secondary": "#f3be67",
+            "secondary-container": "#7c5400",
+            "secondary-fixed": "#ffdead",
+            "secondary-fixed-dim": "#f3be67",
+            "text-on-accent": "#16110f",
+            "status-success": "#4a7c59",
+            "status-warning": "#d4a24e",
+            "status-info": "#5b8fb9",
+            "status-error": "#c44d4d",
+          },
+          fontFamily: {
+            "display": ["Playfair Display", "serif"],
+            "headline-1": ["Playfair Display", "serif"],
+            "headline-2": ["Playfair Display", "serif"],
+            "headline-3": ["Playfair Display", "serif"],
+            "body": ["Inter", "sans-serif"],
+            "body-default": ["Inter", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"],
+            "label-mono": ["JetBrains Mono", "monospace"],
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; background-color: #16110f; color: #ece0dc; }
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: #16110f; }
+      ::-webkit-scrollbar-thumb { background: #3a322d; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #e8693f; }
+    }
+  </style>
+</head>
+<body class="bg-canvas text-text-primary font-body antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-text-on-accent">
+<!-- 1. Header Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-[#16110f]/95 backdrop-blur-md border-b border-border shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
+<!-- Brand & Links -->
+<div class="flex items-center gap-8 flex-shrink-0">
+<a class="flex items-center gap-3 group focus:outline-none" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-border flex items-center justify-center text-primary-container shadow-[0_0_16px_rgba(232,105,63,0.25)] group-hover:border-primary-container/60 transition-all">
+<span class="material-symbols-outlined text-[24px]">local_fire_department</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display text-xl font-bold tracking-tight text-text-primary group-hover:text-primary transition-colors leading-none">Genu Library</span>
+<span class="font-mono text-[10px] tracking-widest text-text-muted uppercase mt-0.5">Imperial Scriptorium</span>
+</div>
+</a>
+<nav class="hidden md:flex items-center gap-1.5 font-body text-sm font-medium">
+<a class="px-3.5 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-colors" href="#">Home</a>
+<a class="px-3.5 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-colors" href="#">Books</a>
+<a class="px-3.5 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-colors" href="#">Playlists</a>
+<a class="px-3.5 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-colors" href="#">Upload</a>
+</nav>
+</div>
+<!-- Search Bar with Shortcut -->
+<div class="hidden lg:flex flex-1 max-w-md mx-4">
+<div class="relative w-full flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-text-muted text-[18px] pointer-events-none">search</span>
+<input class="w-full bg-surface-container-lowest border border-border focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-lg pl-10 pr-12 py-2 text-sm text-text-primary placeholder:text-text-muted transition-all shadow-inner" placeholder="Search archives, illuminated codices, authors..." type="text"/>
+<kbd class="absolute right-3 px-1.5 py-0.5 text-[11px] font-mono text-text-muted bg-surface-container border border-border rounded">⌘K</kbd>
+</div>
+</div>
+<!-- User Actions & Gold Tokens -->
+<div class="flex items-center gap-4 flex-shrink-0">
+<div class="hidden sm:flex items-center gap-2 bg-surface px-3.5 py-1.5 rounded-full border border-border shadow-[0_0_12px_rgba(243,190,103,0.06)]">
+<span class="text-secondary text-sm">🪙</span>
+<span class="font-mono text-sm font-medium text-secondary tabular-nums">1,480</span>
+<span class="font-mono text-[11px] text-text-muted uppercase">GN</span>
+</div>
+<a class="flex items-center gap-2.5 p-1 rounded-full hover:ring-2 hover:ring-primary-container/50 transition-all" href="#">
+<img alt="User Avatar" class="w-9 h-9 rounded-full object-cover border border-border shadow-md" src="https://lh3.googleusercontent.com/aida/AEtjO1XKf_GjtJwts4LnXYu2b91y8Hb7HemOhyoilAxQXGMe3qdQ4SlRllZjTE0ZiMHsW1XR7v6SRgEkFvubZkdqPVT46T4Y7-hX3PndE43a9RR1psx91yN5ANyBdb9ePSCUHIChheXtNgzrzI0r-8yrCDvlqx2GnFLJhA4IfATJOjGRRkXWUyvvkNrJZflBAvZqIo10iFDzT52sLCRpyyWeQ6eOxJWGAkSeeVBK4C7reLmE4FYIyoT7HUm5xog"/>
+</a>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
+<!-- 2. Profile Header Banner & Card -->
+<section class="relative rounded-2xl bg-surface border border-border p-6 sm:p-8 lg:p-10 shadow-2xl overflow-hidden">
+<!-- Atmospheric Hearth Embers Glow Background -->
+<div class="absolute -right-20 -top-20 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute left-1/3 -bottom-24 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+<!-- Avatar + Scholar Information -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 flex-1 min-w-0">
+<!-- Avatar with Ember Ring & Verified Badge -->
+<div class="relative flex-shrink-0 group">
+<div class="w-28 h-28 sm:w-36 sm:h-36 rounded-full p-[3px] bg-gradient-to-tr from-primary-container via-secondary to-primary-container shadow-[0_0_32px_rgba(232,105,63,0.35)] transition-transform duration-300 group-hover:scale-105">
+<img alt="Prof. Alistair Vance" class="w-full h-full object-cover rounded-full bg-surface-container-lowest border-2 border-surface" src="https://lh3.googleusercontent.com/aida/AEtjO1XKf_GjtJwts4LnXYu2b91y8Hb7HemOhyoilAxQXGMe3qdQ4SlRllZjTE0ZiMHsW1XR7v6SRgEkFvubZkdqPVT46T4Y7-hX3PndE43a9RR1psx91yN5ANyBdb9ePSCUHIChheXtNgzrzI0r-8yrCDvlqx2GnFLJhA4IfATJOjGRRkXWUyvvkNrJZflBAvZqIo10iFDzT52sLCRpyyWeQ6eOxJWGAkSeeVBK4C7reLmE4FYIyoT7HUm5xog"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-surface-container-highest text-secondary border border-border p-1.5 rounded-full shadow-lg flex items-center justify-center" title="Master Guild Elder">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+</div>
+<!-- Titles, Badges, Handle & Metadata -->
+<div class="flex flex-col gap-2 min-w-0">
+<div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+<h1 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text-primary">Prof. Alistair Vance</h1>
+<span class="inline-flex items-center gap-1 bg-primary-container/15 text-primary border border-primary-container/30 px-2.5 py-0.5 rounded-full text-xs font-medium">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                Verified Scholar
+              </span>
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high text-secondary border border-border px-2.5 py-0.5 rounded-full text-xs font-medium">
+<span class="material-symbols-outlined text-[15px]">auto_stories</span>
+                Guild Elder · 7 Cycles
+              </span>
+</div>
+<!-- Handle & Patronage Token Metric -->
+<div class="flex flex-wrap items-center gap-3 pt-0.5">
+<span class="font-mono text-sm text-text-muted">@alistair_vance</span>
+<span class="text-border">•</span>
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high/70 border border-border/80 px-3 py-1 rounded-full">
+<span>🪙</span>
+<span class="font-mono text-sm font-semibold text-secondary tabular-nums">12,840</span>
+<span class="font-mono text-[11px] text-text-muted uppercase tracking-wider">Patronage Tokens</span>
+</span>
+</div>
+<!-- Bio Narrative -->
+<p class="font-body text-sm sm:text-base text-text-secondary leading-relaxed max-w-2xl pt-1">
+              Archivist of the First Order, curator of archaic metallurgical folios and illuminated astronomical treatises. Custodian of the Guild Scriptorium.
+            </p>
+<!-- Metadata Links -->
+<div class="flex flex-wrap items-center gap-y-2 gap-x-5 text-xs text-text-muted pt-2">
+<a class="inline-flex items-center gap-1.5 hover:text-primary transition-colors" href="mailto:a.vance@sanctum.genu.lib">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+<span>a.vance@sanctum.genu.lib</span>
+</a>
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span>+1 (555) 739-8201</span>
+</span>
+<a class="inline-flex items-center gap-1.5 text-text-secondary hover:text-secondary transition-colors" href="https://oxford-archives.org/vance" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">link</span>
+<span>oxford-archives.org/vance</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex lg:flex-col sm:flex-row flex-wrap items-stretch gap-3 w-full lg:w-auto flex-shrink-0 pt-2 lg:pt-0">
+<button class="flex-1 lg:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container hover:bg-surface-hover border border-border hover:border-border-hover text-text-primary text-sm font-medium transition-all shadow-sm active:scale-95" id="btn-share-profile">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Share</span>
+</button>
+<button class="flex-1 lg:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container hover:bg-surface-hover border border-border hover:border-border-hover text-text-primary text-sm font-medium transition-all shadow-sm active:scale-95" id="btn-copy-link">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+<span>Copy Link</span>
+</button>
+<button class="w-full lg:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-primary-container hover:bg-primary-hover text-text-on-accent font-semibold text-sm shadow-[0_0_24px_rgba(232,105,63,0.3)] transition-all active:scale-95" id="btn-vcard">
+<span class="material-symbols-outlined text-[18px]">contact_page</span>
+<span>Download vCard</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 3. Metric Stat Bar -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+<!-- Metric 1 -->
+<div class="relative rounded-xl bg-surface border border-border p-6 shadow-md hover:border-border-hover transition-all flex flex-col justify-between group overflow-hidden">
+<div class="absolute top-4 right-4 text-surface-container-highest group-hover:text-primary/20 transition-colors pointer-events-none">
+<span class="material-symbols-outlined text-[44px]">menu_book</span>
+</div>
+<div>
+<span class="font-mono text-xs uppercase tracking-wider text-text-muted font-semibold">Archival Output</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-display text-3xl sm:text-4xl font-bold text-text-primary tabular-nums counter-val" data-target="84">84</span>
+<span class="font-display text-lg font-medium text-primary">Codices</span>
+</div>
+</div>
+<p class="font-body text-xs text-text-secondary mt-3">Illuminated treatises &amp; guild manuscripts registered</p>
+</div>
+<!-- Metric 2 -->
+<div class="relative rounded-xl bg-surface border border-border p-6 shadow-md hover:border-border-hover transition-all flex flex-col justify-between group overflow-hidden">
+<div class="absolute top-4 right-4 text-surface-container-highest group-hover:text-secondary/20 transition-colors pointer-events-none">
+<span class="material-symbols-outlined text-[44px]">favorite</span>
+</div>
+<div>
+<span class="font-mono text-xs uppercase tracking-wider text-text-muted font-semibold">Patron Endorsements</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-display text-3xl sm:text-4xl font-bold text-text-primary tabular-nums counter-val" data-target="3420">3,420</span>
+<span class="font-display text-lg font-medium text-secondary">Scholars</span>
+</div>
+</div>
+<p class="font-body text-xs text-text-secondary mt-3">Readers marked folios to sanctum study chests</p>
+</div>
+<!-- Metric 3 -->
+<div class="relative rounded-xl bg-surface border border-border p-6 shadow-md hover:border-border-hover transition-all flex flex-col justify-between group overflow-hidden">
+<div class="absolute top-4 right-4 text-surface-container-highest group-hover:text-primary-container/20 transition-colors pointer-events-none">
+<span class="material-symbols-outlined text-[44px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<span class="font-mono text-xs uppercase tracking-wider text-text-muted font-semibold">Archival Standing</span>
+<div class="flex items-center gap-3 mt-2">
+<span class="font-display text-3xl sm:text-4xl font-bold text-text-primary tabular-nums">4.96</span>
+<div class="flex items-center text-secondary text-sm">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<p class="font-body text-xs text-text-secondary mt-3">Aggregated across 312 peer reviews and citations</p>
+</div>
+</section>
+<!-- 4. Tabs Navigation Strip -->
+<section class="w-full">
+<div class="bg-surface-container-lowest border border-border rounded-xl p-1.5 flex items-center justify-start overflow-x-auto gap-1 shadow-inner">
+<button class="profile-tab px-5 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 bg-surface text-primary-container border border-border/80 shadow-sm" data-tab="overview">
+<span class="material-symbols-outlined text-[18px]">overview</span>
+<span>Overview</span>
+</button>
+<button class="profile-tab px-5 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 text-text-secondary hover:text-text-primary hover:bg-surface/50" data-tab="books">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span>Books</span>
+<span class="bg-surface-container px-2 py-0.5 rounded-full text-xs font-mono text-text-muted">84</span>
+</button>
+<button class="profile-tab px-5 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 text-text-secondary hover:text-text-primary hover:bg-surface/50" data-tab="reviews">
+<span class="material-symbols-outlined text-[18px]">rate_review</span>
+<span>Reviews</span>
+<span class="bg-surface-container px-2 py-0.5 rounded-full text-xs font-mono text-text-muted">312</span>
+</button>
+<button class="profile-tab px-5 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 text-text-secondary hover:text-text-primary hover:bg-surface/50" data-tab="playlists">
+<span class="material-symbols-outlined text-[18px]">collections_bookmark</span>
+<span>Playlists</span>
+<span class="bg-surface-container px-2 py-0.5 rounded-full text-xs font-mono text-text-muted">9</span>
+</button>
+</div>
+</section>
+<!-- 5. Main Content & Sidebar Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left / Main Column (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-8 min-w-0">
+<!-- Scholarly Mission & Restoration -->
+<section class="rounded-xl bg-surface border border-border p-6 sm:p-8 shadow-md flex flex-col gap-5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-border flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+</div>
+<h2 class="font-display text-xl sm:text-2xl font-bold text-text-primary">Scholarly Mission &amp; Restoration</h2>
+</div>
+<div class="space-y-4 text-text-secondary font-body leading-relaxed text-sm sm:text-base">
+<p>
+              For over two decades, my sanctuary labor has anchored upon the chemical preservation of pig-skin bindings, hand-cut movable iron types, and early Flemish astronomical folios. My workshop in Edinburgh balances ancient conservation techniques with digital holographic archiving.
+            </p>
+<p>
+              As an elected Guild Elder of Genu Library, I curate open-access digital facsimiles of works previously locked within private monastic crypts. Every entry is indexed with meticulous typographic attribution, ink spectrometry, and watermarked fiber analysis.
+            </p>
+</div>
+<!-- Achievement Pill Badges -->
+<div class="flex flex-wrap gap-2.5 pt-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-border text-xs font-medium text-text-primary">
+<span class="material-symbols-outlined text-[16px] text-secondary">ink_pen</span>
+              Master Scribe Guild
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-border text-xs font-medium text-text-primary">
+<span class="material-symbols-outlined text-[16px] text-primary-container">shield</span>
+              Rare Folio Custodian
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-border text-xs font-medium text-text-primary">
+<span class="material-symbols-outlined text-[16px] text-secondary">military_tech</span>
+              Top 1% Archival Curator
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-border text-xs font-medium text-text-primary">
+<span class="material-symbols-outlined text-[16px] text-text-muted">timer</span>
+              12 Years Guild Service
+            </span>
+</div>
+</section>
+<!-- Curated Codex Showcase -->
+<section class="rounded-xl bg-surface border border-border p-6 sm:p-8 shadow-md flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-border flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+</div>
+<h3 class="font-display text-xl sm:text-2xl font-bold text-text-primary">Masterwork in Residence</h3>
+</div>
+<span class="font-mono text-xs text-primary-container font-semibold uppercase tracking-wider bg-primary-container/10 px-2.5 py-1 rounded border border-primary-container/20">Featured Codex</span>
+</div>
+<!-- Feature Card with Image 17 -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-6 bg-surface-container-lowest border border-border rounded-xl p-4 sm:p-5 items-center group">
+<div class="sm:col-span-5 h-64 rounded-lg overflow-hidden relative shadow-lg">
+<img alt="The Alchemist's Codex" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+<span class="absolute bottom-3 left-3 font-mono text-[11px] bg-surface/90 text-secondary border border-border px-2 py-0.5 rounded">Circa 1484 AD</span>
+</div>
+<div class="sm:col-span-7 flex flex-col gap-3 justify-center">
+<div class="flex items-center gap-2 text-xs font-mono text-text-muted">
+<span>Codex Sanctum #084</span>
+<span>•</span>
+<span class="text-status-success font-medium">Fully Restored</span>
+</div>
+<h4 class="font-display text-xl font-bold text-text-primary group-hover:text-primary transition-colors">The Alchemist’s Codex: Arcane Wisdom &amp; Hermetic Arts</h4>
+<p class="font-body text-xs sm:text-sm text-text-secondary leading-relaxed line-clamp-3">
+                Recovered from the lower crypts of Mainz. Hand-illuminated with gold leaf geometric diagrams, celestial tables, and the original Latin treatise on metallurgical transmutation.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-1">
+<div class="flex items-center gap-1 text-secondary text-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-mono font-medium text-text-primary text-xs">5.0</span>
+<span class="text-text-muted text-xs font-mono">(94 reviews)</span>
+</div>
+<button class="inline-flex items-center gap-1 text-xs font-medium text-primary-container hover:text-primary transition-colors">
+<span>Inspect Folio</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Archival Ledger Activity -->
+<section class="rounded-xl bg-surface border border-border p-6 sm:p-8 shadow-md flex flex-col gap-5">
+<div class="flex items-center justify-between pb-2 border-b border-border">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-border flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">dynamic_feed</span>
+</div>
+<h3 class="font-display text-xl sm:text-2xl font-bold text-text-primary">Archival Ledger Activity</h3>
+</div>
+<span class="font-mono text-xs text-text-muted uppercase tracking-wider">Sync: Block #9,481</span>
+</div>
+<!-- Timeline items -->
+<div class="flex flex-col gap-4">
+<!-- Item 1 -->
+<div class="flex items-start gap-4 p-3.5 rounded-lg bg-surface-container-lowest border border-border/70 hover:border-border transition-all">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border flex items-center justify-center text-primary-container flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<h5 class="text-sm font-medium text-text-primary truncate">Annotated facsimile of <span class="italic font-serif">Chronicles of the Iron Foundry</span></h5>
+<span class="font-mono text-xs text-text-muted flex-shrink-0">3 hours ago</span>
+</div>
+<p class="text-xs text-text-secondary mt-1">Appended 14 high-resolution copperplate woodcut scans with metallurgical commentary and alloy ratio translation.</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-start gap-4 p-3.5 rounded-lg bg-surface-container-lowest border border-border/70 hover:border-border transition-all">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border flex items-center justify-center text-secondary flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">rate_review</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<h5 class="text-sm font-medium text-text-primary truncate">Published Critical Review: <span class="italic font-serif">De Sphaera Mundi</span></h5>
+<span class="font-mono text-xs text-text-muted flex-shrink-0">2 days ago</span>
+</div>
+<p class="text-xs text-text-secondary mt-1">Awarded 5 Stars • Cross-referenced celestial tables with Sacrobosco's Paris 1230 codex with astronomical commentary.</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-start gap-4 p-3.5 rounded-lg bg-surface-container-lowest border border-border/70 hover:border-border transition-all">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border flex items-center justify-center text-status-success flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<h5 class="text-sm font-medium text-text-primary truncate">Authenticated Guild Seal on <span class="italic font-serif">Lexicon of Antiquity</span></h5>
+<span class="font-mono text-xs text-text-muted flex-shrink-0">5 days ago</span>
+</div>
+<p class="text-xs text-text-secondary mt-1">Cryptographic verification ledger stamped with Guild Key #E869-3F on the eternal sanctuary registry.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right / Sidebar Column (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Guild Scriptorium Sanctum Location Card -->
+<section class="rounded-xl bg-surface border border-border p-6 shadow-md flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">location_on</span>
+<span class="font-mono text-xs uppercase tracking-wider text-text-muted font-semibold">Guild Scriptorium Sanctum</span>
+</div>
+<div>
+<h3 class="font-display text-lg font-bold text-text-primary">North Sanctum Folio Hall 4B</h3>
+<p class="text-xs text-text-secondary mt-1 leading-relaxed">
+              The Sovereign Archives • Oxford &amp; Edinburgh Fellowship Chapter, United Kingdom
+            </p>
+</div>
+<!-- Stylized Scriptorium Map Preview Container -->
+<div class="relative w-full h-44 rounded-lg bg-surface-container-lowest border border-border overflow-hidden flex items-center justify-center p-4 group">
+<div class="absolute inset-0 bg-[radial-gradient(#3a322d_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+<div class="relative z-10 flex flex-col items-center text-center gap-1.5">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border flex items-center justify-center text-primary-container shadow-md">
+<span class="material-symbols-outlined text-[22px]">map</span>
+</div>
+<span class="font-display text-sm font-bold text-text-primary">Oxford Sanctum Vault 4B</span>
+<span class="font-mono text-[11px] text-text-muted">51.7548° N, 1.2544° W</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs pt-1 border-t border-border/80">
+<span class="text-text-muted">Visiting: Fri–Sun by petition</span>
+<span class="inline-flex items-center gap-1 font-mono text-status-success font-medium">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+              Vault Clear
+            </span>
+</div>
+</section>
+<!-- Domain Distribution / Specialist Fields -->
+<section class="rounded-xl bg-surface border border-border p-6 shadow-md flex flex-col gap-4">
+<div>
+<span class="font-mono text-xs uppercase tracking-wider text-text-muted font-semibold">Domain Distribution</span>
+<h4 class="font-display text-lg font-bold text-text-primary mt-1">Specialist Fields</h4>
+</div>
+<div class="flex flex-col gap-4 pt-1">
+<!-- Meter 1 -->
+<div>
+<div class="flex justify-between text-xs font-medium mb-1.5">
+<span class="text-text-primary">Metallurgy &amp; Craftsmanship</span>
+<span class="font-mono text-secondary">38%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden border border-border/60">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 38%"></div>
+</div>
+</div>
+<!-- Meter 2 -->
+<div>
+<div class="flex justify-between text-xs font-medium mb-1.5">
+<span class="text-text-primary">Early Astronomy &amp; Astrolabes</span>
+<span class="font-mono text-primary-container">32%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden border border-border/60">
+<div class="bg-primary-container h-full rounded-full transition-all duration-1000" style="width: 32%"></div>
+</div>
+</div>
+<!-- Meter 3 -->
+<div>
+<div class="flex justify-between text-xs font-medium mb-1.5">
+<span class="text-text-primary">Gutenberg Typography &amp; Print</span>
+<span class="font-mono text-status-info">20%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden border border-border/60">
+<div class="bg-status-info h-full rounded-full transition-all duration-1000" style="width: 20%"></div>
+</div>
+</div>
+<!-- Meter 4 -->
+<div>
+<div class="flex justify-between text-xs font-medium mb-1.5">
+<span class="text-text-primary">Ancient Dialectics</span>
+<span class="font-mono text-text-muted">10%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden border border-border/60">
+<div class="bg-surface-container-highest h-full rounded-full transition-all duration-1000" style="width: 10%"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- 6. Persistent Genu Library Footer -->
+<footer class="w-full bg-[#130d0a] border-t border-border mt-16 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<!-- Brand Summary -->
+<div class="md:col-span-5 flex flex-col gap-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container border border-border">
+<span class="material-symbols-outlined text-[20px]">local_fire_department</span>
+</div>
+<span class="font-display text-lg font-bold tracking-tight text-text-primary">Genu Library Sanctuary</span>
+</div>
+<p class="font-body text-xs text-text-secondary max-w-sm leading-relaxed">
+            Preserving the illuminated corpus, guild manuscripts, and philosophical codices across decentralized archival vaults.
+          </p>
+</div>
+<!-- Navigation Columns -->
+<div class="md:col-span-2 flex flex-col gap-2.5">
+<span class="font-mono text-xs font-semibold uppercase tracking-wider text-text-primary">Navigation</span>
+<a class="text-xs text-text-secondary hover:text-primary transition-colors" href="#">Home Archive</a>
+<a class="text-xs text-text-secondary hover:text-primary transition-colors" href="#">Codex Directory</a>
+<a class="text-xs text-text-secondary hover:text-primary transition-colors" href="#">Curator Playlists</a>
+<a class="text-xs text-text-secondary hover:text-primary transition-colors" href="#">Deposit Folio</a>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2.5">
+<span class="font-mono text-xs font-semibold uppercase tracking-wider text-text-primary">Guild Archive</span>
+<a class="text-xs text-text-secondary hover:text-primary transition-colors" href="#">Sanctuary Charter</a>
+<a class="text-xs text-text-secondary hover:text-primary transition-colors" href="#">Scriptorium Rules</a>
+<a class="text-xs text-text-secondary hover:text-primary transition-colors" href="#">Archival Ledger</a>
+<a class="text-xs text-text-secondary hover:text-primary transition-colors" href="#">Council of Elders</a>
+</div>
+<!-- Newsletter Subscription Dispatch -->
+<div class="md:col-span-3 flex flex-col gap-3">
+<span class="font-mono text-xs font-semibold uppercase tracking-wider text-text-primary">Sanctuary Dispatch</span>
+<p class="text-xs text-text-secondary">Receive bi-weekly notices of newly digitised folios and translations.</p>
+<div class="flex items-center gap-1.5">
+<input class="flex-1 bg-surface border border-border focus:border-primary-container focus:ring-0 rounded-lg px-3 py-2 text-xs text-text-primary placeholder:text-text-muted" placeholder="archivist@guild.org" type="email"/>
+<button class="px-3 py-2 bg-primary-container hover:bg-primary-hover text-text-on-accent text-xs font-semibold rounded-lg transition-colors">Join</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border/60 text-xs font-mono text-text-muted">
+<span>© MMXXIV GENU GUILD. ALL RIGHTS PRESERVED.</span>
+<span>SEALED BY SCRIPTORIUM SANCTUM 4B</span>
+</div>
+</div>
+</footer>
+<!-- Toast Notification Overlay -->
+<div class="fixed bottom-6 right-6 bg-surface-container-highest border border-border text-text-primary px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50" id="toast-notification">
+<span class="material-symbols-outlined text-primary-container text-[20px]" id="toast-icon">check_circle</span>
+<span class="font-body text-xs font-medium" id="toast-message">Action successful</span>
+</div>
+<!-- Interactive Scripts -->
+<script>
+    (function() {
+      // Toast notification helper
+      const toast = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      let toastTimer;
+
+      function showToast(message, icon = 'check_circle') {
+        if (!toast) return;
+        toastMsg.textContent = message;
+        if (toastIcon) toastIcon.textContent = icon;
+        toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        }, 3000);
+      }
+
+      // Share button
+      const shareBtn = document.getElementById('btn-share-profile');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+          if (navigator.share) {
+            navigator.share({
+              title: 'Prof. Alistair Vance | Genu Library Sanctuary',
+              url: window.location.href
+            }).catch(() => {});
+          } else {
+            navigator.clipboard.writeText(window.location.href);
+            showToast('Archival profile card copied to clipboard', 'share');
+          }
+        });
+      }
+
+      // Copy link button
+      const copyBtn = document.getElementById('btn-copy-link');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href);
+          showToast('Guild sanctum URL copied to ledger', 'content_copy');
+        });
+      }
+
+      // Download vCard
+      const vCardBtn = document.getElementById('btn-vcard');
+      if (vCardBtn) {
+        vCardBtn.addEventListener('click', () => {
+          const vcardData = 
+`BEGIN:VCARD
+VERSION:3.0
+N:Vance;Alistair;;Prof.;
+FN:Prof. Alistair Vance
+ORG:Genu Library Sanctuary;Master Scriptorium
+TITLE:Master Archivist & Scholar
+EMAIL;type=INTERNET,pref:a.vance@sanctum.genu.lib
+TEL;type=WORK:+1 (555) 739-8201
+URL:https://oxford-archives.org/vance
+NOTE:Archivist of the First Order, curator of archaic metallurgical folios.
+END:VCARD`;
+
+          const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'Prof_Alistair_Vance_Sanctuary.vcf');
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          showToast('Guild Archival vCard downloaded', 'download_done');
+        });
+      }
+
+      // Tab bar button styles
+      const tabs = document.querySelectorAll('.profile-tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.className = 'profile-tab px-5 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 text-text-secondary hover:text-text-primary hover:bg-surface/50';
+          });
+          tab.className = 'profile-tab px-5 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 bg-surface text-primary-container border border-border/80 shadow-sm';
+        });
+      });
+    })();
+  </script>
+</body></html>

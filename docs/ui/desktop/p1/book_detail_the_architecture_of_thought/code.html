@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#251e1b","text-on-accent":"#16110f","text-muted":"#7a706a","inverse-surface":"#eee0da","status-info":"#5b8fb9","border":"#3a322d","secondary-fixed":"#ffdead","on-tertiary":"#00363f","on-surface":"#eee0da","primary-container":"#ea6a40","error":"#ffb4ab","on-error-container":"#ffdad6","surface":"#211a17","outline":"#a68b82","surface-container-high":"#302825","surface-dim":"#18120f","outline-variant":"#58423b","inverse-primary":"#a73a13","on-background":"#eee0da","on-tertiary-fixed":"#001f25","status-warning":"#d4a24e","on-secondary-fixed":"#281900","canvas":"#16110f","secondary-fixed-dim":"#f3be67","on-primary-fixed-variant":"#842500","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","text-secondary":"#a89c93","background":"#18120f","primary":"#ffb59e","surface-tint":"#ffb59e","surface-container-highest":"#3b3330","on-primary-container":"#521300","tertiary-fixed-dim":"#61d6ed","text-primary":"#ece0dc","surface-container-low":"#211a17","on-tertiary-container":"#002f36","surface-variant":"#3b3330","on-secondary-container":"#ffcd7d","tertiary-container":"#049fb5","status-success":"#4a7c59","inverse-on-surface":"#372f2b","on-secondary":"#432c00","tertiary":"#61d6ed","surface-bright":"#403734","primary-fixed-dim":"#ffb59e","status-error":"#c44d4d","on-tertiary-fixed-variant":"#004e5a","on-primary":"#5e1700","secondary":"#f3be67","error-container":"#93000a","surface-container-lowest":"#130d0a","primary-hover":"#d45a30","on-error":"#690005","on-secondary-fixed-variant":"#604100","tertiary-fixed":"#a4eeff","secondary-container":"#7c5400","border-hover":"#4d433d","surface-active":"#332a24","surface-hover":"#2a211c","on-surface-variant":"#dfc0b7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","margin-mobile":"1rem","space-xl":"2rem","space-sm":"0.5rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem"},"fontFamily":{"display":["Playfair Display"],"headline-1":["Playfair Display"],"body-large":["Inter"],"headline-2":["Playfair Display"],"overline":["JetBrains Mono"],"body-default":["Inter"],"caption":["Inter"],"display-mobile":["Playfair Display"],"display-xl-mobile":["Playfair Display"],"headline-3":["Playfair Display"],"display-xl":["Playfair Display"],"label-mono":["JetBrains Mono"],"body-small":["Inter"]},"fontSize":{"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-1":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-large":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-2":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"body-default":["16px",{"lineHeight":"24px","fontWeight":"400"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-xl-mobile":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-3":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-xl":["60px",{"lineHeight":"68px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-mono":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}],"body-small":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-canvas font-body-default text-body-default text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-canvas/80 backdrop-blur-xl border-b border-border transition-colors duration-200"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg shrink-0"><a class="flex items-center gap-space-sm group text-text-primary" data-path="home" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border group-hover:border-primary transition-colors"><span class="material-symbols-outlined text-primary text-[22px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary tracking-tight">Genu Library</span></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary border-b-2 border-primary"><a aria-current="page" class="font-body-default transition-colors py-space-xs text-primary border-b-2 border-primary" data-path="home" href="#">Home</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="books" href="#">Books</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="playlists" href="#">Playlists</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="upload" href="#">Upload</a></nav></div><div class="hidden md:flex flex-1 max-w-md mx-space-md relative"><div class="w-full flex items-center bg-canvas border border-border rounded-lg px-space-sm py-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all"><span class="material-symbols-outlined text-text-muted text-[20px] mr-2">search</span><input class="w-full bg-transparent border-none outline-none font-body-small text-body-small text-text-primary placeholder:text-text-muted" placeholder="Search codex, folio, author, or seal..." type="text"/><span class="font-label-mono text-overline text-text-muted bg-surface-container border border-border px-1.5 py-0.5 rounded">⌘K</span></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-1.5 bg-surface-container border border-border px-space-sm py-1.5 rounded-lg"><span class="text-secondary text-[16px]">🪙</span><span class="font-label-mono text-label-mono font-medium text-secondary">1.4K</span></div><div class="flex items-center gap-space-sm"><div class="relative group cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></div></header><main class="w-full pt-20 bg-canvas min-h-screen"><div class="flex flex-col w-full">
+<!-- Radial Atmospheric Glow Behind Header -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[850px] h-[450px] bg-primary-container/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<div class="absolute top-96 -left-32 w-80 h-80 bg-secondary-container/15 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<!-- Container Grid -->
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin pt-6 pb-20 space-y-16">
+<!-- Breadcrumb Bar -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 font-body-small text-body-small text-text-muted">
+<a class="hover:text-primary transition-colors flex items-center gap-1.5" data-path="home" href="#">
+<span class="material-symbols-outlined text-[16px]">pixel_4_4xl_4a_5_5a_5g</span>
+<span>Home</span>
+</a>
+<span class="text-text-muted/50 font-label-mono text-overline">/</span>
+<a class="hover:text-primary transition-colors" data-path="books" href="#">Books Catalog</a>
+<span class="text-text-muted/50 font-label-mono text-overline">/</span>
+<span class="text-text-primary font-medium truncate max-w-xs md:max-w-md">The Architecture of Thought</span>
+</nav>
+<!-- Book Header & Folio Showcase (2-Column Grid) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+<!-- Left Column: Artisan Tome Display (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col items-center">
+<div class="relative w-full max-w-[420px] group">
+<!-- Warm Ember Ambient Glow on Hover -->
+<div class="absolute -inset-1 bg-gradient-to-tr from-primary-container/20 via-secondary/15 to-transparent rounded-2xl blur-lg group-hover:opacity-100 opacity-60 transition-opacity duration-500"></div>
+<!-- Book Cover Housing -->
+<div class="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-surface-container shadow-2xl shadow-canvas/90 flex flex-col justify-between p-6">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" data-alt="An ornate classical book cover of dark weathered leather with intricate gold foil inlay depicting Euclidean sacred geometry diagrams, golden ratios, and compass flourishes in deep carbonized amber tones and rich Renaissance craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCU9kK_gDcH4FKcdVI7ISvtx3BFC-640ms8G-f8Fo-3xJ7ZNv16KgLnbw6c3OkVJ3UmCcwA57VSMqzTZ2gA8ySuj5uZiq3ABCKIao59PjEKvQLvNGbhbyHlDTXVCE7zwBrMYATR9mQ0BO2hdQh57zzJ-2NEIu_1DAPFLXL8mt0sIKG-UXF9Vw5_flOKIJ1taUY2Wk8guJrCwzRh_F7F5t2lgPQ4EaNfNVDpoEaU-7bNvW1UN6lsVCm"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent"></div>
+<!-- Top Folio Badges -->
+<div class="relative z-10 flex items-center justify-between">
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md font-label-mono text-overline uppercase tracking-widest text-primary font-semibold">
+                  Vol. I • Philosophy
+                </span>
+<span class="flex items-center gap-1 px-3 py-1 rounded-full bg-status-success/20 border-0 backdrop-blur-md font-body-small text-caption text-status-success font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span>
+                  Public Edition
+                </span>
+</div>
+<!-- Book Spine Embellishment (Visual Left Strip) -->
+<div class="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-canvas/60 via-canvas/20 to-transparent pointer-events-none"></div>
+<!-- Bottom Tome Placard -->
+<div class="relative z-10 space-y-1">
+<div class="font-overline text-overline uppercase tracking-wider text-secondary">Sanctum Vault Index</div>
+<div class="font-label-mono text-body-small text-text-primary">MSS-ARK-108.IV</div>
+</div>
+</div>
+<!-- Quick Physical Ledger Specs Below Cover -->
+<div class="mt-4 grid grid-cols-3 gap-2 w-full">
+<div class="bg-surface-container-low rounded-lg p-2.5 text-center shadow-sm">
+<span class="block font-overline text-overline text-text-muted uppercase">Vellum</span>
+<span class="font-label-mono text-body-small font-medium text-text-primary">342 Folios</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2.5 text-center shadow-sm">
+<span class="block font-overline text-overline text-text-muted uppercase">Weight</span>
+<span class="font-label-mono text-body-small font-medium text-text-primary">48.2 MB</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2.5 text-center shadow-sm">
+<span class="block font-overline text-overline text-text-muted uppercase">Cipher</span>
+<span class="font-label-mono text-body-small font-medium text-secondary">SHA-256</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Codex Metadata & Direct Action (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col space-y-6">
+<!-- Rarity Badges & Tag Cloud -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-primary font-label-mono text-overline font-semibold tracking-wider">
+              PUBLIC SANCTUM
+            </span>
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-text-secondary font-label-mono text-overline">
+              FIRST CODEX EDITION
+            </span>
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary font-label-mono text-overline font-semibold">
+              FOLIO #108
+            </span>
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-text-muted font-body-small text-caption flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+              Archivist Verified
+            </span>
+</div>
+<!-- Codex Main Title -->
+<div class="space-y-2">
+<h1 class="font-headline-1 text-headline-1 lg:font-display lg:text-display text-text-primary font-bold tracking-tight">
+              The Architecture of Thought: <span class="text-text-secondary italic font-normal">Foundations of Classical Logic &amp; Sacred Geometry</span>
+</h1>
+<p class="font-body-large text-body-large text-text-secondary">
+              By <a class="text-primary hover:text-primary-hover underline underline-offset-4 decoration-primary/40 hover:decoration-primary transition-all font-medium" href="#">Marcus Aurelius Sterling</a>
+</p>
+</div>
+<!-- Uploader Guild Seal Attribution Card -->
+<div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center font-display text-headline-3 text-secondary font-bold shadow-inner">
+                  T
+                </div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-primary flex items-center justify-center text-text-on-accent" title="Guild Master Seal">
+<span class="material-symbols-outlined text-[10px] font-bold">military_tech</span>
+</div>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-body-default text-body-default font-semibold text-text-primary">Archivist Thorne</span>
+<span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-label-mono text-overline font-semibold">Guild Master</span>
+</div>
+<span class="font-body-small text-caption text-text-muted block">
+                  Uploaded 3 months ago • Revised Oct 14, 2024
+                </span>
+</div>
+</div>
+<!-- Monospace Token Price Display -->
+<div class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-lg shadow-inner">
+<span class="text-secondary text-lg">🪙</span>
+<div class="flex flex-col">
+<span class="font-label-mono text-label-mono font-bold text-secondary tracking-wider">350 TOKENS</span>
+<span class="font-overline text-overline text-text-muted">Preservation Bounty</span>
+</div>
+</div>
+</div>
+<!-- Primary Interactive Action Row -->
+<div class="flex flex-wrap items-center gap-3 pt-2">
+<!-- Scroll to Reader Primary CTA -->
+<button class="flex-1 min-w-[200px] flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-primary-container hover:bg-primary-hover text-text-on-accent font-body-default text-body-default font-semibold shadow-lg shadow-primary-container/20 transition-all duration-200 transform active:scale-[0.98] group" id="btn-read-codex">
+<span class="material-symbols-outlined text-[20px] group-hover:rotate-6 transition-transform">auto_stories</span>
+<span>Read Codex / PDF</span>
+</button>
+<!-- Favorite Toggle Button with Dynamic Counter -->
+<button aria-label="Toggle Favorite" class="flex items-center gap-2 px-4 py-3.5 rounded-lg bg-surface-container hover:bg-surface-hover text-text-primary transition-all duration-200 shadow-sm group active:scale-95" id="favorite-toggle">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors text-[22px]" id="fav-icon">favorite</span>
+<span class="font-label-mono text-label-mono font-medium text-text-secondary group-hover:text-text-primary" id="fav-count">1,428</span>
+</button>
+<!-- Secondary Actions: Report & Share -->
+<button class="flex items-center gap-1.5 px-4 py-3.5 rounded-lg bg-surface-container hover:bg-surface-hover text-text-secondary hover:text-text-primary transition-all duration-200 shadow-sm" id="btn-share" title="Copy Manuscript Citation Link">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span class="font-body-small text-body-small font-medium hidden sm:inline" id="share-label">Share</span>
+</button>
+<button class="p-3.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-muted hover:text-error transition-all duration-200 shadow-sm" id="btn-flag" title="Report or Flag Inconsistency">
+<span class="material-symbols-outlined text-[20px]">flag</span>
+</button>
+</div>
+<!-- Quick Provenance Note Banner -->
+<div class="bg-surface-container-lowest/60 rounded-xl p-4 flex items-start gap-3.5 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[22px] shrink-0 mt-0.5">workspace_premium</span>
+<div class="space-y-1">
+<h2 class="font-body-small text-body-small font-semibold text-text-primary">Sovereign Vault Guarantee</h2>
+<p class="font-body-small text-caption text-text-secondary leading-relaxed">
+                Bound with zero-loss cryptographic timestamps. Certified by the Genu Library Epistemological Council for cross-referencing logic theorems and classical architectural ratios.
+              </p>
+</div>
+</div>
+</div>
+</section>
+<!-- PDF Viewer Section (Full-Width Reader Frame) -->
+<section class="scroll-mt-24 space-y-4" id="pdf-reader-anchor">
+<!-- Viewer Header Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">menu_book</span>
+<h2 class="font-headline-3 text-headline-3 text-text-primary">Illuminated Codex Reader</h2>
+</div>
+<span class="font-label-mono text-caption text-text-muted bg-surface-container px-3 py-1 rounded-full self-start sm:self-auto">
+            Interactive Dual-Layer Vector Rendering
+          </span>
+</div>
+<!-- Reader Shell Container -->
+<div class="w-full rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xl flex flex-col">
+<!-- Sticky Reader Toolbar -->
+<div class="bg-surface-container px-4 py-3 flex flex-wrap items-center justify-between gap-3 shadow-md z-20">
+<!-- Left: Page Navigator Controls -->
+<div class="flex items-center gap-2">
+<span class="font-overline text-overline text-text-muted uppercase tracking-wider hidden sm:inline">Folio</span>
+<button class="w-8 h-8 rounded-md bg-surface-container-high hover:bg-surface-active flex items-center justify-center text-text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed" id="page-prev">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<div class="flex items-center gap-1.5 bg-surface-container-lowest px-2.5 py-1 rounded-md">
+<input class="w-8 text-center bg-transparent font-label-mono text-label-mono font-semibold text-primary outline-none focus:ring-1 focus:ring-primary/40 rounded" id="page-input" type="text" value="04"/>
+<span class="font-label-mono text-body-small text-text-muted">/</span>
+<span class="font-label-mono text-body-small text-text-secondary">342</span>
+</div>
+<button class="w-8 h-8 rounded-md bg-surface-container-high hover:bg-surface-active flex items-center justify-center text-text-primary transition-colors" id="page-next">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="hidden md:flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-active text-text-secondary hover:text-text-primary font-body-small text-caption transition-colors" id="jump-folio">
+<span>Jump</span>
+<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span>
+</button>
+</div>
+<!-- Center: Zoom & Scale Controls -->
+<div class="flex items-center gap-2 bg-surface-container-low px-2 py-1 rounded-lg">
+<button class="w-7 h-7 rounded flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-surface-container transition-colors" id="zoom-out" title="Zoom Out (-)">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-mono text-caption font-semibold text-text-primary px-2 min-w-[48px] text-center" id="zoom-display">
+                100%
+              </span>
+<button class="w-7 h-7 rounded flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-surface-container transition-colors" id="zoom-in" title="Zoom In (+)">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+<button class="hidden lg:flex items-center gap-1 px-2 py-0.5 rounded text-text-muted hover:text-text-primary hover:bg-surface-container text-caption transition-colors" id="zoom-fit" title="Fit to Width">
+<span class="material-symbols-outlined text-[14px]">fit_screen</span>
+<span>Fit</span>
+</button>
+</div>
+<!-- Right: Display Modes & Download Options -->
+<div class="flex items-center gap-1.5">
+<button class="p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-container-high transition-colors" id="btn-dual-view" title="Dual Page Mode">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+</button>
+<button class="p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-container-high transition-colors" id="btn-fullscreen" title="Toggle Fullscreen [F]">
+<span class="material-symbols-outlined text-[20px]">fullscreen</span>
+</button>
+<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-primary hover:text-text-on-accent text-text-secondary font-body-small text-caption font-medium transition-colors" href="#download" title="Download Offline Folio">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span class="hidden sm:inline">Download</span>
+</a>
+</div>
+</div>
+<!-- Document Canvas Viewport Area -->
+<div class="relative w-full h-[620px] overflow-auto bg-surface-dim p-4 md:p-8 flex justify-center items-start transition-all" id="reader-viewport">
+<!-- Scalable Folio Parchment Page Simulation -->
+<div class="relative w-full max-w-[760px] min-h-[820px] bg-[#1a1411] text-[#ded2cb] p-8 md:p-14 rounded-lg shadow-2xl transition-transform duration-300 origin-top flex flex-col justify-between" id="folio-page-content">
+<!-- Page Watermark & Marginalia Rule -->
+<div class="flex items-center justify-between pb-6 font-label-mono text-overline text-text-muted">
+<span>FOLIO IV • TRACTATUS DE LOGICA</span>
+<span>ARCH. ST. STERLING • 1492</span>
+</div>
+<!-- Page Main Academic Body -->
+<div class="space-y-6">
+<!-- Illuminated Drop Cap & Opening Discourse -->
+<div class="relative">
+<p class="font-body-large text-body-large leading-relaxed text-[#f2e6e0]">
+<span class="float-left text-primary font-display text-[68px] leading-[0.8] pr-3 pt-1 font-bold select-none">
+                      P
+                    </span>
+                    rimum oportet statuere rationem qua mens humana per proportiones aureas veritatem comprehendat. When Euclidean principles intersect with natural cognitive perception, geometric harmony ceases to be merely spatial; it transforms into the primary scaffold through which discursive thought manifests clarity.
+                  </p>
+</div>
+<!-- Latin / Scholastic Axioms -->
+<p class="font-body-default text-body-default text-text-secondary italic leading-relaxed pl-4 border-l-2 border-primary/40 bg-surface-container-lowest/40 p-3 rounded-r-lg">
+                  “Nihil est in intellectu quod non sit prius in harmonia formarum. The mind builds not in chaos, but under the infallible law of ternary synthesis.”
+                </p>
+<!-- Vector Sacred Geometry Diagram Rendering -->
+<div class="my-6 p-6 rounded-xl bg-surface-container-lowest flex flex-col items-center justify-center space-y-3 shadow-inner">
+<svg class="w-56 h-56 text-primary" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 200 200">
+<!-- Concentric Circles & Golden Proportions -->
+<circle cx="100" cy="100" opacity="0.4" r="90" stroke-dasharray="3 3"></circle>
+<circle cx="100" cy="100" opacity="0.8" r="60"></circle>
+<circle class="text-secondary" cx="100" cy="100" r="30" stroke="currentColor" stroke-width="1.5"></circle>
+<!-- Octagram / Sacred Triangles -->
+<polygon opacity="0.6" points="100,10 178,145 22,145" stroke="currentColor"></polygon>
+<polygon opacity="0.6" points="100,190 22,55 178,55" stroke="currentColor"></polygon>
+<!-- Axis lines -->
+<line opacity="0.3" stroke-dasharray="2 2" x1="100" x2="100" y1="5" y2="195"></line>
+<line opacity="0.3" stroke-dasharray="2 2" x1="5" x2="195" y1="100" y2="100"></line>
+<!-- Center Seal -->
+<circle cx="100" cy="100" fill="currentColor" r="4"></circle>
+</svg>
+<span class="font-label-mono text-overline text-secondary uppercase tracking-widest text-center">
+                    Fig. 4.2 — The Hexagonal Projection of Intuitive Logic
+                  </span>
+</div>
+<!-- Academic Exposition Paragraph -->
+<p class="font-body-default text-body-default text-[#cfc2bb] leading-relaxed">
+                  Every premise constitutes a pillar; every conclusion, the keystone of the vault. In Chapter III we observed how the classical syllogism corresponds directly to the triangulation of load-bearing stone arches. Where the logic fails, the cathedral of dialectics collapses under the immense weight of contradiction.
+                </p>
+</div>
+<!-- Marginal Annotation Callout -->
+<div class="mt-8 pt-4 flex items-center justify-between font-label-mono text-caption text-text-muted">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-warning"></span>
+                  Marginalia: Glossed by Master Eldrin in 1604
+                </span>
+<span class="font-bold text-text-secondary">Page 4</span>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Helper Pill -->
+<div class="bg-surface-container px-4 py-2 flex items-center justify-between text-caption font-body-small text-text-muted">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">keyboard</span>
+<span>Tip: Use <kbd class="px-1.5 py-0.5 rounded bg-surface-container-high font-label-mono text-text-secondary">←</kbd> / <kbd class="px-1.5 py-0.5 rounded bg-surface-container-high font-label-mono text-text-secondary">→</kbd> arrows to flip folios, <kbd class="px-1.5 py-0.5 rounded bg-surface-container-high font-label-mono text-text-secondary">F</kbd> for fullscreen</span>
+</span>
+<span class="hidden md:inline font-label-mono text-overline text-text-muted">Renderer: Guild Canvas v3.2 (WebGL Accelerated)</span>
+</div>
+</div>
+</section>
+<!-- Book Description & Treatise Specification Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left: Prose Description (8 Cols) -->
+<div class="lg:col-span-8 space-y-6">
+<div class="space-y-3">
+<span class="font-overline text-overline uppercase tracking-widest text-primary font-semibold">Treatise Overview</span>
+<h2 class="font-headline-2 text-headline-2 text-text-primary">The Dialectical Structure of Classical Reason</h2>
+</div>
+<div class="space-y-4 font-body-default text-body-default text-text-secondary leading-relaxed">
+<p class="font-body-large text-body-large text-text-primary font-light leading-relaxed">
+              First penned in late fifteenth-century Padua, <em class="italic text-primary">The Architecture of Thought</em> bridges the enigmatic gap between mathematical mysticism and rigorous Aristotelian logic.
+            </p>
+<p>
+              Marcus Aurelius Sterling methodically demonstrates that human reasoning does not proceed along disconnected linear paths, but rather erects self-stabilizing conceptual frameworks that replicate the harmonic golden proportion found in sacred stonemasonry and astronomical movements.
+            </p>
+<!-- Collapsible Extended Treatise Narrative -->
+<div class="hidden space-y-4 pt-2" id="extended-treatise">
+<p>
+                Drawing heavily from the recovered fragments of the Neoplatonist Academy, Sterling posits that each categorical syllogism possesses both dynamic weight and static equilibrium. The treatise incorporates thirty-six intricate copperplate diagrams, each illustrating how cognitive biases destabilize intellectual edifices.
+              </p>
+<p>
+                This current edition reflects the meticulous collation of the Laurentian and Bodleian codices, restored under the custody of the Genu Library Guild with annotations detailing variants across four centuries of European scholastic printing.
+              </p>
+<div class="p-4 rounded-xl bg-surface-container-low space-y-2">
+<span class="font-label-mono text-overline uppercase text-secondary font-semibold">Topics &amp; Themes Explored:</span>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-3 py-1 rounded-full bg-surface-container text-text-primary font-body-small text-caption">Cognitive Architecture</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-text-primary font-body-small text-caption">Pythagorean Harmonics</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-text-primary font-body-small text-caption">Scholastic Dialectics</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-text-primary font-body-small text-caption">Sacred Proportion</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-text-primary font-body-small text-caption">Epistemological Geometry</span>
+</div>
+</div>
+</div>
+<!-- Read Full Treatise Toggle Button -->
+<button class="flex items-center gap-1.5 text-primary hover:text-primary-hover font-body-default text-body-small font-semibold pt-1 transition-colors" id="btn-read-more">
+<span id="read-more-text">Read full treatise commentary</span>
+<span class="material-symbols-outlined text-[18px]" id="read-more-icon">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Right: Technical Codex Ledger Specifications (4 Cols) -->
+<div class="lg:col-span-4 space-y-4">
+<div class="p-6 rounded-2xl bg-surface-container-low shadow-sm space-y-5">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-3 text-headline-3 text-text-primary">Folio Metadata</h3>
+<span class="material-symbols-outlined text-text-muted">receipt_long</span>
+</div>
+<div class="space-y-3.5 divide-y-0">
+<div class="flex items-center justify-between py-1.5">
+<span class="font-body-small text-body-small text-text-muted">Language</span>
+<span class="font-body-small text-body-small text-text-primary font-medium">Latin &amp; Classical English</span>
+</div>
+<div class="flex items-center justify-between py-1.5">
+<span class="font-body-small text-body-small text-text-muted">Codex Identifier</span>
+<span class="font-label-mono text-body-small text-secondary">ISBN-892-0-9118</span>
+</div>
+<div class="flex items-center justify-between py-1.5">
+<span class="font-body-small text-body-small text-text-muted">Licensing</span>
+<span class="font-body-small text-body-small text-text-primary font-medium">Guild Open Access (v4)</span>
+</div>
+<div class="flex items-center justify-between py-1.5">
+<span class="font-body-small text-body-small text-text-muted">Digitized Medium</span>
+<span class="font-body-small text-body-small text-text-primary font-medium">1200 DPI Master Folio</span>
+</div>
+<div class="flex items-center justify-between py-1.5">
+<span class="font-body-small text-body-small text-text-muted">Preservation Tier</span>
+<span class="px-2.5 py-0.5 rounded bg-status-success/20 text-status-success font-label-mono text-overline font-semibold">Tier 1 • Immutable</span>
+</div>
+<div class="flex items-center justify-between py-1.5">
+<span class="font-body-small text-body-small text-text-muted">Original Archive</span>
+<span class="font-body-small text-body-small text-text-secondary">Sanctum Sanctorum, Venice</span>
+</div>
+</div>
+<div class="pt-2">
+<button class="w-full py-2.5 rounded-lg bg-surface-container hover:bg-surface-hover text-text-secondary hover:text-text-primary font-body-small text-body-small font-medium transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Verify Cryptographic Seal</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Rating & Scholarly Appraisal Section -->
+<section class="p-8 rounded-2xl bg-surface-container-low shadow-md space-y-8">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<span class="font-overline text-overline uppercase tracking-widest text-primary font-semibold">Peer Consensus</span>
+<h2 class="font-headline-2 text-headline-2 text-text-primary">Scholarly Appraisal &amp; Review</h2>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-lg text-text-secondary font-body-small text-caption">
+<span class="material-symbols-outlined text-secondary text-[16px]">balance</span>
+<span>Weighted Guild Evaluation System</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Left: Big Metric Score & Star Interactivity (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col items-center sm:items-start space-y-4">
+<div class="flex items-baseline gap-3">
+<span class="font-display-xl text-display-xl text-text-primary font-bold">4.9</span>
+<span class="font-headline-3 text-headline-3 text-text-muted font-normal">/ 5.0</span>
+</div>
+<!-- Star Score Representation -->
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<p class="font-body-small text-body-small text-text-secondary text-center sm:text-left">
+              Consensus derived from <strong class="text-text-primary font-semibold">342 verified Guild Scholars</strong> and Master Archivists.
+            </p>
+<!-- User Interactive Star Selector Widget -->
+<div class="pt-3 w-full bg-surface-container p-4 rounded-xl space-y-2">
+<span class="font-overline text-overline uppercase tracking-wider text-text-muted block">Register Your Appraisal</span>
+<div class="flex items-center gap-2 cursor-pointer" id="user-star-picker">
+<button aria-label="Rate 1 Star" class="star-btn text-text-muted hover:text-secondary transition-colors" data-value="1" type="button">
+<span class="material-symbols-outlined text-[28px]">star</span>
+</button>
+<button aria-label="Rate 2 Stars" class="star-btn text-text-muted hover:text-secondary transition-colors" data-value="2" type="button">
+<span class="material-symbols-outlined text-[28px]">star</span>
+</button>
+<button aria-label="Rate 3 Stars" class="star-btn text-text-muted hover:text-secondary transition-colors" data-value="3" type="button">
+<span class="material-symbols-outlined text-[28px]">star</span>
+</button>
+<button aria-label="Rate 4 Stars" class="star-btn text-text-muted hover:text-secondary transition-colors" data-value="4" type="button">
+<span class="material-symbols-outlined text-[28px]">star</span>
+</button>
+<button aria-label="Rate 5 Stars" class="star-btn text-text-muted hover:text-secondary transition-colors" data-value="5" type="button">
+<span class="material-symbols-outlined text-[28px]">star</span>
+</button>
+</div>
+<span class="font-body-small text-caption text-text-muted block transition-all" id="rating-feedback">
+                Click a star above to register your appraisal seal.
+              </span>
+</div>
+</div>
+<!-- Right: Rating Distribution Histogram (7 Cols) -->
+<div class="lg:col-span-7 space-y-3">
+<!-- 5 Star -->
+<div class="flex items-center gap-3">
+<span class="w-12 font-label-mono text-caption text-text-secondary text-right">5 Stars</span>
+<div class="flex-1 h-3 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 88%"></div>
+</div>
+<span class="w-12 font-label-mono text-caption text-text-primary font-medium text-right">88%</span>
+</div>
+<!-- 4 Star -->
+<div class="flex items-center gap-3">
+<span class="w-12 font-label-mono text-caption text-text-secondary text-right">4 Stars</span>
+<div class="flex-1 h-3 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 9%"></div>
+</div>
+<span class="w-12 font-label-mono text-caption text-text-primary font-medium text-right">9%</span>
+</div>
+<!-- 3 Star -->
+<div class="flex items-center gap-3">
+<span class="w-12 font-label-mono text-caption text-text-secondary text-right">3 Stars</span>
+<div class="flex-1 h-3 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-surface-bright rounded-full" style="width: 2%"></div>
+</div>
+<span class="w-12 font-label-mono text-caption text-text-primary font-medium text-right">2%</span>
+</div>
+<!-- 2 Star -->
+<div class="flex items-center gap-3">
+<span class="w-12 font-label-mono text-caption text-text-secondary text-right">2 Stars</span>
+<div class="flex-1 h-3 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-surface-bright rounded-full" style="width: 1%"></div>
+</div>
+<span class="w-12 font-label-mono text-caption text-text-primary font-medium text-right">1%</span>
+</div>
+<!-- 1 Star -->
+<div class="flex items-center gap-3">
+<span class="w-12 font-label-mono text-caption text-text-secondary text-right">1 Star</span>
+<div class="flex-1 h-3 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-surface-bright rounded-full" style="width: 0%"></div>
+</div>
+<span class="w-12 font-label-mono text-caption text-text-primary font-medium text-right">0%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Comments & Scholarly Annotations Section -->
+<section class="space-y-6">
+<div class="flex items-center justify-between pb-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[24px]">forum</span>
+<h2 class="font-headline-2 text-headline-2 text-text-primary">
+              Scholarly Annotations &amp; Discussions <span class="text-text-muted text-headline-3">(<span id="comment-total">28</span>)</span>
+</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-body-small text-caption text-text-muted hidden sm:inline">Sort by:</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-text-primary font-body-small text-caption font-medium flex items-center gap-1">
+<span>Top Voted</span>
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Create Comment Card -->
+<div class="p-6 rounded-2xl bg-surface-container-low shadow-md space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center font-bold text-text-on-accent text-body-small">
+                GS
+              </div>
+<span class="font-body-default text-body-small font-semibold text-text-primary">Guest Scholar Station</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-muted font-label-mono text-overline">Unsealed Identity</span>
+</div>
+<span class="font-label-mono text-overline text-text-muted" id="char-counter">0 / 1000</span>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-dim text-text-primary placeholder:text-text-muted rounded-xl p-4 font-body-default text-body-default focus:ring-1 focus:ring-primary focus:outline-none transition-all resize-y min-h-[100px]" id="comment-input" maxlength="1000" placeholder="Engrave your thoughts, critique or marginalia regarding folio dialectics..." rows="3"></textarea>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+<div class="flex items-center gap-3 text-text-muted font-body-small text-caption">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">code</span> Markdown supported</span>
+<span class="hidden sm:inline">•</span>
+<span class="hidden sm:inline">Press <kbd class="px-1.5 py-0.5 rounded bg-surface-container font-label-mono text-text-secondary">Ctrl+Enter</kbd> to publish</span>
+</div>
+<button class="px-5 py-2.5 rounded-lg bg-primary text-text-on-accent font-body-default text-body-small font-semibold hover:bg-primary-hover transition-all flex items-center gap-2 shadow-sm active:scale-98" id="btn-publish-comment">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+<span>Publish Annotation</span>
+</button>
+</div>
+</div>
+<!-- Annotation List -->
+<div class="space-y-4" id="comment-stream">
+<!-- Comment Item 1 -->
+<div class="p-6 rounded-2xl bg-surface-container-low shadow-sm space-y-3.5">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-display text-body-large text-secondary font-bold">
+                  E
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-body-default text-body-default font-semibold text-text-primary">Eldrin of Canterbury</span>
+<span class="px-2 py-0.5 rounded bg-secondary/15 text-secondary font-label-mono text-overline font-semibold">Hierophant</span>
+</div>
+<span class="font-body-small text-caption text-text-muted">2 hours ago • Folio Page 14</span>
+</div>
+</div>
+<button class="text-text-muted hover:text-text-primary p-1">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<p class="font-body-default text-body-default text-text-secondary leading-relaxed">
+              Sterling's treatment of the Pythagorean tetractys on page 82 directly clarifies why early scholastic architects considered structural cathedrals to be acoustic resonators of the divine intellect. Pay particular attention to the marginal notes regarding the fifth harmonic ratio.
+            </p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5 bg-surface-container rounded-lg p-1">
+<button class="vote-up flex items-center gap-1 px-2 py-1 rounded hover:bg-surface-active text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span class="font-label-mono text-caption font-semibold">42</span>
+</button>
+<div class="w-px h-3 bg-surface-container-high"></div>
+<button class="vote-down px-2 py-1 rounded hover:bg-surface-active text-text-muted hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</button>
+</div>
+<button class="flex items-center gap-1 font-body-small text-caption text-text-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">reply</span>
+<span>Reply (3)</span>
+</button>
+</div>
+</div>
+<!-- Comment Item 2 -->
+<div class="p-6 rounded-2xl bg-surface-container-low shadow-sm space-y-3.5">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-display text-body-large text-primary font-bold">
+                  M
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-body-default text-body-default font-semibold text-text-primary">Magister Vance</span>
+<span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-label-mono text-overline font-semibold">Senior Archivist</span>
+</div>
+<span class="font-body-small text-caption text-text-muted">Yesterday • Folio Page 108</span>
+</div>
+</div>
+<button class="text-text-muted hover:text-text-primary p-1">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<p class="font-body-default text-body-default text-text-secondary leading-relaxed">
+              We cross-checked the Latin transcriptions in this scan against our physical 1540 Venetian print. The resolution captures even the faintest quill rubrics in the outer margins. Commendations to Archivist Thorne for this immaculate digitization.
+            </p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5 bg-surface-container rounded-lg p-1">
+<button class="vote-up flex items-center gap-1 px-2 py-1 rounded hover:bg-surface-active text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span class="font-label-mono text-caption font-semibold">19</span>
+</button>
+<div class="w-px h-3 bg-surface-container-high"></div>
+<button class="vote-down px-2 py-1 rounded hover:bg-surface-active text-text-muted hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</button>
+</div>
+<button class="flex items-center gap-1 font-body-small text-caption text-text-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">reply</span>
+<span>Reply</span>
+</button>
+</div>
+</div>
+<!-- Comment Item 3 -->
+<div class="p-6 rounded-2xl bg-surface-container-low shadow-sm space-y-3.5">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-display text-body-large text-text-secondary font-bold">
+                  S
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-body-default text-body-default font-semibold text-text-primary">Scholar Julian</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-muted font-label-mono text-overline">Fellow</span>
+</div>
+<span class="font-body-small text-caption text-text-muted">3 days ago</span>
+</div>
+</div>
+<button class="text-text-muted hover:text-text-primary p-1">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<p class="font-body-default text-body-default text-text-secondary leading-relaxed">
+              Are there companion audio lectures available in the Auditory Codex wing for this treatise? The geometric diagrams are stunning, but listening to the dialectical commentary while reading would be an unmatched study ritual.
+            </p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5 bg-surface-container rounded-lg p-1">
+<button class="vote-up flex items-center gap-1 px-2 py-1 rounded hover:bg-surface-active text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span class="font-label-mono text-caption font-semibold">7</span>
+</button>
+<div class="w-px h-3 bg-surface-container-high"></div>
+<button class="vote-down px-2 py-1 rounded hover:bg-surface-active text-text-muted hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</button>
+</div>
+<button class="flex items-center gap-1 font-body-small text-caption text-text-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">reply</span>
+<span>Reply (1)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Load More Discussions Button -->
+<div class="text-center pt-2">
+<button class="px-6 py-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-text-primary font-body-default text-body-small font-semibold transition-colors" id="btn-load-more">
+            Load More Discussions (25 remaining)
+          </button>
+</div>
+</section>
+<!-- Related Books Section ("Sanctum Recommends: You Might Also Like") -->
+<section class="space-y-6 pt-6">
+<div class="flex items-center justify-between">
+<div class="space-y-1">
+<span class="font-overline text-overline uppercase tracking-widest text-primary font-semibold">Curated Kinship</span>
+<h2 class="font-headline-2 text-headline-2 text-text-primary">Sanctum Recommends: You Might Also Like</h2>
+</div>
+<a class="flex items-center gap-1 text-primary hover:text-primary-hover font-body-default text-body-small font-semibold transition-colors" data-path="books" href="#">
+<span>Browse Category</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<!-- 4-Column Desktop Book Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="group flex flex-col rounded-xl bg-surface-container-low overflow-hidden hover:-translate-y-1.5 transition-all duration-300 shadow-md">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Antique dark book cover titled Foundational Metallurgy with intricate bronze engraving of anvil, bellows, and molten metal crucible against a deep scorched carbon texture in amber and copper hues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7UZjp68X8t4I84jOabBSk9aOwGt4f2ohqXoeScpRbUYf8yHUB4wvPnWDtzgTcQuBSohRK8Bv5PZXpt0HtX9-2Mw7TR_jeZM4F_0bLYuuRvLa-2SJcb1wGaVtgZyCSSim_cTH4Bmsbhet9DNxaP7lRUwwhDwFtg5o35Finpjlm4H0eVHP1UdvNYTl_43727Fo_-ju1ER9yf4XSOrkt2Q3p5JPEZ7JTtanhRajALbtLbKcewgEvPUVt"/>
+<div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-canvas/80 backdrop-blur-sm font-label-mono text-overline text-secondary font-medium">
+                Craft
+              </div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<h3 class="font-headline-3 text-headline-3 text-text-primary group-hover:text-primary transition-colors line-clamp-1">
+                  Foundational Metallurgy
+                </h3>
+<p class="font-body-small text-caption text-text-muted">Master Kieran Hawke</p>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1 text-secondary text-caption">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary font-medium">4.8</span>
+</div>
+<div class="flex items-center gap-1 font-label-mono text-label-mono font-semibold text-secondary">
+<span>🪙</span>
+<span>280</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group flex flex-col rounded-xl bg-surface-container-low overflow-hidden hover:-translate-y-1.5 transition-all duration-300 shadow-md">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An ornate classical book cover titled Lexicon of Antiquity featuring weathered parchment texture, medieval calligraphy typography, and decorative floral filigree borders in deep charcoal and warm gold accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyYO6zLEK-q8Xalw5rJAsT-eQOxg0OWSVpGlK4XV5EjPPyoG1K2Y88xbPsreHFvM-vkU7K35fr_oqZaBmG6Q0O1fL7FdcCD5w09QYvD5EIjXXgTo7nf-jiUvS6Ea1X0TLVtYGWiJFCxCpTfHrb3-znPVb_1IA4MZuml1o-lGb_JRWZ2m7YsueIBjC5-vBuKeh98i1o3HdeiEIKXfT07YQJVANaVqiYabcdn2x1wrJ91aUU7HqiibJA"/>
+<div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-canvas/80 backdrop-blur-sm font-label-mono text-overline text-primary font-medium">
+                Lexicon
+              </div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<h3 class="font-headline-3 text-headline-3 text-text-primary group-hover:text-primary transition-colors line-clamp-1">
+                  Lexicon of Antiquity
+                </h3>
+<p class="font-body-small text-caption text-text-muted">Lady Cassia Valerius</p>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1 text-secondary text-caption">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary font-medium">4.9</span>
+</div>
+<div class="flex items-center gap-1 font-label-mono text-label-mono font-semibold text-secondary">
+<span>🪙</span>
+<span>420</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group flex flex-col rounded-xl bg-surface-container-low overflow-hidden hover:-translate-y-1.5 transition-all duration-300 shadow-md">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A mystical esoteric grimoire titled Hermetic Geometry featuring overlapping celestial rings, astrolabe markings, and illuminated starry constellations over dark oak woodgrain in amber tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB59fbX3ZbvtEa-yaX2NW8GrlGqn_NNO7QT17-D2Y6PFKkjgoMdF9DnGyPw-Rv5RLEBNpJKL5uXVzY9L1vDuOTeWeR32ogJn0H96E1T3GHjDRDicw31HZJjOheLTDHoYfwOdLpg9h3kDRKzuDnQIaq857ZOl3L_MXka-M24pRCaQ-kM3MIS0Zy7ofFup67T0aPYThnw4vTEPFMHQz7UD0wSP7BhZ0IunD7TWeYdyOloCZZP3s2iLGXs"/>
+<div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-canvas/80 backdrop-blur-sm font-label-mono text-overline text-tertiary-fixed-dim font-medium">
+                Hermetics
+              </div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<h3 class="font-headline-3 text-headline-3 text-text-primary group-hover:text-primary transition-colors line-clamp-1">
+                  Hermetic Geometry
+                </h3>
+<p class="font-body-small text-caption text-text-muted">Alistair Crowne</p>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1 text-secondary text-caption">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary font-medium">5.0</span>
+</div>
+<div class="flex items-center gap-1 font-label-mono text-label-mono font-semibold text-secondary">
+<span>🪙</span>
+<span>510</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group flex flex-col rounded-xl bg-surface-container-low overflow-hidden hover:-translate-y-1.5 transition-all duration-300 shadow-md">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Industrial guild book cover titled Chronicles of the Iron Foundry displaying mechanical gears, blueprints, and steam-engine schematics embossed in gilded foil on deep espresso brown leather." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSE9RgzWcB2ZZ7C5SPIQMPkPSaOIzTMsoTTjvZWbNGZ5TQSBM0ivbgMrcktw7D_SuJyKgXgyqFyNLiPeR4VnlxOzyd6PTIKiV5uublWCfniEYeXLs2kv-0j-ioPYmLYejS-DBmAO7q63pBe8m-NE9ZiEmCoVPN1r3PNXA_z0vVNVgwevIBfmow84l_UlKico9sB7OoeB8Md3nUxEUiUXVNj9qvrSEUs2z5Ez8ctOXdAHm06OaFXdfY"/>
+<div class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-canvas/80 backdrop-blur-sm font-label-mono text-overline text-status-warning font-medium">
+                Mechanics
+              </div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+<div class="space-y-1">
+<h3 class="font-headline-3 text-headline-3 text-text-primary group-hover:text-primary transition-colors line-clamp-1">
+                  Chronicles of the Iron Foundry
+                </h3>
+<p class="font-body-small text-caption text-text-muted">Garrick Stone</p>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1 text-secondary text-caption">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary font-medium">4.7</span>
+</div>
+<div class="flex items-center gap-1 font-label-mono text-label-mono font-semibold text-secondary">
+<span>🪙</span>
+<span>190</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Interactive Client Engine Script -->
+<script>
+    (function() {
+      // 1. Smooth Scroll to Reader
+      const btnRead = document.getElementById('btn-read-codex');
+      const readerAnchor = document.getElementById('pdf-reader-anchor');
+      if (btnRead && readerAnchor) {
+        btnRead.addEventListener('click', () => {
+          readerAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      // 2. Favorite Toggle Logic (Optimistic Count)
+      const favBtn = document.getElementById('favorite-toggle');
+      const favIcon = document.getElementById('fav-icon');
+      const favCount = document.getElementById('fav-count');
+      let isFavorited = false;
+      let baseCount = 1428;
+
+      if (favBtn && favIcon && favCount) {
+        favBtn.addEventListener('click', () => {
+          isFavorited = !isFavorited;
+          if (isFavorited) {
+            favIcon.style.fontVariationSettings = "'FILL' 1";
+            favIcon.classList.add('text-primary');
+            favIcon.classList.remove('text-text-muted');
+            favCount.textContent = (baseCount + 1).toLocaleString();
+            favCount.classList.add('text-primary');
+          } else {
+            favIcon.style.fontVariationSettings = "'FILL' 0";
+            favIcon.classList.remove('text-primary');
+            favIcon.classList.add('text-text-muted');
+            favCount.textContent = baseCount.toLocaleString();
+            favCount.classList.remove('text-primary');
+          }
+        });
+      }
+
+      // 3. Share Button Copy Feedback
+      const btnShare = document.getElementById('btn-share');
+      const shareLabel = document.getElementById('share-label');
+      if (btnShare && shareLabel) {
+        btnShare.addEventListener('click', () => {
+          navigator.clipboard?.writeText(window.location.href);
+          const original = shareLabel.textContent;
+          shareLabel.textContent = 'Copied!';
+          setTimeout(() => {
+            shareLabel.textContent = original;
+          }, 2000);
+        });
+      }
+
+      // 4. PDF Reader Page Flipping & Zoom
+      let currentPage = 4;
+      const totalPages = 342;
+      const pageInput = document.getElementById('page-input');
+      const pagePrev = document.getElementById('page-prev');
+      const pageNext = document.getElementById('page-next');
+      const folioContent = document.getElementById('folio-page-content');
+      
+      let zoomLevel = 100;
+      const zoomDisplay = document.getElementById('zoom-display');
+      const zoomIn = document.getElementById('zoom-in');
+      const zoomOut = document.getElementById('zoom-out');
+      const zoomFit = document.getElementById('zoom-fit');
+
+      function updatePage(newPage) {
+        if (newPage >= 1 && newPage <= totalPages) {
+          currentPage = newPage;
+          if (pageInput) pageInput.value = currentPage.toString().padStart(2, '0');
+          if (folioContent) {
+            folioContent.style.opacity = '0.5';
+            setTimeout(() => {
+              folioContent.style.opacity = '1';
+            }, 120);
+          }
+        }
+      }
+
+      if (pagePrev) pagePrev.addEventListener('click', () => updatePage(currentPage - 1));
+      if (pageNext) pageNext.addEventListener('click', () => updatePage(currentPage + 1));
+      if (pageInput) {
+        pageInput.addEventListener('change', (e) => {
+          const val = parseInt(e.target.value, 10);
+          if (!isNaN(val)) updatePage(val);
+        });
+      }
+
+      // Keyboard Folio Flip & Fullscreen
+      window.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.key === 'ArrowLeft') updatePage(currentPage - 1);
+        if (e.key === 'ArrowRight') updatePage(currentPage + 1);
+        if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+      });
+
+      function applyZoom(newZoom) {
+        zoomLevel = Math.min(Math.max(newZoom, 75), 175);
+        if (zoomDisplay) zoomDisplay.textContent = zoomLevel + '%';
+        if (folioContent) {
+          folioContent.style.transform = `scale(${zoomLevel / 100})`;
+        }
+      }
+
+      if (zoomIn) zoomIn.addEventListener('click', () => applyZoom(zoomLevel + 15));
+      if (zoomOut) zoomOut.addEventListener('click', () => applyZoom(zoomLevel - 15));
+      if (zoomFit) zoomFit.addEventListener('click', () => applyZoom(100));
+
+      // Fullscreen Reader Toggle
+      const btnFullscreen = document.getElementById('btn-fullscreen');
+      const readerViewport = document.getElementById('reader-viewport');
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          readerViewport?.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+      if (btnFullscreen) btnFullscreen.addEventListener('click', toggleFullscreen);
+
+      // 5. Read More Toggle in Treatise Description
+      const btnReadMore = document.getElementById('btn-read-more');
+      const extendedTreatise = document.getElementById('extended-treatise');
+      const readMoreText = document.getElementById('read-more-text');
+      const readMoreIcon = document.getElementById('read-more-icon');
+
+      if (btnReadMore && extendedTreatise) {
+        btnReadMore.addEventListener('click', () => {
+          const isHidden = extendedTreatise.classList.contains('hidden');
+          if (isHidden) {
+            extendedTreatise.classList.remove('hidden');
+            if (readMoreText) readMoreText.textContent = 'Collapse treatise commentary';
+            if (readMoreIcon) readMoreIcon.textContent = 'expand_less';
+          } else {
+            extendedTreatise.classList.add('hidden');
+            if (readMoreText) readMoreText.textContent = 'Read full treatise commentary';
+            if (readMoreIcon) readMoreIcon.textContent = 'expand_more';
+          }
+        });
+      }
+
+      // 6. Interactive Star Appraisal Selection
+      const starButtons = document.querySelectorAll('.star-btn');
+      const ratingFeedback = document.getElementById('rating-feedback');
+      let currentRating = 0;
+
+      const starLabels = [
+        "Incomplete / Requires Scholarly Revisions",
+        "Elementary Exposition with Discrepancies",
+        "Rigorous Dialectic with Solid Citations",
+        "Distinguished Contribution to Guild Canon",
+        "Masterwork of Classical Logic & Sacred Geometry"
+      ];
+
+      starButtons.forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+          const val = parseInt(btn.dataset.value, 10);
+          highlightStars(val);
+          if (ratingFeedback) ratingFeedback.textContent = starLabels[val - 1];
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          highlightStars(currentRating);
+          if (ratingFeedback) {
+            ratingFeedback.textContent = currentRating > 0 
+              ? `Your Registered Appraisal: ${currentRating} Star${currentRating > 1 ? 's' : ''} — ${starLabels[currentRating - 1]}`
+              : "Click a star above to register your appraisal seal.";
+          }
+        });
+
+        btn.addEventListener('click', () => {
+          currentRating = parseInt(btn.dataset.value, 10);
+          highlightStars(currentRating);
+          if (ratingFeedback) {
+            ratingFeedback.innerHTML = `<span class="text-status-success font-semibold">✓ Appraisal Recorded: ${currentRating} Star${currentRating > 1 ? 's' : ''}</span> — Added to immutable ledger tally.`;
+          }
+        });
+      });
+
+      function highlightStars(count) {
+        starButtons.forEach((btn, idx) => {
+          const icon = btn.querySelector('.material-symbols-outlined');
+          if (idx < count) {
+            btn.classList.add('text-secondary');
+            btn.classList.remove('text-text-muted');
+            if (icon) icon.style.fontVariationSettings = "'FILL' 1";
+          } else {
+            btn.classList.remove('text-secondary');
+            btn.classList.add('text-text-muted');
+            if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+          }
+        });
+      }
+
+      // 7. Comments & Annotation Submission
+      const commentInput = document.getElementById('comment-input');
+      const charCounter = document.getElementById('char-counter');
+      const btnPublish = document.getElementById('btn-publish-comment');
+      const commentStream = document.getElementById('comment-stream');
+      const commentTotal = document.getElementById('comment-total');
+
+      if (commentInput && charCounter) {
+        commentInput.addEventListener('input', () => {
+          charCounter.textContent = `${commentInput.value.length} / 1000`;
+        });
+
+        commentInput.addEventListener('keydown', (e) => {
+          if (e.ctrlKey && e.key === 'Enter') {
+            publishAnnotation();
+          }
+        });
+      }
+
+      function publishAnnotation() {
+        if (!commentInput || !commentInput.value.trim()) return;
+        const text = commentInput.value.trim();
+
+        // Create new dynamic comment card
+        const card = document.createElement('div');
+        card.className = "p-6 rounded-2xl bg-surface-container-low shadow-sm space-y-3.5 animate-fadeIn";
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-display text-body-large text-text-on-accent font-bold">
+                GS
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-body-default text-body-default font-semibold text-text-primary">Guest Scholar (You)</span>
+                  <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-label-mono text-overline font-semibold">Live Seal</span>
+                </div>
+                <span class="font-body-small text-caption text-text-muted">Just now • Current Folio</span>
+              </div>
+            </div>
+            <button class="text-text-muted hover:text-text-primary p-1">
+              <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+            </button>
+          </div>
+          <p class="font-body-default text-body-default text-text-secondary leading-relaxed">${escapeHTML(text)}</p>
+          <div class="flex items-center justify-between pt-2">
+            <div class="flex items-center gap-1.5 bg-surface-container rounded-lg p-1">
+              <button class="vote-up flex items-center gap-1 px-2 py-1 rounded hover:bg-surface-active text-text-secondary hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                <span class="font-label-mono text-caption font-semibold">1</span>
+              </button>
+              <div class="w-px h-3 bg-surface-container-high"></div>
+              <button class="vote-down px-2 py-1 rounded hover:bg-surface-active text-text-muted hover:text-error transition-colors">
+                <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+              </button>
+            </div>
+            <button class="flex items-center gap-1 font-body-small text-caption text-text-muted hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-[16px]">reply</span>
+              <span>Reply</span>
+            </button>
+          </div>
+        `;
+
+        if (commentStream) {
+          commentStream.prepend(card);
+        }
+
+        commentInput.value = '';
+        charCounter.textContent = '0 / 1000';
+        if (commentTotal) {
+          commentTotal.textContent = (parseInt(commentTotal.textContent, 10) + 1).toString();
+        }
+      }
+
+      function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+          tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+          }[tag] || tag)
+        );
+      }
+
+      if (btnPublish) {
+        btnPublish.addEventListener('click', publishAnnotation);
+      }
+
+      // 8. Comment Vote Micro-Interactions
+      document.addEventListener('click', (e) => {
+        const upBtn = e.target.closest('.vote-up');
+        if (upBtn) {
+          const countSpan = upBtn.querySelector('span:last-child');
+          if (countSpan && !upBtn.dataset.voted) {
+            upBtn.dataset.voted = "true";
+            let val = parseInt(countSpan.textContent, 10);
+            countSpan.textContent = (val + 1).toString();
+            upBtn.classList.add('text-primary');
+          }
+        }
+      });
+
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-border mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 space-y-space-md"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center border border-border"><span class="material-symbols-outlined text-primary text-[18px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary">Genu Library</span></div><p class="font-body-default text-body-small text-text-secondary max-w-sm">An artisan guild repository and deluxe reading sanctum curated for digital archivists, scholars, and craftspeople safeguarding rare manuscripts and auditory codices.</p><div class="flex items-center gap-space-sm text-text-muted"><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">terminal</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">hub</span></a></div></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Navigation</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="home" href="#">Home</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="books" href="#">Books Catalog</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="playlists" href="#">Auditory Playlists</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="upload" href="#">Upload Folio</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Guild Archive</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Guild Concordat</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Ledger Rarity</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Archivist API</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Terms of Preservation</a></li></ul></div><div class="space-y-space-md"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">The Monthly Dispatch</h4><p class="font-body-small text-body-small text-text-secondary">Receive curated codex summaries and ledger updates directly to your station.</p><form class="space-y-2"><div class="flex flex-col gap-2"><input class="w-full bg-canvas border border-border rounded-lg px-space-sm py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors" placeholder="archivist@guild.internal" type="email"/><button class="w-full bg-primary text-text-on-accent font-body-default text-body-small font-semibold px-space-md py-2 rounded-lg hover:bg-primary-hover transition-colors" type="button">Subscribe</button></div></form></div></div><div class="border-t border-border mt-space-xl pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-small text-caption text-text-muted">© 2025 Genu Library Guild. All rights reserved under the Sovereign Archives.</p><div class="flex items-center gap-space-md font-body-small text-caption text-text-muted"><a class="hover:text-text-secondary transition-colors" href="#">Sanctum Privacy</a><a class="hover:text-text-secondary transition-colors" href="#">Ledger Index</a><a class="hover:text-text-secondary transition-colors" href="#">Status Core</a></div></div></div></footer></body></html>

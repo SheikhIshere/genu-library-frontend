@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Upload Books — Genu Library (Tablet)</title>
+  <!-- Google Fonts: Playfair Display, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            'surface-hover': '#2a211c',
+            'surface-active': '#332a24',
+            primary: '#e8693f',
+            'primary-hover': '#d45a30',
+            'primary-muted': 'rgba(232, 105, 63, 0.12)',
+            border: '#3a322d',
+            'border-hover': '#4d433d',
+            'text-primary': '#ece0dc',
+            'text-secondary': '#a89c93',
+            'text-muted': '#7a706a',
+            'status-success': '#4a7c59',
+            'status-error': '#c44d4d',
+            'status-warning': '#d4a24e',
+            'status-info': '#5b8fb9',
+          },
+          fontFamily: {
+            headline: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            xl: '12px',
+            '2xl': '16px',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #16110f;
+      color: #ece0dc;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Custom scrollbar matching Forge & Flux aesthetic */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #16110f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3a322d;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4d433d;
+    }
+    /* Smooth transitions */
+    .transition-custom {
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+    .animate-pulse-subtle {
+      animation: pulse-subtle 1.8s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-canvas text-text-primary antialiased selection:bg-primary selection:text-canvas">
+
+  <!-- 1. PERSISTENT HORIZONTAL TOP NAVIGATION (Tablet Breakpoint: 641px - 1024px) -->
+  <nav class="sticky top-0 z-40 h-16 bg-canvas/90 backdrop-blur-md border-b border-border px-6">
+    <div class="h-full flex items-center justify-between max-w-5xl mx-auto">
+      <!-- Logo Mark -->
+      <div class="flex items-center gap-3">
+        <a href="#" class="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-lg p-1">
+          <div class="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center text-primary group-hover:border-primary transition-colors">
+            <span class="material-symbols-outlined text-[20px]">menu_book</span>
+          </div>
+          <span class="font-headline text-lg font-bold tracking-tight text-text-primary group-hover:text-primary transition-colors">
+            Genu Library
+          </span>
+        </a>
+      </div>
+
+      <!-- Navigation Tabs (Tablet Nav with Admin Route Highlight) -->
+      <div class="flex items-center gap-1.5">
+        <a href="#" class="px-3.5 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover min-h-[40px] flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40">
+          <span class="material-symbols-outlined text-[18px]">home</span>
+          <span>Home</span>
+        </a>
+        <a href="#" class="px-3.5 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover min-h-[40px] flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40">
+          <span class="material-symbols-outlined text-[18px]">explore</span>
+          <span>Catalog</span>
+        </a>
+        <a href="#" class="px-3.5 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover min-h-[40px] flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40">
+          <span class="material-symbols-outlined text-[18px]">collections_bookmark</span>
+          <span>Playlists</span>
+        </a>
+        <a href="#" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-primary bg-primary-muted min-h-[40px] flex items-center gap-1.5 transition-colors border border-primary/25">
+          <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+          <span>Admin</span>
+        </a>
+      </div>
+
+      <!-- User Profile / Token Indicator -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface border border-border">
+          <span class="text-xs">🪙</span>
+          <span class="font-mono text-xs text-text-primary font-medium">1,480</span>
+          <span class="text-[10px] text-text-muted">GN</span>
+        </div>
+        <button class="w-9 h-9 rounded-full bg-surface border border-border hover:border-primary flex items-center justify-center transition-colors overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50">
+          <span class="material-symbols-outlined text-[20px] text-text-secondary">shield_person</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. MAIN CONTENT WRAPPER -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-6 pt-6 pb-12">
+    <!-- Breadcrumbs & Page Header -->
+    <div class="mb-6">
+      <nav class="flex items-center gap-2 text-xs font-mono text-text-muted mb-2">
+        <a href="#" class="hover:text-text-primary transition-colors">Home</a>
+        <span>/</span>
+        <a href="#" class="hover:text-text-primary transition-colors">Admin</a>
+        <span>/</span>
+        <span class="text-primary">Bulk Upload</span>
+      </nav>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="font-headline text-2xl md:text-3xl font-bold tracking-tight text-text-primary">
+            Bulk Upload Books
+          </h1>
+          <p class="text-sm text-text-secondary mt-1">
+            Publish multiple scholarly manuscripts simultaneously with automated pipe-delimited indexing and PDF verification.
+          </p>
+        </div>
+        <!-- Status Pill -->
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-border text-xs text-text-secondary">
+          <span class="w-2 h-2 rounded-full bg-status-success"></span>
+          <span>Archival Ledger Online</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. TWO-COLUMN WORKFLOW CONTAINER (50% / 50% on Tablet) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+      
+      <!-- LEFT COLUMN (50%): Structured Book Data Textarea & Template Helper -->
+      <div class="flex flex-col space-y-4">
+        <div class="bg-surface border border-border rounded-xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <label for="book-data-input" class="text-sm font-medium text-text-primary flex items-center gap-1.5">
+              <span>Book Data</span>
+              <span class="text-primary">*</span>
+            </label>
+            <span class="text-xs text-text-muted font-mono">Pipe-delimited (title|author|genre)</span>
+          </div>
+
+          <!-- Textarea (Monospace, min 12 rows / 300px) -->
+          <div class="relative">
+            <textarea
+              id="book-data-input"
+              rows="12"
+              class="w-full min-h-[300px] max-h-[50vh] rounded-lg bg-canvas border border-border p-3.5 text-sm font-mono text-text-primary placeholder:text-text-muted/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 hover:border-border-hover transition-all resize-y leading-relaxed"
+              placeholder="The Alchemist's Codex|Prof. Alistair Vance|Hermetic Sciences&#10;Treatise on Ancient Metallurgy|Guild Elder John Dee|Craftsmanship&#10;De Sphaera Mundi|Johannes de Sacrobosco|Astronomy&#10;Chronicles of the Iron Foundry|Archivist Thorne|History"
+            >The Alchemist's Codex|Prof. Alistair Vance|Hermetic Sciences
+Treatise on Ancient Metallurgy|Guild Elder John Dee|Craftsmanship
+De Sphaera Mundi|Johannes de Sacrobosco|Astronomy
+Chronicles of the Iron Foundry|Archivist Thorne|History
+The Architecture of Thought|Dame Eleanor Wright|Dialectics</textarea>
+          </div>
+
+          <!-- Sub-bar: Line Count & Character Count -->
+          <div class="flex items-center justify-between text-xs text-text-muted font-mono mt-2.5 px-0.5">
+            <span class="text-[11px] text-text-secondary">One folio entry per line</span>
+            <div class="flex items-center gap-3">
+              <span id="stat-lines"><strong class="text-text-primary">5</strong> lines</span>
+              <span>•</span>
+              <span id="stat-chars"><strong class="text-text-primary">274</strong> chars</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PowerShell / Script Template Accordion (Collapsible) -->
+        <div class="bg-surface border border-border rounded-xl overflow-hidden transition-all">
+          <button
+            id="template-toggle-btn"
+            type="button"
+            class="w-full px-5 py-3.5 flex items-center justify-between text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover transition-colors focus:outline-none"
+            aria-expanded="false"
+          >
+            <div class="flex items-center gap-2 font-medium">
+              <span class="material-symbols-outlined text-primary text-[20px]">terminal</span>
+              <span>PowerShell Batch Import Script</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-xs text-text-muted">
+              <span id="toggle-label-text">Show Template</span>
+              <span id="toggle-chevron" class="material-symbols-outlined text-[18px] transition-transform duration-200">expand_more</span>
+            </div>
+          </button>
+
+          <!-- Collapsible Body -->
+          <div id="template-drawer" class="hidden border-t border-border bg-canvas/50 p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-text-muted">scripts/bulk-upload-sanctum.ps1</span>
+              <button
+                id="copy-template-btn"
+                type="button"
+                class="px-3 py-1 rounded bg-surface hover:bg-surface-hover border border-border text-xs text-text-primary hover:border-primary/50 transition-colors flex items-center gap-1.5 focus:outline-none"
+              >
+                <span id="copy-icon" class="material-symbols-outlined text-[14px]">content_copy</span>
+                <span id="copy-text">Copy Script</span>
+              </button>
+            </div>
+            <pre class="font-mono text-xs text-text-secondary bg-canvas p-3.5 rounded-lg border border-border overflow-x-auto whitespace-pre leading-relaxed"><code># Sanctum Batch Folio Creator
+$ApiKey = "sanctum_guild_token_prod_9941"
+$Folios = @(
+  @{ Title="Codex Arcanum"; Author="M. Vance"; Genre="Alchemy"; File=".\arcana.pdf" },
+  @{ Title="The Astrolabe Manual"; Author="E. Wright"; Genre="Astronomy"; File=".\astrolabe.pdf" }
+)
+foreach ($item in $Folios) {
+  Write-Host "Ingesting $($item.Title)..." -ForegroundColor DarkYellow
+  Invoke-RestMethod -Uri "https://sanctum.genu.lib/api/v1/folios/bulk" `
+    -Method Post -Headers @{ "Authorization" = "Bearer $ApiKey" } `
+    -Body ($item | ConvertTo-Json)
+}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN (50%): Drag & Drop PDF Drop Zone & Selected Files -->
+      <div class="flex flex-col space-y-4">
+        <div class="bg-surface border border-border rounded-xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-sm font-medium text-text-primary flex items-center gap-1.5">
+              <span>Upload PDF Folios</span>
+              <span class="text-text-muted text-xs font-normal">(Digital Facsimiles)</span>
+            </label>
+            <span class="text-xs text-text-muted font-mono">.pdf up to 50MB</span>
+          </div>
+
+          <!-- Drag and Drop Zone -->
+          <div
+            id="drop-zone"
+            class="group relative min-h-[190px] border-2 border-dashed border-border rounded-xl bg-canvas/40 hover:bg-surface-hover hover:border-primary/60 transition-all cursor-pointer flex flex-col items-center justify-center p-6 text-center focus-within:ring-2 focus-within:ring-primary/40"
+          >
+            <input
+              id="file-input"
+              type="file"
+              accept=".pdf"
+              multiple
+              class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
+              title="Select PDF folios"
+            />
+            
+            <div class="w-14 h-14 rounded-full bg-surface border border-border flex items-center justify-center text-text-muted group-hover:text-primary group-hover:border-primary/50 group-hover:scale-105 transition-all mb-3 shadow-inner">
+              <span class="material-symbols-outlined text-[32px]">upload_file</span>
+            </div>
+            
+            <p class="text-sm font-medium text-text-primary group-hover:text-primary transition-colors">
+              Drop PDFs here or <span class="text-primary underline underline-offset-2">browse files</span>
+            </p>
+            <p class="text-xs text-text-muted mt-1">
+              Supports multi-file batch upload • PDF format only
+            </p>
+          </div>
+
+          <!-- Selected Files List -->
+          <div class="mt-5">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-text-secondary font-mono">
+                Selected Files (<span id="file-count" class="text-text-primary">3</span>)
+              </span>
+              <button
+                id="clear-files-only-btn"
+                type="button"
+                class="text-[11px] text-text-muted hover:text-status-error font-mono transition-colors focus:outline-none"
+              >
+                Clear all files
+              </button>
+            </div>
+
+            <div id="file-list-container" class="max-h-[220px] overflow-y-auto space-y-2 pr-1">
+              <!-- File 1 -->
+              <div class="file-item flex items-center justify-between gap-3 p-3 bg-canvas border border-border rounded-lg hover:border-border-hover transition-colors group">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-8 h-8 rounded bg-primary-muted border border-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                    <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-xs font-medium text-text-primary truncate">alchemists_codex_1484.pdf</p>
+                    <p class="text-[11px] font-mono text-text-muted">4.8 MB • Hash: #9FA1</p>
+                  </div>
+                </div>
+                <button type="button" class="remove-file-btn w-8 h-8 rounded-md flex items-center justify-center text-text-muted hover:text-status-error hover:bg-status-error/10 transition-colors focus:outline-none" title="Remove file">
+                  <span class="material-symbols-outlined text-[18px]">close</span>
+                </button>
+              </div>
+
+              <!-- File 2 -->
+              <div class="file-item flex items-center justify-between gap-3 p-3 bg-canvas border border-border rounded-lg hover:border-border-hover transition-colors group">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-8 h-8 rounded bg-primary-muted border border-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                    <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-xs font-medium text-text-primary truncate">ancient_metallurgy_tract.pdf</p>
+                    <p class="text-[11px] font-mono text-text-muted">2.4 MB • Hash: #33BC</p>
+                  </div>
+                </div>
+                <button type="button" class="remove-file-btn w-8 h-8 rounded-md flex items-center justify-center text-text-muted hover:text-status-error hover:bg-status-error/10 transition-colors focus:outline-none" title="Remove file">
+                  <span class="material-symbols-outlined text-[18px]">close</span>
+                </button>
+              </div>
+
+              <!-- File 3 -->
+              <div class="file-item flex items-center justify-between gap-3 p-3 bg-canvas border border-border rounded-lg hover:border-border-hover transition-colors group">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-8 h-8 rounded bg-primary-muted border border-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                    <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-xs font-medium text-text-primary truncate">sacrobosco_sphaera_paris1230.pdf</p>
+                    <p class="text-[11px] font-mono text-text-muted">6.1 MB • Hash: #E41D</p>
+                  </div>
+                </div>
+                <button type="button" class="remove-file-btn w-8 h-8 rounded-md flex items-center justify-center text-text-muted hover:text-status-error hover:bg-status-error/10 transition-colors focus:outline-none" title="Remove file">
+                  <span class="material-symbols-outlined text-[18px]">close</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. SUBMIT & CLEAR ACTIONS ROW (Side by Side, Tablet Specific) -->
+    <div class="mt-6 flex items-center gap-4">
+      <button
+        id="upload-btn"
+        type="button"
+        class="flex-1 h-12 rounded-lg bg-primary hover:bg-primary-hover active:scale-[0.98] transition-all text-canvas font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_2px_12px_rgba(232,105,63,0.25)] focus:outline-none focus:ring-2 focus:ring-primary/40 min-h-[48px]"
+      >
+        <span id="upload-btn-icon" class="material-symbols-outlined text-[20px]">cloud_upload</span>
+        <span id="upload-btn-text">Upload Books</span>
+      </button>
+
+      <button
+        id="clear-all-btn"
+        type="button"
+        class="flex-1 h-12 rounded-lg bg-transparent border border-border text-text-secondary hover:text-status-error hover:border-status-error hover:bg-status-error/5 active:scale-[0.98] transition-all font-medium text-sm flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-status-error/30 min-h-[48px]"
+      >
+        <span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+        <span>Clear Form</span>
+      </button>
+    </div>
+
+    <!-- 5. PROGRESS LOADER STATE (Hidden by default, triggered during simulated submission) -->
+    <div id="upload-progress-container" class="hidden mt-6 bg-surface border border-border rounded-xl p-5 shadow-sm transition-all">
+      <div class="flex items-center justify-between text-xs font-mono text-text-secondary mb-2">
+        <span class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+          <span id="progress-status-text">Synchronizing folios with decentralized registry...</span>
+        </span>
+        <span id="progress-percentage">68%</span>
+      </div>
+      <div class="w-full h-2 bg-canvas rounded-full overflow-hidden border border-border">
+        <div id="progress-fill-bar" class="h-full bg-gradient-to-r from-primary to-[#f39c12] rounded-full transition-all duration-300 w-[68%]"></div>
+      </div>
+    </div>
+
+    <!-- 6. RESULTS SECTION (2-Column Grid on Tablet) -->
+    <section id="results-section" class="mt-8">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2.5">
+          <h2 class="font-headline text-xl font-bold text-text-primary">
+            Recent Batch Results
+          </h2>
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-surface border border-border text-text-secondary">
+            Batch #BK-2024-089
+          </span>
+        </div>
+        <span class="text-xs text-text-muted font-mono">4 Success • 1 Needs Review</span>
+      </div>
+
+      <!-- 2-Column Result Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 max-h-[420px] overflow-y-auto pr-1">
+        <!-- Result Card 1: Success -->
+        <div class="p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-success hover:border-border-hover transition-colors flex items-start gap-3.5 shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-status-success/15 text-status-success flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-medium text-text-primary truncate">The Alchemist's Codex</h3>
+              <span class="text-[10px] font-mono text-status-success bg-status-success/10 px-2 py-0.5 rounded">PUBLISHED</span>
+            </div>
+            <p class="text-xs text-text-secondary mt-0.5">Prof. Alistair Vance • Hermetic Sciences</p>
+            <p class="text-[11px] font-mono text-text-muted mt-1.5">Codex Sanctum #084 • PDF bound (4.8 MB)</p>
+          </div>
+        </div>
+
+        <!-- Result Card 2: Success -->
+        <div class="p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-success hover:border-border-hover transition-colors flex items-start gap-3.5 shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-status-success/15 text-status-success flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-medium text-text-primary truncate">Treatise on Ancient Metallurgy</h3>
+              <span class="text-[10px] font-mono text-status-success bg-status-success/10 px-2 py-0.5 rounded">PUBLISHED</span>
+            </div>
+            <p class="text-xs text-text-secondary mt-0.5">Guild Elder John Dee • Craftsmanship</p>
+            <p class="text-[11px] font-mono text-text-muted mt-1.5">Codex Sanctum #085 • PDF bound (2.4 MB)</p>
+          </div>
+        </div>
+
+        <!-- Result Card 3: Success -->
+        <div class="p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-success hover:border-border-hover transition-colors flex items-start gap-3.5 shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-status-success/15 text-status-success flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-medium text-text-primary truncate">De Sphaera Mundi</h3>
+              <span class="text-[10px] font-mono text-status-success bg-status-success/10 px-2 py-0.5 rounded">PUBLISHED</span>
+            </div>
+            <p class="text-xs text-text-secondary mt-0.5">Johannes de Sacrobosco • Astronomy</p>
+            <p class="text-[11px] font-mono text-text-muted mt-1.5">Codex Sanctum #086 • PDF bound (6.1 MB)</p>
+          </div>
+        </div>
+
+        <!-- Result Card 4: Success -->
+        <div class="p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-success hover:border-border-hover transition-colors flex items-start gap-3.5 shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-status-success/15 text-status-success flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-medium text-text-primary truncate">Chronicles of the Iron Foundry</h3>
+              <span class="text-[10px] font-mono text-status-success bg-status-success/10 px-2 py-0.5 rounded">PUBLISHED</span>
+            </div>
+            <p class="text-xs text-text-secondary mt-0.5">Archivist Thorne • History</p>
+            <p class="text-[11px] font-mono text-text-muted mt-1.5">Codex Sanctum #087 • Manuscript verified</p>
+          </div>
+        </div>
+
+        <!-- Result Card 5: Error / Missing Specimen -->
+        <div class="p-4 rounded-xl bg-surface border border-border border-l-4 border-l-status-error hover:border-border-hover transition-colors flex items-start gap-3.5 shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-status-error/15 text-status-error flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-[18px]">cancel</span>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-medium text-text-primary truncate">The Architecture of Thought</h3>
+              <span class="text-[10px] font-mono text-status-error bg-status-error/10 px-2 py-0.5 rounded">MISSING FILE</span>
+            </div>
+            <p class="text-xs text-text-secondary mt-0.5">Dame Eleanor Wright • Dialectics</p>
+            <p class="text-xs text-status-error mt-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">error</span>
+              <span>No corresponding PDF attached in upload batch</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 7. CLEAR ALL CONFIRMATION MODAL (Centered Tablet Pattern) -->
+  <div id="clear-modal" class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/70 backdrop-blur-sm hidden" role="dialog" aria-modal="true">
+    <div class="bg-surface border border-border rounded-2xl max-w-sm w-full p-6 shadow-[0_16px_40px_rgba(0,0,0,0.6)] transform transition-all">
+      <div class="w-12 h-12 rounded-full bg-status-error/15 text-status-error flex items-center justify-center mb-4">
+        <span class="material-symbols-outlined text-[26px]">warning</span>
+      </div>
+      <h3 class="font-headline text-xl font-bold text-text-primary mb-2">
+        Clear All Upload Data?
+      </h3>
+      <p class="text-xs text-text-secondary mb-6 leading-relaxed">
+        This action will erase all entered book metadata, deselect all 3 uploaded PDF manuscripts, and clear the current batch draft. This cannot be undone.
+      </p>
+      <div class="flex items-center gap-3">
+        <button
+          id="modal-cancel-btn"
+          type="button"
+          class="flex-1 h-11 rounded-lg bg-surface hover:bg-surface-hover border border-border text-text-primary text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-border-hover min-h-[44px]"
+        >
+          Keep Editing
+        </button>
+        <button
+          id="modal-confirm-btn"
+          type="button"
+          class="flex-1 h-11 rounded-lg bg-status-error hover:bg-[#b03c3c] text-white text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-status-error/50 min-h-[44px]"
+        >
+          Clear All
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. REUSABLE TOAST NOTIFICATION (Top-right for Tablet) -->
+  <div id="toast" class="fixed top-20 right-6 z-50 transform translate-x-[150%] transition-transform duration-300 ease-out bg-surface border border-border rounded-xl p-3.5 shadow-[0_8px_30px_rgba(0,0,0,0.45)] flex items-center gap-3 max-w-xs">
+    <div id="toast-icon-wrapper" class="w-7 h-7 rounded-full bg-status-success/20 text-status-success flex items-center justify-center flex-shrink-0">
+      <span id="toast-icon" class="material-symbols-outlined text-[18px]">check_circle</span>
+    </div>
+    <div class="min-w-0">
+      <p id="toast-title" class="text-xs font-semibold text-text-primary">Script Copied</p>
+      <p id="toast-desc" class="text-[11px] text-text-secondary truncate">PowerShell template stored on clipboard</p>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: Full Tablet Interactions -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Elements
+      const bookDataInput = document.getElementById('book-data-input');
+      const statLines = document.getElementById('stat-lines');
+      const statChars = document.getElementById('stat-chars');
+      const templateToggleBtn = document.getElementById('template-toggle-btn');
+      const templateDrawer = document.getElementById('template-drawer');
+      const toggleLabelText = document.getElementById('toggle-label-text');
+      const toggleChevron = document.getElementById('toggle-chevron');
+      const copyTemplateBtn = document.getElementById('copy-template-btn');
+      const copyIcon = document.getElementById('copy-icon');
+      const copyText = document.getElementById('copy-text');
+      
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const fileListContainer = document.getElementById('file-list-container');
+      const fileCount = document.getElementById('file-count');
+      const clearFilesOnlyBtn = document.getElementById('clear-files-only-btn');
+      
+      const uploadBtn = document.getElementById('upload-btn');
+      const uploadBtnIcon = document.getElementById('upload-btn-icon');
+      const uploadBtnText = document.getElementById('upload-btn-text');
+      const clearAllBtn = document.getElementById('clear-all-btn');
+      
+      const uploadProgressContainer = document.getElementById('upload-progress-container');
+      const progressFillBar = document.getElementById('progress-fill-bar');
+      const progressPercentage = document.getElementById('progress-percentage');
+      const progressStatusText = document.getElementById('progress-status-text');
+      
+      const clearModal = document.getElementById('clear-modal');
+      const modalCancelBtn = document.getElementById('modal-cancel-btn');
+      const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+      const toast = document.getElementById('toast');
+
+      // 1. Textarea Stats Counter & Auto-resize
+      function updateTextareaStats() {
+        const text = bookDataInput.value;
+        const lines = text.length === 0 ? 0 : text.split('\n').filter(l => l.trim().length > 0).length;
+        const chars = text.length;
+
+        statLines.innerHTML = `<strong class="text-text-primary">${lines}</strong> lines`;
+        statChars.innerHTML = `<strong class="text-text-primary">${chars}</strong> chars`;
+
+        // Update upload button disabled state
+        if (lines === 0) {
+          uploadBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+          uploadBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      }
+
+      bookDataInput.addEventListener('input', updateTextareaStats);
+      // Support tab character insertion inside textarea
+      bookDataInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          const start = bookDataInput.selectionStart;
+          const end = bookDataInput.selectionEnd;
+          bookDataInput.value = bookDataInput.value.substring(0, start) + "\t" + bookDataInput.value.substring(end);
+          bookDataInput.selectionStart = bookDataInput.selectionEnd = start + 1;
+          updateTextareaStats();
+        }
+      });
+      updateTextareaStats();
+
+      // 2. Template Accordion Toggle
+      templateToggleBtn.addEventListener('click', () => {
+        const isHidden = templateDrawer.classList.contains('hidden');
+        if (isHidden) {
+          templateDrawer.classList.remove('hidden');
+          toggleLabelText.textContent = 'Hide Template';
+          toggleChevron.classList.add('rotate-180');
+          templateToggleBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          templateDrawer.classList.add('hidden');
+          toggleLabelText.textContent = 'Show Template';
+          toggleChevron.classList.remove('rotate-180');
+          templateToggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // 3. Copy PowerShell Template to Clipboard
+      copyTemplateBtn.addEventListener('click', () => {
+        const scriptCode = `# Sanctum Batch Folio Creator
+$ApiKey = "sanctum_guild_token_prod_9941"
+$Folios = @(
+  @{ Title="Codex Arcanum"; Author="M. Vance"; Genre="Alchemy"; File=".\\arcana.pdf" },
+  @{ Title="The Astrolabe Manual"; Author="E. Wright"; Genre="Astronomy"; File=".\\astrolabe.pdf" }
+)
+foreach ($item in $Folios) {
+  Write-Host "Ingesting $($item.Title)..." -ForegroundColor DarkYellow
+  Invoke-RestMethod -Uri "https://sanctum.genu.lib/api/v1/folios/bulk" \`
+    -Method Post -Headers @{ "Authorization" = "Bearer $ApiKey" } \`
+    -Body ($item | ConvertTo-Json)
+}`;
+        navigator.clipboard.writeText(scriptCode).then(() => {
+          copyIcon.textContent = 'check';
+          copyText.textContent = 'Copied!';
+          copyTemplateBtn.classList.add('text-status-success', 'border-status-success');
+          showToast('Template Copied', 'PowerShell batch script ready on clipboard.');
+
+          setTimeout(() => {
+            copyIcon.textContent = 'content_copy';
+            copyText.textContent = 'Copy Script';
+            copyTemplateBtn.classList.remove('text-status-success', 'border-status-success');
+          }, 2000);
+        });
+      });
+
+      // 4. Drag & Drop File Handling
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.add('border-primary', 'bg-primary/5');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.remove('border-primary', 'bg-primary/5');
+        });
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        handleFiles(e.target.files);
+      });
+
+      function handleFiles(files) {
+        if (!files || files.length === 0) return;
+        
+        let countAdded = 0;
+        Array.from(files).forEach(file => {
+          if (!file.name.toLowerCase().endsWith('.pdf')) {
+            showToast('Invalid File', `${file.name} is not a PDF folio.`);
+            return;
+          }
+          
+          const sizeMB = (file.size / (1024 * 1024)).toFixed(1);
+          const hashMock = '#' + Math.random().toString(16).substr(2, 4).toUpperCase();
+          
+          const row = document.createElement('div');
+          row.className = 'file-item flex items-center justify-between gap-3 p-3 bg-canvas border border-border rounded-lg hover:border-border-hover transition-colors group animate-fadeIn';
+          row.innerHTML = `
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-8 h-8 rounded bg-primary-muted border border-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs font-medium text-text-primary truncate">${file.name}</p>
+                <p class="text-[11px] font-mono text-text-muted">${sizeMB} MB • Hash: ${hashMock}</p>
+              </div>
+            </div>
+            <button type="button" class="remove-file-btn w-8 h-8 rounded-md flex items-center justify-center text-text-muted hover:text-status-error hover:bg-status-error/10 transition-colors focus:outline-none" title="Remove file">
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          `;
+
+          // Add remove listener
+          row.querySelector('.remove-file-btn').addEventListener('click', () => {
+            row.remove();
+            updateFileCount();
+          });
+
+          fileListContainer.prepend(row);
+          countAdded++;
+        });
+
+        updateFileCount();
+        if (countAdded > 0) {
+          showToast('Folios Staged', `${countAdded} PDF folio(s) prepared for ingestion.`);
+        }
+      }
+
+      // Hook up existing remove buttons
+      document.querySelectorAll('.remove-file-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.currentTarget.closest('.file-item').remove();
+          updateFileCount();
+        });
+      });
+
+      function updateFileCount() {
+        const count = fileListContainer.querySelectorAll('.file-item').length;
+        fileCount.textContent = count;
+      }
+
+      clearFilesOnlyBtn.addEventListener('click', () => {
+        fileListContainer.innerHTML = '';
+        updateFileCount();
+        showToast('Files Cleared', 'All staged PDF files have been unattached.');
+      });
+
+      // 5. Upload Execution & Progress Simulation
+      uploadBtn.addEventListener('click', () => {
+        const text = bookDataInput.value.trim();
+        if (!text) {
+          showToast('Empty Form', 'Please enter at least one folio entry.');
+          return;
+        }
+
+        // Trigger loading state
+        uploadBtn.disabled = true;
+        uploadBtn.classList.add('opacity-75');
+        uploadBtnIcon.textContent = 'progress_activity';
+        uploadBtnIcon.classList.add('animate-spin');
+        uploadBtnText.textContent = 'Uploading to Ledger...';
+
+        // Show progress bar
+        uploadProgressContainer.classList.remove('hidden');
+        progressFillBar.style.width = '15%';
+        progressPercentage.textContent = '15%';
+        progressStatusText.textContent = 'Parsing metadata and pipe tags...';
+
+        setTimeout(() => {
+          progressFillBar.style.width = '48%';
+          progressPercentage.textContent = '48%';
+          progressStatusText.textContent = 'Validating digital cryptographic seals...';
+        }, 500);
+
+        setTimeout(() => {
+          progressFillBar.style.width = '85%';
+          progressPercentage.textContent = '85%';
+          progressStatusText.textContent = 'Binding PDF facsimiles to folio numbers...';
+        }, 1000);
+
+        setTimeout(() => {
+          progressFillBar.style.width = '100%';
+          progressPercentage.textContent = '100%';
+          progressStatusText.textContent = 'Batch upload confirmed in sanctuary registry!';
+
+          setTimeout(() => {
+            uploadBtn.disabled = false;
+            uploadBtn.classList.remove('opacity-75');
+            uploadBtnIcon.textContent = 'cloud_upload';
+            uploadBtnIcon.classList.remove('animate-spin');
+            uploadBtnText.textContent = 'Upload Books';
+            showToast('Batch Complete', 'Successfully processed 5 book entries.');
+            
+            // Scroll to results section smoothly
+            document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+          }, 400);
+        }, 1500);
+      });
+
+      // 6. Clear All Modal Flow
+      clearAllBtn.addEventListener('click', () => {
+        clearModal.classList.remove('hidden');
+      });
+
+      modalCancelBtn.addEventListener('click', () => {
+        clearModal.classList.add('hidden');
+      });
+
+      clearModal.addEventListener('click', (e) => {
+        if (e.target === clearModal) {
+          clearModal.classList.add('hidden');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !clearModal.classList.contains('hidden')) {
+          clearModal.classList.add('hidden');
+        }
+      });
+
+      modalConfirmBtn.addEventListener('click', () => {
+        bookDataInput.value = '';
+        updateTextareaStats();
+        fileListContainer.innerHTML = '';
+        updateFileCount();
+        uploadProgressContainer.classList.add('hidden');
+        clearModal.classList.add('hidden');
+        showToast('Form Reset', 'All metadata and file attachments cleared.');
+      });
+
+      // 7. Toast helper
+      let toastTimer = null;
+      function showToast(title, desc) {
+        clearTimeout(toastTimer);
+        document.getElementById('toast-title').textContent = title;
+        document.getElementById('toast-desc').textContent = desc;
+
+        toast.classList.remove('translate-x-[150%]');
+        toast.classList.add('translate-x-0');
+
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('translate-x-0');
+          toast.classList.add('translate-x-[150%]');
+        }, 2600);
+      }
+    });
+  </script>
+</body>
+</html>

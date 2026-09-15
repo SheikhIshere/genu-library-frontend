@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <title>Genu Library — Sign In</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#16110f",
+            surface: "#211a17",
+            "surface-hover": "#2a211c",
+            "surface-active": "#332a24",
+            primary: "#e8693f",
+            "primary-hover": "#d45a30",
+            border: "#3a322d",
+            "border-hover": "#4d433d",
+            "text-primary": "#ece0dc",
+            "text-secondary": "#a89c93",
+            "text-muted": "#7a706a",
+            "text-on-accent": "#16110f",
+            error: "#c44d4d",
+            success: "#4a7c59",
+            warning: "#d4a24e"
+          },
+          fontFamily: {
+            display: ["Playfair Display", "serif"],
+            sans: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
+            'scale-in': 'scaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+            'shake': 'shake 0.3s ease-in-out'
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(16px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.9)' },
+              '100%': { opacity: '1', transform: 'scale(1)' }
+            },
+            shake: {
+              '0%, 100%': { transform: 'translateX(0)' },
+              '20%, 60%': { transform: 'translateX(-6px)' },
+              '40%, 80%': { transform: 'translateX(6px)' }
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @layer base {
+      html, body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #16110f;
+        color: #ece0dc;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+    }
+
+    /* Custom Focus Rings & Smooth Transitions */
+    .field-input {
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+    .field-input:focus {
+      border-color: #e8693f !important;
+      box-shadow: 0 0 0 3px rgba(232, 105, 63, 0.15);
+      outline: none;
+    }
+
+    /* Checkbox custom appearance */
+    input[type="checkbox"]:checked {
+      background-color: #e8693f;
+      border-color: #e8693f;
+    }
+
+    /* Touch target assurance */
+    .touch-target-48 {
+      min-height: 48px;
+    }
+  </style>
+</head>
+
+<body class="bg-canvas text-text-primary antialiased selection:bg-primary selection:text-text-on-accent">
+
+  <!-- Mobile Layout Container: dynamic full viewport, no fixed bottom nav, perfectly keyboard safe -->
+  <main class="min-h-[100dvh] w-full max-w-[640px] mx-auto flex flex-col items-center justify-center px-5 py-10 pt-safe pb-safe select-none">
+    
+    <div class="w-full max-w-sm flex flex-col items-center">
+
+      <!-- Brand / Logo Block -->
+      <div class="flex flex-col items-center gap-3 mb-10 text-center animate-scale-in">
+        <!-- Brand Insignia (48x48) -->
+        <div class="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center shadow-sm relative overflow-hidden group">
+          <div class="absolute inset-0 bg-primary/10 rounded-xl pointer-events-none"></div>
+          <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+          </svg>
+        </div>
+
+        <h1 class="font-display text-[26px] font-bold text-text-primary tracking-tight leading-tight">
+          Forge &amp; Flux
+        </h1>
+        <p class="text-sm text-text-secondary font-normal">
+          Sign in to your library sanctum
+        </p>
+      </div>
+
+      <!-- Login Form (Single column, max-w-sm, gap-5) -->
+      <form id="login-form" class="w-full flex flex-col gap-5" autocomplete="on" novalidate>
+
+        <!-- Email Field -->
+        <div id="email-group" class="flex flex-col gap-2 animate-fade-up" style="animation-delay: 0.1s;">
+          <label for="email" class="text-sm font-medium text-text-secondary flex justify-between items-center">
+            <span>Email address</span>
+            <span id="email-hint" class="text-xs text-text-muted hidden">Enter valid email</span>
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+            class="field-input w-full min-h-[48px] px-4 py-3 bg-canvas border border-border rounded-lg text-text-primary placeholder:text-text-muted text-sm"
+          />
+          <!-- Error Text Container -->
+          <p id="email-error" class="hidden text-xs text-error font-medium flex items-center gap-1.5 mt-0.5">
+            <span class="material-symbols-outlined text-[14px]">error</span>
+            <span>Please enter a valid archivist email address.</span>
+          </p>
+        </div>
+
+        <!-- Password Field -->
+        <div id="password-group" class="flex flex-col gap-2 animate-fade-up" style="animation-delay: 0.16s;">
+          <div class="flex items-center justify-between">
+            <label for="password" class="text-sm font-medium text-text-secondary">
+              Password
+            </label>
+          </div>
+          <div class="relative w-full">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              required
+              class="field-input w-full min-h-[48px] pl-4 pr-12 py-3 bg-canvas border border-border rounded-lg text-text-primary placeholder:text-text-muted text-sm"
+            />
+            <!-- Toggle visibility button (min 44x44 / 48px touch target) -->
+            <button
+              id="toggle-password-btn"
+              type="button"
+              aria-label="Toggle password visibility"
+              class="absolute right-1 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary hover:text-text-primary active:scale-90 transition-transform"
+            >
+              <!-- Eye open icon -->
+              <span id="eye-icon" class="material-symbols-outlined text-[20px]">visibility</span>
+              <!-- Eye closed icon (hidden by default) -->
+              <span id="eye-off-icon" class="material-symbols-outlined text-[20px] hidden">visibility_off</span>
+            </button>
+          </div>
+          <!-- Error Text Container -->
+          <p id="password-error" class="hidden text-xs text-error font-medium flex items-center gap-1.5 mt-0.5">
+            <span class="material-symbols-outlined text-[14px]">error</span>
+            <span>Password cannot be empty.</span>
+          </p>
+        </div>
+
+        <!-- Remember Me & Forgot Password Row -->
+        <div class="flex items-center justify-between animate-fade-up pt-0.5" style="animation-delay: 0.22s;">
+          <label class="flex items-center gap-2.5 min-h-[44px] cursor-pointer select-none py-1">
+            <input
+              id="remember-me"
+              type="checkbox"
+              class="w-5 h-5 rounded border-border bg-canvas text-primary focus:ring-primary/20 accent-primary cursor-pointer transition-colors"
+            />
+            <span class="text-sm text-text-secondary">Remember me</span>
+          </label>
+          <a
+            href="/forgot-password"
+            class="min-h-[44px] flex items-center text-sm text-primary hover:text-primary-hover font-medium active:opacity-75 transition-colors"
+            id="forgot-password-link"
+          >
+            Forgot password?
+          </a>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="animate-fade-up pt-1" style="animation-delay: 0.28s;">
+          <button
+            id="submit-btn"
+            type="submit"
+            class="w-full min-h-[52px] rounded-lg bg-primary text-text-on-accent font-semibold text-base flex items-center justify-center gap-2 shadow-sm hover:bg-primary-hover active:scale-[0.97] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <!-- Normal Text -->
+            <span id="submit-label">Sign In</span>
+            
+            <!-- Loading Spinner State (Hidden by default) -->
+            <div id="submit-spinner" class="hidden items-center gap-2">
+              <svg class="animate-spin h-5 w-5 text-text-on-accent" viewBox="0 0 24 24" fill="none">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>Signing in...</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Divider with text -->
+        <div class="relative my-4 animate-fade-up" style="animation-delay: 0.34s;">
+          <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-border"></div>
+          </div>
+          <div class="relative flex justify-center text-xs">
+            <span class="px-3 bg-canvas text-text-muted uppercase tracking-wider font-mono text-[11px]">
+              or continue with
+            </span>
+          </div>
+        </div>
+
+        <!-- Social Login Buttons (Google & GitHub) -->
+        <div class="flex gap-3 animate-fade-up" style="animation-delay: 0.4s;">
+          <!-- Google -->
+          <button
+            id="google-login-btn"
+            type="button"
+            class="flex-1 min-h-[48px] flex items-center justify-center gap-2.5 bg-surface border border-border rounded-lg text-text-primary hover:border-border-hover active:scale-[0.97] transition-all"
+          >
+            <!-- Google SVG Icon -->
+            <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24">
+              <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/>
+              <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
+              <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15.1c0 2.8.7 5.4 1.9 7.8l3.7-2.9z"/>
+              <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z"/>
+            </svg>
+            <span class="text-sm font-medium">Google</span>
+          </button>
+
+          <!-- GitHub -->
+          <button
+            id="github-login-btn"
+            type="button"
+            class="flex-1 min-h-[48px] flex items-center justify-center gap-2.5 bg-surface border border-border rounded-lg text-text-primary hover:border-border-hover active:scale-[0.97] transition-all"
+          >
+            <!-- GitHub SVG Icon -->
+            <svg class="w-4 h-4 flex-shrink-0 fill-current text-text-primary" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            <span class="text-sm font-medium">GitHub</span>
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Sign Up Footer Link -->
+      <div class="mt-8 text-center text-sm text-text-secondary animate-fade-up" style="animation-delay: 0.46s;">
+        <span>Don't have an account?</span>
+        <a href="/register" class="text-primary font-medium hover:text-primary-hover active:opacity-75 transition-colors ml-1 min-h-[44px] inline-flex items-center">
+          Sign up
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Interaction Logic (Haptics, Password Toggle, Smooth Scroll into View, Error Shake & States) -->
+  <script>
+    // Lightweight Haptic Feedback Helper
+    function triggerHaptic(type = 'light') {
+      if ('vibrate' in navigator) {
+        if (type === 'medium') {
+          navigator.vibrate(15);
+        } else {
+          navigator.vibrate(8);
+        }
+      }
+    }
+
+    // Elements
+    const emailInput = document.getElementById('email');
+    const emailGroup = document.getElementById('email-group');
+    const emailError = document.getElementById('email-error');
+
+    const passwordInput = document.getElementById('password');
+    const passwordGroup = document.getElementById('password-group');
+    const passwordError = document.getElementById('password-error');
+    const togglePasswordBtn = document.getElementById('toggle-password-btn');
+    const eyeIcon = document.getElementById('eye-icon');
+    const eyeOffIcon = document.getElementById('eye-off-icon');
+
+    const form = document.getElementById('login-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const submitLabel = document.getElementById('submit-label');
+    const submitSpinner = document.getElementById('submit-spinner');
+
+    const googleBtn = document.getElementById('google-login-btn');
+    const githubBtn = document.getElementById('github-login-btn');
+    const forgotLink = document.getElementById('forgot-password-link');
+
+    // 1. Password Visibility Toggle
+    togglePasswordBtn.addEventListener('click', () => {
+      triggerHaptic('light');
+      const isPassword = passwordInput.getAttribute('type') === 'password';
+      passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+      if (isPassword) {
+        eyeIcon.classList.add('hidden');
+        eyeOffIcon.classList.remove('hidden');
+        togglePasswordBtn.setAttribute('aria-label', 'Hide password');
+      } else {
+        eyeIcon.classList.remove('hidden');
+        eyeOffIcon.classList.add('hidden');
+        togglePasswordBtn.setAttribute('aria-label', 'Show password');
+      }
+    });
+
+    // 2. Keyboard Avoidance: Scroll input into comfortable center view on focus
+    [emailInput, passwordInput].forEach(input => {
+      input.addEventListener('focus', () => {
+        setTimeout(() => {
+          input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 150);
+      });
+    });
+
+    // 3. Form Submit with Feedback & Simulation
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      triggerHaptic('medium');
+
+      let hasError = false;
+      const emailVal = emailInput.value.trim();
+      const passwordVal = passwordInput.value.trim();
+
+      // Reset previous error styles
+      emailInput.classList.remove('border-error', 'text-error');
+      emailError.classList.add('hidden');
+      passwordInput.classList.remove('border-error');
+      passwordError.classList.add('hidden');
+
+      // Email validation check
+      if (!emailVal || !emailVal.includes('@') || !emailVal.includes('.')) {
+        hasError = true;
+        emailInput.classList.add('border-error');
+        emailError.classList.remove('hidden');
+        emailGroup.classList.remove('animate-shake');
+        void emailGroup.offsetWidth; // trigger reflow
+        emailGroup.classList.add('animate-shake');
+      }
+
+      // Password validation check
+      if (!passwordVal) {
+        hasError = true;
+        passwordInput.classList.add('border-error');
+        passwordError.classList.remove('hidden');
+        passwordGroup.classList.remove('animate-shake');
+        void passwordGroup.offsetWidth;
+        passwordGroup.classList.add('animate-shake');
+      }
+
+      if (hasError) return;
+
+      // Enter Loading State
+      submitBtn.disabled = true;
+      submitLabel.classList.add('hidden');
+      submitSpinner.classList.remove('hidden');
+      submitSpinner.classList.add('inline-flex');
+
+      // Simulate Authentication response
+      setTimeout(() => {
+        submitSpinner.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]">check_circle</span>
+          <span>Access Granted</span>
+        `;
+        submitBtn.classList.remove('bg-primary', 'hover:bg-primary-hover');
+        submitBtn.classList.add('bg-success');
+        triggerHaptic('medium');
+
+        setTimeout(() => {
+          // In real app, router redirects to dashboard / catalog
+          submitBtn.disabled = false;
+          submitLabel.classList.remove('hidden');
+          submitSpinner.classList.add('hidden');
+          submitSpinner.classList.remove('inline-flex');
+          submitBtn.classList.remove('bg-success');
+          submitBtn.classList.add('bg-primary', 'hover:bg-primary-hover');
+          submitSpinner.innerHTML = `
+            <svg class="animate-spin h-5 w-5 text-text-on-accent" viewBox="0 0 24 24" fill="none">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Signing in...</span>
+          `;
+        }, 1500);
+      }, 1000);
+    });
+
+    // 4. Social buttons interaction
+    [googleBtn, githubBtn].forEach(btn => {
+      btn.addEventListener('click', () => {
+        triggerHaptic('light');
+        btn.classList.add('opacity-75');
+        setTimeout(() => btn.classList.remove('opacity-75'), 200);
+      });
+    });
+
+    forgotLink.addEventListener('click', () => {
+      triggerHaptic('light');
+    });
+  </script>
+</body>
+</html>

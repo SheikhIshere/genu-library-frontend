@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Genu Library — Create New Tag (Tablet)</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            'surface-hover': '#2a211c',
+            'surface-active': '#332a24',
+            primary: '#e8693f',
+            'primary-hover': '#d45a30',
+            'primary-muted': 'rgba(232, 105, 63, 0.12)',
+            border: '#3a322d',
+            'border-hover': '#4d433d',
+            'text-primary': '#ece0dc',
+            'text-secondary': '#a89c93',
+            'text-muted': '#7a706a',
+            'text-on-accent': '#16110f',
+            'status-error': '#c44d4d',
+            'status-success': '#4a7c59',
+            'status-warning': '#d4a24e',
+            'status-info': '#5b8fb9',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      background-color: #16110f;
+      color: #ece0dc;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Custom scrollbar for tag cloud */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #16110f;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #3a322d;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #4d433d;
+    }
+
+    @keyframes springIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      70% { transform: scale(1.05); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-spring-in {
+      animation: springIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    
+    @keyframes toastSlide {
+      0% { transform: translateX(110%); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+    .animate-toast-in {
+      animation: toastSlide 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+<!-- 1. Sticky Top Navigation Bar -->
+<header class="sticky top-0 z-40 h-16 bg-[#16110f]/90 backdrop-blur-md border-b border-[#3a322d] px-6">
+<div class="max-w-5xl mx-auto h-full flex items-center justify-between">
+<!-- Brand Logo -->
+<div class="flex items-center gap-3">
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(232,105,63,0.3)] transition-transform group-hover:scale-105">
+<svg class="w-4 h-4 text-[#16110f]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+<path d="M6 6h10"></path>
+<path d="M6 10h10"></path>
+</svg>
+</div>
+<span class="font-display font-bold text-lg tracking-tight text-[#ece0dc] group-hover:text-primary transition-colors">
+            Genu Library
+          </span>
+</a>
+</div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="flex items-center gap-1.5">
+<a class="nav-item flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium text-[#a89c93] hover:text-[#ece0dc] hover:bg-[#211a17] transition-all min-h-[40px] min-w-[40px]" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+<span>Library</span>
+</a>
+<a class="nav-item flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium text-[#a89c93] hover:text-[#ece0dc] hover:bg-[#211a17] transition-all min-h-[40px] min-w-[40px]" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect></svg>
+<span>Browse</span>
+</a>
+<a class="nav-item flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium text-[#a89c93] hover:text-[#ece0dc] hover:bg-[#211a17] transition-all min-h-[40px] min-w-[40px]" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<span>Search</span>
+</a>
+<!-- Active Nav: Tags -->
+<a class="nav-item flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-semibold text-primary bg-primary/10 border border-primary/20 min-h-[40px] min-w-[40px]" href="#">
+<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
+<span>Tags</span>
+</a>
+</nav>
+<!-- Profile Avatar & Tokens -->
+<div class="flex items-center gap-3">
+<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#211a17] border border-[#3a322d] text-xs font-mono text-primary">
+<svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+</svg>
+<span>1,480 GN</span>
+</div>
+<button class="w-9 h-9 rounded-full bg-[#211a17] border border-[#3a322d] hover:border-primary/60 p-0.5 overflow-hidden transition-all flex items-center justify-center min-h-[40px] min-w-[40px]" id="profileBtn" title="Archivist Profile">
+<img alt="Avatar" class="w-full h-full object-cover rounded-full" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-1 max-w-5xl w-full mx-auto px-6 pt-8 pb-12">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-[#7a706a] mb-2.5">
+<a class="breadcrumb-nav hover:text-[#ece0dc] transition-colors" href="#">Home</a>
+<span>&gt;</span>
+<a class="breadcrumb-nav hover:text-[#ece0dc] transition-colors" href="#">Tags</a>
+<span>&gt;</span>
+<span class="text-[#a89c93]">Add New</span>
+</nav>
+<!-- Page Heading -->
+<div class="flex items-baseline justify-between mb-8 pb-4 border-b border-[#3a322d]/60">
+<div>
+<h1 class="font-display text-3xl font-bold text-[#ece0dc] tracking-tight">Create New Tag</h1>
+<p class="text-sm text-[#a89c93] mt-1">Catalog and classify treatises, codices, and manuscripts across the library sanctum.</p>
+</div>
+<span class="text-xs font-mono px-2.5 py-1 rounded bg-[#211a17] border border-[#3a322d] text-[#a89c93] hidden md:inline-block">
+        Tablet Viewport
+      </span>
+</div>
+<!-- 2-Column Responsive Layout -->
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<!-- LEFT COLUMN: Form (40%) -->
+<section class="w-full md:w-[40%] flex flex-col space-y-5 bg-[#211a17] p-6 rounded-2xl border border-[#3a322d]">
+<div class="flex items-center justify-between border-b border-[#3a322d]/60 pb-3">
+<h2 class="text-base font-semibold text-[#ece0dc] font-display flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+            Tag Definition
+          </h2>
+<span class="text-xs font-mono text-[#7a706a]">Step 1 of 1</span>
+</div>
+<form class="space-y-4" id="createTagForm" onsubmit="handleTagSubmit(event)">
+<!-- Tag Name Field -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="text-sm font-medium text-[#ece0dc]" for="tagNameInput">
+                Tag Name <span class="text-primary">*</span>
+</label>
+<span class="text-xs font-mono text-[#7a706a]" id="charCounter">0/32</span>
+</div>
+<div class="relative">
+<input autocomplete="off" autofocus="" class="w-full h-12 px-4 rounded-lg bg-[#16110f] border border-[#3a322d] text-[#ece0dc] placeholder:text-[#7a706a] text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 hover:border-[#4d433d] transition-all min-h-[44px]" id="tagNameInput" maxlength="32" name="tagName" oninput="handleInputChange(event)" placeholder="e.g. Alchemical Manuscripts" type="text"/>
+<!-- Tag Icon inside Input -->
+<div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#7a706a]">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+</svg>
+</div>
+</div>
+<!-- Duplicate / Error Warning Box -->
+<div class="hidden opacity-0 transform -translate-y-1 transition-all duration-200 mt-2.5 p-2.5 rounded-lg bg-red-950/30 border border-status-error/40 flex items-center gap-2 text-status-error text-xs" id="duplicateWarning">
+<svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+<line x1="12" x2="12" y1="9" y2="13"></line>
+<line x1="12" x2="12.01" y1="17" y2="17"></line>
+</svg>
+<span id="duplicateWarningText">"fantasy" already exists in library catalog</span>
+</div>
+</div>
+<!-- Description & Guidance Note -->
+<div class="p-3 rounded-lg bg-[#16110f]/60 border border-[#3a322d]/60 text-xs text-[#a89c93] leading-relaxed">
+<p class="flex items-start gap-2">
+<svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" x2="12" y1="16" y2="12"></line>
+<line x1="12" x2="12.01" y1="8" y2="8"></line>
+</svg>
+<span>Tags should be concise singular or categorical nouns. System automatically formats typography and checks against registered concordats.</span>
+</p>
+</div>
+<!-- Action Buttons -->
+<div class="pt-2">
+<button class="w-full h-12 rounded-lg bg-primary hover:bg-primary-hover active:scale-[0.98] text-[#16110f] font-semibold text-sm transition-all duration-150 flex items-center justify-center gap-2 disabled:bg-[#16110f] disabled:text-[#7a706a] disabled:border disabled:border-[#3a322d] disabled:cursor-not-allowed disabled:opacity-60 min-h-[44px] shadow-[0_4px_16px_rgba(232,105,63,0.15)]" disabled="" id="submitBtn" type="submit">
+<svg class="hidden w-4 h-4 animate-spin text-[#16110f]" fill="none" id="submitSpinner" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25"></circle>
+<path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"></path>
+</svg>
+<span id="submitBtnText">Create Tag</span>
+</button>
+</div>
+</form>
+</section>
+<!-- RIGHT COLUMN: Existing Tag Cloud (60%) -->
+<section class="w-full md:w-[60%] flex flex-col space-y-4 bg-[#211a17] p-6 rounded-2xl border border-[#3a322d]">
+<div class="flex items-center justify-between border-b border-[#3a322d]/60 pb-3">
+<div class="flex items-center gap-2.5">
+<h2 class="font-display text-base font-semibold text-[#ece0dc]">Existing Tags</h2>
+<span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-[#16110f] border border-[#3a322d] text-[#a89c93]" id="tagCountBadge">
+              24 tags
+            </span>
+</div>
+<span class="text-xs text-[#7a706a] flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span>
+            Live Catalog Index
+          </span>
+</div>
+<!-- Filter Sub-bar for fast exploration -->
+<div class="relative">
+<svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#7a706a]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="8"></circle>
+<path d="m21 21-4.3-4.3"></path>
+</svg>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-[#16110f] border border-[#3a322d] text-xs text-[#ece0dc] placeholder:text-[#7a706a] focus:outline-none focus:border-primary hover:border-[#4d433d] transition-colors" id="cloudFilterInput" oninput="filterTagCloud(event)" placeholder="Filter tag cloud..." type="text"/>
+</div>
+<!-- Chip Cloud Container -->
+<div class="custom-scrollbar flex flex-wrap gap-2 p-3 bg-[#16110f]/70 border border-[#3a322d] rounded-xl max-h-[380px] overflow-y-auto" id="tagCloudContainer">
+<!-- Dynamic tags will populate here -->
+</div>
+<!-- Legend / Footer of cloud -->
+<div class="pt-2 flex items-center justify-between text-xs text-[#7a706a]">
+<span class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path></svg>
+            Display-only taxonomy chips with item volume
+          </span>
+<button class="hover:text-[#ece0dc] text-xs underline underline-offset-2 transition-colors" onclick="resetTagCloudFilter()" type="button">
+            Reset view
+          </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Centered Discard Confirmation Modal -->
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden opacity-0 flex items-center justify-center p-4 transition-opacity duration-200" id="discardModal">
+<div class="bg-[#211a17] border border-[#3a322d] rounded-2xl p-6 max-w-sm w-full mx-6 shadow-[0_8px_32px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-200" id="modalBox">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-status-error/15 text-status-error flex items-center justify-center shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+<line x1="12" x2="12" y1="9" y2="13"></line>
+<line x1="12" x2="12.01" y1="17" y2="17"></line>
+</svg>
+</div>
+<h3 class="font-display font-semibold text-lg text-[#ece0dc]">Discard new tag?</h3>
+</div>
+<p class="text-xs text-[#a89c93] leading-relaxed mb-6">
+        You have entered uncommitted tag criteria. Leaving now will discard your input and return to the tags catalog.
+      </p>
+<div class="flex items-center gap-3">
+<button class="flex-1 h-10 rounded-lg bg-[#211a17] border border-[#3a322d] text-[#ece0dc] hover:bg-[#2a211c] hover:border-[#4d433d] text-sm font-medium transition-all min-h-[40px]" id="modalKeepBtn" onclick="closeDiscardModal()" type="button">
+          Keep Editing
+        </button>
+<button class="flex-1 h-10 rounded-lg bg-status-error hover:bg-[#b33d3d] text-[#ece0dc] text-sm font-semibold transition-all min-h-[40px] shadow-[0_2px_8px_rgba(196,77,77,0.3)]" id="modalDiscardBtn" onclick="confirmDiscard()" type="button">
+          Discard
+        </button>
+</div>
+</div>
+</div>
+<!-- Success Toast Container (Top Right: fixed top-20 right-6 z-50) -->
+<div class="fixed top-20 right-6 z-50 pointer-events-none flex flex-col gap-2" id="toastContainer"></div>
+<!-- JavaScript Interactivity -->
+<script>
+    // Initial Tag Repository
+    let tagsList = [
+      { name: "Fantasy", count: 12 },
+      { name: "History", count: 8 },
+      { name: "Mystery", count: 5 },
+      { name: "Sci-Fi", count: 15 },
+      { name: "Romance", count: 7 },
+      { name: "Philosophy", count: 3 },
+      { name: "Poetry", count: 9 },
+      { name: "Technical", count: 11 },
+      { name: "Biography", count: 6 },
+      { name: "Cookbook", count: 4 },
+      { name: "Drama", count: 2 },
+      { name: "Travel", count: 8 },
+      { name: "Astronomy", count: 14 },
+      { name: "Illuminated", count: 18 },
+      { name: "Alchemical", count: 21 },
+      { name: "Cartography", count: 6 },
+      { name: "Gothic", count: 9 },
+      { name: "Herbology", count: 7 },
+      { name: "Guild Lore", count: 10 },
+      { name: "Incunabula", count: 4 },
+      { name: "Linguistics", count: 5 },
+      { name: "Theology", count: 13 },
+      { name: "Occult", count: 8 },
+      { name: "Metallurgy", count: 16 }
+    ];
+
+    let debounceTimer = null;
+    let isPendingNavigation = false;
+
+    // Render Tag Cloud
+    function renderTagCloud(filterQuery = '') {
+      const container = document.getElementById('tagCloudContainer');
+      const badge = document.getElementById('tagCountBadge');
+      
+      const filtered = tagsList.filter(t => 
+        t.name.toLowerCase().includes(filterQuery.toLowerCase().trim())
+      );
+
+      badge.textContent = `${tagsList.length} tags`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="w-full py-8 text-center text-xs text-[#7a706a]">
+            No tags match the query "${filterQuery}"
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((tag, idx) => `
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#16110f] border border-[#3a322d] text-xs text-[#a89c93] hover:bg-[#2a211c] hover:border-[#4d433d] hover:text-[#ece0dc] transition-all cursor-default select-none group" data-name="${tag.name}">
+          <span class="group-hover:text-primary transition-colors">#</span>
+          <span class="font-medium text-[#ece0dc]">${tag.name}</span>
+          <span class="font-mono text-[10px] text-[#7a706a] bg-[#211a17] px-1.5 py-0.5 rounded-full border border-[#3a322d]/60">(${tag.count})</span>
+        </span>
+      `).join('');
+    }
+
+    // Filter Tag Cloud
+    function filterTagCloud(e) {
+      renderTagCloud(e.target.value);
+    }
+
+    function resetTagCloudFilter() {
+      const input = document.getElementById('cloudFilterInput');
+      input.value = '';
+      renderTagCloud();
+    }
+
+    // Real-Time Duplicate Validation & Character Count
+    function handleInputChange(e) {
+      const value = e.target.value;
+      const charCounter = document.getElementById('charCounter');
+      const submitBtn = document.getElementById('submitBtn');
+      const warningBox = document.getElementById('duplicateWarning');
+      const warningText = document.getElementById('duplicateWarningText');
+
+      charCounter.textContent = `${value.length}/32`;
+
+      // Debounce check
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const trimmed = value.trim();
+
+        if (trimmed.length === 0) {
+          warningBox.classList.add('hidden');
+          warningBox.classList.remove('opacity-100');
+          warningBox.classList.add('opacity-0');
+          submitBtn.disabled = true;
+          return;
+        }
+
+        // Case-insensitive duplicate check
+        const isDuplicate = tagsList.some(t => t.name.toLowerCase() === trimmed.toLowerCase());
+
+        if (isDuplicate) {
+          warningText.textContent = `"${trimmed}" already exists in library catalog`;
+          warningBox.classList.remove('hidden');
+          setTimeout(() => {
+            warningBox.classList.remove('opacity-0');
+            warningBox.classList.add('opacity-100');
+            warningBox.classList.remove('-translate-y-1');
+          }, 10);
+          submitBtn.disabled = true;
+        } else {
+          warningBox.classList.add('opacity-0');
+          warningBox.classList.add('-translate-y-1');
+          setTimeout(() => {
+            warningBox.classList.add('hidden');
+          }, 150);
+          submitBtn.disabled = false;
+        }
+      }, 300);
+    }
+
+    // Tag Submit Action
+    function handleTagSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('tagNameInput');
+      const submitBtn = document.getElementById('submitBtn');
+      const submitSpinner = document.getElementById('submitSpinner');
+      const submitBtnText = document.getElementById('submitBtnText');
+      const rawName = input.value.trim();
+
+      if (!rawName) return;
+
+      // Loading state
+      submitBtn.disabled = true;
+      submitSpinner.classList.remove('hidden');
+      submitBtnText.textContent = "Creating...";
+
+      // Simulate API call (800ms)
+      setTimeout(() => {
+        // Format tag with capital first letter
+        const formattedName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
+        
+        // Add to tags list
+        tagsList.unshift({ name: formattedName, count: 1 });
+        renderTagCloud();
+
+        // Highlight new chip with spring animation
+        const newChip = document.querySelector(`[data-name="${formattedName}"]`);
+        if (newChip) {
+          newChip.classList.add('animate-spring-in', 'border-primary', 'bg-primary/10');
+          newChip.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Reset input form
+        input.value = '';
+        document.getElementById('charCounter').textContent = '0/32';
+        submitSpinner.classList.add('hidden');
+        submitBtnText.textContent = "Create Tag";
+        submitBtn.disabled = true;
+
+        // Show toast
+        showToast(`Tag "${formattedName}" registered into library index`, 'success');
+      }, 800);
+    }
+
+    // Success Toast Notification
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `animate-toast-in pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl bg-[#211a17] border ${type === 'success' ? 'border-status-success/50 text-status-success' : 'border-status-error/50 text-status-error'} shadow-[0_8px_24px_rgba(0,0,0,0.4)] text-xs font-medium`;
+      
+      toast.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-status-success/20 flex items-center justify-center shrink-0">
+          <svg class="w-3.5 h-3.5 text-status-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <span class="text-[#ece0dc]">${message}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-8px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2000);
+    }
+
+    // Modal Control: Discard Confirmation
+    function openDiscardModal() {
+      const modal = document.getElementById('discardModal');
+      const box = document.getElementById('modalBox');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.classList.add('opacity-100');
+        box.classList.remove('scale-95');
+        box.classList.add('scale-100');
+        document.getElementById('modalKeepBtn').focus();
+      }, 10);
+    }
+
+    function closeDiscardModal() {
+      const modal = document.getElementById('discardModal');
+      const box = document.getElementById('modalBox');
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        document.getElementById('tagNameInput').focus();
+      }, 200);
+    }
+
+    function confirmDiscard() {
+      const input = document.getElementById('tagNameInput');
+      input.value = '';
+      document.getElementById('charCounter').textContent = '0/32';
+      document.getElementById('submitBtn').disabled = true;
+      document.getElementById('duplicateWarning').classList.add('hidden');
+      closeDiscardModal();
+      showToast('New tag creation discarded', 'info');
+    }
+
+    // Intercept back / breadcrumb clicks to protect draft
+    document.querySelectorAll('.breadcrumb-nav, .nav-item').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const inputVal = document.getElementById('tagNameInput').value.trim();
+        if (inputVal.length > 0) {
+          e.preventDefault();
+          openDiscardModal();
+        }
+      });
+    });
+
+    // Keyboard Shortcuts & Focus Trap
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('discardModal');
+      const isModalOpen = !modal.classList.contains('hidden');
+
+      if (e.key === 'Escape' && isModalOpen) {
+        closeDiscardModal();
+      }
+
+      // Focus trap within modal
+      if (isModalOpen && e.key === 'Tab') {
+        const keepBtn = document.getElementById('modalKeepBtn');
+        const discardBtn = document.getElementById('modalDiscardBtn');
+        if (e.shiftKey && document.activeElement === keepBtn) {
+          e.preventDefault();
+          discardBtn.focus();
+        } else if (!e.shiftKey && document.activeElement === discardBtn) {
+          e.preventDefault();
+          keepBtn.focus();
+        }
+      }
+    });
+
+    // Close modal on outside backdrop click
+    document.getElementById('discardModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('discardModal')) {
+        closeDiscardModal();
+      }
+    });
+
+    // Init Tag Cloud on Mount
+    renderTagCloud();
+  </script>
+</body>
+</html>

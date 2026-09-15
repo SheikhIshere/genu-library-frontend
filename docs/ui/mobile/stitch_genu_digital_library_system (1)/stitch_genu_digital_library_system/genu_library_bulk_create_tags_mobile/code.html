@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#16110f]">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>Bulk Create Tags — Genu Library</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Playfair Display, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            'surface-hover': '#2a211c',
+            'surface-container': '#261e1a',
+            'surface-container-high': '#332a24',
+            'surface-container-lowest': '#130d0a',
+            border: '#3a322d',
+            'border-hover': '#4d433d',
+            primary: '#e8693f',
+            'primary-hover': '#d45a30',
+            'text-primary': '#ece0dc',
+            'text-secondary': '#a89c93',
+            'text-muted': '#7a706a',
+            'status-success': '#4ade80',
+            'status-error': '#ef4444',
+            'status-warning': '#d4a24e'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hide scrollbars but allow scrolling */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Custom transition styles */
+    .sheet-transition {
+      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.25s ease;
+    }
+  </style>
+</head>
+<body class="h-full bg-canvas text-text-primary font-sans antialiased selection:bg-primary/25 selection:text-text-primary flex flex-col items-center">
+
+  <!-- Mobile Screen Container (max-w-[640px], centered, viewport flex layout) -->
+  <div id="app" class="relative w-full max-w-[640px] min-h-screen bg-canvas flex flex-col border-x border-border/40 shadow-2xl pb-[calc(5rem+env(safe-area-inset-bottom))]">
+
+    <!-- 1. STICKY / FIXED HEADER BAR (h-14, bg-canvas/85 backdrop-blur-md) -->
+    <header class="sticky top-0 z-40 w-full h-14 bg-canvas/90 backdrop-blur-md border-b border-border pt-[env(safe-area-inset-top)] flex items-center justify-between px-3">
+      <div class="flex items-center gap-2">
+        <button 
+          id="backBtn" 
+          aria-label="Go Back"
+          class="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface active:scale-95 transition-all -ml-1"
+        >
+          <span class="material-symbols-outlined text-2xl">arrow_back</span>
+        </button>
+        <div class="flex flex-col">
+          <h1 class="font-serif text-lg md:text-xl font-bold text-text-primary tracking-tight truncate max-w-[260px] sm:max-w-[380px]">
+            Bulk Create Tags
+          </h1>
+          <span class="font-mono text-[10px] tracking-wider text-primary uppercase font-medium -mt-0.5">Sanctum Admin Codex</span>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-1">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-mono bg-primary/10 text-primary border border-primary/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse mr-1.5"></span>Admin
+        </span>
+      </div>
+    </header>
+
+    <!-- 2. MAIN CONTENT AREA -->
+    <main class="flex-1 px-4 pt-5 pb-8 space-y-6">
+
+      <!-- Context description card -->
+      <div class="p-3.5 rounded-xl bg-surface border border-border flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 text-primary mt-0.5">
+          <span class="material-symbols-outlined text-[18px]">batch_prediction</span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-sans text-xs text-text-secondary leading-relaxed">
+            Batch ingest archival taxonomy tokens into the Genu Library sanctuary registry. Separate descriptors by newline or comma.
+          </p>
+        </div>
+      </div>
+
+      <!-- a. TAG NAMES TEXTAREA SECTION -->
+      <section class="space-y-2">
+        <div class="flex items-center justify-between">
+          <label for="tagInput" class="font-sans text-sm font-semibold text-text-primary flex items-center gap-1">
+            Tag Names <span class="text-primary">*</span>
+          </label>
+          <button 
+            id="pasteSampleBtn" 
+            type="button" 
+            class="text-[11px] font-mono text-text-muted hover:text-primary transition-colors flex items-center gap-1 min-h-[32px] px-2 py-1 rounded"
+          >
+            <span class="material-symbols-outlined text-[14px]">content_paste</span> Fill Sample
+          </button>
+        </div>
+
+        <div class="relative">
+          <textarea
+            id="tagInput"
+            rows="6"
+            placeholder="fantasy&#10;sci-fi, romance&#10;mystery, ancient alchemy&#10;astrolabe studies"
+            class="w-full min-h-[150px] max-h-[40vh] p-3.5 rounded-xl bg-surface border border-border text-text-primary font-mono text-sm leading-relaxed placeholder:text-text-muted/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all resize-y"
+          ></textarea>
+        </div>
+
+        <!-- Meta info below textarea (Always visible) -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pt-0.5 px-1">
+          <span class="font-sans text-xs text-text-muted flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px] text-text-muted">info</span>
+            One tag per line or comma-separated
+          </span>
+          <span id="charCountDisplay" class="font-mono text-xs text-text-muted text-right sm:text-left">
+            0 lines · 0 characters
+          </span>
+        </div>
+      </section>
+
+      <!-- b. EXISTING TAGS SECTION -->
+      <section class="space-y-3 pt-1">
+        <div class="flex items-center justify-between">
+          <h2 class="font-sans text-sm font-semibold text-text-primary flex items-center gap-2">
+            <span>Existing Tags</span>
+            <span id="existingTagCount" class="font-mono text-xs text-text-secondary bg-surface-container px-2 py-0.5 rounded-full border border-border/80">
+              24 tags
+            </span>
+          </h2>
+          <span class="font-sans text-[11px] text-text-muted flex items-center gap-1">
+            <span class="material-symbols-outlined text-[13px] text-status-success">verified</span>
+            Registry Sync
+          </span>
+        </div>
+
+        <!-- Existing Tag Container with flex-wrap for multiline wrapping -->
+        <div id="existingTagsContainer" class="flex flex-wrap gap-2 p-3 rounded-xl bg-surface/60 border border-border max-h-[160px] overflow-y-auto no-scrollbar">
+          <!-- Skeletons (rendered initially, then replaced) -->
+          <div class="skeleton-chip w-20 h-8 rounded-full bg-surface-container border border-border/60 animate-pulse"></div>
+          <div class="skeleton-chip w-24 h-8 rounded-full bg-surface-container border border-border/60 animate-pulse"></div>
+          <div class="skeleton-chip w-16 h-8 rounded-full bg-surface-container border border-border/60 animate-pulse"></div>
+          <div class="skeleton-chip w-28 h-8 rounded-full bg-surface-container border border-border/60 animate-pulse"></div>
+          <div class="skeleton-chip w-20 h-8 rounded-full bg-surface-container border border-border/60 animate-pulse"></div>
+          <div class="skeleton-chip w-24 h-8 rounded-full bg-surface-container border border-border/60 animate-pulse"></div>
+          <div class="skeleton-chip w-16 h-8 rounded-full bg-surface-container border border-border/60 animate-pulse"></div>
+          <div class="skeleton-chip w-22 h-8 rounded-full bg-surface-container border border-border/60 animate-pulse"></div>
+        </div>
+        <p class="font-sans text-[11px] text-text-muted px-1">
+          Reference only — duplicates will be flagged server-side during verification.
+        </p>
+      </section>
+
+      <!-- c. BUTTON ACTIONS: CREATE & CLEAR -->
+      <section class="space-y-3 pt-2">
+        <!-- Submit Button -->
+        <button
+          id="submitBtn"
+          disabled
+          class="w-full h-12 min-h-[48px] rounded-xl bg-primary text-canvas font-sans font-semibold text-sm flex items-center justify-center gap-2 hover:bg-primary-hover active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none transition-all shadow-md"
+        >
+          <span id="submitSpinner" class="hidden material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+          <span id="submitIcon" class="material-symbols-outlined text-[18px]">add_circle</span>
+          <span id="submitText">Create Tags</span>
+        </button>
+
+        <!-- Clear Button (Ghost) -->
+        <button
+          id="clearBtn"
+          type="button"
+          class="w-full h-12 min-h-[44px] rounded-xl bg-transparent border border-border text-text-secondary hover:text-status-error hover:border-status-error/40 font-sans text-sm font-medium flex items-center justify-center gap-2 active:scale-[0.98] transition-all"
+        >
+          <span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+          <span>Clear All Input</span>
+        </button>
+      </section>
+
+      <!-- d. RESULTS SECTION (Hidden by default, shown upon completion) -->
+      <section id="resultsSection" class="hidden space-y-3 pt-2">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]">assignment_turned_in</span>
+            <h2 class="font-serif text-base font-bold text-text-primary">Archival Ledger Results</h2>
+          </div>
+          <span id="resultsSummaryBadge" class="font-mono text-xs px-2 py-0.5 rounded-full bg-surface-container border border-border text-text-secondary">
+            0/0 processed
+          </span>
+        </div>
+
+        <div id="resultsList" class="max-h-[260px] overflow-y-auto space-y-2 bg-surface border border-border rounded-xl p-3 no-scrollbar">
+          <!-- Dynamic Result Rows Inserted Here -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 4. FIXED BOTTOM NAVIGATION (Admin Variant, z-50, pb-[env(safe-area-inset-bottom)]) -->
+    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 bg-canvas/95 backdrop-blur-md border-t border-border pb-[env(safe-area-inset-bottom)]">
+      <div class="h-16 flex items-center justify-around px-2">
+        <!-- Tab 1: Library -->
+        <a href="#library" class="flex-1 min-h-[44px] flex flex-col items-center justify-center text-text-muted hover:text-text-primary transition-colors py-1">
+          <span class="material-symbols-outlined text-[20px]">local_library</span>
+          <span class="font-sans text-[10px] mt-0.5 tracking-tight font-medium">Library</span>
+        </a>
+
+        <!-- Tab 2: Browse -->
+        <a href="#browse" class="flex-1 min-h-[44px] flex flex-col items-center justify-center text-text-muted hover:text-text-primary transition-colors py-1">
+          <span class="material-symbols-outlined text-[20px]">auto_stories</span>
+          <span class="font-sans text-[10px] mt-0.5 tracking-tight font-medium">Browse</span>
+        </a>
+
+        <!-- Tab 3: Search -->
+        <a href="#search" class="flex-1 min-h-[44px] flex flex-col items-center justify-center text-text-muted hover:text-text-primary transition-colors py-1">
+          <span class="material-symbols-outlined text-[20px]">search</span>
+          <span class="font-sans text-[10px] mt-0.5 tracking-tight font-medium">Search</span>
+        </a>
+
+        <!-- Tab 4: Tags (Active Admin) -->
+        <a href="#tags" class="flex-1 min-h-[44px] flex flex-col items-center justify-center text-primary py-1 relative">
+          <span class="material-symbols-outlined text-[20px] fill">label</span>
+          <span class="font-sans text-[10px] mt-0.5 tracking-tight font-semibold">Tags</span>
+          <span class="absolute top-1.5 right-6 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-canvas"></span>
+        </a>
+
+        <!-- Tab 5: Admin / Profile -->
+        <a href="#profile" class="flex-1 min-h-[44px] flex flex-col items-center justify-center text-text-muted hover:text-text-primary transition-colors py-1">
+          <span class="material-symbols-outlined text-[20px]">shield_person</span>
+          <span class="font-sans text-[10px] mt-0.5 tracking-tight font-medium">Sanctum</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- CLEAR CONFIRMATION BOTTOM SHEET MODAL -->
+    <div id="clearSheetBackdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-200 flex items-end justify-center">
+      <div id="clearSheet" class="w-full max-w-[640px] bg-surface rounded-t-2xl border-t border-border p-5 space-y-4 transform translate-y-full sheet-transition pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+        <!-- Drag indicator handle -->
+        <div class="w-10 h-1 rounded-full bg-text-muted/30 mx-auto -mt-1 mb-2"></div>
+        
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-status-error/10 border border-status-error/20 flex items-center justify-center text-status-error flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]">warning</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-base font-bold text-text-primary">Clear all tag inputs?</h3>
+            <p class="font-sans text-xs text-text-secondary mt-1">
+              This will discard all typed tags and clear any processed report rows. This action cannot be reversed.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2">
+          <button 
+            id="confirmClearBtn"
+            class="w-full h-12 min-h-[44px] rounded-xl bg-status-error text-white font-sans font-semibold text-sm flex items-center justify-center gap-2 hover:bg-red-600 active:scale-[0.98] transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px]">delete</span>
+            Clear All Input
+          </button>
+          <button 
+            id="cancelClearBtn"
+            class="w-full h-12 min-h-[44px] rounded-xl bg-surface-container border border-border text-text-primary font-sans text-sm font-medium flex items-center justify-center active:scale-[0.98] transition-all"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCARD ON BACK MODAL -->
+    <div id="discardBackdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-200 flex items-end justify-center">
+      <div id="discardSheet" class="w-full max-w-[640px] bg-surface rounded-t-2xl border-t border-border p-5 space-y-4 transform translate-y-full sheet-transition pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+        <div class="w-10 h-1 rounded-full bg-text-muted/30 mx-auto -mt-1 mb-2"></div>
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-status-warning/10 border border-status-warning/20 flex items-center justify-center text-status-warning flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]">help_outline</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-base font-bold text-text-primary">Discard unsaved tags?</h3>
+            <p class="font-sans text-xs text-text-secondary mt-1">
+              You have unsubmitted tags in the editor. Navigating away will lose these entries.
+            </p>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button 
+            id="confirmDiscardBtn"
+            class="w-full h-12 min-h-[44px] rounded-xl bg-status-error text-white font-sans font-semibold text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition-all"
+          >
+            Discard & Exit
+          </button>
+          <button 
+            id="cancelDiscardBtn"
+            class="w-full h-12 min-h-[44px] rounded-xl bg-surface-container border border-border text-text-primary font-sans text-sm font-medium flex items-center justify-center active:scale-[0.98] transition-all"
+          >
+            Keep Editing
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 opacity-0 pointer-events-none transform -translate-y-2 transition-all duration-300 w-[90%] max-w-[420px] bg-surface-container-high border border-primary/40 rounded-xl p-3.5 shadow-2xl flex items-center gap-3">
+      <div id="toastIconContainer" class="w-7 h-7 rounded-lg bg-status-success/20 text-status-success flex items-center justify-center flex-shrink-0">
+        <span id="toastIcon" class="material-symbols-outlined text-[18px]">check_circle</span>
+      </div>
+      <p id="toastMessage" class="font-sans text-xs text-text-primary font-medium flex-1 truncate"></p>
+    </div>
+
+  </div>
+
+  <script>
+    // Initial Known Tags from Genu Library Database
+    const initialTags = [
+      { name: "metallurgy", count: 42 },
+      { name: "alchemy", count: 38 },
+      { name: "astrolabes", count: 27 },
+      { name: "gutenberg", count: 19 },
+      { name: "dialectics", count: 16 },
+      { name: "illuminated", count: 31 },
+      { name: "herbology", count: 14 },
+      { name: "cartography", count: 23 },
+      { name: "theology", count: 29 },
+      { name: "optics", count: 11 },
+      { name: "incunabula", count: 8 },
+      { name: "geometry", count: 15 },
+      { name: "rare-folios", count: 35 },
+      { name: "cryptography", count: 9 },
+      { name: "pigments", count: 12 },
+      { name: "calligraphy", count: 20 },
+      { name: "vellum", count: 17 },
+      { name: "guild-charter", count: 6 },
+      { name: "manuscripts", count: 44 },
+      { name: "celestial-maps", count: 13 },
+      { name: "woodcuts", count: 18 },
+      { name: "binding-craft", count: 22 },
+      { name: "provenance", count: 7 },
+      { name: "treatise", count: 26 }
+    ];
+
+    let currentExistingTags = [...initialTags];
+
+    // DOM Elements
+    const tagInput = document.getElementById('tagInput');
+    const charCountDisplay = document.getElementById('charCountDisplay');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitText = document.getElementById('submitText');
+    const submitIcon = document.getElementById('submitIcon');
+    const submitSpinner = document.getElementById('submitSpinner');
+    const clearBtn = document.getElementById('clearBtn');
+    const existingTagsContainer = document.getElementById('existingTagsContainer');
+    const existingTagCount = document.getElementById('existingTagCount');
+    const resultsSection = document.getElementById('resultsSection');
+    const resultsList = document.getElementById('resultsList');
+    const resultsSummaryBadge = document.getElementById('resultsSummaryBadge');
+    const pasteSampleBtn = document.getElementById('pasteSampleBtn');
+
+    // Bottom Sheet Elements
+    const clearSheetBackdrop = document.getElementById('clearSheetBackdrop');
+    const clearSheet = document.getElementById('clearSheet');
+    const confirmClearBtn = document.getElementById('confirmClearBtn');
+    const cancelClearBtn = document.getElementById('cancelClearBtn');
+
+    const discardBackdrop = document.getElementById('discardBackdrop');
+    const discardSheet = document.getElementById('discardSheet');
+    const confirmDiscardBtn = document.getElementById('confirmDiscardBtn');
+    const cancelDiscardBtn = document.getElementById('cancelDiscardBtn');
+    const backBtn = document.getElementById('backBtn');
+
+    // Toast
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+    const toastIconContainer = document.getElementById('toastIconContainer');
+
+    function showToast(msg, type = 'success') {
+      toastMessage.textContent = msg;
+      if (type === 'success') {
+        toastIcon.textContent = 'check_circle';
+        toastIconContainer.className = 'w-7 h-7 rounded-lg bg-status-success/20 text-status-success flex items-center justify-center flex-shrink-0';
+      } else if (type === 'warning') {
+        toastIcon.textContent = 'warning';
+        toastIconContainer.className = 'w-7 h-7 rounded-lg bg-status-warning/20 text-status-warning flex items-center justify-center flex-shrink-0';
+      } else {
+        toastIcon.textContent = 'error';
+        toastIconContainer.className = 'w-7 h-7 rounded-lg bg-status-error/20 text-status-error flex items-center justify-center flex-shrink-0';
+      }
+      toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+      }, 2500);
+    }
+
+    // 1. Simulate Loading Existing Tags with Skeleton
+    setTimeout(() => {
+      renderExistingTags();
+    }, 550);
+
+    function renderExistingTags() {
+      existingTagsContainer.innerHTML = '';
+      currentExistingTags.forEach((tag, idx) => {
+        const chip = document.createElement('div');
+        chip.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface border border-border text-text-secondary text-xs hover:border-primary/50 transition-all cursor-default select-none animate-fade-in';
+        chip.style.animation = `fadeIn 0.25s ease-out ${idx * 0.02}s backwards`;
+        chip.innerHTML = `
+          <span class="font-sans text-xs text-text-primary">#${tag.name}</span>
+          <span class="font-mono text-[10px] text-text-muted bg-surface-container-high px-1.5 py-0.2 rounded-full">${tag.count}</span>
+        `;
+        existingTagsContainer.appendChild(chip);
+      });
+      existingTagCount.textContent = `${currentExistingTags.length} tags`;
+    }
+
+    // 2. Parse tags from input (both newline and comma separated, deduplicated)
+    function parseTags(text) {
+      if (!text) return [];
+      // Split on newlines OR commas
+      const rawTokens = text.split(/[\n,]+/);
+      const cleaned = [];
+      const seen = new Set();
+
+      rawTokens.forEach(t => {
+        const item = t.trim().toLowerCase().replace(/^#/, '');
+        if (item.length > 0 && !seen.has(item)) {
+          seen.add(item);
+          cleaned.push(item);
+        }
+      });
+      return cleaned;
+    }
+
+    // Update character & line counters
+    function updateCounts() {
+      const val = tagInput.value;
+      const lines = val.length === 0 ? 0 : val.split('\n').length;
+      const chars = val.length;
+      const parsed = parseTags(val);
+      
+      charCountDisplay.textContent = `${lines} ${lines === 1 ? 'line' : 'lines'} · ${chars} ${chars === 1 ? 'character' : 'characters'} (${parsed.length} parsed)`;
+
+      if (parsed.length > 0) {
+        submitBtn.removeAttribute('disabled');
+      } else {
+        submitBtn.setAttribute('disabled', 'true');
+      }
+    }
+
+    tagInput.addEventListener('input', updateCounts);
+
+    // Sample Data Insertion
+    pasteSampleBtn.addEventListener('click', () => {
+      tagInput.value = "ancient-astronomy, hermetic-seals\nincunabula, rare-folios\nmarbled-paper, bookbinding-vellum\noccult-geometry, gutenberg";
+      updateCounts();
+      tagInput.focus();
+      showToast('Sample tags loaded into editor', 'success');
+      if ('vibrate' in navigator) navigator.vibrate(15);
+    });
+
+    // 3. Submit Flow (Creation, Simulation, Results)
+    submitBtn.addEventListener('click', () => {
+      const rawVal = tagInput.value;
+      const tagsToCreate = parseTags(rawVal);
+      if (tagsToCreate.length === 0) return;
+
+      // Loading state
+      submitBtn.setAttribute('disabled', 'true');
+      submitSpinner.classList.remove('hidden');
+      submitIcon.classList.add('hidden');
+      submitText.textContent = "Creating...";
+
+      if ('vibrate' in navigator) navigator.vibrate(20);
+
+      // Simulate API call (900ms)
+      setTimeout(() => {
+        submitSpinner.classList.add('hidden');
+        submitIcon.classList.remove('hidden');
+        submitText.textContent = "Create Tags";
+        submitBtn.removeAttribute('disabled');
+
+        if ('vibrate' in navigator) navigator.vibrate(50);
+
+        // Process results against existing registry
+        const existingNamesSet = new Set(currentExistingTags.map(t => t.name.toLowerCase()));
+        const results = [];
+        let createdCount = 0;
+        let duplicateCount = 0;
+
+        tagsToCreate.forEach(tag => {
+          if (existingNamesSet.has(tag)) {
+            duplicateCount++;
+            results.push({
+              tag: tag,
+              status: 'duplicate',
+              message: 'already exists in guild ledger'
+            });
+          } else {
+            createdCount++;
+            results.push({
+              tag: tag,
+              status: 'success',
+              message: 'created and published'
+            });
+            // Add to live existing tags
+            currentExistingTags.unshift({ name: tag, count: 1 });
+          }
+        });
+
+        // Re-render the existing tags chip cloud
+        renderExistingTags();
+
+        // Render Results List
+        resultsSection.classList.remove('hidden');
+        resultsList.innerHTML = '';
+        resultsSummaryBadge.textContent = `${createdCount} created · ${duplicateCount} duplicate`;
+
+        results.forEach((res, i) => {
+          const row = document.createElement('div');
+          row.style.animation = `slideIn 0.25s ease-out ${i * 0.04}s backwards`;
+
+          if (res.status === 'success') {
+            row.className = 'flex items-center justify-between p-2.5 rounded-lg bg-status-success/10 border border-status-success/20';
+            row.innerHTML = `
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="material-symbols-outlined text-status-success text-[18px]">check_circle</span>
+                <span class="font-sans text-xs font-semibold text-text-primary truncate">#${res.tag}</span>
+              </div>
+              <span class="font-mono text-[10px] text-status-success bg-status-success/10 px-2 py-0.5 rounded-full uppercase tracking-wider font-medium">Created</span>
+            `;
+          } else {
+            row.className = 'flex items-center justify-between p-2.5 rounded-lg bg-status-warning/10 border border-status-warning/20';
+            row.innerHTML = `
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="material-symbols-outlined text-status-warning text-[18px]">warning</span>
+                <span class="font-sans text-xs font-medium text-text-primary truncate">#${res.tag}</span>
+              </div>
+              <span class="font-sans text-[11px] text-status-warning italic truncate ml-2">${res.message}</span>
+            `;
+          }
+          resultsList.appendChild(row);
+        });
+
+        // Scroll to results
+        resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        showToast(`Processed ${tagsToCreate.length} tags: ${createdCount} created, ${duplicateCount} existed.`, 'success');
+      }, 900);
+    });
+
+    // 4. Bottom Sheet: Clear State Confirmation
+    clearBtn.addEventListener('click', () => {
+      if (tagInput.value.trim().length === 0 && resultsSection.classList.contains('hidden')) {
+        showToast('Nothing to clear', 'warning');
+        return;
+      }
+      openClearSheet();
+    });
+
+    function openClearSheet() {
+      clearSheetBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+      clearSheetBackdrop.classList.add('opacity-100');
+      clearSheet.classList.remove('translate-y-full');
+      clearSheet.classList.add('translate-y-0');
+    }
+
+    function closeClearSheet() {
+      clearSheetBackdrop.classList.remove('opacity-100');
+      clearSheetBackdrop.classList.add('opacity-0', 'pointer-events-none');
+      clearSheet.classList.remove('translate-y-0');
+      clearSheet.classList.add('translate-y-full');
+    }
+
+    confirmClearBtn.addEventListener('click', () => {
+      tagInput.value = '';
+      updateCounts();
+      resultsSection.classList.add('hidden');
+      resultsList.innerHTML = '';
+      closeClearSheet();
+      showToast('All inputs and results cleared', 'success');
+      if ('vibrate' in navigator) navigator.vibrate(15);
+    });
+
+    cancelClearBtn.addEventListener('click', closeClearSheet);
+    clearSheetBackdrop.addEventListener('click', (e) => {
+      if (e.target === clearSheetBackdrop) closeClearSheet();
+    });
+
+    // 5. Back Navigation with Unsaved Check
+    backBtn.addEventListener('click', () => {
+      if (tagInput.value.trim().length > 0) {
+        openDiscardSheet();
+      } else {
+        showToast('Navigating back to tags index', 'warning');
+      }
+    });
+
+    function openDiscardSheet() {
+      discardBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+      discardBackdrop.classList.add('opacity-100');
+      discardSheet.classList.remove('translate-y-full');
+      discardSheet.classList.add('translate-y-0');
+    }
+
+    function closeDiscardSheet() {
+      discardBackdrop.classList.remove('opacity-100');
+      discardBackdrop.classList.add('opacity-0', 'pointer-events-none');
+      discardSheet.classList.remove('translate-y-0');
+      discardSheet.classList.add('translate-y-full');
+    }
+
+    confirmDiscardBtn.addEventListener('click', () => {
+      tagInput.value = '';
+      closeDiscardSheet();
+      showToast('Discarded unsaved tags', 'warning');
+    });
+
+    cancelDiscardBtn.addEventListener('click', closeDiscardSheet);
+    discardBackdrop.addEventListener('click', (e) => {
+      if (e.target === discardBackdrop) closeDiscardSheet();
+    });
+  </script>
+
+</body>
+</html>

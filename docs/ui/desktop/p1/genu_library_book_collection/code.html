@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book Collection — Genu Library</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { display: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    @keyframes heart-pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+    .heart-pop-anim {
+      animation: heart-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "canvas": "#16110f",
+            "surface": "#211a17",
+            "surface-hover": "#2a211c",
+            "surface-active": "#332a24",
+            "surface-container": "#251e1b",
+            "surface-container-low": "#211a17",
+            "surface-container-high": "#302825",
+            "surface-container-highest": "#3b3330",
+            "surface-container-lowest": "#130d0a",
+            "border": "#3a322d",
+            "border-hover": "#4d433d",
+            "accent": "#e8693f",
+            "accent-hover": "#d45a30",
+            "primary": "#ffb59e",
+            "primary-container": "#e8693f",
+            "primary-hover": "#d45a30",
+            "text-primary": "#ece0dc",
+            "text-secondary": "#a89c93",
+            "text-muted": "#7a706a",
+            "text-on-accent": "#16110f",
+            "secondary": "#f3be67",
+            "status-success": "#4a7c59",
+            "status-warning": "#d4a24e",
+            "status-error": "#c44d4d",
+          },
+          fontFamily: {
+            "display": ["Playfair Display", "serif"],
+            "headline-1": ["Playfair Display", "serif"],
+            "headline-2": ["Playfair Display", "serif"],
+            "headline-3": ["Playfair Display", "serif"],
+            "body-default": ["Inter", "sans-serif"],
+            "body-large": ["Inter", "sans-serif"],
+            "body-small": ["Inter", "sans-serif"],
+            "label-mono": ["JetBrains Mono", "monospace"],
+            "overline": ["JetBrains Mono", "monospace"],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-canvas font-body-default text-body-default text-text-primary antialiased selection:bg-accent/30 selection:text-text-primary">
+<!-- Sticky Navigation Bar (h-16) -->
+<header class="sticky top-0 left-0 right-0 w-full h-16 z-50 bg-[#16110f]/90 backdrop-blur-md border-b border-[#3a322d] transition-colors">
+<div class="h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between gap-4">
+<!-- Brand & Nav Links -->
+<div class="flex items-center gap-8 shrink-0">
+<a class="flex items-center gap-2.5 group text-text-primary" data-path="home" href="#">
+<div class="w-9 h-9 rounded-lg bg-surface flex items-center justify-center border border-border group-hover:border-[#e8693f] transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[#e8693f] text-[20px]">menu_book</span>
+</div>
+<span class="font-display text-xl font-bold tracking-tight text-text-primary">Genu Library</span>
+</a>
+<!-- Nav Links: Books is active -->
+<nav class="hidden md:flex items-center gap-7 h-16">
+<a class="font-body-default text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center h-full pt-0.5" data-path="home" href="#">
+            Home
+          </a>
+<a aria-current="page" class="font-body-default text-sm text-[#e8693f] font-semibold border-b-2 border-[#e8693f] flex items-center h-full pt-1" data-path="books" href="#">
+            Books
+          </a>
+<a class="font-body-default text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center h-full pt-0.5" data-path="playlists" href="#">
+            Playlists
+          </a>
+<a class="font-body-default text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center h-full pt-0.5" data-path="upload" href="#">
+            Upload
+          </a>
+</nav>
+</div>
+<!-- Quick Search Bar -->
+<div class="hidden lg:flex flex-1 max-w-md mx-4">
+<div class="w-full flex items-center bg-surface border border-border rounded-lg px-3 py-1.5 focus-within:border-[#e8693f] focus-within:ring-1 focus-within:ring-[#e8693f]/30 transition-all">
+<span class="material-symbols-outlined text-text-muted text-[19px] mr-2">search</span>
+<input class="w-full bg-transparent border-none outline-none font-body-small text-sm text-text-primary placeholder:text-text-muted focus:ring-0" placeholder="Search codex, folio, author, or seal..." type="text"/>
+<kbd class="font-label-mono text-xs text-text-muted bg-surface-container border border-border px-1.5 py-0.5 rounded ml-2">⌘K</kbd>
+</div>
+</div>
+<!-- Right Controls: Token Balance & Avatar -->
+<div class="flex items-center gap-3 shrink-0">
+<!-- Token balance badge -->
+<div class="flex items-center gap-1.5 bg-surface border border-border px-3 py-1.5 rounded-lg">
+<span class="text-[15px]">🪙</span>
+<span class="font-label-mono text-xs font-semibold text-secondary">1,480 GN</span>
+</div>
+<!-- User archivist avatar -->
+<div class="relative group cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-[#e8693f] flex items-center justify-center text-text-on-accent font-semibold text-xs border border-[#e8693f]/40 shadow-sm" title="Archivist Profile">
+<span class="material-symbols-outlined text-[18px]">account_circle</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="w-full min-h-screen">
+<!-- Atmospheric Ambient Glow -->
+<div class="relative w-full overflow-hidden pt-8 pb-6 px-6 lg:px-8 border-b border-border/40">
+<div class="absolute -top-32 left-1/4 w-96 h-96 bg-[#e8693f]/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-8 right-12 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="max-w-7xl mx-auto flex flex-col gap-4">
+<!-- Breadcrumb: Home > Books -->
+<nav aria-label="Breadcrumbs" class="flex items-center gap-2 font-body-small text-xs">
+<a class="text-text-muted hover:text-[#e8693f] transition-colors flex items-center gap-1" data-path="home" href="#">
+<span class="material-symbols-outlined text-[15px]">roofing</span>
+<span>Home</span>
+</a>
+<span class="text-border font-label-mono">&gt;</span>
+<span class="text-[#e8693f] font-medium">Books</span>
+</nav>
+<!-- Header Title & Stats Row -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div class="space-y-2.5 max-w-3xl">
+<!-- Total Books Count Badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-[#e8693f]/40 text-[#e8693f] font-overline text-xs uppercase tracking-wider shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#e8693f] animate-pulse"></span>
+              1,428 Treatises Preserved
+            </div>
+<h1 class="font-display text-3xl lg:text-4xl font-bold tracking-tight text-text-primary">
+              Book Collection
+            </h1>
+<p class="font-body-default text-base text-text-secondary max-w-2xl leading-relaxed">
+              Explore ancient treatises, technical guild manuscripts, illuminated star charts, and handwritten codices safeguarded across eight centuries of craft.
+            </p>
+</div>
+<!-- Vault Stats Pills -->
+<div class="flex flex-wrap items-center gap-3 self-start lg:self-auto shrink-0">
+<div class="flex items-center gap-2 bg-surface/80 backdrop-blur-md px-3.5 py-2 rounded-xl border border-border">
+<span class="text-[15px]">🪙</span>
+<div class="flex flex-col">
+<span class="font-overline text-[10px] text-text-muted uppercase tracking-wider">Guild Vault</span>
+<span class="font-label-mono text-xs font-semibold text-secondary">142,800 Total Reserve</span>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface/80 backdrop-blur-md px-3.5 py-2 rounded-xl border border-border">
+<span class="material-symbols-outlined text-[#e8693f] text-[18px]">verified</span>
+<div class="flex flex-col">
+<span class="font-overline text-[10px] text-text-muted uppercase tracking-wider">Curator Seal</span>
+<span class="font-label-mono text-xs font-semibold text-text-primary">Class IX Verified</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Filter Bar (below navigation) -->
+<section class="sticky top-16 z-40 bg-[#16110f]/95 backdrop-blur-md border-b border-border py-3.5 px-6 lg:px-8 shadow-lg">
+<div class="max-w-7xl mx-auto flex flex-col gap-3">
+<!-- Live Search, Sort Dropdown & Reset Action -->
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+<!-- Search input with debounced 300ms filter & quick clear -->
+<div class="relative flex-1 md:max-w-md">
+<div class="flex items-center bg-surface border border-border focus-within:border-[#e8693f] focus-within:ring-1 focus-within:ring-[#e8693f]/30 rounded-lg px-3 py-2 transition-all">
+<span class="material-symbols-outlined text-text-muted text-[19px] mr-2 shrink-0">search</span>
+<input class="w-full bg-transparent border-none outline-none font-body-small text-sm text-text-primary placeholder:text-text-muted focus:ring-0" id="book-search-input" placeholder="Search by title, author, topic, or seal..." type="text"/>
+<button class="hidden text-text-muted hover:text-text-primary p-0.5 transition-colors" id="clear-search-btn" title="Clear search" type="button">
+<span class="material-symbols-outlined text-[17px]">close</span>
+</button>
+</div>
+</div>
+<!-- Right: Sort Dropdown & Active Filter Count with Reset Button -->
+<div class="flex items-center gap-3 justify-between md:justify-end">
+<!-- Sort dropdown -->
+<div class="flex items-center bg-surface border border-border rounded-lg px-3 py-2 text-text-primary text-sm">
+<span class="material-symbols-outlined text-text-muted text-[17px] mr-1.5">swap_vert</span>
+<span class="text-text-muted text-xs mr-2">Sort:</span>
+<select class="bg-transparent border-none outline-none font-body-small text-xs sm:text-sm text-text-primary cursor-pointer font-medium pr-6 focus:ring-0" id="catalog-sort-select">
+<option class="bg-surface text-text-primary" value="newest">Newest Additions</option>
+<option class="bg-surface text-text-primary" value="oldest">Oldest</option>
+<option class="bg-surface text-text-primary" value="price-asc">Price: Low → High</option>
+<option class="bg-surface text-text-primary" value="price-desc">Price: High → Low</option>
+<option class="bg-surface text-text-primary" value="rating">Highest Rated</option>
+</select>
+</div>
+<!-- Active filter indicator & Reset Filters button -->
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/50 transition-colors text-xs shrink-0" id="reset-filters-btn" title="Reset Filters" type="button">
+<span class="material-symbols-outlined text-[17px]">filter_alt_off</span>
+<span class="hidden sm:inline font-medium">Reset Filters</span>
+</button>
+</div>
+</div>
+<!-- Horizontal scrollable row of pill-shaped tag filter chips -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 pt-0.5 no-scrollbar" id="category-chips-bar">
+<button class="chip-btn active shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-[#e8693f]/10 border border-[#e8693f] text-[#e8693f] shadow-[0_0_12px_rgba(232,105,63,0.18)]" data-category="all">
+            All Folios (1,428)
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Sacred Math">
+            Sacred Math
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Alchemy &amp; Art">
+            Alchemy &amp; Art
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Craftsmanship">
+            Craftsmanship
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Astronomy">
+            Astronomy
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Metallurgy">
+            Metallurgy
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Linguistics">
+            Linguistics
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Printmaking">
+            Printmaking
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Ancient History">
+            Ancient History
+          </button>
+<button class="chip-btn shrink-0 px-3.5 py-1 rounded-full font-body-small text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:border-border-hover hover:text-text-primary" data-category="Typography">
+            Typography
+          </button>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 w-full" id="catalog-section">
+<!-- Ledger Index Status -->
+<div class="flex items-center justify-between pb-5 mb-6 border-b border-border/60">
+<div class="flex items-center gap-2 text-sm text-text-secondary">
+<span>Viewing</span>
+<span class="font-label-mono text-[#e8693f] font-semibold text-base" id="results-count-display">12</span>
+<span>sanctified treatises</span>
+</div>
+<div class="hidden sm:flex items-center gap-3 text-xs text-text-muted font-label-mono uppercase tracking-wider">
+<span>BINDING: CALFSKIN &amp; VELLUM</span>
+<span>•</span>
+<span>INDEX: GUILD PROTOCOL 4.2</span>
+</div>
+</div>
+<!-- Empty State -->
+<div class="hidden py-24 text-center flex-col items-center justify-center gap-4 max-w-md mx-auto" id="empty-state-message">
+<div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center border border-border text-[#e8693f]">
+<span class="material-symbols-outlined text-[32px]">auto_stories</span>
+</div>
+<h3 class="font-headline-2 text-2xl font-bold text-text-primary">No folios or treatises found</h3>
+<p class="font-body-default text-sm text-text-muted">
+          Adjust your search phrase or clear category constraints to reveal archived manuscripts.
+        </p>
+<button class="mt-2 px-5 py-2.5 rounded-lg bg-[#e8693f] text-text-on-accent font-semibold text-sm hover:bg-accent-hover transition-colors shadow-[0_0_20px_rgba(232,105,63,0.25)]" id="empty-reset-btn" type="button">
+          Clear Filters
+        </button>
+</div>
+<!-- 3-Column Grid of 12 Richly Detailed Book Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-300" id="books-catalog-grid">
+<!-- Card 1: Sacred Math -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Johannes de Sacrobosco" data-book-card="" data-category="Sacred Math" data-price="420" data-rating="4.9" data-title="De Sphaera Mundi &amp; Harmonic Matrices" data-year="1230">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="De Sphaera Mundi Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Intricate copperplate engraving of medieval astronomical armillary spheres, celestial coordinate rings, golden compasses, and delicate hand-drawn planetary orbits on aged dark parchment with faint amber candlelight reflection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDOyr9wTxOAugtmKMXMlEp_Z61Jq-3SsZHN0b0ookD1AdMFM7ptEGkWVTauKcwrnd5IlMfSJdOKeMqHnxx8nflxj-CGg4XF17915LtohKxgMCQXQHaeCqFvFMqTxoQphf8HN2s0fS3nQUjPxaukVYe7R6Ty6wa98M6JukzjcDADFSKN5b0pvf4oL8FIR0poErD2NUDseibgt5kHSrmN8A3x4svuV3P8dsziWYeVrQoiNFmuY29OmMg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Sacred Math
+              </span>
+</div>
+<!-- Favorite Heart Button with spring bounce animation -->
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 041</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">c. 1230 CE</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                De Sphaera Mundi &amp; Harmonic Matrices
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Johannes de Sacrobosco
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Foundational Ptolemaic cosmology rendered into geometric proof matrices, illuminated with 48 gold leaf orbital projections.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.9</span>
+<span class="text-xs text-text-muted font-body-small">(142)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">420</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Alchemy & Art -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Dr. Silas Vane" data-book-card="" data-category="Alchemy &amp; Art" data-price="580" data-rating="5.0" data-title="The Chrysopoeia &amp; Molten Elements" data-year="1485">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="The Chrysopoeia Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Antique dark wood alchemical laboratory with glowing retort flasks emitting molten gold vapors, detailed Latin inscriptions on folded parchment, heavy bronze balance scales, and amber embers glowing in a hearth forge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkMClzwmYp-p-lUMcbFzjXcK_IkKLLM2nLCGKgajrjKhZ-Z7vwoi2V6X9udtfaVPBIgVUv6nHujnVyVEC4ZwRZG9vCUUbmPSEciDijyrJk2RJa6r_3WQWsXACOLPiQTLEv_dlmSGIKXSmROgz2SvKASjBs4ZZBOgbDVopUq1DQOM17Y2bf3BRvM6b-bOopzL_sucS8g8VFGuT1CU0Ra1ZSpN9bDeu6x7AJnP8LZoGJW5XuudMrNlVS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Alchemy &amp; Art
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 018</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Guild Certified</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                The Chrysopoeia &amp; Molten Elements
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Dr. Silas Vane
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Comprehensive metallurgical codex analyzing thermal transmutation bounds, sublimation charts, and hermetic workshop protocols.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">5.0</span>
+<span class="text-xs text-text-muted font-body-small">(280)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">580</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3: Craftsmanship -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Elena Rostova" data-book-card="" data-category="Craftsmanship" data-price="310" data-rating="4.8" data-title="Iron Guild Anvils &amp; Thermal Quenching" data-year="1512">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Iron Guild Anvils Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Macro view of a master blacksmith workshop, red hot hammered blade glowing orange on a heavy cast iron anvil with flying sparks, hand-carved leather aprons, and technical forging schematics pinned to dark stone walls." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfLruwwKJsipbgPvwLLqUAXJYKq1UV_gELntezLXKGHC1RdjB_pJm0ShHDYkuHt8I88u63rhc9A0ABkHI8MmPTtgmplZnm7y5DSIiRS1UXad-dDetOzgC7GUoC6kRb5A8vDNSIzkWC3lYGhtFUvGxHjKhZU_Qd-gXNZmFSlcyPcgGQm9wl4NsYvhJ7n1dSpSiHBuJfHD1bGmugHwB9hF_mqeGjSLfxTR08ZAHpTNL4HNEXXYfrEAuk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Craftsmanship
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 104</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Apprentice Grade</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                Iron Guild Anvils &amp; Thermal Quenching
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Elena Rostova
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Precise workshop methods covering high-carbon quench sequences, hearth construction, and metallurgical tensile diagnostics.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.8</span>
+<span class="text-xs text-text-muted font-body-small">(96)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">310</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 4: Typography -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Julian Croft" data-book-card="" data-category="Typography" data-price="260" data-rating="4.7" data-title="The Lead Foundry &amp; Matrix Cutting" data-year="1490">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="The Lead Foundry Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Movable metal type blocks arranged in wooden composing sticks, microscopic detail of carved serif letters in heavy lead alloy, black carbon ink stains on oak workbench under warm raking lantern light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdQqsq3u9un3uDsHfS-DMEEw5ZwiK94x0fWjUp17xU_YTIPd5rHUjXYPWX6Y7_Xzy3BSQ-TkVviX8lo-cto5GPhXPlzM-ppupFGFHjJHQUe_nm3X0DYSi3wkclWDwvGV_mGdOhANQOyXokzfhUsjc2_oHLks09ndpOBP2mD9GLf56LNw_GFXu7MN6v9QdzSKxeKq6chJ2sByCFRf1DJhNt6aULwUkqtBrhaeB3cKYQsnxqZYPWHf9g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Typography
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 067</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Printer's Guild</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                The Lead Foundry &amp; Matrix Cutting
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Julian Croft
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                The definitive punchcutter handbook with specifications for proportional kerning, copper counters, and ink viscidity.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.7</span>
+<span class="text-xs text-text-muted font-body-small">(84)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">260</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 5: Astronomy -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Kenji Sato" data-book-card="" data-category="Astronomy" data-price="640" data-rating="4.9" data-title="Codex Astrologia &amp; The Southern Skies" data-year="1405">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Codex Astrologia Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Dramatic nocturnal star atlas, hand-painted indigo blue parchment with gold dust constellations, astrological navigational charts, brass calipers pointing to the ecliptic path in an observatory dome." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT3QUJz5T6GGHiUDtno0ii2Od8UFjEmgLJX-7c8j1X3TfKCdbYWbT-jM3EuNtPjB5hktVnGovMSfAV3N-a30HOkhKOeHojDhamZSld_SUrDpQfOxElzKYwDfRfc-PRr3YACm4SO9hoyPyidgePjDBqhhK1lfD7lFYKsaCvd9fHWlRda1e_kqkAPTOd0lmizwNWDIu70RMbI4zwFqtB6FWWgjfQzdnL5fh2KaM_GCBZ8YtBU83bzDwW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Astronomy
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 003</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">First Edition</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                Codex Astrologia &amp; The Southern Skies
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Kenji Sato
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Seventeen fold-out celestial charts measuring stellar drift across maritime trade routes over four centuries of cartography.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.9</span>
+<span class="text-xs text-text-muted font-body-small">(312)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">640</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 6: Linguistics -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Cecily Morrow" data-book-card="" data-category="Linguistics" data-price="390" data-rating="4.8" data-title="Glossary of Cuneiform &amp; Proto-Elamite" data-year="1380">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Glossary of Cuneiform Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Ancient Mesopotamian clay tablets with deep reed stylus incisions, cuneiform syllabary tablets on velvet scholar desk with magnifying lens and camel hair dusting brushes in soft warm ambient light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqLcFcSEIvcMgbb2vWlYm0dHWQDydBYeQ6AgUwgtMMydH2AzoRRJQTcQMKhFTH8ILgY0r7C8jVKvjV8r2MzulUCqeGVN5EYsT8n30lNNSpfAIzmpG-z-DmLKox7UthqkOhhc2sa-w3WQL1iI8vhlH9fLGQclmmUzOmkMSil5jdn0yQamzGA4ehEH7KIIQD7zScsOrCquW-K8WC_zDGGGPQ07b185HzjSyuMBwkpzZg4TPjyN5fHCl_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Linguistics
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 221</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Dual Seal</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                Glossary of Cuneiform &amp; Proto-Elamite
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Cecily Morrow
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Exhaustive index matching 1,200 archaic pictographs with vocalized phonetic reconstructed values and ledger notations.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.8</span>
+<span class="text-xs text-text-muted font-body-small">(73)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">390</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 7: Metallurgy -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Rowan K. Blackwood" data-book-card="" data-category="Metallurgy" data-price="520" data-rating="4.9" data-title="De Re Metallica &amp; Guild Smelting" data-year="1556">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="De Re Metallica Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Sixteenth century woodcut reproduction of an underground mine shaft, water wheel powered bellows, smelting crucibles with glowing liquid bronze flowing into stone ingot molds in an earthy forge atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7sDcgnBIjrgfZtSx9B11APebLRghXwyzyRTZiMMzl4f2NBfr9_hcMION05kbpXOSJBz466uuFBr4RGgRWY5MVfanKVIgic_Bxjw0B3VtPHLQ4mUgQMlh2gv5SUTqw6Bw1decEG4B8f4n1NA_XB6Dn1kZXqcgH2Mw1Uvkcf90YOesmgwqu4CgtJuwuI-GLS5_Jdb23utdX__DeeN3VTuyYct6w6kiiP8xYOw8T6Kx3D0is_DW0VrZZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Metallurgy
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 012</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Sovereign Vault</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                De Re Metallica &amp; Guild Smelting
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Rowan K. Blackwood
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Illustrated guide to subterranean veins, hydrostatic ore separation, and high-heat flux calculations for sovereign minting.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.9</span>
+<span class="text-xs text-text-muted font-body-small">(215)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">520</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 8: Printmaking -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Vivienne Laurent" data-book-card="" data-category="Printmaking" data-price="340" data-rating="4.8" data-title="Chalcography: Engraving on Pure Copper" data-year="1590">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Chalcography Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Polished copper engraving plate catching amber studio light, finely cross-hatched burin strokes depicting a mythical griffin, jars of oily lampblack ink, roller press in blurred dark workshop background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmwmdOgvxyTMrwOLJQnF6d-pOd6G4m9sgCDAfBBal4OCp7bBidv6C_Xu79WReBEe5FpBSIhzwVoMGmLN6z6XPDC3vZFo9yFRgmjyDb3AhYeQ4BuG4z96yaDV3YScFudv7wPZLUMG3qLI5J4Jr3L4bMLq8MVoSYBQhUdTmL7A_S2zbXaTpprmulDIo-IGpgb-iHdqzg8g2w55-mcDw26h7IoSaLXX17dLb2Oygm00reJs0APrrM8KGF"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Printmaking
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 088</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Master Proof</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                Chalcography: Engraving on Pure Copper
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Vivienne Laurent
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Advanced mezzotint ground preparation, steel scraper mastery, and acid mordant formulations for delicate intaglio printing.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.8</span>
+<span class="text-xs text-text-muted font-body-small">(160)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">340</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 9: Ancient History -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Prof. Alistair Vance" data-book-card="" data-category="Ancient History" data-price="470" data-rating="5.0" data-title="Annales of the First Guild Bastion" data-year="1344">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Annales of the First Guild Bastion Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Heavy aged leather bound book with embossed guild crests and ornate brass corner fittings resting on dark textured stone altar, red wax ribbon seal hanging with molten amber glow illuminating ancient spine." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwrO3e4oB9VXasFdp-0eCf-CxUQgsADezQPwozZWaQxqGKwSP08kelnnbchoth3UjA9V_vY0mOqqVYOKkF_MY3CFaXkwdGWxTKsp0RzOJbrUuJEl7iIhLq5vxbg9767IdtE-RxHkjJKL4n_YelUbd3LfHHfozpvbm3P2WSKObgjvgljfsv7GPkazZnOI_pYwqh46HD-ZK8mNNP1VmZrbirvlCln7-m7VLsR4qpCQ_NIcSA_CfeRlnJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Ancient History
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 001</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Founder Edition</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                Annales of the First Guild Bastion
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Prof. Alistair Vance
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Original charter transcripts detailing the preservation pact signed in 1344 by eighteen master craftsmen during the Siege.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">5.0</span>
+<span class="text-xs text-text-muted font-body-small">(410)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">470</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 10: Sacred Math -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Johannes de Sacrobosco" data-book-card="" data-category="Sacred Math" data-price="290" data-rating="4.7" data-title="The Golden Ratio &amp; Architectural Vaulting" data-year="1280">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="The Golden Ratio Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Architectural drafting table with Fibonacci golden spiral drafts, heavy bronze drafting dividers, ink washes of gothic cathedrals, and parchment rolls illuminated by soft dusk light through leaded glass." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCog1Ye0kfa-x82GJaJPjOFNApvGBISyxj-vAv5J9L627DZW50zJP1mRIUDR8fSRwVqUGqOCDCwNQCruHGmi9IdqmTdcU-hgJqAE9fUr5Q6aP7TPNAWBVVX44OdU123dFqlLyZqJGt_ADHf4eA2IGvgwbjX6vJr7Ze9__DFC9wFcR5SQUc-3fRDnXstLG6zGSdw3BJ5JgtxCyFv36wZjKCIB3cfn04Z6ozqR2jnSD29qv3W0HVFdBao"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Sacred Math
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 055</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Standard Folio</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                The Golden Ratio &amp; Architectural Vaulting
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Johannes de Sacrobosco
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Comprehensive geometric treatise detailing cathedral vault construction and modular polygon tessellations.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.7</span>
+<span class="text-xs text-text-muted font-body-small">(89)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">290</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 11: Typography -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Julian Croft" data-book-card="" data-category="Typography" data-price="180" data-rating="4.6" data-title="Monotype Foundry Specimens &amp; Punches" data-year="1520">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Monotype Foundry Specimens Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Broadside specimen sheet with crisp blackletter and transitional roman font samples, rich dark textured handmade paper with deckled edges, printer marks in vermillion ink, dark wood typecase drawers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoObgPVC82XG8Ovy4II8XPWeiSTdSUZEf-ytL110hhwbD9ygEin2q-wc73YKxYS__mRQnDBOZE2mripM6XXyjoa0tikjZN7QuHAd9PUwenpPB5RCCRDbHMMubZd8Xp6oVN_kuJIk3emmrXAVgLaKR0OOvuOS2KwZWowlAoJPWguoNSGMxk1k5Yxic4-9cP2sCey0NPGTPBQ34iH1uC3pu2XlJPOq2ezdgOeo-QiG47QaR0XUHKfJW9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Typography
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 091</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Workshop Copy</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                Monotype Foundry Specimens &amp; Punches
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Julian Croft
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Foundry catalog displaying 64 ligature sets, cast ornaments, rubricated capitals, and Dutch revival faces.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.6</span>
+<span class="text-xs text-text-muted font-body-small">(62)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">180</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 12: Craftsmanship -->
+<article class="group relative bg-surface border border-border hover:border-[#e8693f] rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.12)]" data-author="Elena Rostova" data-book-card="" data-category="Craftsmanship" data-price="410" data-rating="4.9" data-title="Tannery Secrets &amp; Vellum Curing" data-year="1465">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Tannery Secrets Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Stretched calfskin drying on circular wooden tension frames, artisan hand testing parchment thickness with rounded lunellum scraper, warm beeswax cakes and bone folders on leathercraft counter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByp14XrlDQ2gTGBOz6qcPJ2EznWAaIQNQhCQxobXv1EP1cZwDJ8zUzqK0bwdJ5R22xSgwmYGBl4i6uJGFjPQf1-1DfurOfl-wKqLjzUSaD3COvBV4hkC7KKFL9KtpSgk1wlYZE-pTenEcHpjTNGX8M5f62-ADW8h7DNBSiRV1BMlSxoys9gnwy8fSFbYql-EEQOMjl_HZsMsyp1AmJRwXgjOEik2RRpI4lRJKBxi2YNz0C4rJEpGYZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/40 pointer-events-none"></div>
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2.5 py-1 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-[#e8693f] font-label-mono text-[11px] tracking-wide uppercase font-semibold">
+                Craftsmanship
+              </span>
+</div>
+<button aria-label="Add to Sanctum Registry" class="favorite-toggle-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-[#16110f]/80 backdrop-blur-md border border-border text-text-muted hover:text-[#e8693f] hover:border-[#e8693f]/60 flex items-center justify-center transition-all duration-200" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-label-mono text-text-secondary">
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Folio No. 049</span>
+<span class="bg-surface/90 backdrop-blur-sm px-2 py-0.5 rounded border border-border">Rare Manuscript</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h3 class="font-display text-xl font-bold text-text-primary group-hover:text-[#e8693f] transition-colors line-clamp-1">
+                Tannery Secrets &amp; Vellum Curing
+              </h3>
+<p class="font-body-small text-xs text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">school</span>
+                Elena Rostova
+              </p>
+<p class="font-body-small text-xs text-text-muted line-clamp-2 mt-2 leading-relaxed">
+                Manual on liming baths, chalk scraping techniques, and preserving delicate calfskin folios against climate decay.
+              </p>
+</div>
+<div class="pt-3 border-t border-border/70 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-label-mono text-xs text-text-primary font-medium">4.9</span>
+<span class="text-xs text-text-muted font-body-small">(138)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-lg border border-border">
+<span class="text-[13px]">🪙</span>
+<span class="font-label-mono text-xs text-secondary font-bold">410</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Requesting a Folio Callout Banner -->
+<div class="my-12 p-6 rounded-xl bg-surface border border-border relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
+<div class="absolute -right-12 -bottom-12 w-48 h-48 bg-[#e8693f]/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center border border-border shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[26px]">history_edu</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-display text-lg font-bold text-text-primary">Requesting a Folio Not Listed?</h4>
+<p class="font-body-default text-sm text-text-secondary max-w-xl">
+              Our vault scribes can unseal and digitize archived treatises from our locked subterranean chambers upon guild petition.
+            </p>
+</div>
+</div>
+<a class="shrink-0 px-5 py-2.5 rounded-lg bg-surface-container border border-border hover:border-[#e8693f] text-text-primary hover:text-[#e8693f] font-body-default font-medium text-xs sm:text-sm transition-all duration-200 flex items-center gap-2" data-path="upload" href="#">
+<span class="material-symbols-outlined text-[18px]">add_task</span>
+<span>Submit Archival Petition</span>
+</a>
+</div>
+<!-- Bottom Pagination Controls -->
+<div class="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="font-body-small text-xs sm:text-sm text-text-secondary order-2 sm:order-1" id="pagination-readout">
+          Showing <span class="font-label-mono text-text-primary font-medium">1–12</span> of <span class="font-label-mono text-text-primary font-medium">1,428</span> treatises (Page <span class="font-label-mono text-[#e8693f] font-semibold" id="current-page-num">1</span> of 48)
+        </p>
+<nav aria-label="Catalog Navigation" class="flex items-center gap-1.5 order-1 sm:order-2" id="pagination-controls">
+<!-- Previous Button -->
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface border border-border text-text-muted hover:text-text-primary hover:border-border-hover transition-colors font-body-small text-xs disabled:opacity-40 disabled:cursor-not-allowed" disabled="" id="pagination-prev" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span class="hidden sm:inline">Previous</span>
+</button>
+<!-- Page Number Buttons (Page 1 active solid forge orange #e8693f) -->
+<button class="page-num-btn w-9 h-9 rounded-lg font-label-mono text-xs font-semibold transition-all duration-200 bg-[#e8693f] text-text-on-accent shadow-[0_0_16px_rgba(232,105,63,0.3)]" data-page="1" type="button">
+            1
+          </button>
+<button class="page-num-btn w-9 h-9 rounded-lg font-label-mono text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-border-hover" data-page="2" type="button">
+            2
+          </button>
+<button class="page-num-btn w-9 h-9 rounded-lg font-label-mono text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-border-hover" data-page="3" type="button">
+            3
+          </button>
+<button class="page-num-btn w-9 h-9 rounded-lg font-label-mono text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-border-hover hidden md:inline-flex items-center justify-center" data-page="4" type="button">
+            4
+          </button>
+<span class="w-6 text-center font-label-mono text-xs text-text-muted">...</span>
+<button class="page-num-btn w-9 h-9 rounded-lg font-label-mono text-xs font-medium transition-all duration-200 bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-border-hover" data-page="48" type="button">
+            48
+          </button>
+<!-- Next Button -->
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface border border-border text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors font-body-small text-xs" id="pagination-next" type="button">
+<span class="hidden sm:inline">Next</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</main>
+<!-- Comprehensive Footer -->
+<footer class="w-full bg-surface-container-lowest border-t border-border mt-16">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+<div class="lg:col-span-2 space-y-4">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface flex items-center justify-center border border-border">
+<span class="material-symbols-outlined text-[#e8693f] text-[18px]">menu_book</span>
+</div>
+<span class="font-display text-xl font-bold text-text-primary">Genu Library</span>
+</div>
+<p class="font-body-default text-xs sm:text-sm text-text-secondary max-w-sm leading-relaxed">
+            An artisan guild repository and deluxe reading sanctum curated for digital archivists, scholars, and craftspeople safeguarding rare manuscripts and auditory codices.
+          </p>
+<div class="flex items-center gap-2 text-text-muted pt-1">
+<a class="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center text-text-muted hover:text-[#e8693f] hover:border-[#e8693f] transition-colors" href="#" title="Terminal Access">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+</a>
+<a class="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center text-text-muted hover:text-[#e8693f] hover:border-[#e8693f] transition-colors" href="#" title="Share Archive">
+<span class="material-symbols-outlined text-[16px]">share</span>
+</a>
+<a class="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center text-text-muted hover:text-[#e8693f] hover:border-[#e8693f] transition-colors" href="#" title="Sanctum Hub">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+</a>
+</div>
+</div>
+<div class="space-y-3">
+<h4 class="font-overline text-xs uppercase text-text-muted tracking-wider">Navigation</h4>
+<ul class="space-y-2">
+<li><a class="font-body-small text-xs text-text-secondary hover:text-[#e8693f] transition-colors" data-path="home" href="#">Home</a></li>
+<li><a class="font-body-small text-xs text-[#e8693f] font-medium" data-path="books" href="#">Book Collection</a></li>
+<li><a class="font-body-small text-xs text-text-secondary hover:text-[#e8693f] transition-colors" data-path="playlists" href="#">Auditory Playlists</a></li>
+<li><a class="font-body-small text-xs text-text-secondary hover:text-[#e8693f] transition-colors" data-path="upload" href="#">Upload Treatise</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h4 class="font-overline text-xs uppercase text-text-muted tracking-wider">Guild Archive</h4>
+<ul class="space-y-2">
+<li><a class="font-body-small text-xs text-text-secondary hover:text-[#e8693f] transition-colors" href="#">Guild Concordat</a></li>
+<li><a class="font-body-small text-xs text-text-secondary hover:text-[#e8693f] transition-colors" href="#">Ledger Rarity Index</a></li>
+<li><a class="font-body-small text-xs text-text-secondary hover:text-[#e8693f] transition-colors" href="#">Archivist API</a></li>
+<li><a class="font-body-small text-xs text-text-secondary hover:text-[#e8693f] transition-colors" href="#">Terms of Preservation</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h4 class="font-overline text-xs uppercase text-text-muted tracking-wider">The Monthly Dispatch</h4>
+<p class="font-body-small text-xs text-text-secondary leading-relaxed">Receive curated codex summaries and ledger updates directly to your station.</p>
+<form class="space-y-2 pt-1" onsubmit="event.preventDefault();">
+<input class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-body-small text-xs text-text-primary placeholder:text-text-muted focus:border-[#e8693f] focus:outline-none transition-colors" placeholder="archivist@guild.internal" type="email"/>
+<button class="w-full bg-[#e8693f] text-text-on-accent font-semibold text-xs py-2 rounded-lg hover:bg-accent-hover transition-colors shadow-sm" type="submit">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="border-t border-border mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+<p class="font-body-small text-xs text-text-muted">
+          © 2025 Genu Library Guild. All rights reserved under the Sovereign Archives.
+        </p>
+<div class="flex items-center gap-4 font-body-small text-xs text-text-muted">
+<a class="hover:text-text-secondary transition-colors" href="#">Sanctum Privacy</a>
+<a class="hover:text-text-secondary transition-colors" href="#">Ledger Index</a>
+<a class="hover:text-text-secondary transition-colors" href="#">Status Core</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive JavaScript: Filter, Debounced Search, Sort, Spring Favorites, and Pagination -->
+<script>
+    (function() {
+      // DOM Elements
+      const searchInput = document.getElementById('book-search-input');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+      const chipsBar = document.getElementById('category-chips-bar');
+      const chipButtons = chipsBar.querySelectorAll('.chip-btn');
+      const sortSelect = document.getElementById('catalog-sort-select');
+      const resetBtn = document.getElementById('reset-filters-btn');
+      const emptyResetBtn = document.getElementById('empty-reset-btn');
+      const bookCards = Array.from(document.querySelectorAll('[data-book-card]'));
+      const booksGrid = document.getElementById('books-catalog-grid');
+      const resultsCountDisplay = document.getElementById('results-count-display');
+      const emptyStateMessage = document.getElementById('empty-state-message');
+      const paginationPrev = document.getElementById('pagination-prev');
+      const paginationNext = document.getElementById('pagination-next');
+      const pageNumButtons = document.querySelectorAll('.page-num-btn');
+      const currentPageNum = document.getElementById('current-page-num');
+      const catalogSection = document.getElementById('catalog-section');
+
+      let currentCategory = 'all';
+      let currentQuery = '';
+      let searchTimeout = null;
+      let currentPage = 1;
+
+      // Filter and Sort Engine
+      function applyFilterAndSort() {
+        let visibleCount = 0;
+        const query = currentQuery.trim().toLowerCase();
+
+        bookCards.forEach(card => {
+          const title = (card.getAttribute('data-title') || '').toLowerCase();
+          const author = (card.getAttribute('data-author') || '').toLowerCase();
+          const category = card.getAttribute('data-category') || '';
+          
+          const matchesCategory = (currentCategory === 'all') || (category === currentCategory);
+          const matchesQuery = !query || title.includes(query) || author.includes(query) || category.toLowerCase().includes(query);
+
+          if (matchesCategory && matchesQuery) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Sorting
+        const sortVal = sortSelect.value;
+        const visibleCards = bookCards.filter(card => card.style.display !== 'none');
+
+        visibleCards.sort((a, b) => {
+          const priceA = parseInt(a.getAttribute('data-price'), 10) || 0;
+          const priceB = parseInt(b.getAttribute('data-price'), 10) || 0;
+          const ratingA = parseFloat(a.getAttribute('data-rating')) || 0;
+          const ratingB = parseFloat(b.getAttribute('data-rating')) || 0;
+          const yearA = parseInt(a.getAttribute('data-year'), 10) || 0;
+          const yearB = parseInt(b.getAttribute('data-year'), 10) || 0;
+
+          if (sortVal === 'price-asc') return priceA - priceB;
+          if (sortVal === 'price-desc') return priceB - priceA;
+          if (sortVal === 'rating') return ratingB - ratingA;
+          if (sortVal === 'oldest') return yearA - yearB;
+          return yearB - yearA; // Newest Additions
+        });
+
+        visibleCards.forEach(card => booksGrid.appendChild(card));
+        resultsCountDisplay.textContent = visibleCount;
+
+        // Empty state toggle
+        if (visibleCount === 0) {
+          emptyStateMessage.classList.remove('hidden');
+          emptyStateMessage.classList.add('flex');
+          booksGrid.classList.add('hidden');
+        } else {
+          emptyStateMessage.classList.add('hidden');
+          emptyStateMessage.classList.remove('flex');
+          booksGrid.classList.remove('hidden');
+        }
+      }
+
+      // Live debounced 300ms filter input
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        const val = e.target.value;
+        if (val.length > 0) {
+          clearSearchBtn.classList.remove('hidden');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+        }
+
+        searchTimeout = setTimeout(() => {
+          currentQuery = val;
+          applyFilterAndSort();
+        }, 300);
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        currentQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        searchInput.focus();
+        applyFilterAndSort();
+      });
+
+      // Category filter chips
+      chipButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          chipButtons.forEach(b => {
+            b.classList.remove('active', 'bg-[#e8693f]/10', 'border-[#e8693f]', 'text-[#e8693f]', 'shadow-[0_0_12px_rgba(232,105,63,0.18)]');
+            b.classList.add('bg-surface', 'border-border', 'text-text-secondary');
+          });
+
+          btn.classList.add('active', 'bg-[#e8693f]/10', 'border-[#e8693f]', 'text-[#e8693f]', 'shadow-[0_0_12px_rgba(232,105,63,0.18)]');
+          btn.classList.remove('bg-surface', 'border-border', 'text-text-secondary');
+
+          currentCategory = btn.getAttribute('data-category');
+          applyFilterAndSort();
+        });
+      });
+
+      // Sort change
+      sortSelect.addEventListener('change', () => {
+        applyFilterAndSort();
+      });
+
+      // Reset action
+      function resetAll() {
+        searchInput.value = '';
+        currentQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        currentCategory = 'all';
+
+        chipButtons.forEach(b => {
+          if (b.getAttribute('data-category') === 'all') {
+            b.classList.add('active', 'bg-[#e8693f]/10', 'border-[#e8693f]', 'text-[#e8693f]', 'shadow-[0_0_12px_rgba(232,105,63,0.18)]');
+            b.classList.remove('bg-surface', 'border-border', 'text-text-secondary');
+          } else {
+            b.classList.remove('active', 'bg-[#e8693f]/10', 'border-[#e8693f]', 'text-[#e8693f]', 'shadow-[0_0_12px_rgba(232,105,63,0.18)]');
+            b.classList.add('bg-surface', 'border-border', 'text-text-secondary');
+          }
+        });
+
+        sortSelect.value = 'newest';
+        applyFilterAndSort();
+      }
+
+      resetBtn.addEventListener('click', resetAll);
+      emptyResetBtn.addEventListener('click', resetAll);
+
+      // Favorite toggle with spring bounce animation (scale 1 -> 1.3 -> 1)
+      const favoriteButtons = document.querySelectorAll('.favorite-toggle-btn');
+      favoriteButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const icon = btn.querySelector('.material-symbols-outlined');
+          const isFavorited = icon.style.fontVariationSettings && icon.style.fontVariationSettings.includes("'FILL' 1");
+
+          icon.classList.remove('heart-pop-anim');
+          void icon.offsetWidth; // trigger reflow
+          icon.classList.add('heart-pop-anim');
+
+          if (isFavorited) {
+            icon.style.fontVariationSettings = "'FILL' 0";
+            btn.classList.remove('text-[#e8693f]', 'border-[#e8693f]/60');
+            btn.classList.add('text-text-muted');
+          } else {
+            icon.style.fontVariationSettings = "'FILL' 1";
+            btn.classList.add('text-[#e8693f]', 'border-[#e8693f]/60');
+            btn.classList.remove('text-text-muted');
+          }
+        });
+      });
+
+      // Pagination Controls with Smooth Scroll
+      function setPage(pageNum) {
+        currentPage = pageNum;
+        currentPageNum.textContent = currentPage;
+
+        pageNumButtons.forEach(btn => {
+          const btnPage = parseInt(btn.getAttribute('data-page'), 10);
+          if (btnPage === currentPage) {
+            btn.classList.add('bg-[#e8693f]', 'text-text-on-accent', 'shadow-[0_0_16px_rgba(232,105,63,0.3)]');
+            btn.classList.remove('bg-surface', 'border', 'border-border', 'text-text-secondary');
+          } else {
+            btn.classList.remove('bg-[#e8693f]', 'text-text-on-accent', 'shadow-[0_0_16px_rgba(232,105,63,0.3)]');
+            btn.classList.add('bg-surface', 'border', 'border-border', 'text-text-secondary');
+          }
+        });
+
+        if (currentPage === 1) {
+          paginationPrev.disabled = true;
+          paginationPrev.classList.add('opacity-40', 'cursor-not-allowed');
+        } else {
+          paginationPrev.disabled = false;
+          paginationPrev.classList.remove('opacity-40', 'cursor-not-allowed');
+        }
+
+        // Smooth scroll to top of catalog section
+        const scrollTarget = catalogSection.getBoundingClientRect().top + window.scrollY - 140;
+        window.scrollTo({
+          top: scrollTarget,
+          behavior: 'smooth'
+        });
+      }
+
+      pageNumButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = parseInt(btn.getAttribute('data-page'), 10);
+          if (!isNaN(p)) {
+            setPage(p);
+          }
+        });
+      });
+
+      paginationPrev.addEventListener('click', () => {
+        if (currentPage > 1) {
+          setPage(currentPage - 1);
+        }
+      });
+
+      paginationNext.addEventListener('click', () => {
+        if (currentPage < 48) {
+          setPage(currentPage + 1);
+        }
+      });
+
+    })();
+  </script>
+</body></html>

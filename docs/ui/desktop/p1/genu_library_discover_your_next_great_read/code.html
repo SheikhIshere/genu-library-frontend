@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#251e1b","text-on-accent":"#16110f","text-muted":"#7a706a","inverse-surface":"#eee0da","status-info":"#5b8fb9","border":"#3a322d","secondary-fixed":"#ffdead","on-tertiary":"#00363f","on-surface":"#eee0da","primary-container":"#ea6a40","error":"#ffb4ab","on-error-container":"#ffdad6","surface":"#211a17","outline":"#a68b82","surface-container-high":"#302825","surface-dim":"#18120f","outline-variant":"#58423b","inverse-primary":"#a73a13","on-background":"#eee0da","on-tertiary-fixed":"#001f25","status-warning":"#d4a24e","on-secondary-fixed":"#281900","canvas":"#16110f","secondary-fixed-dim":"#f3be67","on-primary-fixed-variant":"#842500","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","text-secondary":"#a89c93","background":"#18120f","primary":"#ffb59e","surface-tint":"#ffb59e","surface-container-highest":"#3b3330","on-primary-container":"#521300","tertiary-fixed-dim":"#61d6ed","text-primary":"#ece0dc","surface-container-low":"#211a17","on-tertiary-container":"#002f36","surface-variant":"#3b3330","on-secondary-container":"#ffcd7d","tertiary-container":"#049fb5","status-success":"#4a7c59","inverse-on-surface":"#372f2b","on-secondary":"#432c00","tertiary":"#61d6ed","surface-bright":"#403734","primary-fixed-dim":"#ffb59e","status-error":"#c44d4d","on-tertiary-fixed-variant":"#004e5a","on-primary":"#5e1700","secondary":"#f3be67","error-container":"#93000a","surface-container-lowest":"#130d0a","primary-hover":"#d45a30","on-error":"#690005","on-secondary-fixed-variant":"#604100","tertiary-fixed":"#a4eeff","secondary-container":"#7c5400","border-hover":"#4d433d","surface-active":"#332a24","surface-hover":"#2a211c","on-surface-variant":"#dfc0b7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","margin-mobile":"1rem","space-xl":"2rem","space-sm":"0.5rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem"},"fontFamily":{"display":["Playfair Display"],"headline-1":["Playfair Display"],"body-large":["Inter"],"headline-2":["Playfair Display"],"overline":["JetBrains Mono"],"body-default":["Inter"],"caption":["Inter"],"display-mobile":["Playfair Display"],"display-xl-mobile":["Playfair Display"],"headline-3":["Playfair Display"],"display-xl":["Playfair Display"],"label-mono":["JetBrains Mono"],"body-small":["Inter"]},"fontSize":{"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-1":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-large":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-2":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"body-default":["16px",{"lineHeight":"24px","fontWeight":"400"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-xl-mobile":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-3":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-xl":["60px",{"lineHeight":"68px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-mono":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}],"body-small":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-canvas font-body-default text-body-default text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-canvas/80 backdrop-blur-xl border-b border-border transition-colors duration-200"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg shrink-0"><a class="flex items-center gap-space-sm group text-text-primary" data-path="home" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border group-hover:border-primary transition-colors"><span class="material-symbols-outlined text-primary text-[22px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary tracking-tight">Genu Library</span></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary border-b-2 border-primary"><a aria-current="page" class="font-body-default transition-colors py-space-xs text-primary border-b-2 border-primary" data-path="home" href="#">Home</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="books" href="#">Books</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="playlists" href="#">Playlists</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="upload" href="#">Upload</a></nav></div><div class="hidden md:flex flex-1 max-w-md mx-space-md relative"><div class="w-full flex items-center bg-canvas border border-border rounded-lg px-space-sm py-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all"><span class="material-symbols-outlined text-text-muted text-[20px] mr-2">search</span><input class="w-full bg-transparent border-none outline-none font-body-small text-body-small text-text-primary placeholder:text-text-muted" placeholder="Search codex, folio, author, or seal..." type="text"/><span class="font-label-mono text-overline text-text-muted bg-surface-container border border-border px-1.5 py-0.5 rounded">⌘K</span></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-1.5 bg-surface-container border border-border px-space-sm py-1.5 rounded-lg"><span class="text-secondary text-[16px]">🪙</span><span class="font-label-mono text-label-mono font-medium text-secondary">1.4K</span></div><div class="flex items-center gap-space-sm"><div class="relative group cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></div></header><main class="w-full pt-20 bg-canvas min-h-screen"><div class="flex flex-col w-full">
+<!-- HERO SECTION -->
+<section class="relative w-full overflow-hidden">
+<!-- Atmospheric Ambient Glows -->
+<div class="absolute top-10 left-1/4 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-40 right-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="max-w-7xl mx-auto px-margin py-16 lg:py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-space-xl items-center">
+<!-- Left Editorial Text & Search Form -->
+<div class="lg:col-span-7 flex flex-col space-y-space-lg">
+<div class="inline-flex items-center gap-space-xs px-3 py-1 rounded-full bg-surface-container border border-border w-fit">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-overline text-overline uppercase tracking-wider text-secondary">The Guild Ledger • Season of Fire</span>
+</div>
+<div class="space-y-space-sm">
+<h1 class="font-display text-display-xl-mobile lg:text-display-xl text-text-primary tracking-tight leading-none">
+              Discover Your Next <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary underline decoration-primary-container/30 decoration-wavy">Great Read</span>
+</h1>
+<p class="font-body-large text-body-large text-text-secondary max-w-2xl pt-2">
+              Step into an artisan digital sanctuary. Explore rare manuscripts, classical literature, and technical grimoires curated by a global fellowship of scholars and master archivists.
+            </p>
+</div>
+<!-- Prominent Search Bar with Autocomplete Dropdown Preview -->
+<div class="relative w-full max-w-2xl pt-2" id="hero-search-wrapper">
+<div class="relative flex items-center bg-surface-container-lowest border border-border rounded-xl p-2 focus-within:border-primary-container focus-within:ring-2 focus-within:ring-primary-container/20 shadow-xl transition-all">
+<span class="material-symbols-outlined text-text-muted text-[24px] ml-3 mr-2">travel_explore</span>
+<input autocomplete="off" class="w-full bg-transparent border-none outline-none font-body-default text-body-default text-text-primary placeholder:text-text-muted pr-4" id="hero-search-input" placeholder="Search by title, author, topic, or ISBN..." type="text"/>
+<button class="shrink-0 bg-primary-container hover:bg-primary-hover text-text-on-accent font-body-default text-body-small font-semibold px-space-md py-2.5 rounded-lg flex items-center gap-1.5 transition-all shadow-md active:scale-95" id="hero-search-btn" type="button">
+<span>Inquire</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Autocomplete Results Dropdown -->
+<div class="hidden absolute top-full left-0 right-0 mt-2 bg-surface border border-border rounded-xl shadow-2xl p-space-md z-30 space-y-space-sm backdrop-blur-md" id="search-autocomplete-dropdown">
+<div class="flex items-center justify-between pb-2 border-b border-border text-text-muted font-overline text-overline uppercase tracking-wider">
+<span>Direct Codex Matches</span>
+<span>Press ESC to dismiss</span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container group transition-colors" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">menu_book</span>
+<div>
+<p class="font-body-default text-body-small text-text-primary font-medium group-hover:text-primary transition-colors">The Alchemist's Notebook</p>
+<p class="font-caption text-caption text-text-secondary">by H. Vance • Vault Tier II</p>
+</div>
+</div>
+<span class="font-label-mono text-overline text-secondary bg-surface-container-high px-2 py-0.5 rounded border border-border">🪙 310</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container group transition-colors" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">architecture</span>
+<div>
+<p class="font-body-default text-body-small text-text-primary font-medium group-hover:text-primary transition-colors">Principles of Typography</p>
+<p class="font-caption text-caption text-text-secondary">by Aldus Manutius Folio • Classical</p>
+</div>
+</div>
+<span class="font-label-mono text-overline text-secondary bg-surface-container-high px-2 py-0.5 rounded border border-border">🪙 195</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container group transition-colors" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">history_edu</span>
+<div>
+<p class="font-body-default text-body-small text-text-primary font-medium group-hover:text-primary transition-colors">Treatise on Crucible Alloys</p>
+<p class="font-caption text-caption text-text-secondary">Guild Artisans Collective • Metallurgy</p>
+</div>
+</div>
+<span class="font-label-mono text-overline text-secondary bg-surface-container-high px-2 py-0.5 rounded border border-border">🪙 440</span>
+</a>
+</li>
+</ul>
+<div class="pt-2 border-t border-border flex items-center gap-2">
+<span class="font-overline text-overline text-text-muted">Tags:</span>
+<span class="font-overline text-overline text-primary bg-primary-container/10 px-2 py-0.5 rounded border border-primary-container/30">#Classical</span>
+<span class="font-overline text-overline text-secondary bg-secondary-container/20 px-2 py-0.5 rounded border border-secondary-container/50">#Philosophy</span>
+<span class="font-overline text-overline text-text-secondary bg-surface-container px-2 py-0.5 rounded border border-border">#Illuminations</span>
+</div>
+</div>
+</div>
+<!-- Filter Pill Tags -->
+<div class="flex flex-wrap items-center gap-2 pt-2">
+<span class="font-overline text-overline text-text-muted uppercase tracking-wider mr-1">Trending:</span>
+<button class="category-pill active font-body-small text-caption px-3.5 py-1 rounded-full bg-primary-container/15 text-primary border border-primary-container transition-all hover:bg-primary-container/25" type="button">All Books</button>
+<button class="category-pill font-body-small text-caption px-3.5 py-1 rounded-full bg-surface-container text-text-secondary border border-border transition-all hover:border-text-muted hover:text-text-primary" type="button">Philosophy</button>
+<button class="category-pill font-body-small text-caption px-3.5 py-1 rounded-full bg-surface-container text-text-secondary border border-border transition-all hover:border-text-muted hover:text-text-primary" type="button">Ancient History</button>
+<button class="category-pill font-body-small text-caption px-3.5 py-1 rounded-full bg-surface-container text-text-secondary border border-border transition-all hover:border-text-muted hover:text-text-primary" type="button">Grimoires</button>
+<button class="category-pill font-body-small text-caption px-3.5 py-1 rounded-full bg-surface-container text-text-secondary border border-border transition-all hover:border-text-muted hover:text-text-primary" type="button">Typography</button>
+<button class="category-pill font-body-small text-caption px-3.5 py-1 rounded-full bg-surface-container text-text-secondary border border-border transition-all hover:border-text-muted hover:text-text-primary" type="button">Alchemical Arts</button>
+<button class="category-pill font-body-small text-caption px-3.5 py-1 rounded-full bg-surface-container text-text-secondary border border-border transition-all hover:border-text-muted hover:text-text-primary" type="button">Craftsmanship</button>
+</div>
+</div>
+<!-- Right Side: Stylized Stacked Books & Celestial Rings Forge Visual -->
+<div class="lg:col-span-5 relative flex items-center justify-center min-h-[380px] lg:min-h-[460px]">
+<!-- Celestial Orbit Rings SVG -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
+<svg class="w-[380px] h-[380px] text-primary" fill="none" viewbox="0 0 380 380">
+<circle class="animate-[spin_60s_linear_infinite]" cx="190" cy="190" r="170" stroke="currentColor" stroke-dasharray="4 8" stroke-width="1"></circle>
+<circle class="animate-[spin_40s_linear_infinite_reverse]" cx="190" cy="190" r="130" stroke="currentColor" stroke-dasharray="2 6" stroke-width="1.5"></circle>
+<circle cx="190" cy="190" r="85" stroke="currentColor" stroke-width="0.75"></circle>
+<path d="M 190 20 L 190 360 M 20 190 L 360 190" stroke="currentColor" stroke-opacity="0.3" stroke-width="0.5"></path>
+</svg>
+</div>
+<!-- Stack of Guild Folios with Ember Sparks -->
+<div class="relative z-10 w-full max-w-sm flex flex-col items-center">
+<!-- Book 3 (Deep Bottom Foundation) -->
+<div class="w-64 sm:w-72 h-14 bg-surface-container-highest border border-border rounded-lg shadow-2xl transform rotate-3 translate-y-6 flex items-center px-4 justify-between transition-transform duration-300 hover:rotate-2">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-7 bg-outline rounded-full"></span>
+<span class="font-overline text-overline text-text-muted">VOL. III • METALLURGY</span>
+</div>
+<span class="font-label-mono text-overline text-outline">FOLIO-09</span>
+</div>
+<!-- Book 2 (Middle Leather Bound) -->
+<div class="w-68 sm:w-80 h-16 bg-surface-container border border-border rounded-lg shadow-2xl transform -rotate-2 translate-y-3 flex items-center px-5 justify-between transition-transform duration-300 hover:-rotate-1">
+<div class="flex items-center gap-2">
+<span class="w-2 h-8 bg-secondary rounded-full"></span>
+<span class="font-display text-headline-3 text-secondary font-semibold tracking-tight text-sm">Philosophia Naturalis</span>
+</div>
+<span class="font-label-mono text-caption text-secondary">🪙 480</span>
+</div>
+<!-- Top Illuminated Book Showcase Card -->
+<div class="w-72 sm:w-84 bg-surface border border-primary-container/40 rounded-xl p-space-md shadow-2xl relative overflow-hidden transition-all duration-300 hover:scale-[1.02] group">
+<!-- Golden corner seals -->
+<div class="absolute -top-6 -right-6 w-14 h-14 bg-primary-container/15 rounded-full border border-primary-container/40 flex items-end justify-start p-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+</div>
+<div class="flex gap-space-md items-start">
+<div class="w-20 h-28 shrink-0 rounded-lg overflow-hidden border border-border relative bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A dark leatherbound antique book with intricate gold foil filigree and embossed celestial astrolabe emblems on deep mahogany leather in a hearth lit guild workshop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLZWigC2eIZrziA-AmUemOZ-GupAta0MD4lMRxFo2Q8gO4BhCHEcnvbDIgRCooHfC9QqtjKEVT1MUuBLyTpDgDHuJ8LgAck2GJq0FHLVk0O5DJdmPn1O7Wtz76nCyKzQNxglWOxOUo-elVu8Ro8BekU2dVRnwm78c_4aEXwKZY3-2MHAPTFYmfvYSjjhWjvSipa2plWuP8qkLoHIO-gcU7C0QtTfdS9t6T4X7GJuvVmXudLNK06jl2"/>
+<div class="absolute inset-0 bg-gradient-to-t from-canvas/90 via-transparent to-transparent"></div>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<span class="font-overline text-overline text-primary uppercase tracking-wider">Tome of the Week</span>
+<h3 class="font-display text-headline-3 text-text-primary leading-tight truncate">De Sphaera Mundi</h3>
+<p class="font-caption text-caption text-text-secondary">Johannes de Sacrobosco</p>
+<div class="pt-2 flex items-center justify-between">
+<div class="flex items-center gap-1 text-secondary">
+<span class="text-sm">🪙</span>
+<span class="font-label-mono text-label-mono font-semibold text-secondary">540</span>
+</div>
+<div class="flex items-center text-status-warning text-caption gap-0.5">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary">4.95</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sparkle ember highlight line -->
+<div class="mt-3 pt-3 border-t border-border flex items-center justify-between text-caption font-body-small text-text-muted">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span> Available in Sanctum</span>
+<span class="font-label-mono text-overline text-primary">EDITION #042</span>
+</div>
+</div>
+<!-- Warm Hearth Glow Floor -->
+<div class="w-3/4 h-3 bg-gradient-to-r from-transparent via-primary-container/30 to-transparent blur-sm mt-4"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STATS COUNTER BAR -->
+<section class="w-full bg-surface-container-low border-y border-border relative py-8">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter lg:gap-space-xl divide-y md:divide-y-0 md:divide-x divide-border">
+<!-- Metric 1: Total Books -->
+<div class="flex items-center gap-space-md py-4 md:py-0 md:px-space-md group">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center border border-border text-primary group-hover:border-primary transition-colors shrink-0">
+<span class="material-symbols-outlined text-[26px]">library_books</span>
+</div>
+<div>
+<div class="flex items-baseline gap-1">
+<span class="font-label-mono text-headline-1 font-bold text-text-primary tracking-tight" data-counter="28400">28.4K</span>
+<span class="font-label-mono text-caption text-primary font-medium">+184</span>
+</div>
+<p class="font-body-small text-caption text-text-secondary uppercase font-medium tracking-wider">Total Bound Folios &amp; Codices</p>
+</div>
+</div>
+<!-- Metric 2: Active Readers -->
+<div class="flex items-center gap-space-md py-4 md:py-0 md:px-space-md group">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center border border-border text-secondary group-hover:border-secondary transition-colors shrink-0">
+<span class="material-symbols-outlined text-[26px]">local_library</span>
+</div>
+<div>
+<div class="flex items-baseline gap-1">
+<span class="font-label-mono text-headline-1 font-bold text-text-primary tracking-tight" data-counter="14200">14.2K</span>
+<span class="font-label-mono text-caption text-status-success font-medium">Online</span>
+</div>
+<p class="font-body-small text-caption text-text-secondary uppercase font-medium tracking-wider">Guild Scholars &amp; Archivists</p>
+</div>
+</div>
+<!-- Metric 3: Reviews Written -->
+<div class="flex items-center gap-space-md py-4 md:py-0 md:px-space-md group">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center border border-border text-primary-container group-hover:border-primary-container transition-colors shrink-0">
+<span class="material-symbols-outlined text-[26px]">rate_review</span>
+</div>
+<div>
+<div class="flex items-baseline gap-1">
+<span class="font-label-mono text-headline-1 font-bold text-text-primary tracking-tight" data-counter="96800">96.8K</span>
+<span class="font-label-mono text-caption text-secondary font-medium">99.4% Ver.</span>
+</div>
+<p class="font-body-small text-caption text-text-secondary uppercase font-medium tracking-wider">Critical Annotations &amp; Reviews</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FEATURED COLLECTION SECTION (CAROUSEL) -->
+<section class="w-full py-16 lg:py-24">
+<div class="max-w-7xl mx-auto px-margin space-y-space-lg">
+<!-- Section Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md pb-2 border-b border-border">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-[18px]">auto_stories</span>
+<span class="font-overline text-overline text-primary uppercase tracking-wider">Curated Sanctum Selection</span>
+</div>
+<h2 class="font-display text-headline-1 text-text-primary">Featured Collection</h2>
+</div>
+<div class="flex items-center gap-space-md">
+<a class="font-body-default text-body-small text-text-secondary hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span>View All (42)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</a>
+<!-- Carousel Arrows -->
+<div class="flex items-center gap-1">
+<button aria-label="Previous Slide" class="w-9 h-9 rounded-lg bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-primary transition-colors active:scale-90" id="carousel-prev" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button aria-label="Next Slide" class="w-9 h-9 rounded-lg bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-primary transition-colors active:scale-90" id="carousel-next" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Carousel Container -->
+<div class="relative overflow-hidden">
+<div class="flex gap-gutter transition-transform duration-500 ease-out" id="featured-carousel">
+<!-- Card 1: The Architecture of Thought -->
+<div class="carousel-item w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 flex flex-col bg-surface border border-border rounded-xl p- space-y-space-sm hover:border-border-hover hover:-translate-y-1 transition-all duration-300 shadow-md group">
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-high border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A grand dark classical library with towering dark wooden bookshelves, warm glowing candle lanterns, parchment blueprints, and marble bust sculptures under dramatic hearth lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5eJBDh4a3kvaDtsZ7YciulpylUiOck5O6NmG67HagbxZIDZP9X1LsUEmjXdpFPZN8h66qcOFWHgqfCXn59PzEHLf_Zwrc4PuVurCoHwlrmoUTnJnJNKTRBXO5_vPkpXdDblDSGUNKsnFDthSmR378vJeB0DxIao0u7UbxsOTrbF1IKQs_s1n9Lwz_5p-cay-8ZibwgRUWk_ewxD2fkIqJRfF4oW48eu1vd_QgttxphLmqy5-XRgAN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-2.5 left-2.5">
+<span class="font-overline text-overline px-2.5 py-0.5 rounded-full bg-surface/90 text-primary border border-border backdrop-blur-sm">Philosophy</span>
+</div>
+<button aria-label="Favorite toggle" class="favorite-toggle active absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm border border-border flex items-center justify-center text-primary-container hover:scale-110 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">The Architecture of Thought</h3>
+<p class="font-body-small text-body-small text-text-secondary truncate">Marcus Aurelius Sterling</p>
+</div>
+<div class="pt-2 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-md border border-border">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">350</span>
+</div>
+<div class="flex items-center text-status-warning gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary">4.9</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Chronicles of the Iron Foundry -->
+<div class="carousel-item w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 flex flex-col bg-surface border border-border rounded-xl p- space-y-space-sm hover:border-border-hover hover:-translate-y-1 transition-all duration-300 shadow-md group">
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-high border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Industrial 19th-century iron foundry workshop with glowing molten metal poured into molds, dark steel girders, and soot-covered schematics on a drafting table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTmlpR64zO8ms9pT4sZgWFtVXHsjITNl1Cy3iBzwSeBUMcR-hC6bIYg4WDJSdQt5F8HkCYvk6zQ2GHr0vSa57bQoo50wf1RzcC09qsoEeejvId8tkci0cx8F0Hd_tOhobSk4QiJLyEuRtbIeih_ceCFA-SgwS3jz9bUFzSNWf_VGEKCBb3WMye7ntR51LPLR6Oy039zSMi_qQLJhdXTNDr3x4iUuaIe6ITC1L9nthEkMLOjKJHQ13a"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-2.5 left-2.5">
+<span class="font-overline text-overline px-2.5 py-0.5 rounded-full bg-surface/90 text-secondary border border-border backdrop-blur-sm">Engineering</span>
+</div>
+<button aria-label="Favorite toggle" class="favorite-toggle absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm border border-border flex items-center justify-center text-text-muted hover:text-primary-container hover:scale-110 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">Chronicles of the Iron Foundry</h3>
+<p class="font-body-small text-body-small text-text-secondary truncate">Rowan K. Blackwood</p>
+</div>
+<div class="pt-2 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-md border border-border">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">420</span>
+</div>
+<div class="flex items-center text-status-warning gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary">4.8</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Illuminated Manuscripts & Glyphs -->
+<div class="carousel-item w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 flex flex-col bg-surface border border-border rounded-xl p- space-y-space-sm hover:border-border-hover hover:-translate-y-1 transition-all duration-300 shadow-md group">
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-high border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Medieval illuminated manuscript page with gold leaf embellishments, crimson calligraphy, floral knotwork margins, and antique quill pens on rich dark velvet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOVdGbXaKTH_o-Gg_M1ZvXfaD9ygz4D9OhWzCF0A93tYiOTJMaA29XrUqspPLcxSnTIZCRj3H4kjBx9tL1GQyFfRv2ew6OkO128L9dFXLKxFIvGRd6CRGnfsNGGvXkmAudlSuMux9UrLy85qQOMGcwTDpD2Kfd_XEQL0vQ3Y0SqqzG4YyLPTH4XF08Y6pIValBzx-jnZjp1G7vcrIlDdFy0hGZn_lcJTEx8N_Qt41mqzknSxplElV7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-2.5 left-2.5">
+<span class="font-overline text-overline px-2.5 py-0.5 rounded-full bg-surface/90 text-primary border border-border backdrop-blur-sm">Art &amp; Design</span>
+</div>
+<button aria-label="Favorite toggle" class="favorite-toggle absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm border border-border flex items-center justify-center text-text-muted hover:text-primary-container hover:scale-110 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">Illuminated Manuscripts &amp; Glyphs</h3>
+<p class="font-body-small text-body-small text-text-secondary truncate">Elena Rostova</p>
+</div>
+<div class="pt-2 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-md border border-border">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">290</span>
+</div>
+<div class="flex items-center text-status-warning gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary">5.0</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4: The Astrolabe Companion -->
+<div class="carousel-item w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 flex flex-col bg-surface border border-border rounded-xl p- space-y-space-sm hover:border-border-hover hover:-translate-y-1 transition-all duration-300 shadow-md group">
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-high border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Antique brass astrolabe and nautical armillary sphere sitting atop aged celestial star charts and compass instruments in a wood paneled observatory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdmd7aOIBb5b30ghGBr2_5SyIRNtv8YRF8cdyVA5VhGctOIPxIN8axDJpj29hNJ0nu9mncX-v3GE9vzM-Tcl3of3JpLPZuUl8ny1XPaEooomlWRkbnvmuOgrgK50XKSqACJxJQxOVAOzCU85Q4YsW-zw4UxV4Zy8YeW9U5Zv_gm1e9qZ2UsKsU5oDHV-qP4Kuri5OuEz8lNS3fS6tJAhwZSayRGNblppXFXnlzQKucOnkba27NNvcr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-2.5 left-2.5">
+<span class="font-overline text-overline px-2.5 py-0.5 rounded-full bg-surface/90 text-tertiary-fixed-dim border border-border backdrop-blur-sm">Astronomy</span>
+</div>
+<button aria-label="Favorite toggle" class="favorite-toggle absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm border border-border flex items-center justify-center text-text-muted hover:text-primary-container hover:scale-110 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">The Astrolabe Companion</h3>
+<p class="font-body-small text-body-small text-text-secondary truncate">Dr. Silas Vane</p>
+</div>
+<div class="pt-2 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-md border border-border">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">510</span>
+</div>
+<div class="flex items-center text-status-warning gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary">4.7</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 5 (Bonus scroll target for carousel motion): Alchemical Herbal -->
+<div class="carousel-item w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 flex flex-col bg-surface border border-border rounded-xl p- space-y-space-sm hover:border-border-hover hover:-translate-y-1 transition-all duration-300 shadow-md group">
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-high border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Pressed botanical specimens and vintage botanical sketches of rare nocturnal flowers labeled in latin script beside apothecary glass jars." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJYvSiKVuzAopJGTiTyUw5il4D1bIOnoMkcS-BOYB40UHsoy7sF-NRgtO5-_KCUhcR_z9Wlj4plxnb64SffsS_QaE4V8DBbn21nYERt5w973wOb6P6VuqD3mwi88SSIRSZw1Mf3Yltssf2DPj31P5HvnXR5v404TW8RdbSfmTuW7mUwLjT4-MkVR1iq7tyipHDyx37tBhghQPkz8IPqYk0US4KR55XIDpK6BgYQRfM-Rm65rfDMwYL"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-2.5 left-2.5">
+<span class="font-overline text-overline px-2.5 py-0.5 rounded-full bg-surface/90 text-status-success border border-border backdrop-blur-sm">Herbalism</span>
+</div>
+<button aria-label="Favorite toggle" class="favorite-toggle absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm border border-border flex items-center justify-center text-text-muted hover:text-primary-container hover:scale-110 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">The Nocturnal Herbal</h3>
+<p class="font-body-small text-body-small text-text-secondary truncate">Astrid Valmont</p>
+</div>
+<div class="pt-2 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-md border border-border">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">380</span>
+</div>
+<div class="flex items-center text-status-warning gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-caption text-text-primary">4.9</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Carousel Dot Indicators -->
+<div class="flex items-center justify-center gap-2 pt-2">
+<button aria-label="Slide 1" class="carousel-dot w-6 h-1.5 rounded-full bg-primary-container transition-all" type="button"></button>
+<button aria-label="Slide 2" class="carousel-dot w-2 h-1.5 rounded-full bg-border hover:bg-text-muted transition-all" type="button"></button>
+</div>
+</div>
+</section>
+<!-- RECENTLY ADDED SECTION (GRID WITH TABS) -->
+<section class="w-full py-16 bg-surface-dim border-t border-border">
+<div class="max-w-7xl mx-auto px-margin space-y-space-xl">
+<!-- Section Header with Filter Tabs -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-2 border-b border-border">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-secondary text-[18px]">update</span>
+<span class="font-overline text-overline text-secondary uppercase tracking-wider">Sanctum Ingest Stream</span>
+</div>
+<h2 class="font-display text-headline-1 text-text-primary">Recently Added</h2>
+</div>
+<!-- Filter Tab Buttons -->
+<div class="flex items-center gap-1 bg-surface p-1 rounded-lg border border-border self-start md:self-auto overflow-x-auto">
+<button class="recent-tab active px-3 py-1.5 rounded-md font-body-small text-caption font-medium bg-primary-container text-text-on-accent transition-colors" type="button">All</button>
+<button class="recent-tab px-3 py-1.5 rounded-md font-body-small text-caption font-medium text-text-secondary hover:text-text-primary transition-colors" type="button">New Releases</button>
+<button class="recent-tab px-3 py-1.5 rounded-md font-body-small text-caption font-medium text-text-secondary hover:text-text-primary transition-colors" type="button">Community Uploads</button>
+<button class="recent-tab px-3 py-1.5 rounded-md font-body-small text-caption font-medium text-text-secondary hover:text-text-primary transition-colors" type="button">Rare Editions</button>
+</div>
+</div>
+<!-- 3-Column Responsive Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card A: The Book of Lost Pigments -->
+<div class="bg-surface border border-border rounded-xl p-space-md flex flex-col justify-between hover:border-border-hover hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.1)] transition-all duration-300 group">
+<div class="flex gap-space-md items-start">
+<div class="w-20 h-28 rounded-lg overflow-hidden bg-surface-container shrink-0 border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A row of apothecary mineral pigment jars containing vibrant ultramarine lapis, cinnabar red, and orpiment yellow pigments on an old dark oak workbench." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrGrLAlZY6d6lI8Zz83bLTxadhxYFU9JjdQadZgxGk7e1RoVOyTs_DCegou8SAxesUxqctXjeCO4vUDZCHAwQg7ztIY_Qp86mRXGOd3fhQ1-PrwGEx9Fadt43PRXJO4lXXlaZHGM4AKrPczhGTgUjso7M-s3q0xgXMnHQ8U_VpFweAgyuLp5j2g_N9wXBvKIDJYJiR7FXz9-k-n2E0CZmX1vOf6YkyrO0n0ITumLelzIF4dotdcb_r"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-overline text-overline text-status-warning uppercase">Alchemy &amp; Art</span>
+<span class="font-caption text-caption text-text-muted">2 hours ago</span>
+</div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">The Book of Lost Pigments</h3>
+<p class="font-body-small text-caption text-text-secondary truncate">Cecily Morrow</p>
+<p class="font-caption text-caption text-text-muted line-clamp-2 pt-1">An encyclopedic recreation of forgotten medieval mineral extraction recipes.</p>
+</div>
+</div>
+<div class="pt-space-sm mt-3 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">180</span>
+</div>
+<a class="font-body-small text-caption text-primary hover:text-primary-hover flex items-center gap-1" href="#">
+<span>Read Folio</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card B: Foundational Metallurgy -->
+<div class="bg-surface border border-border rounded-xl p-space-md flex flex-col justify-between hover:border-border-hover hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.1)] transition-all duration-300 group">
+<div class="flex gap-space-md items-start">
+<div class="w-20 h-28 rounded-lg overflow-hidden bg-surface-container shrink-0 border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Heavy black iron anvil surrounded by blacksmith hammers, tongs, and glowing orange crucible embers in a rustic guild stone forge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ABwyxNYzZN5utmCgA9RC6vXQQ4LTHYIRrfnYQg-JHM2ZLFyRN67za6IGujqgVLQgvlfuPqcRqi6kLLdrWyVXgEtf9P68W-RX6wMv8BO1TCbFDfIna8gg5smHwgZx0JDtue4K9FH3a_PxhxnX2KIuaMNIdIlZLpRZCtbeFuRtA3qNSOfjsgjaYJtKN_BE6Fg-d3V8_nvTHmhjeM7za8681b0rhb2tfiHfQVyy7We1MTRstwurOvKF"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-overline text-overline text-primary uppercase">Craftsmanship</span>
+<span class="font-caption text-caption text-text-muted">Yesterday</span>
+</div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">Foundational Metallurgy</h3>
+<p class="font-body-small text-caption text-text-secondary truncate">T. E. Thorne</p>
+<p class="font-caption text-caption text-text-muted line-clamp-2 pt-1">Thermodynamic principles applied to Damascus steel and alloy tempering.</p>
+</div>
+</div>
+<div class="pt-space-sm mt-3 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">310</span>
+</div>
+<a class="font-body-small text-caption text-primary hover:text-primary-hover flex items-center gap-1" href="#">
+<span>Read Folio</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card C: Hermetic Geometry -->
+<div class="bg-surface border border-border rounded-xl p-space-md flex flex-col justify-between hover:border-border-hover hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.1)] transition-all duration-300 group">
+<div class="flex gap-space-md items-start">
+<div class="w-20 h-28 rounded-lg overflow-hidden bg-surface-container shrink-0 border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Geometric drafting diagram on dark vellum featuring the golden ratio, interlocking heptagrams, and precision brass calipers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWAZNtrmk2PgZDtLnQqOCOsleRYnAU2oKdTy283KiFWPl4oOutX6Sx-VEhEJ5Xlne9Es3nuF8RHoBdxDuueIc9l9jfkRifAMS3p7Mx7k9--vR74e62-auBK9UmfdtAMSu3YPgqG4CQVv6zaJJ1aCEzWse-O1m0BJRu45n--m76jHKvz5I3n2iCPSQPM_V_EfrRTTbl0KX-8q-cPFigPa0V9vdKWpJy_BXWku6ULsHPvYQEVzT15msR"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-overline text-overline text-tertiary-fixed-dim uppercase">Sacred Math</span>
+<span class="font-caption text-caption text-text-muted">2 days ago</span>
+</div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">Hermetic Geometry</h3>
+<p class="font-body-small text-caption text-text-secondary truncate">Julian Croft</p>
+<p class="font-caption text-caption text-text-muted line-clamp-2 pt-1">The harmonious proportions of cathedral vaulting and celestial harmonics.</p>
+</div>
+</div>
+<div class="pt-space-sm mt-3 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">240</span>
+</div>
+<a class="font-body-small text-caption text-primary hover:text-primary-hover flex items-center gap-1" href="#">
+<span>Read Folio</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card D: Echoes of the High Library -->
+<div class="bg-surface border border-border rounded-xl p-space-md flex flex-col justify-between hover:border-border-hover hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.1)] transition-all duration-300 group">
+<div class="flex gap-space-md items-start">
+<div class="w-20 h-28 rounded-lg overflow-hidden bg-surface-container shrink-0 border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Monastic library cloisters with high stone arches, shafts of dust filled sunlight hitting antique folio shelves, and dark carved oak reading desks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWuw-1tCW_7d0tFp5O0IeJ8ocIzb-s8FKj97wE8T98EMIdmQ8rOjLvzGEvJgEndqNWGDfc-W6LkvTntZWS-UAw0xbbWRlo97y0LE7lh10FWkfYg56jAwMoqK3Qzswk2PFOI4J9zwZfYBbKWvd4F4tH86MUroZGAgjpxfkFf0cvblLisp0GK5NLWh35mGxRDBeDRbtrOcFcubWy1u6oIzVHRCeug4GqXsqABDAGn1FIotsF_51-oA8z"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-overline text-overline text-secondary uppercase">Monograph</span>
+<span class="font-caption text-caption text-text-muted">3 days ago</span>
+</div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">Echoes of the High Library</h3>
+<p class="font-body-small text-caption text-text-secondary truncate">Vivienne Laurent</p>
+<p class="font-caption text-caption text-text-muted line-clamp-2 pt-1">Historiographical accounts of legendary lost archives across the continent.</p>
+</div>
+</div>
+<div class="pt-space-sm mt-3 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">400</span>
+</div>
+<a class="font-body-small text-caption text-primary hover:text-primary-hover flex items-center gap-1" href="#">
+<span>Read Folio</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card E: Woodblock Printing Primer -->
+<div class="bg-surface border border-border rounded-xl p-space-md flex flex-col justify-between hover:border-border-hover hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.1)] transition-all duration-300 group">
+<div class="flex gap-space-md items-start">
+<div class="w-20 h-28 rounded-lg overflow-hidden bg-surface-container shrink-0 border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Carved cherry wood printing block with relief engravings of waves and kanji characters beside rich black sumi ink baren and carving gouges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtUBOBE9mkr0W1ufAbSXhFjFFBEaniNSF99DNnVbp_Uzx9IHQTaDNjIrcS0h9ooIiXzFwMVS1FqIT_sPQw0Pi8GyRWqODp_WVystobB5ghQHUx3AmNvme9sR6P_J7l-C_dsI80ZFGSeF916cs0qBok_GPghJCVz01z4awyoC5nLGx5xB66Q_imwHX4MYHsCcTL8cPtXLigSpLTjn6hUtXGP395ObBXumRBR1OnsaJXqSLO9UviRyEm"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-overline text-overline text-status-info uppercase">Printmaking</span>
+<span class="font-caption text-caption text-text-muted">4 days ago</span>
+</div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">Woodblock Printing Primer</h3>
+<p class="font-body-small text-caption text-text-secondary truncate">Kenji Sato</p>
+<p class="font-caption text-caption text-text-muted line-clamp-2 pt-1">Step-by-step masterclass on traditional mokuhanga registration and pigment mixing.</p>
+</div>
+</div>
+<div class="pt-space-sm mt-3 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">195</span>
+</div>
+<a class="font-body-small text-caption text-primary hover:text-primary-hover flex items-center gap-1" href="#">
+<span>Read Folio</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card F: Lexicon of Antiquity -->
+<div class="bg-surface border border-border rounded-xl p-space-md flex flex-col justify-between hover:border-border-hover hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,105,63,0.1)] transition-all duration-300 group">
+<div class="flex gap-space-md items-start">
+<div class="w-20 h-28 rounded-lg overflow-hidden bg-surface-container shrink-0 border border-border">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Aged leather book with embossed bronze clasps lying open showing classical Greek and Latin dual column lexicons in an archivist study." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXP8RFDfyt4GbYSlxD6zzKK69uBG4B9Lelp211z896ipOxV8enoOVq16GHaWURy-o5BgaBi9UeUp5Hnm2Pw_8IwS8hOqot5-D8HEkFZ8s5ZNoAoofy2fxlbhor5Ytd_5rJ7LEsTUFUJLb2m6k-hloD6OA-vgYdoyRqw6b7aDegm-ilvNLKnNBuR8GU8oMylOxf4Tk0EpsDapQWVvvNJ8gTB4qZqjaxOCcfrHLRg7advtPLEVwj4dxY"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-overline text-overline text-outline uppercase">Linguistics</span>
+<span class="font-caption text-caption text-text-muted">5 days ago</span>
+</div>
+<h3 class="font-display text-headline-3 text-text-primary group-hover:text-primary transition-colors truncate">Lexicon of Antiquity</h3>
+<p class="font-body-small text-caption text-text-secondary truncate">Prof. Alistair Vance</p>
+<p class="font-caption text-caption text-text-muted line-clamp-2 pt-1">Etymological origins of classical trade argot, alchemical glyphs, and archaic idioms.</p>
+</div>
+</div>
+<div class="pt-space-sm mt-3 border-t border-border flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="text-secondary text-xs">🪙</span>
+<span class="font-label-mono text-label-mono font-medium text-secondary">360</span>
+</div>
+<a class="font-body-small text-caption text-primary hover:text-primary-hover flex items-center gap-1" href="#">
+<span>Read Folio</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CALL-TO-ACTION SECTION ("SHARE YOUR KNOWLEDGE") -->
+<section class="w-full py-16 lg:py-24">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="relative bg-surface rounded-2xl border border-border p-8 md:p-14 lg:p-16 overflow-hidden shadow-2xl">
+<!-- Hearth Radial Lighting Background -->
+<div class="absolute -top-32 -right-32 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-32 -left-32 w-96 h-96 bg-secondary-container/15 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Decorative Background Watermark SVG -->
+<div class="absolute top-1/2 -right-10 -translate-y-1/2 opacity-5 pointer-events-none text-primary">
+<svg class="w-96 h-96" fill="currentColor" viewbox="0 0 100 100">
+<path d="M50 0 L60 35 L95 20 L75 50 L100 70 L65 75 L50 100 L35 75 L0 70 L25 50 L5 20 L40 35 Z"></path>
+</svg>
+</div>
+<div class="relative z-10 max-w-2xl space-y-space-md">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/15 border border-primary-container/30 text-primary">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+<span class="font-overline text-overline uppercase tracking-wider">Archivist Concordat</span>
+</div>
+<h2 class="font-display text-display-mobile md:text-display text-text-primary tracking-tight">
+            Share Your Knowledge With the Guild
+          </h2>
+<p class="font-body-large text-body-default md:text-body-large text-text-secondary leading-relaxed">
+            Have you unearthed rare texts, penned a masterwork treatise, or digitized fragile out-of-print prints? Immortalize your contributions within the immutable ledger and earn Guild patronage tokens from fellow readers worldwide.
+          </p>
+<div class="flex flex-wrap items-center gap-space-md pt-4">
+<a class="bg-primary-container hover:bg-primary-hover text-text-on-accent font-body-default text-body-default font-semibold px-space-lg py-3 rounded-lg flex items-center gap-2 shadow-lg transition-all active:scale-95" data-path="upload" href="#">
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+<span>Start Uploading</span>
+</a>
+<a class="bg-transparent hover:bg-surface-container border border-border hover:border-primary text-text-primary font-body-default text-body-default font-medium px-space-lg py-3 rounded-lg flex items-center gap-2 transition-all" data-path="books" href="#">
+<span>Browse All Books</span>
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+</a>
+</div>
+<!-- Feature checkmarks -->
+<div class="pt-6 border-t border-border/80 grid grid-cols-1 sm:grid-cols-3 gap-space-sm text-text-muted font-caption text-caption">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-status-success text-[16px]">check_circle</span>
+<span>Decentralized Archiving</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-status-success text-[16px]">check_circle</span>
+<span>Token Patronage Splits</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-status-success text-[16px]">check_circle</span>
+<span>OCR &amp; Translation Engine</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  (function() {
+    // 1. Search Autocomplete Behavior
+    const searchInput = document.getElementById('hero-search-input');
+    const autocompleteDropdown = document.getElementById('search-autocomplete-dropdown');
+    
+    if (searchInput && autocompleteDropdown) {
+      searchInput.addEventListener('focus', () => {
+        autocompleteDropdown.classList.remove('hidden');
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        if (e.target.value.trim().length > 0) {
+          autocompleteDropdown.classList.remove('hidden');
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        const wrapper = document.getElementById('hero-search-wrapper');
+        if (wrapper && !wrapper.contains(e.target)) {
+          autocompleteDropdown.classList.add('hidden');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          autocompleteDropdown.classList.add('hidden');
+        }
+      });
+    }
+
+    // 2. Carousel Interaction
+    const carousel = document.getElementById('featured-carousel');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    let currentSlide = 0;
+    const totalSlides = 2; // For desktop 4-card + 1 overflow card
+
+    function updateCarousel() {
+      if (!carousel) return;
+      const offset = currentSlide * -33.33; // Slide by one block
+      carousel.style.transform = `translateX(${offset}%)`;
+
+      dots.forEach((dot, idx) => {
+        if (idx === currentSlide) {
+          dot.className = 'carousel-dot w-6 h-1.5 rounded-full bg-primary-container transition-all';
+        } else {
+          dot.className = 'carousel-dot w-2 h-1.5 rounded-full bg-border hover:bg-text-muted transition-all';
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+      });
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        updateCarousel();
+      });
+    });
+
+    // 3. Heart Favorite Toggles
+    const favoriteToggles = document.querySelectorAll('.favorite-toggle');
+    favoriteToggles.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const icon = btn.querySelector('.material-symbols-outlined');
+        const isActive = btn.classList.contains('active');
+        
+        if (isActive) {
+          btn.classList.remove('active', 'text-primary-container');
+          btn.classList.add('text-text-muted');
+          icon.style.fontVariationSettings = "'FILL' 0";
+        } else {
+          btn.classList.add('active', 'text-primary-container');
+          btn.classList.remove('text-text-muted');
+          icon.style.fontVariationSettings = "'FILL' 1";
+        }
+      });
+    });
+
+    // 4. Category Pill Selector
+    const pills = document.querySelectorAll('.category-pill');
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => {
+          p.className = 'category-pill font-body-small text-caption px-3.5 py-1 rounded-full bg-surface-container text-text-secondary border border-border transition-all hover:border-text-muted hover:text-text-primary';
+        });
+        pill.className = 'category-pill active font-body-small text-caption px-3.5 py-1 rounded-full bg-primary-container/15 text-primary border border-primary-container transition-all hover:bg-primary-container/25';
+      });
+    });
+
+    // 5. Recent Section Filter Tabs
+    const tabs = document.querySelectorAll('.recent-tab');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.className = 'recent-tab px-3 py-1.5 rounded-md font-body-small text-caption font-medium text-text-secondary hover:text-text-primary transition-colors';
+        });
+        tab.className = 'recent-tab active px-3 py-1.5 rounded-md font-body-small text-caption font-medium bg-primary-container text-text-on-accent transition-colors';
+      });
+    });
+  })();
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-border mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 space-y-space-md"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center border border-border"><span class="material-symbols-outlined text-primary text-[18px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary">Genu Library</span></div><p class="font-body-default text-body-small text-text-secondary max-w-sm">An artisan guild repository and deluxe reading sanctum curated for digital archivists, scholars, and craftspeople safeguarding rare manuscripts and auditory codices.</p><div class="flex items-center gap-space-sm text-text-muted"><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">terminal</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">hub</span></a></div></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Navigation</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="home" href="#">Home</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="books" href="#">Books Catalog</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="playlists" href="#">Auditory Playlists</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="upload" href="#">Upload Folio</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Guild Archive</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Guild Concordat</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Ledger Rarity</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Archivist API</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Terms of Preservation</a></li></ul></div><div class="space-y-space-md"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">The Monthly Dispatch</h4><p class="font-body-small text-body-small text-text-secondary">Receive curated codex summaries and ledger updates directly to your station.</p><form class="space-y-2"><div class="flex flex-col gap-2"><input class="w-full bg-canvas border border-border rounded-lg px-space-sm py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors" placeholder="archivist@guild.internal" type="email"/><button class="w-full bg-primary text-text-on-accent font-body-default text-body-small font-semibold px-space-md py-2 rounded-lg hover:bg-primary-hover transition-colors" type="button">Subscribe</button></div></form></div></div><div class="border-t border-border mt-space-xl pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-small text-caption text-text-muted">© 2025 Genu Library Guild. All rights reserved under the Sovereign Archives.</p><div class="flex items-center gap-space-md font-body-small text-caption text-text-muted"><a class="hover:text-text-secondary transition-colors" href="#">Sanctum Privacy</a><a class="hover:text-text-secondary transition-colors" href="#">Ledger Index</a><a class="hover:text-text-secondary transition-colors" href="#">Status Core</a></div></div></div></footer></body></html>

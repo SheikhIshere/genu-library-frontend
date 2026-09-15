@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#251e1b","text-on-accent":"#16110f","text-muted":"#7a706a","inverse-surface":"#eee0da","status-info":"#5b8fb9","border":"#3a322d","secondary-fixed":"#ffdead","on-tertiary":"#00363f","on-surface":"#eee0da","primary-container":"#ea6a40","error":"#ffb4ab","on-error-container":"#ffdad6","surface":"#211a17","outline":"#a68b82","surface-container-high":"#302825","surface-dim":"#18120f","outline-variant":"#58423b","inverse-primary":"#a73a13","on-background":"#eee0da","on-tertiary-fixed":"#001f25","status-warning":"#d4a24e","on-secondary-fixed":"#281900","canvas":"#16110f","secondary-fixed-dim":"#f3be67","on-primary-fixed-variant":"#842500","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","text-secondary":"#a89c93","background":"#18120f","primary":"#ffb59e","surface-tint":"#ffb59e","surface-container-highest":"#3b3330","on-primary-container":"#521300","tertiary-fixed-dim":"#61d6ed","text-primary":"#ece0dc","surface-container-low":"#211a17","on-tertiary-container":"#002f36","surface-variant":"#3b3330","on-secondary-container":"#ffcd7d","tertiary-container":"#049fb5","status-success":"#4a7c59","inverse-on-surface":"#372f2b","on-secondary":"#432c00","tertiary":"#61d6ed","surface-bright":"#403734","primary-fixed-dim":"#ffb59e","status-error":"#c44d4d","on-tertiary-fixed-variant":"#004e5a","on-primary":"#5e1700","secondary":"#f3be67","error-container":"#93000a","surface-container-lowest":"#130d0a","primary-hover":"#d45a30","on-error":"#690005","on-secondary-fixed-variant":"#604100","tertiary-fixed":"#a4eeff","secondary-container":"#7c5400","border-hover":"#4d433d","surface-active":"#332a24","surface-hover":"#2a211c","on-surface-variant":"#dfc0b7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","margin-mobile":"1rem","space-xl":"2rem","space-sm":"0.5rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem"},"fontFamily":{"display":["Playfair Display"],"headline-1":["Playfair Display"],"body-large":["Inter"],"headline-2":["Playfair Display"],"overline":["JetBrains Mono"],"body-default":["Inter"],"caption":["Inter"],"display-mobile":["Playfair Display"],"display-xl-mobile":["Playfair Display"],"headline-3":["Playfair Display"],"display-xl":["Playfair Display"],"label-mono":["JetBrains Mono"],"body-small":["Inter"]},"fontSize":{"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-1":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-large":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-2":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"body-default":["16px",{"lineHeight":"24px","fontWeight":"400"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-xl-mobile":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-3":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-xl":["60px",{"lineHeight":"68px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-mono":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}],"body-small":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-canvas font-body-default text-body-default text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-canvas/80 backdrop-blur-xl border-b border-border transition-colors duration-200"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg shrink-0"><a class="flex items-center gap-space-sm group text-text-primary" data-path="home" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border group-hover:border-primary transition-colors"><span class="material-symbols-outlined text-primary text-[22px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary tracking-tight">Genu Library</span></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary border-b-2 border-primary"><a aria-current="page" class="font-body-default transition-colors py-space-xs text-primary border-b-2 border-primary" data-path="home" href="#">Home</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="books" href="#">Books</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="playlists" href="#">Playlists</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="upload" href="#">Upload</a></nav></div><div class="hidden md:flex flex-1 max-w-md mx-space-md relative"><div class="w-full flex items-center bg-canvas border border-border rounded-lg px-space-sm py-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all"><span class="material-symbols-outlined text-text-muted text-[20px] mr-2">search</span><input class="w-full bg-transparent border-none outline-none font-body-small text-body-small text-text-primary placeholder:text-text-muted" placeholder="Search codex, folio, author, or seal..." type="text"/><span class="font-label-mono text-overline text-text-muted bg-surface-container border border-border px-1.5 py-0.5 rounded">⌘K</span></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-1.5 bg-surface-container border border-border px-space-sm py-1.5 rounded-lg"><span class="text-secondary text-[16px]">🪙</span><span class="font-label-mono text-label-mono font-medium text-secondary">1.4K</span></div><div class="flex items-center gap-space-sm"><div class="relative group cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></div></header><main class="w-full pt-20 bg-canvas min-h-screen"><div class="flex flex-col w-full">
+<div class="relative w-full max-w-7xl mx-auto px-margin py-space-xl">
+<!-- Ambient hearth radiance localized -->
+<div class="absolute top-12 left-1/3 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute bottom-1/4 right-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Breadcrumb & Top Bar Navigation -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div class="space-y-space-xs">
+<nav class="flex items-center gap-2 font-overline text-overline uppercase tracking-wider text-text-muted">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Playlists</a>
+<span>/</span>
+<span class="text-text-secondary truncate max-w-[200px] sm:max-w-xs">Hermetic Metaphysics</span>
+<span>/</span>
+<span class="text-primary font-semibold">Edit</span>
+</nav>
+<div class="flex items-baseline gap-3 flex-wrap">
+<h1 class="font-headline-1 text-headline-1 text-text-primary tracking-tight">Edit Playlist</h1>
+<span class="font-label-mono text-caption text-text-muted flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-full border border-border">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span>
+            Synchronized 2 days ago
+          </span>
+</div>
+</div>
+<!-- Quick Action Buttons (Desktop Top) -->
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-error hover:bg-error-container/20 border border-error/30 transition-all font-body-small text-body-small" id="top-delete-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span class="hidden sm:inline">Delete Playlist</span>
+</button>
+<button class="px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-container border border-border transition-colors font-body-small text-body-small" type="button">
+          Cancel
+        </button>
+<button class="flex items-center gap-2 px-5 py-2 rounded-lg bg-primary-container text-on-primary-container font-semibold hover:bg-primary-hover active:scale-[0.98] transition-all shadow-md font-body-small text-body-small" id="top-save-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Save Changes</span>
+</button>
+</div>
+</div>
+<!-- Main 2-Column Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- LEFT COLUMN: Sticky Form & Playlist Properties (~38% = 5 cols on lg) -->
+<div class="lg:col-span-5 space-y-space-lg lg:sticky lg:top-24">
+<div class="bg-surface rounded-xl border border-border p-space-lg shadow-xl relative overflow-hidden">
+<!-- Subtle corner ornament -->
+<div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary-container/10 to-transparent pointer-events-none"></div>
+<div class="flex items-center justify-between pb-space-sm border-b border-border mb-space-md">
+<h2 class="font-headline-3 text-headline-3 text-text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">auto_stories</span>
+              Curation Docket
+            </h2>
+<span class="font-overline text-overline uppercase text-secondary font-semibold bg-secondary-container/40 px-2 py-0.5 rounded border border-secondary/20">Archival Series</span>
+</div>
+<!-- Form Fields -->
+<form class="space-y-space-md" id="playlist-edit-form" onsubmit="event.preventDefault();">
+<!-- Playlist Title -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center">
+<label class="font-body-small text-body-small text-text-secondary font-medium" for="playlist-title">Folio Title <span class="text-primary">*</span></label>
+<span class="font-label-mono text-overline text-text-muted">CODEX-ID #884</span>
+</div>
+<input class="w-full bg-canvas text-text-primary border border-border rounded-lg px-3.5 py-2.5 font-body-default text-body-default focus:border-primary focus:ring-1 focus:ring-primary/20 focus:outline-none transition-all placeholder:text-text-muted" id="playlist-title" required="" type="text" value="Hermetic Metaphysics &amp; Arcane Folios"/>
+</div>
+<!-- Description with Live Counter -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-center">
+<label class="font-body-small text-body-small text-text-secondary font-medium" for="playlist-desc">Archivist Inscription</label>
+<span class="font-label-mono text-caption text-text-muted" id="char-counter">165 / 300</span>
+</div>
+<textarea class="w-full bg-canvas text-text-primary border border-border rounded-lg p-3 font-body-small text-body-small focus:border-primary focus:ring-1 focus:ring-primary/20 focus:outline-none transition-all placeholder:text-text-muted resize-none leading-relaxed" id="playlist-desc" maxlength="300" rows="3">A consecrated codex anthology exploring transmutation treatises, sacred geometry diagrams, and renaissance esoteric philosophy translated from seventeenth-century illuminated manuscripts.</textarea>
+</div>
+<!-- Collage Cover Preview (2x2) -->
+<div class="space-y-1.5 pt-1">
+<div class="flex items-center justify-between">
+<label class="font-body-small text-body-small text-text-secondary font-medium">Assembled Cover Quire</label>
+<span class="font-overline text-overline text-primary">Dynamic 2×2 Mosaic</span>
+</div>
+<div class="grid grid-cols-2 gap-1.5 p-2 bg-canvas rounded-lg border border-border">
+<div class="aspect-[3/4] rounded bg-surface-container overflow-hidden relative shadow-inner">
+<img alt="The Alchemist's Codex" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-canvas/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-1 left-1.5 font-label-mono text-[9px] text-text-primary font-bold tracking-tight">VOL. I</span>
+</div>
+<div class="aspect-[3/4] rounded bg-surface-container overflow-hidden relative shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A luxurious gilded hardbound book with deep emerald green velvet cloth and intricate gold filigree embossing on dark weathered dark oak table in warm library light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJz32NaxnxDfUKkXDTeGXwhYoC3nqqcU3q9a9BF_mlut8Ah88RuJ808tRmd-gBDOcOyaUoESVmpKM4jWc-AX1fWpHE4C601Dro_89lgu9FBzaCKbLRNFwzp_nSkujV5Vy5mCXbEHjtuCjnEucv6hRDk8KR79f7JDsw0VWgB3M5vd-25IhFZFXp2K9aG8EHpbaOom6XBqqzXvjbATSZoaJiP3VEh3muukjM6DP2fgv3IX8X1rvfySmP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-canvas/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-1 left-1.5 font-label-mono text-[9px] text-text-primary font-bold tracking-tight">VOL. II</span>
+</div>
+<div class="aspect-[3/4] rounded bg-surface-container overflow-hidden relative shadow-inner">
+<img class="w-full h-full object-cover" data-alt="An imposing wrought-iron bound grim-leather tome with burnt orange copper inlays resting on an artisan workshop slate stone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuCXk2OrVnKOUs1APBiru7jM_nH8uhWK705VkhDbDQDnkpNsqo5l02MIB5Z6YDM5RJLTht0oWkzEU0kL4WD-K98wK1bYuptyhu2-homW-bsztmoNmR1bwSU1GSMIJi_zhSM2TvtxUyA-WUPlPFMTVKkFOlYTZnjt9YbZ6nVzrirWL6lvT3TEaTlm5HeDCbJY42hG3-QypXZMRIWP-8ffAmF95LWulZKARf6qNe0MWaaBlqHcO4RtVN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-canvas/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-1 left-1.5 font-label-mono text-[9px] text-text-primary font-bold tracking-tight">VOL. III</span>
+</div>
+<div class="aspect-[3/4] rounded bg-surface-container overflow-hidden relative shadow-inner">
+<img class="w-full h-full object-cover" data-alt="An ancient celestial manuscript open on astronomical star chart engravings with glowing amber brass navigational instruments nearby in shadowy room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4cgThUV-YOPZPOF9ek2YHcbzvQYMho1lZ7D1btTFHSfXZr1y1mki4FBosXC790Q1lCqOVXXpqzC1Poh-ZPZ1Ta858ih3jQiM27kHwEh_J3pIJbysFOo-UQqTSocEkw4RTob6Ms4uwsL75osU9YrsRvk3CgDJjk9urBVtnfnQ7Dxw7bZ3mVVmet0VkEw1_szHB2tNpONIXBhy3bf8pZ-kgeqoOKxJk5N-VyleGUOI-JP9heFyL_xbr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-canvas/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-1 left-1.5 font-label-mono text-[9px] text-text-primary font-bold tracking-tight">VOL. IV</span>
+</div>
+</div>
+<p class="font-caption text-caption text-text-muted">Derived automatically from top-tier selected codices in this playlist.</p>
+</div>
+<!-- Curation Visibility -->
+<div class="space-y-2 pt-1">
+<label class="font-body-small text-body-small text-text-secondary font-medium">Sanctum Visibility Seal</label>
+<div class="grid grid-cols-3 gap-2">
+<label class="relative flex flex-col items-center justify-center p-2.5 bg-canvas border border-primary text-primary rounded-lg cursor-pointer transition-all hover:border-primary shadow-sm text-center">
+<input checked="" class="sr-only" name="visibility" type="radio" value="public"/>
+<span class="material-symbols-outlined text-[20px] mb-1 text-primary">public</span>
+<span class="font-body-small text-[12px] font-semibold">Public</span>
+<span class="font-caption text-[10px] text-text-muted">Guild Wide</span>
+</label>
+<label class="relative flex flex-col items-center justify-center p-2.5 bg-canvas border border-border text-text-secondary rounded-lg cursor-pointer transition-all hover:border-text-secondary text-center">
+<input class="sr-only" name="visibility" type="radio" value="unlisted"/>
+<span class="material-symbols-outlined text-[20px] mb-1">link</span>
+<span class="font-body-small text-[12px] font-semibold">Unlisted</span>
+<span class="font-caption text-[10px] text-text-muted">Signet Key</span>
+</label>
+<label class="relative flex flex-col items-center justify-center p-2.5 bg-canvas border border-border text-text-secondary rounded-lg cursor-pointer transition-all hover:border-text-secondary text-center">
+<input class="sr-only" name="visibility" type="radio" value="private"/>
+<span class="material-symbols-outlined text-[20px] mb-1">lock</span>
+<span class="font-body-small text-[12px] font-semibold">Private</span>
+<span class="font-caption text-[10px] text-text-muted">Solo Study</span>
+</label>
+</div>
+</div>
+<!-- Summary Status Statistics -->
+<div class="bg-surface-container rounded-lg p-3.5 border border-border space-y-2.5">
+<div class="flex items-center justify-between text-text-muted font-overline text-overline uppercase tracking-wider">
+<span>Playlist Ledger</span>
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+</div>
+<div class="grid grid-cols-3 gap-2 pt-1 divide-x divide-border">
+<div class="px-1">
+<div class="font-label-mono text-label-mono font-semibold text-text-primary" id="sidebar-count">5</div>
+<div class="font-caption text-caption text-text-muted">Volumes</div>
+</div>
+<div class="pl-3">
+<div class="font-label-mono text-label-mono font-semibold text-text-primary">28 hrs</div>
+<div class="font-caption text-caption text-text-muted">Auditory</div>
+</div>
+<div class="pl-3">
+<div class="font-label-mono text-label-mono font-semibold text-secondary flex items-center gap-1">
+<span>🪙</span>
+<span id="sidebar-valuation">1,120</span>
+</div>
+<div class="font-caption text-caption text-text-muted">Valuation</div>
+</div>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="pt-space-sm space-y-2">
+<button class="w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-semibold py-2.5 px-4 rounded-lg hover:bg-primary-hover active:scale-[0.98] transition-all shadow-md font-body-default text-body-default" id="sidebar-save-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">done_all</span>
+<span>Update Playlist Registry</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="w-full py-2 px-3 bg-canvas border border-border text-text-secondary hover:text-text-primary hover:border-text-secondary rounded-lg font-body-small text-body-small transition-colors" type="button">
+                  Discard Changes
+                </button>
+<button class="w-full py-2 px-3 bg-canvas border border-error/40 text-error hover:bg-error-container/20 rounded-lg font-body-small text-body-small transition-colors flex items-center justify-center gap-1" id="sidebar-delete-btn" type="button">
+<span class="material-symbols-outlined text-[16px]">delete_forever</span>
+<span>Delete</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- RIGHT COLUMN: Interactive Book Picker & Curator Grid (~62% = 7 cols on lg) -->
+<div class="lg:col-span-7 space-y-space-md">
+<!-- Header & Toolbar -->
+<div class="bg-surface rounded-xl border border-border p-space-md space-y-space-sm shadow-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-2 text-headline-3 text-text-primary">Curated Folios</h3>
+<span class="px-2.5 py-0.5 bg-primary-container/20 border border-primary text-primary font-label-mono text-overline rounded-full" id="shelf-badge">
+                5 Books Selected
+              </span>
+</div>
+<!-- Utility Controls -->
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 text-text-secondary hover:text-primary border border-border hover:border-primary/40 rounded text-caption font-body-small transition-colors" id="btn-select-all" type="button">
+                Select All
+              </button>
+<span class="text-border">|</span>
+<button class="px-2.5 py-1 text-text-secondary hover:text-error border border-border hover:border-error/40 rounded text-caption font-body-small transition-colors" id="btn-clear-all" type="button">
+                Clear Selection
+              </button>
+</div>
+</div>
+<!-- Live Search Bar -->
+<div class="relative w-full">
+<span class="material-symbols-outlined text-text-muted absolute left-3 top-2.5 text-[20px]">search</span>
+<input class="w-full bg-canvas border border-border rounded-lg pl-10 pr-4 py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary/20 focus:outline-none transition-colors" id="book-search-input" placeholder="Filter catalog or add new tomes to collection..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex items-center gap-1.5 flex-wrap pt-1">
+<button class="chip active-chip px-3 py-1 rounded-full text-caption font-body-small border border-primary bg-primary-container/10 text-primary transition-colors" data-filter="all" type="button">
+              All Catalog
+            </button>
+<button class="chip px-3 py-1 rounded-full text-caption font-body-small border border-border bg-canvas text-text-secondary hover:text-text-primary transition-colors" data-filter="selected" type="button">
+              Selected Only (5)
+            </button>
+<button class="chip px-3 py-1 rounded-full text-caption font-body-small border border-border bg-canvas text-text-secondary hover:text-text-primary transition-colors" data-filter="alchemy" type="button">
+              Alchemy &amp; Forge
+            </button>
+<button class="chip px-3 py-1 rounded-full text-caption font-body-small border border-border bg-canvas text-text-secondary hover:text-text-primary transition-colors" data-filter="philosophy" type="button">
+              Philosophy
+            </button>
+<button class="chip px-3 py-1 rounded-full text-caption font-body-small border border-border bg-canvas text-text-secondary hover:text-text-primary transition-colors" data-filter="illuminated" type="button">
+              Illuminated
+            </button>
+</div>
+</div>
+<!-- Books Grid (2 Columns on tablet+, 1 on mobile) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md" id="books-grid">
+<!-- BOOK 1: Selected (Image 6) -->
+<div class="book-card group relative bg-surface rounded-xl border border-primary shadow-[0_0_20px_rgba(232,105,63,0.12)] p-3.5 transition-all duration-200 cursor-pointer flex flex-col justify-between" data-author="Archivist Aurelius Vance" data-category="alchemy illuminated" data-id="1" data-price="100" data-selected="true" data-title="The Alchemist's Codex">
+<div>
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-canvas">
+<img alt="The Alchemist's Codex" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<!-- Selection Indicator Badge -->
+<div class="select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg transition-transform">
+<span class="material-symbols-outlined text-[18px] font-bold">check</span>
+</div>
+<span class="absolute bottom-2 left-2 bg-canvas/80 backdrop-blur-sm border border-border px-2 py-0.5 rounded text-[11px] font-overline text-secondary">ARCHIVAL CODEX</span>
+</div>
+<h4 class="font-headline-3 text-body-large font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-1">The Alchemist's Codex</h4>
+<p class="font-body-small text-caption text-text-secondary mb-2">Archivist Aurelius Vance</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-2">
+<div class="flex items-center gap-1 font-label-mono text-body-small text-secondary">
+<span>🪙</span>
+<span>100</span>
+</div>
+<span class="status-label font-overline text-overline uppercase tracking-wider text-primary font-semibold">Included</span>
+</div>
+</div>
+<!-- BOOK 2: Selected -->
+<div class="book-card group relative bg-surface rounded-xl border border-primary shadow-[0_0_20px_rgba(232,105,63,0.12)] p-3.5 transition-all duration-200 cursor-pointer flex flex-col justify-between" data-author="Lady Seraphina Vale" data-category="philosophy illuminated" data-id="2" data-price="280" data-selected="true" data-title="The Architecture of Thought">
+<div>
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-canvas">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="An ornate emerald-green velvet leather bound grimoire with gold foil celestial geometric diagrams on dark carved table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBSK9W-TLQYDk1F8DJeNTo8yxiJWZMXlm0NTou-mnaH54j-82s2fELx_S5i5gazpEogyfrgJJHrSLL31328e_0Yodsmifs9xmk2bxVW7ql9RPe3dZD1Pu3YQGy2JB6BIYwHl2OFSeBOvFeamWfzcCk-6br3oVuKOKAN9odrdK2HPHj1oIUy_zZZ5plnQMTGOr0BHpyWqFXcBPC6FBs5HgIhksX7DzMDj2IxaIO5HbFcFkYP5IVz7eK"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg transition-transform">
+<span class="material-symbols-outlined text-[18px] font-bold">check</span>
+</div>
+<span class="absolute bottom-2 left-2 bg-canvas/80 backdrop-blur-sm border border-border px-2 py-0.5 rounded text-[11px] font-overline text-tertiary">ILLUMINATED</span>
+</div>
+<h4 class="font-headline-3 text-body-large font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-1">The Architecture of Thought</h4>
+<p class="font-body-small text-caption text-text-secondary mb-2">Lady Seraphina Vale</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-2">
+<div class="flex items-center gap-1 font-label-mono text-body-small text-secondary">
+<span>🪙</span>
+<span>280</span>
+</div>
+<span class="status-label font-overline text-overline uppercase tracking-wider text-primary font-semibold">Included</span>
+</div>
+</div>
+<!-- BOOK 3: Selected -->
+<div class="book-card group relative bg-surface rounded-xl border border-primary shadow-[0_0_20px_rgba(232,105,63,0.12)] p-3.5 transition-all duration-200 cursor-pointer flex flex-col justify-between" data-author="Master Vulcan" data-category="alchemy" data-id="3" data-price="310" data-selected="true" data-title="Chronicles of the Iron Foundry">
+<div>
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-canvas">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Heavy dark rusted iron bound journal with brass corner locks glowing softly next to smithy embers and forge tools" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUL3uqnzPtAwBfF3CIucWxZm6vjut7QpihkPdLgkWUFnHDlFRDgMc8L1FnhZztbW083YeQcz7YFkTheyawT4waPal-TRhqKT3MwIg2hRTJ3Z5QvE6u3JPjYdk7BNyoyd_i6XRBJ6AJit8-0qHRefuW8BdbfqTR6YQUFkWT3PLVVPB48z7Y-O3Z37ql2vx19cFLYpVDf0vzFUlVOfo3a-5IfKUQcjNVNWy_oKMHvE1MlDgtD-saD7BI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg transition-transform">
+<span class="material-symbols-outlined text-[18px] font-bold">check</span>
+</div>
+<span class="absolute bottom-2 left-2 bg-canvas/80 backdrop-blur-sm border border-border px-2 py-0.5 rounded text-[11px] font-overline text-primary">FORGE MANUAL</span>
+</div>
+<h4 class="font-headline-3 text-body-large font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-1">Chronicles of the Iron Foundry</h4>
+<p class="font-body-small text-caption text-text-secondary mb-2">Master Vulcan</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-2">
+<div class="flex items-center gap-1 font-label-mono text-body-small text-secondary">
+<span>🪙</span>
+<span>310</span>
+</div>
+<span class="status-label font-overline text-overline uppercase tracking-wider text-primary font-semibold">Included</span>
+</div>
+</div>
+<!-- BOOK 4: Selected -->
+<div class="book-card group relative bg-surface rounded-xl border border-primary shadow-[0_0_20px_rgba(232,105,63,0.12)] p-3.5 transition-all duration-200 cursor-pointer flex flex-col justify-between" data-author="Johannes Keplerian" data-category="philosophy" data-id="4" data-price="190" data-selected="true" data-title="Treatise of Celestial Harmonies">
+<div>
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-canvas">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Celestial constellation leather folio with faded gilded planetary diagrams under candlelight in antique observatory" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3iw_rP9dPvGFu-Gc39N9S-Oa0a3RyYiX9Xmy9J6DFvydFxpzWHbVF6BZcGCsm-MWn-vxF0A3wYikuKT4mr1t-rEjWEu01Fq5dM88yeYEnkJbnrPKpRXyUl2akF_rJ-LyCafbU2jyd4Zwn8_hQi7PAq1vXeYGdtW8jyVNXe61FhEWvBr3mzV4eaZXO5i_5CMGPgQMyv_DVwYhkLT1Oo2YzHJx8GqjTwYU4M25VHlLaDMmem7rbl9RT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg transition-transform">
+<span class="material-symbols-outlined text-[18px] font-bold">check</span>
+</div>
+<span class="absolute bottom-2 left-2 bg-canvas/80 backdrop-blur-sm border border-border px-2 py-0.5 rounded text-[11px] font-overline text-text-muted">ASTRONOMY</span>
+</div>
+<h4 class="font-headline-3 text-body-large font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-1">Treatise of Celestial Harmonies</h4>
+<p class="font-body-small text-caption text-text-secondary mb-2">Johannes Keplerian</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-2">
+<div class="flex items-center gap-1 font-label-mono text-body-small text-secondary">
+<span>🪙</span>
+<span>190</span>
+</div>
+<span class="status-label font-overline text-overline uppercase tracking-wider text-primary font-semibold">Included</span>
+</div>
+</div>
+<!-- BOOK 5: Selected -->
+<div class="book-card group relative bg-surface rounded-xl border border-primary shadow-[0_0_20px_rgba(232,105,63,0.12)] p-3.5 transition-all duration-200 cursor-pointer flex flex-col justify-between" data-author="Brother Christian R." data-category="philosophy illuminated" data-id="5" data-price="240" data-selected="true" data-title="The Rosicrucian Grimoire">
+<div>
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-canvas">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Crimson leather ancient tome decorated with embossed mystic rose and golden cross motif on dark polished mahogany" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjel9MX-pMNVVwAdGG4XRyFst2tDfClsSLpUwgSdRjfYO0XoQt4HPV1IXk0aewiPmIjJKDvEeifNtgTenMCnA9KIq0mgl3WIfnpBm1IQ8tK-FdmnGoTCqhMt4luqEeDVYhx9n-n2ZT7wdUkGfkEBArKuaC_BaECRgo5baYLWyfKbVWgFsJo4NGgjTynvZpWLdpZ8dSF5dWs_m6sEHLrEIecJdqWPvIMzuqcGm72P-RrS8Uv5aSBvJE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+<div class="select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg transition-transform">
+<span class="material-symbols-outlined text-[18px] font-bold">check</span>
+</div>
+<span class="absolute bottom-2 left-2 bg-canvas/80 backdrop-blur-sm border border-border px-2 py-0.5 rounded text-[11px] font-overline text-secondary">MYSTIC FOLIO</span>
+</div>
+<h4 class="font-headline-3 text-body-large font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-1">The Rosicrucian Grimoire</h4>
+<p class="font-body-small text-caption text-text-secondary mb-2">Brother Christian R.</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-2">
+<div class="flex items-center gap-1 font-label-mono text-body-small text-secondary">
+<span>🪙</span>
+<span>240</span>
+</div>
+<span class="status-label font-overline text-overline uppercase tracking-wider text-primary font-semibold">Included</span>
+</div>
+</div>
+<!-- BOOK 6: Unselected -->
+<div class="book-card group relative bg-surface rounded-xl border border-border p-3.5 transition-all duration-200 cursor-pointer flex flex-col justify-between hover:border-text-secondary" data-author="Hermes Trismegistus" data-category="alchemy" data-id="6" data-price="350" data-selected="false" data-title="Principles of Prima Materia">
+<div>
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-canvas">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80 group-hover:opacity-100" data-alt="An ancient parchment scrolls binding with wax signet stamp and burnished copper foil accents on rough granite shelf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-DriNEYHryUyOrNgwTRG4A7zwt6gxLQvYJZfGQv1i7nHYBV1DTxd8wP-cZjoyWHPvJknR8J4gydCerHZ3AMlRjobFHBi8GpTKR2OCD_AT5KJMB03UdgwBZGI0HAK6FW7mKFrpGPWXZDUP3RBXH6sTWIZK3-ec9SPGR8J6rSuXWaylCpK-14SGo-hrEDz_-f19ylkQZ5MI530ZuS_YxrGsJ9zX7UaacJxk2BpYGloFU8-v-iMFSTPq"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-70"></div>
+<!-- Selection Indicator (Plus) -->
+<div class="select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-surface-container border border-border text-text-muted group-hover:text-primary group-hover:border-primary flex items-center justify-center shadow-md transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+<span class="absolute bottom-2 left-2 bg-canvas/80 backdrop-blur-sm border border-border px-2 py-0.5 rounded text-[11px] font-overline text-text-muted">ALCHEMY</span>
+</div>
+<h4 class="font-headline-3 text-body-large font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-1">Principles of Prima Materia</h4>
+<p class="font-body-small text-caption text-text-secondary mb-2">Hermes Trismegistus</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-2">
+<div class="flex items-center gap-1 font-label-mono text-body-small text-secondary">
+<span>🪙</span>
+<span>350</span>
+</div>
+<span class="status-label font-overline text-overline uppercase tracking-wider text-text-muted">Available</span>
+</div>
+</div>
+<!-- BOOK 7: Unselected -->
+<div class="book-card group relative bg-surface rounded-xl border border-border p-3.5 transition-all duration-200 cursor-pointer flex flex-col justify-between hover:border-text-secondary" data-author="Arch-Scholar Vane" data-category="philosophy" data-id="7" data-price="210" data-selected="false" data-title="The Obsidian Monolith">
+<div>
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-canvas">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80 group-hover:opacity-100" data-alt="A jet black stone-carved binder with glowing faint violet runes etched along its spine on a cold pedestal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLn5LfHZxCookRUY5yXbbD0d5nmaVCkse1y6fqngNJ4eHDmO8SEBZAhe38yZoKct81L03EcU0VP2xu80qV7hEaI1kZEazCP48Uo99ovHbn_wklrwHw2WzUv8Hvto6TQboAWrdAtMlCTp3vfRQqK5zcrFVyBDe2uobhpH4U6ACHl2h5MT-Nmeh8NnmpNfMY6Ep-DNhOdciND5m6N0oT1Wgh-DXIIb87WZjCAEiHkb3-Ow4AYJ01Ooqz"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-70"></div>
+<div class="select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-surface-container border border-border text-text-muted group-hover:text-primary group-hover:border-primary flex items-center justify-center shadow-md transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+<span class="absolute bottom-2 left-2 bg-canvas/80 backdrop-blur-sm border border-border px-2 py-0.5 rounded text-[11px] font-overline text-text-muted">RESEARCH</span>
+</div>
+<h4 class="font-headline-3 text-body-large font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-1">The Obsidian Monolith</h4>
+<p class="font-body-small text-caption text-text-secondary mb-2">Arch-Scholar Vane</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-2">
+<div class="flex items-center gap-1 font-label-mono text-body-small text-secondary">
+<span>🪙</span>
+<span>210</span>
+</div>
+<span class="status-label font-overline text-overline uppercase tracking-wider text-text-muted">Available</span>
+</div>
+</div>
+<!-- BOOK 8: Unselected -->
+<div class="book-card group relative bg-surface rounded-xl border border-border p-3.5 transition-all duration-200 cursor-pointer flex flex-col justify-between hover:border-text-secondary" data-author="Heinrich Cornelius" data-category="philosophy illuminated" data-id="8" data-price="420" data-selected="false" data-title="De Occulta Philosophia">
+<div>
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-canvas">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80 group-hover:opacity-100" data-alt="An ornate classical Latin renaissance book bound in stamped calfskin with copper clasps in dim monastery archive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuAmglaoIJ3XoV6ZuknJEjcRFeMB63vi7M0U83mQGQNAZMLJADMsYoiNIgf0mWeF3iUrSCHVukO_nJfrZBbIi49WogLYW-EfjyRlL5BDIofH97ZAE32gMwcq4aZncT_0VCqqvRgCn_iX-1xjGsklt_0zWgZ0cRyNm6ehYC6DNUvFjAaHkDkP0GRrDepqB3pbr3M6fmRzM5npxd7lvVUW86y0nk76lkB7eGrKgE4b546Hw8Gu4IAIth"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-70"></div>
+<div class="select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-surface-container border border-border text-text-muted group-hover:text-primary group-hover:border-primary flex items-center justify-center shadow-md transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+<span class="absolute bottom-2 left-2 bg-canvas/80 backdrop-blur-sm border border-border px-2 py-0.5 rounded text-[11px] font-overline text-secondary">CLASSICAL</span>
+</div>
+<h4 class="font-headline-3 text-body-large font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-1">De Occulta Philosophia</h4>
+<p class="font-body-small text-caption text-text-secondary mb-2">Heinrich Cornelius</p>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-border mt-2">
+<div class="flex items-center gap-1 font-label-mono text-body-small text-secondary">
+<span>🪙</span>
+<span>420</span>
+</div>
+<span class="status-label font-overline text-overline uppercase tracking-wider text-text-muted">Available</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Delete Confirmation Modal Dialog -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm hidden transition-opacity opacity-0" id="delete-modal">
+<div class="bg-surface border border-border rounded-xl p-space-lg max-w-md w-full mx-margin shadow-2xl space-y-space-md transform scale-95 transition-transform">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-error-container/20 text-error border border-error/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">warning</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-headline-3 text-headline-3 text-text-primary">Dissolve Playlist?</h4>
+<p class="font-body-small text-body-small text-text-secondary">
+            This will permanently expunge <span class="text-text-primary font-medium">"Hermetic Metaphysics &amp; Arcane Folios"</span> from the Guild Archive ledger. Folios themselves will remain within the global vault.
+          </p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg border border-border space-y-1">
+<div class="flex justify-between font-label-mono text-caption text-text-muted">
+<span>Target Folio Registry</span>
+<span>CODEX-ID #884</span>
+</div>
+<div class="flex justify-between font-label-mono text-caption text-text-muted">
+<span>Referenced Volumes</span>
+<span>5 Volumes Bound</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-2">
+<button class="px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-container font-body-small text-body-small border border-border transition-colors" id="cancel-delete-btn" type="button">
+          Retain Codex
+        </button>
+<button class="px-4 py-2 rounded-lg bg-status-error text-white hover:bg-error-container font-body-small text-body-small font-semibold shadow-md transition-colors flex items-center gap-1.5" id="confirm-delete-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">delete_forever</span>
+<span>Dissolve Collection</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 bg-surface-container-high border border-primary text-text-primary rounded-xl shadow-2xl transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300" id="toast">
+<span class="material-symbols-outlined text-primary text-[22px]" id="toast-icon">check_circle</span>
+<div class="flex flex-col">
+<span class="font-body-small text-body-small font-semibold" id="toast-title">Registry Updated</span>
+<span class="font-caption text-caption text-text-muted" id="toast-message">Curated folios and docket synchronized.</span>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // DOM Elements
+    const bookCards = document.querySelectorAll('.book-card');
+    const shelfBadge = document.getElementById('shelf-badge');
+    const sidebarCount = document.getElementById('sidebar-count');
+    const sidebarValuation = document.getElementById('sidebar-valuation');
+    const descTextarea = document.getElementById('playlist-desc');
+    const charCounter = document.getElementById('char-counter');
+    const searchInput = document.getElementById('book-search-input');
+    const filterChips = document.querySelectorAll('.chip');
+    const selectAllBtn = document.getElementById('btn-select-all');
+    const clearAllBtn = document.getElementById('btn-clear-all');
+    
+    // Modal Elements
+    const deleteModal = document.getElementById('delete-modal');
+    const topDeleteBtn = document.getElementById('top-delete-btn');
+    const sidebarDeleteBtn = document.getElementById('sidebar-delete-btn');
+    const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+    const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+
+    // Save & Toast
+    const topSaveBtn = document.getElementById('top-save-btn');
+    const sidebarSaveBtn = document.getElementById('sidebar-save-btn');
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toast-title');
+    const toastMsg = document.getElementById('toast-message');
+
+    // Character counter for textarea
+    if (descTextarea && charCounter) {
+      descTextarea.addEventListener('input', function() {
+        const len = this.value.length;
+        charCounter.textContent = len + ' / 300';
+      });
+    }
+
+    // Recalculate summary totals
+    function updateLedgerSummary() {
+      let count = 0;
+      let totalValue = 0;
+
+      bookCards.forEach(card => {
+        if (card.getAttribute('data-selected') === 'true') {
+          count++;
+          totalValue += parseInt(card.getAttribute('data-price') || '0', 10);
+        }
+      });
+
+      if (shelfBadge) shelfBadge.textContent = count + ' Books Selected';
+      if (sidebarCount) sidebarCount.textContent = count;
+      if (sidebarValuation) sidebarValuation.textContent = totalValue.toLocaleString();
+    }
+
+    // Toggle Book Selection
+    bookCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        const isSelected = this.getAttribute('data-selected') === 'true';
+        const newSelected = !isSelected;
+        this.setAttribute('data-selected', newSelected ? 'true' : 'false');
+
+        const indicator = this.querySelector('.select-indicator');
+        const statusLabel = this.querySelector('.status-label');
+
+        if (newSelected) {
+          this.classList.remove('border-border');
+          this.classList.add('border-primary', 'shadow-[0_0_20px_rgba(232,105,63,0.12)]');
+          if (indicator) {
+            indicator.className = 'select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg transition-transform scale-110';
+            indicator.innerHTML = '<span class="material-symbols-outlined text-[18px] font-bold">check</span>';
+            setTimeout(() => indicator.classList.remove('scale-110'), 150);
+          }
+          if (statusLabel) {
+            statusLabel.textContent = 'Included';
+            statusLabel.className = 'status-label font-overline text-overline uppercase tracking-wider text-primary font-semibold';
+          }
+        } else {
+          this.classList.remove('border-primary', 'shadow-[0_0_20px_rgba(232,105,63,0.12)]');
+          this.classList.add('border-border');
+          if (indicator) {
+            indicator.className = 'select-indicator absolute top-2 right-2 w-7 h-7 rounded-full bg-surface-container border border-border text-text-muted group-hover:text-primary group-hover:border-primary flex items-center justify-center shadow-md transition-all';
+            indicator.innerHTML = '<span class="material-symbols-outlined text-[18px]">add</span>';
+          }
+          if (statusLabel) {
+            statusLabel.textContent = 'Available';
+            statusLabel.className = 'status-label font-overline text-overline uppercase tracking-wider text-text-muted';
+          }
+        }
+
+        updateLedgerSummary();
+      });
+    });
+
+    // Select All
+    if (selectAllBtn) {
+      selectAllBtn.addEventListener('click', function() {
+        bookCards.forEach(card => {
+          if (card.getAttribute('data-selected') !== 'true') {
+            card.click();
+          }
+        });
+      });
+    }
+
+    // Clear All
+    if (clearAllBtn) {
+      clearAllBtn.addEventListener('click', function() {
+        bookCards.forEach(card => {
+          if (card.getAttribute('data-selected') === 'true') {
+            card.click();
+          }
+        });
+      });
+    }
+
+    // Search and Filter Filtering
+    function filterCatalog() {
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      const activeChip = document.querySelector('.chip.active-chip');
+      const filterMode = activeChip ? activeChip.getAttribute('data-filter') : 'all';
+
+      bookCards.forEach(card => {
+        const title = (card.getAttribute('data-title') || '').toLowerCase();
+        const author = (card.getAttribute('data-author') || '').toLowerCase();
+        const category = (card.getAttribute('data-category') || '').toLowerCase();
+        const isSelected = card.getAttribute('data-selected') === 'true';
+
+        const matchesQuery = !query || title.includes(query) || author.includes(query);
+        let matchesCategory = true;
+
+        if (filterMode === 'selected') {
+          matchesCategory = isSelected;
+        } else if (filterMode === 'alchemy') {
+          matchesCategory = category.includes('alchemy');
+        } else if (filterMode === 'philosophy') {
+          matchesCategory = category.includes('philosophy');
+        } else if (filterMode === 'illuminated') {
+          matchesCategory = category.includes('illuminated');
+        }
+
+        if (matchesQuery && matchesCategory) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', filterCatalog);
+    }
+
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', function() {
+        filterChips.forEach(c => {
+          c.classList.remove('active-chip', 'border-primary', 'bg-primary-container/10', 'text-primary');
+          c.classList.add('border-border', 'bg-canvas', 'text-text-secondary');
+        });
+        this.classList.add('active-chip', 'border-primary', 'bg-primary-container/10', 'text-primary');
+        this.classList.remove('border-border', 'bg-canvas', 'text-text-secondary');
+        filterCatalog();
+      });
+    });
+
+    // Delete Modal Handling
+    function openDeleteModal() {
+      if (!deleteModal) return;
+      deleteModal.classList.remove('hidden');
+      setTimeout(() => {
+        deleteModal.classList.remove('opacity-0');
+        const dialog = deleteModal.querySelector('div');
+        if (dialog) dialog.classList.remove('scale-95');
+      }, 10);
+    }
+
+    function closeDeleteModal() {
+      if (!deleteModal) return;
+      deleteModal.classList.add('opacity-0');
+      const dialog = deleteModal.querySelector('div');
+      if (dialog) dialog.classList.add('scale-95');
+      setTimeout(() => {
+        deleteModal.classList.add('hidden');
+      }, 200);
+    }
+
+    if (topDeleteBtn) topDeleteBtn.addEventListener('click', openDeleteModal);
+    if (sidebarDeleteBtn) sidebarDeleteBtn.addEventListener('click', openDeleteModal);
+    if (cancelDeleteBtn) cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+
+    if (confirmDeleteBtn) {
+      confirmDeleteBtn.addEventListener('click', function() {
+        closeDeleteModal();
+        showToast("Codex Dissolved", "Playlist purged from Sanctum ledger.");
+      });
+    }
+
+    // Save Notifications & Spring Loading
+    function triggerSave(btn) {
+      if (!btn) return;
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Preserving...</span>';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+        showToast("Ledger Synchronized", "Folio selections and inscriptions preserved.");
+      }, 650);
+    }
+
+    if (topSaveBtn) topSaveBtn.addEventListener('click', () => triggerSave(topSaveBtn));
+    if (sidebarSaveBtn) sidebarSaveBtn.addEventListener('click', () => triggerSave(sidebarSaveBtn));
+
+    function showToast(title, message) {
+      if (!toast) return;
+      if (toastTitle) toastTitle.textContent = title;
+      if (toastMsg) toastMsg.textContent = message;
+
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 3200);
+    }
+
+  })();
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-border mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 space-y-space-md"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center border border-border"><span class="material-symbols-outlined text-primary text-[18px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary">Genu Library</span></div><p class="font-body-default text-body-small text-text-secondary max-w-sm">An artisan guild repository and deluxe reading sanctum curated for digital archivists, scholars, and craftspeople safeguarding rare manuscripts and auditory codices.</p><div class="flex items-center gap-space-sm text-text-muted"><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">terminal</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">hub</span></a></div></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Navigation</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="home" href="#">Home</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="books" href="#">Books Catalog</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="playlists" href="#">Auditory Playlists</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="upload" href="#">Upload Folio</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Guild Archive</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Guild Concordat</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Ledger Rarity</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Archivist API</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Terms of Preservation</a></li></ul></div><div class="space-y-space-md"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">The Monthly Dispatch</h4><p class="font-body-small text-body-small text-text-secondary">Receive curated codex summaries and ledger updates directly to your station.</p><form class="space-y-2"><div class="flex flex-col gap-2"><input class="w-full bg-canvas border border-border rounded-lg px-space-sm py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors" placeholder="archivist@guild.internal" type="email"/><button class="w-full bg-primary text-text-on-accent font-body-default text-body-small font-semibold px-space-md py-2 rounded-lg hover:bg-primary-hover transition-colors" type="button">Subscribe</button></div></form></div></div><div class="border-t border-border mt-space-xl pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-small text-caption text-text-muted">© 2025 Genu Library Guild. All rights reserved under the Sovereign Archives.</p><div class="flex items-center gap-space-md font-body-small text-caption text-text-muted"><a class="hover:text-text-secondary transition-colors" href="#">Sanctum Privacy</a><a class="hover:text-text-secondary transition-colors" href="#">Ledger Index</a><a class="hover:text-text-secondary transition-colors" href="#">Status Core</a></div></div></div></footer></body></html>

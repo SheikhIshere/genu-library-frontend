@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Genu Library — Register Account (Mobile)</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: {
+              DEFAULT: '#211a17',
+              hover: '#2a211c',
+              active: '#332a24',
+              dim: '#18120f',
+            },
+            forge: {
+              DEFAULT: '#e8693f',
+              hover: '#d45a30',
+              muted: 'rgba(232, 105, 63, 0.12)',
+              glow: 'rgba(232, 105, 63, 0.2)',
+            },
+            border: {
+              DEFAULT: '#3a322d',
+              hover: '#4d433d',
+            },
+            text: {
+              primary: '#ece0dc',
+              secondary: '#a89c93',
+              muted: '#7a706a',
+            },
+            status: {
+              success: '#4a7c59',
+              warning: '#d4a24e',
+              error: '#c44d4d',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          keyframes: {
+            shake: {
+              '0%, 100%': { transform: 'translateX(0)' },
+              '20%, 60%': { transform: 'translateX(-6px)' },
+              '40%, 80%': { transform: 'translateX(6px)' }
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(16px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            }
+          },
+          animation: {
+            shake: 'shake 0.35s ease-in-out',
+            fadeInUp: 'fadeInUp 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* Mobile-first safe viewport defaults */
+    body {
+      background-color: #16110f;
+      color: #ece0dc;
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      min-height: 100dvh;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus {
+      -webkit-text-fill-color: #ece0dc;
+      -webkit-box-shadow: 0 0 0px 1000px #16110f inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    /* Custom smooth transition for password meter */
+    .strength-segment {
+      transition: background-color 0.25s ease, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="bg-canvas text-text-primary antialiased selection:bg-forge/30 selection:text-forge flex flex-col items-center justify-start min-h-dvh px-5 py-8 sm:py-12">
+
+  <!-- Main Auth Container (Single Column, max 384px) -->
+  <main class="w-full max-w-sm mx-auto flex flex-col items-center">
+    
+    <!-- Top Brand Block -->
+    <header class="flex flex-col items-center text-center gap-3 mb-8 w-full animate-fadeInUp" style="animation-delay: 0.05s;">
+      <!-- Logo Mark / Guild Anvil & Quill Symbol -->
+      <a href="/" class="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center text-forge shadow-inner shadow-black/40 hover:border-forge/60 transition-colors focus:outline-none focus:ring-2 focus:ring-forge/40">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+          <path d="M6 6h10"/>
+          <path d="M6 10h7"/>
+          <circle cx="15.5" cy="14.5" r="2.5" class="fill-forge/20 stroke-forge"/>
+          <path d="m14 16 3-3"/>
+        </svg>
+      </a>
+
+      <div>
+        <h1 class="font-serif text-[28px] font-bold text-text-primary tracking-tight leading-tight">
+          Create Account
+        </h1>
+        <p class="text-sm text-text-secondary mt-1">
+          Join the forge. Start building your library.
+        </p>
+      </div>
+    </header>
+
+    <!-- Registration Form -->
+    <form id="register-form" class="w-full flex flex-col gap-4 animate-fadeInUp" style="animation-delay: 0.15s;" novalidate autocomplete="on">
+      
+      <!-- Username Field -->
+      <div id="username-group" class="flex flex-col gap-1.5">
+        <label for="username" class="text-sm font-medium text-text-secondary flex items-center justify-between">
+          <span>Username</span>
+          <span class="text-[11px] text-text-muted font-mono tracking-tight" id="username-counter">0/30</span>
+        </label>
+        <div class="relative">
+          <input
+            id="username"
+            name="username"
+            type="text"
+            inputmode="text"
+            autocomplete="username"
+            placeholder="Choose a username"
+            required
+            minlength="3"
+            maxlength="30"
+            class="w-full min-h-[48px] px-4 py-3 bg-[#16110f] border border-border rounded-lg text-text-primary text-sm placeholder:text-text-muted focus:border-forge focus:shadow-[0_0_0_3px_rgba(232,105,63,0.15)] focus:outline-none transition-all"
+          />
+        </div>
+        <div class="flex items-center justify-between">
+          <p id="username-hint" class="text-xs text-text-muted">3–30 characters, letters, numbers, and underscores</p>
+          <p id="username-error" class="text-xs text-status-error font-medium hidden">Username must be 3–30 characters</p>
+        </div>
+      </div>
+
+      <!-- Email Address Field -->
+      <div id="email-group" class="flex flex-col gap-1.5">
+        <label for="email" class="text-sm font-medium text-text-secondary">
+          Email address
+        </label>
+        <div class="relative">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+            class="w-full min-h-[48px] px-4 py-3 bg-[#16110f] border border-border rounded-lg text-text-primary text-sm placeholder:text-text-muted focus:border-forge focus:shadow-[0_0_0_3px_rgba(232,105,63,0.15)] focus:outline-none transition-all"
+          />
+        </div>
+        <p id="email-error" class="text-xs text-status-error font-medium hidden">Please enter a valid email address</p>
+      </div>
+
+      <!-- Password Field & Dynamic Strength Meter -->
+      <div id="password-group" class="flex flex-col gap-1.5">
+        <label for="password" class="text-sm font-medium text-text-secondary">
+          Password
+        </label>
+        <div class="relative">
+          <input
+            id="password"
+            name="new-password"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Create a password"
+            required
+            minlength="8"
+            class="w-full min-h-[48px] px-4 py-3 pr-12 bg-[#16110f] border border-border rounded-lg text-text-primary text-sm placeholder:text-text-muted focus:border-forge focus:shadow-[0_0_0_3px_rgba(232,105,63,0.15)] focus:outline-none transition-all"
+          />
+          <button
+            type="button"
+            id="toggle-password"
+            aria-label="Toggle password visibility"
+            class="absolute right-1 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary hover:text-text-primary active:scale-95 transition-all"
+          >
+            <!-- Eye Icon (default visible toggle) -->
+            <svg id="eye-icon-pass" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+            <!-- Eye Off Icon (hidden by default) -->
+            <svg id="eyeoff-icon-pass" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Dynamic Password Strength Meter (Disclosed on Typing) -->
+        <div id="strength-container" class="mt-1 flex flex-col gap-1.5 transition-all duration-300 opacity-0 max-h-0 overflow-hidden">
+          <div class="flex gap-1.5 w-full">
+            <div id="seg-1" class="h-1 flex-1 rounded-full bg-border strength-segment"></div>
+            <div id="seg-2" class="h-1 flex-1 rounded-full bg-border strength-segment"></div>
+            <div id="seg-3" class="h-1 flex-1 rounded-full bg-border strength-segment"></div>
+            <div id="seg-4" class="h-1 flex-1 rounded-full bg-border strength-segment"></div>
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <span id="strength-label" class="text-text-muted font-medium transition-colors">Enter at least 8 characters</span>
+            <span id="strength-tip" class="text-[11px] text-text-muted">Use uppercase & numbers</span>
+          </div>
+        </div>
+        <p id="password-error" class="text-xs text-status-error font-medium hidden">Password must be at least 8 characters</p>
+      </div>
+
+      <!-- Confirm Password Field & Live Match Indicator -->
+      <div id="confirm-group" class="flex flex-col gap-1.5">
+        <label for="confirm-password" class="text-sm font-medium text-text-secondary">
+          Confirm password
+        </label>
+        <div class="relative">
+          <input
+            id="confirm-password"
+            name="confirm-password"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Re-enter your password"
+            required
+            class="w-full min-h-[48px] px-4 py-3 pr-12 bg-[#16110f] border border-border rounded-lg text-text-primary text-sm placeholder:text-text-muted focus:border-forge focus:shadow-[0_0_0_3px_rgba(232,105,63,0.15)] focus:outline-none transition-all"
+          />
+          <button
+            type="button"
+            id="toggle-confirm"
+            aria-label="Toggle confirm password visibility"
+            class="absolute right-1 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary hover:text-text-primary active:scale-95 transition-all"
+          >
+            <svg id="eye-icon-conf" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+            <svg id="eyeoff-icon-conf" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Live Match Status -->
+        <div id="match-indicator" class="flex items-center gap-1.5 text-xs transition-all duration-200 hidden">
+          <svg id="match-icon-check" class="w-3.5 h-3.5 text-status-success hidden" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+          </svg>
+          <svg id="match-icon-cross" class="w-3.5 h-3.5 text-status-error hidden" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+          </svg>
+          <span id="match-text" class="font-medium"></span>
+        </div>
+      </div>
+
+      <!-- Terms of Service & Privacy Statement -->
+      <div class="pt-1">
+        <p class="text-xs text-text-muted text-center leading-relaxed">
+          By creating an account, you agree to our
+          <a href="/terms" class="text-forge hover:text-forge-hover underline underline-offset-2 transition-colors">Terms of Service</a>
+          and
+          <a href="/privacy" class="text-forge hover:text-forge-hover underline underline-offset-2 transition-colors">Privacy Policy</a>.
+        </p>
+      </div>
+
+      <!-- Primary Submit Action -->
+      <div class="pt-2">
+        <button
+          type="submit"
+          id="submit-btn"
+          class="w-full min-h-[52px] rounded-lg bg-forge text-[#16110f] font-semibold text-base shadow-[0_2px_12px_rgba(232,105,63,0.25)] hover:bg-forge-hover active:scale-[0.97] transition-all flex items-center justify-center gap-2"
+        >
+          <svg id="submit-spinner" class="animate-spin h-5 w-5 text-[#16110f] hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span id="submit-text">Create Account</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Visual Divider -->
+    <div class="w-full relative my-6">
+      <div class="absolute inset-0 flex items-center">
+        <div class="w-full border-t border-border"></div>
+      </div>
+      <div class="relative flex justify-center text-xs">
+        <span class="px-3 bg-canvas text-text-muted">or sign up with</span>
+      </div>
+    </div>
+
+    <!-- Social Signup Options -->
+    <div class="w-full flex gap-3">
+      <!-- Google Auth -->
+      <button
+        type="button"
+        onclick="triggerHaptic(10)"
+        class="flex-1 min-h-[48px] flex items-center justify-center gap-2.5 bg-surface border border-border rounded-lg text-text-primary hover:border-border-hover active:scale-[0.97] transition-all"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24">
+          <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.3l3.7 2.9C6.2 7.3 8.8 5 12 5z"/>
+          <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
+          <path fill="#FBBC05" d="M5.3 14.8c-.2-.7-.4-1.5-.4-2.8 0-1.3.2-2.1.4-2.8L1.6 6.3C.6 8.3 0 10.6 0 12s.6 3.7 1.6 5.7l3.7-2.9z"/>
+          <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.2 0-5.8-2.3-6.7-5.2L1.6 16C3.5 19.7 7.4 23 12 23z"/>
+        </svg>
+        <span class="text-sm font-medium">Google</span>
+      </button>
+
+      <!-- GitHub Auth -->
+      <button
+        type="button"
+        onclick="triggerHaptic(10)"
+        class="flex-1 min-h-[48px] flex items-center justify-center gap-2.5 bg-surface border border-border rounded-lg text-text-primary hover:border-border-hover active:scale-[0.97] transition-all"
+      >
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2Z"/>
+        </svg>
+        <span class="text-sm font-medium">GitHub</span>
+      </button>
+    </div>
+
+    <!-- Switch to Login -->
+    <footer class="mt-8 mb-6 text-center text-sm text-text-secondary">
+      Already have an account?
+      <a href="/login" class="text-forge font-medium hover:text-forge-hover underline-offset-2 hover:underline ml-1 transition-colors">
+        Sign in
+      </a>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Validation & Animation Logic -->
+  <script>
+    // Safe Haptic feedback helper
+    function triggerHaptic(duration = 10) {
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        try {
+          navigator.vibrate(duration);
+        } catch (e) {}
+      }
+    }
+
+    const form = document.getElementById('register-form');
+    const usernameInput = document.getElementById('username');
+    const usernameCounter = document.getElementById('username-counter');
+    const usernameError = document.getElementById('username-error');
+    const usernameHint = document.getElementById('username-hint');
+
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+
+    const passwordInput = document.getElementById('password');
+    const passwordError = document.getElementById('password-error');
+    const strengthContainer = document.getElementById('strength-container');
+    const strengthLabel = document.getElementById('strength-label');
+    const strengthTip = document.getElementById('strength-tip');
+    const segs = [
+      document.getElementById('seg-1'),
+      document.getElementById('seg-2'),
+      document.getElementById('seg-3'),
+      document.getElementById('seg-4')
+    ];
+
+    const confirmInput = document.getElementById('confirm-password');
+    const matchIndicator = document.getElementById('match-indicator');
+    const matchIconCheck = document.getElementById('match-icon-check');
+    const matchIconCross = document.getElementById('match-icon-cross');
+    const matchText = document.getElementById('match-text');
+
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const eyeIconPass = document.getElementById('eye-icon-pass');
+    const eyeOffIconPass = document.getElementById('eyeoff-icon-pass');
+
+    const toggleConfirmBtn = document.getElementById('toggle-confirm');
+    const eyeIconConf = document.getElementById('eye-icon-conf');
+    const eyeOffIconConf = document.getElementById('eyeoff-icon-conf');
+
+    const submitBtn = document.getElementById('submit-btn');
+    const submitSpinner = document.getElementById('submit-spinner');
+    const submitText = document.getElementById('submit-text');
+
+    let currentStrengthLevel = 0;
+    let hadFirstMatch = false;
+
+    // Password visibility toggles
+    togglePasswordBtn.addEventListener('click', () => {
+      triggerHaptic(8);
+      const isPass = passwordInput.type === 'password';
+      passwordInput.type = isPass ? 'text' : 'password';
+      eyeIconPass.classList.toggle('hidden', isPass);
+      eyeOffIconPass.classList.toggle('hidden', !isPass);
+    });
+
+    toggleConfirmBtn.addEventListener('click', () => {
+      triggerHaptic(8);
+      const isPass = confirmInput.type === 'password';
+      confirmInput.type = isPass ? 'text' : 'password';
+      eyeIconConf.classList.toggle('hidden', isPass);
+      eyeOffIconConf.classList.toggle('hidden', !isPass);
+    });
+
+    // Username input counter & dynamic validation
+    usernameInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      usernameCounter.textContent = `${val.length}/30`;
+      if (val.length >= 3 && val.length <= 30) {
+        clearError(usernameInput, usernameError);
+        usernameHint.classList.remove('hidden');
+      }
+    });
+
+    // Auto-scroll on focus for keyboard comfort
+    [usernameInput, emailInput, passwordInput, confirmInput].forEach(el => {
+      el.addEventListener('focus', () => {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 250);
+      });
+    });
+
+    // Password Strength Evaluator
+    function calculateStrength(pass) {
+      if (!pass || pass.length === 0) return 0;
+      let level = 0;
+      if (pass.length >= 8) level = 1;
+      if (level >= 1 && /[A-Z]/.test(pass)) level = 2;
+      if (level >= 2 && (/[0-9]/.test(pass) || /[^A-Za-z0-9]/.test(pass))) level = 3;
+      if (level >= 3 && pass.length >= 12) level = 4;
+      return level;
+    }
+
+    passwordInput.addEventListener('input', (e) => {
+      const pass = e.target.value;
+      if (pass.length > 0) {
+        strengthContainer.classList.remove('opacity-0', 'max-h-0');
+        strengthContainer.classList.add('opacity-100', 'max-h-16');
+      } else {
+        strengthContainer.classList.add('opacity-0', 'max-h-0');
+        strengthContainer.classList.remove('opacity-100', 'max-h-16');
+      }
+
+      const newLevel = calculateStrength(pass);
+      if (newLevel !== currentStrengthLevel) {
+        currentStrengthLevel = newLevel;
+        triggerHaptic(10);
+      }
+
+      // Reset segments
+      segs.forEach(s => {
+        s.className = 'h-1 flex-1 rounded-full bg-border strength-segment';
+      });
+
+      if (currentStrengthLevel === 0) {
+        strengthLabel.textContent = 'Enter at least 8 characters';
+        strengthLabel.className = 'text-text-muted font-medium';
+        strengthTip.textContent = 'Use uppercase & numbers';
+      } else if (currentStrengthLevel === 1) {
+        segs[0].className = 'h-1 flex-1 rounded-full bg-status-error strength-segment';
+        strengthLabel.textContent = 'Weak';
+        strengthLabel.className = 'text-status-error font-medium';
+        strengthTip.textContent = 'Add uppercase letter';
+      } else if (currentStrengthLevel === 2) {
+        segs[0].className = 'h-1 flex-1 rounded-full bg-status-warning strength-segment';
+        segs[1].className = 'h-1 flex-1 rounded-full bg-status-warning strength-segment';
+        strengthLabel.textContent = 'Fair';
+        strengthLabel.className = 'text-status-warning font-medium';
+        strengthTip.textContent = 'Add special char or number';
+      } else if (currentStrengthLevel === 3) {
+        segs[0].className = 'h-1 flex-1 rounded-full bg-status-success strength-segment';
+        segs[1].className = 'h-1 flex-1 rounded-full bg-status-success strength-segment';
+        segs[2].className = 'h-1 flex-1 rounded-full bg-status-success strength-segment';
+        strengthLabel.textContent = 'Strong';
+        strengthLabel.className = 'text-status-success font-medium';
+        strengthTip.textContent = 'Make 12+ chars for max';
+      } else if (currentStrengthLevel === 4) {
+        segs.forEach(s => s.className = 'h-1 flex-1 rounded-full bg-status-success strength-segment');
+        strengthLabel.textContent = 'Very strong';
+        strengthLabel.className = 'text-status-success font-semibold';
+        strengthTip.textContent = 'Optimal security';
+      }
+
+      // Re-evaluate confirm password if populated
+      validateConfirmMatch();
+    });
+
+    // Confirm Password Live Validation
+    function validateConfirmMatch() {
+      const p1 = passwordInput.value;
+      const p2 = confirmInput.value;
+
+      if (!p2) {
+        matchIndicator.classList.add('hidden');
+        matchIconCheck.classList.add('hidden');
+        matchIconCross.classList.add('hidden');
+        confirmInput.classList.remove('border-status-error', 'border-status-success');
+        return;
+      }
+
+      matchIndicator.classList.remove('hidden');
+      if (p1 === p2) {
+        matchIconCheck.classList.remove('hidden');
+        matchIconCross.classList.add('hidden');
+        matchText.textContent = 'Passwords match';
+        matchText.className = 'text-status-success font-medium';
+        confirmInput.classList.remove('border-status-error');
+        confirmInput.classList.add('border-status-success');
+
+        if (!hadFirstMatch) {
+          triggerHaptic(12);
+          hadFirstMatch = true;
+        }
+      } else {
+        matchIconCheck.classList.add('hidden');
+        matchIconCross.classList.remove('hidden');
+        matchText.textContent = "Passwords don't match";
+        matchText.className = 'text-status-error font-medium';
+        confirmInput.classList.add('border-status-error');
+        confirmInput.classList.remove('border-status-success');
+        hadFirstMatch = false;
+      }
+    }
+
+    confirmInput.addEventListener('input', validateConfirmMatch);
+
+    // Error shake utility
+    function triggerError(element, errorEl, message) {
+      triggerHaptic(25);
+      element.classList.add('border-status-error', 'animate-shake');
+      if (errorEl) {
+        if (message) errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+      }
+      setTimeout(() => {
+        element.classList.remove('animate-shake');
+      }, 400);
+    }
+
+    function clearError(element, errorEl) {
+      element.classList.remove('border-status-error');
+      if (errorEl) errorEl.classList.add('hidden');
+    }
+
+    // Form Submission & Verification
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let firstInvalid = null;
+
+      // 1. Validate Username
+      const uname = usernameInput.value.trim();
+      if (!uname || uname.length < 3 || uname.length > 30) {
+        triggerError(usernameInput, usernameError, 'Username must be 3–30 characters');
+        usernameHint.classList.add('hidden');
+        if (!firstInvalid) firstInvalid = usernameInput;
+      } else {
+        clearError(usernameInput, usernameError);
+        usernameHint.classList.remove('hidden');
+      }
+
+      // 2. Validate Email
+      const emailVal = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailVal || !emailRegex.test(emailVal)) {
+        triggerError(emailInput, emailError);
+        if (!firstInvalid) firstInvalid = emailInput;
+      } else {
+        clearError(emailInput, emailError);
+      }
+
+      // 3. Validate Password
+      const passVal = passwordInput.value;
+      if (!passVal || passVal.length < 8) {
+        triggerError(passwordInput, passwordError);
+        if (!firstInvalid) firstInvalid = passwordInput;
+      } else {
+        clearError(passwordInput, passwordError);
+      }
+
+      // 4. Validate Confirm
+      const confVal = confirmInput.value;
+      if (!confVal || confVal !== passVal) {
+        triggerError(confirmInput, null);
+        validateConfirmMatch();
+        if (!firstInvalid) firstInvalid = confirmInput;
+      }
+
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstInvalid.focus();
+        return;
+      }
+
+      // Submission Success Mock
+      triggerHaptic(30);
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+      submitSpinner.classList.remove('hidden');
+      submitText.textContent = 'Creating account...';
+
+      setTimeout(() => {
+        submitSpinner.classList.add('hidden');
+        submitText.textContent = 'Welcome to Genu!';
+        submitBtn.classList.remove('bg-forge');
+        submitBtn.classList.add('bg-status-success', 'text-text-primary');
+        triggerHaptic(40);
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 900);
+      }, 1400);
+    });
+  </script>
+</body>
+</html>

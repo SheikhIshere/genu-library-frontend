@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <title>Genu Library — Book Catalog (Mobile)</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#16110f",
+            surface: "#211a17",
+            "surface-hover": "#2a211c",
+            "surface-active": "#332a24",
+            "surface-container": "#251e1b",
+            "surface-container-high": "#302825",
+            primary: "#e8693f",
+            "primary-hover": "#d45a30",
+            border: "#3a322d",
+            "border-hover": "#4d433d",
+            "text-primary": "#ece0dc",
+            "text-secondary": "#a89c93",
+            "text-muted": "#7a706a",
+            "text-on-accent": "#16110f",
+            "status-success": "#4a7c59",
+            "status-warning": "#d4a24e",
+            "status-error": "#c44d4d"
+          },
+          fontFamily: {
+            display: ["Playfair Display", "serif"],
+            body: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background-color: #16110f;
+        color: #ece0dc;
+        font-family: 'Inter', sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        overscroll-behavior-y: none;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 16px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Swipe container support */
+    .card-swipe-track {
+      touch-action: pan-y;
+      will-change: transform;
+    }
+    /* Smooth transitions */
+    .sheet-transition {
+      transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.2s ease;
+    }
+  </style>
+</head>
+<body class="bg-canvas text-text-primary min-h-screen flex flex-col antialiased selection:bg-primary selection:text-text-on-accent select-none">
+
+  <!-- ================= TOP APP BAR & STICKY SEARCH ================= -->
+  <header class="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md border-b border-border pt-safe">
+    <!-- Top Header Branding / Live Status Bar -->
+    <div class="h-14 px-5 max-w-md mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-[24px]">auto_stories</span>
+        <h1 class="font-display text-[22px] font-bold text-text-primary tracking-tight">Book Catalog</h1>
+      </div>
+      <div class="flex items-center gap-2">
+        <!-- Live demo toggler -->
+        <button id="toggle-view-btn" type="button" class="px-2.5 py-1 rounded-full bg-surface border border-border text-[11px] font-mono text-text-secondary active:scale-95 transition-transform flex items-center gap-1.5" title="Toggle Demo State">
+          <span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+          <span>Catalog Mode</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sticky Search Input Box -->
+    <div class="px-5 pb-3 max-w-md mx-auto">
+      <div class="relative w-full">
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[20px] text-text-muted pointer-events-none">search</span>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search by title, author, keyword..."
+          class="w-full h-11 pl-11 pr-10 rounded-lg bg-canvas border border-border text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+          aria-label="Search books"
+        />
+        <button id="clear-search-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-surface text-text-secondary flex items-center justify-center text-xs active:scale-90" aria-label="Clear search">
+          <span class="material-symbols-outlined text-[16px]">close</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter & Sort Action Bar -->
+    <div class="px-5 pb-3 max-w-md mx-auto flex items-center gap-3">
+      <!-- Filter Button with active badge counter -->
+      <button
+        id="open-filter-btn"
+        type="button"
+        class="flex-1 h-11 px-4 rounded-lg bg-surface border border-border text-sm text-text-secondary flex items-center justify-center gap-2 active:scale-[0.97] transition-all"
+      >
+        <span class="material-symbols-outlined text-[18px]">tune</span>
+        <span class="font-medium">Filter</span>
+        <span id="filter-count-badge" class="ml-1 w-5 h-5 rounded-full bg-primary text-text-on-accent text-[11px] font-bold flex items-center justify-center">2</span>
+      </button>
+
+      <!-- Sort Button showing active choice -->
+      <button
+        id="open-sort-btn"
+        type="button"
+        class="flex-1 h-11 px-4 rounded-lg bg-surface border border-border text-sm text-text-secondary flex items-center justify-center gap-2 active:scale-[0.97] transition-all"
+      >
+        <span class="material-symbols-outlined text-[18px]">swap_vert</span>
+        <span id="active-sort-label" class="font-medium truncate">Most Popular</span>
+        <span class="material-symbols-outlined text-[16px] text-text-muted">expand_more</span>
+      </button>
+    </div>
+
+    <!-- Active Filter Chips (Horizontal Scrollable) -->
+    <div id="active-filter-chips-row" class="flex gap-2 px-5 pb-3 max-w-md mx-auto overflow-x-auto scrollbar-hide">
+      <!-- Chip 1: Category -->
+      <span class="filter-chip flex-shrink-0 h-9 px-3 rounded-full bg-primary/10 border border-primary text-primary text-xs font-medium flex items-center gap-1.5 active:scale-95 transition-transform" data-filter="Alchemy">
+        <span>Alchemy &amp; Metallurgy</span>
+        <button type="button" class="remove-chip-btn w-5 h-5 rounded-full flex items-center justify-center text-primary hover:text-white" aria-label="Remove filter">
+          <span class="material-symbols-outlined text-[14px]">close</span>
+        </button>
+      </span>
+
+      <!-- Chip 2: Price Free -->
+      <span class="filter-chip flex-shrink-0 h-9 px-3 rounded-full bg-primary/10 border border-primary text-primary text-xs font-medium flex items-center gap-1.5 active:scale-95 transition-transform" data-filter="Free">
+        <span>Free Folios</span>
+        <button type="button" class="remove-chip-btn w-5 h-5 rounded-full flex items-center justify-center text-primary hover:text-white" aria-label="Remove filter">
+          <span class="material-symbols-outlined text-[14px]">close</span>
+        </button>
+      </span>
+
+      <!-- Chip 3: Rating 4.5+ -->
+      <span class="filter-chip flex-shrink-0 h-9 px-3 rounded-full bg-primary/10 border border-primary text-primary text-xs font-medium flex items-center gap-1.5 active:scale-95 transition-transform" data-filter="Rating45">
+        <span class="flex items-center gap-0.5">★ 4.5+ Rating</span>
+        <button type="button" class="remove-chip-btn w-5 h-5 rounded-full flex items-center justify-center text-primary hover:text-white" aria-label="Remove filter">
+          <span class="material-symbols-outlined text-[14px]">close</span>
+        </button>
+      </span>
+
+      <!-- Clear All Text Button -->
+      <button id="clear-all-chips-btn" type="button" class="flex-shrink-0 h-9 px-3 rounded-full bg-transparent text-text-muted text-xs font-medium hover:text-text-primary active:scale-95 flex items-center">
+        Reset
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= MAIN SCROLLABLE BODY ================= -->
+  <main class="flex-1 w-full max-w-md mx-auto px-5 pt-3 pb-24 flex flex-col">
+
+    <!-- Pull to Refresh Indicator -->
+    <div id="pull-refresh-bar" class="w-full flex items-center justify-center gap-2 py-2 text-text-muted text-xs font-mono">
+      <span class="material-symbols-outlined text-[16px] animate-spin" style="animation-duration: 4s;">autorenew</span>
+      <span>Pull down to sync Guild ledger...</span>
+    </div>
+
+    <!-- Item Count & Summary Row -->
+    <div class="flex items-center justify-between py-2 mb-2 text-xs">
+      <span id="results-count" class="font-mono text-text-muted tracking-wider uppercase">Showing 6 treatises</span>
+      <span class="text-text-muted flex items-center gap-1">
+        <span class="material-symbols-outlined text-[14px] text-primary">swipe_left</span>
+        <span>Swipe left to add to playlist</span>
+      </span>
+    </div>
+
+    <!-- 1. LIVE BOOK CATALOG CONTAINER -->
+    <div id="book-list-container" class="flex flex-col space-y-4">
+
+      <!-- ================= BOOK CARD 1 ================= -->
+      <div class="relative overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+        <!-- Swipe Reveal Layer (Add to Playlist Action) -->
+        <div class="absolute inset-y-0 right-0 w-24 bg-primary flex flex-col items-center justify-center gap-1 text-text-on-accent font-semibold text-xs active:bg-primary-hover transition-colors z-0" onclick="openPlaylistSheet('The Alchemist\'s Codex: Hermetic Metallurgy')">
+          <span class="material-symbols-outlined text-[26px]">playlist_add</span>
+          <span>Add List</span>
+        </div>
+
+        <!-- Foreground Swiping Card Body -->
+        <div class="card-swipe-track relative flex bg-surface z-10 transition-transform duration-200" data-card-id="1" style="transform: translateX(0px);">
+          <!-- Left: Book Cover Image -->
+          <div class="relative w-28 h-36 flex-shrink-0 bg-canvas overflow-hidden">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAwKTgzkf63mYqpLe7WBuaxTt3rz3453fFaAFsueizV5ExvG11CnZjHigR9JqGaG4K4iE9llie6Wdnf3YFdxLoKaAM6qjFuKq_eGc-r0j-hgTQ4JvUrVoAskq3uWFaUGPu8PDnfGUphrQv7g8QFtlfK0-wuuvGxLBZDHD1qtbCbBFDnxAiWo3vqOcQNvGJpPh07sqJE3GDbslk0b_zLiec3c4M4kMm18rkPYjXyNFvVd53Ccpq4O6Y"
+              alt="The Alchemist's Codex"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+            <!-- Guild Seal -->
+            <span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-surface-container-high/90 text-text-primary text-[9px] font-mono border border-border flex items-center gap-0.5">
+              <span class="material-symbols-outlined text-[10px] text-primary">verified</span>
+              <span>Guild</span>
+            </span>
+          </div>
+
+          <!-- Right: Book Metadata & Information -->
+          <div class="flex-1 p-3 min-w-0 flex flex-col justify-between" onclick="handleCardClick('The Alchemist\'s Codex', 'Master Corvus Thorne')">
+            <div>
+              <h3 class="text-[15px] font-semibold text-text-primary leading-tight line-clamp-1">The Alchemist's Codex: Hermetic Metallurgy</h3>
+              <p class="mt-0.5 text-[13px] text-text-secondary truncate">Master Corvus Thorne</p>
+
+              <!-- Rating row -->
+              <div class="mt-1.5 flex items-center gap-1.5">
+                <div class="flex items-center gap-0.5 text-status-warning">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-xs font-mono text-text-primary font-medium">4.98</span>
+                </div>
+                <span class="text-[11px] text-text-muted">(142 reviews)</span>
+              </div>
+
+              <!-- Tags / Pills -->
+              <div class="mt-1.5 flex items-center gap-1.5 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Alchemy</span>
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Metallurgy</span>
+              </div>
+            </div>
+
+            <!-- Price & Favorite metrics -->
+            <div class="mt-2 pt-1 border-t border-border/50 flex items-center justify-between">
+              <span class="font-mono text-sm font-semibold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-status-warning">monetization_on</span>
+                <span>250 GN</span>
+              </span>
+              <span class="text-[11px] font-mono text-text-muted flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px] text-status-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <span>384</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= BOOK CARD 2 ================= -->
+      <div class="relative overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+        <div class="absolute inset-y-0 right-0 w-24 bg-primary flex flex-col items-center justify-center gap-1 text-text-on-accent font-semibold text-xs active:bg-primary-hover transition-colors z-0" onclick="openPlaylistSheet('The Architecture of Thought: Spatial Logic')">
+          <span class="material-symbols-outlined text-[26px]">playlist_add</span>
+          <span>Add List</span>
+        </div>
+
+        <div class="card-swipe-track relative flex bg-surface z-10 transition-transform duration-200" data-card-id="2" style="transform: translateX(0px);">
+          <div class="relative w-28 h-36 flex-shrink-0 bg-canvas overflow-hidden">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9ZAm7HMcCiviVJ2iHt0UfAcAud8qu2X2u9bqzQ04tfNkfRF1mEj8DWHPhvTj0741ys4afHfpRpY50qJ-FOBdKvbZglY579vK036g6hAezzJ4fmWiqy1nkCqVzRLDKj0hxt5nLvtT1Fjbf_1p1Yc_IbLpbn7RB307cwtnvjeVTa6ARdpgIj0KzGULc80S71l1IrB4JHOX43bFFEgG-GntNqcH3ets-VlE0B6I1aju6_bTDK0xW7FGf"
+              alt="The Architecture of Thought"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <!-- FREE BADGE -->
+            <span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-status-success text-text-primary text-[9px] font-mono font-bold tracking-wider uppercase">
+              Free
+            </span>
+          </div>
+
+          <div class="flex-1 p-3 min-w-0 flex flex-col justify-between" onclick="handleCardClick('The Architecture of Thought', 'Sophia Vance')">
+            <div>
+              <h3 class="text-[15px] font-semibold text-text-primary leading-tight line-clamp-1">The Architecture of Thought: Spatial Logic</h3>
+              <p class="mt-0.5 text-[13px] text-text-secondary truncate">Sophia Vance</p>
+
+              <div class="mt-1.5 flex items-center gap-1.5">
+                <div class="flex items-center gap-0.5 text-status-warning">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-xs font-mono text-text-primary font-medium">4.92</span>
+                </div>
+                <span class="text-[11px] text-text-muted">(88 reviews)</span>
+              </div>
+
+              <div class="mt-1.5 flex items-center gap-1.5 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Philosophy</span>
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Geometry</span>
+              </div>
+            </div>
+
+            <div class="mt-2 pt-1 border-t border-border/50 flex items-center justify-between">
+              <span class="font-mono text-sm font-semibold text-status-success">
+                Free Edition
+              </span>
+              <span class="text-[11px] font-mono text-text-muted flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px] text-status-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <span>219</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= BOOK CARD 3 ================= -->
+      <div class="relative overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+        <div class="absolute inset-y-0 right-0 w-24 bg-primary flex flex-col items-center justify-center gap-1 text-text-on-accent font-semibold text-xs active:bg-primary-hover transition-colors z-0" onclick="openPlaylistSheet('Chronicles of the Iron Foundry')">
+          <span class="material-symbols-outlined text-[26px]">playlist_add</span>
+          <span>Add List</span>
+        </div>
+
+        <div class="card-swipe-track relative flex bg-surface z-10 transition-transform duration-200" data-card-id="3" style="transform: translateX(0px);">
+          <div class="relative w-28 h-36 flex-shrink-0 bg-canvas overflow-hidden">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCABWJoyrOeTBaoJCHx9pZEwcUfWz9YOl2_z3_-skeDQMehF0H6X5Io60crLb8xoHo6AW6RpnU2AwfnAQ3At8ywaBG6JCh4obudcoOyJkBM3zm2iPPW4q2VOOmtVoapYudwwHjE0zDuWqAA2VWGco_DAP2YrL3G1G5bdBAHEeS1a2WFu_7ramvP7sr2jJRGb-8dcuWan5k33OIKio19y6y3pImJnZ6DUOAOzRsxxzBSzw4NBGJpo4cU"
+              alt="Chronicles of the Iron Foundry"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="flex-1 p-3 min-w-0 flex flex-col justify-between" onclick="handleCardClick('Chronicles of the Iron Foundry', 'Alistair Vance')">
+            <div>
+              <h3 class="text-[15px] font-semibold text-text-primary leading-tight line-clamp-1">Chronicles of the Iron Foundry</h3>
+              <p class="mt-0.5 text-[13px] text-text-secondary truncate">Alistair Vance</p>
+
+              <div class="mt-1.5 flex items-center gap-1.5">
+                <div class="flex items-center gap-0.5 text-status-warning">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-xs font-mono text-text-primary font-medium">4.85</span>
+                </div>
+                <span class="text-[11px] text-text-muted">(64 reviews)</span>
+              </div>
+
+              <div class="mt-1.5 flex items-center gap-1.5 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Blacksmithing</span>
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Forgework</span>
+              </div>
+            </div>
+
+            <div class="mt-2 pt-1 border-t border-border/50 flex items-center justify-between">
+              <span class="font-mono text-sm font-semibold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-status-warning">monetization_on</span>
+                <span>180 GN</span>
+              </span>
+              <span class="text-[11px] font-mono text-text-muted flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px] text-status-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <span>152</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= BOOK CARD 4 ================= -->
+      <div class="relative overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+        <div class="absolute inset-y-0 right-0 w-24 bg-primary flex flex-col items-center justify-center gap-1 text-text-on-accent font-semibold text-xs active:bg-primary-hover transition-colors z-0" onclick="openPlaylistSheet('De Sphaera Mundi: Celestial Spheres')">
+          <span class="material-symbols-outlined text-[26px]">playlist_add</span>
+          <span>Add List</span>
+        </div>
+
+        <div class="card-swipe-track relative flex bg-surface z-10 transition-transform duration-200" data-card-id="4" style="transform: translateX(0px);">
+          <div class="relative w-28 h-36 flex-shrink-0 bg-canvas overflow-hidden">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA1FgdxAZwvzUE2aBSGPHpPeUHi4no77o5Ebbueprl875YPdMO7M8GLehtH8lCgAOVxAFkNS8yZXM0qdTHpunIEWYNdmQOn-JfBSPOIYkJOO6aIpvF266icJlzoYAzYwMCKqGVi2yrzMrQwAfkTXAbIG4kEIqfFJLGTO_fZ8oPLeijIswUxMTIHvC50I_5ny77PpiUDnU831QegSzL_Q0QjyyviEcPpso1GEbp55AHK3FSPMup5zEV"
+              alt="De Sphaera Mundi"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-primary/20 border border-primary/40 text-primary text-[9px] font-mono font-bold">
+              Trending
+            </span>
+          </div>
+
+          <div class="flex-1 p-3 min-w-0 flex flex-col justify-between" onclick="handleCardClick('De Sphaera Mundi', 'Johannes de Sacrobosco')">
+            <div>
+              <h3 class="text-[15px] font-semibold text-text-primary leading-tight line-clamp-1">De Sphaera Mundi: Celestial Spheres</h3>
+              <p class="mt-0.5 text-[13px] text-text-secondary truncate">Johannes de Sacrobosco</p>
+
+              <div class="mt-1.5 flex items-center gap-1.5">
+                <div class="flex items-center gap-0.5 text-status-warning">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-xs font-mono text-text-primary font-medium">4.99</span>
+                </div>
+                <span class="text-[11px] text-text-muted">(310 reviews)</span>
+              </div>
+
+              <div class="mt-1.5 flex items-center gap-1.5 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Astronomy</span>
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Astrolabes</span>
+              </div>
+            </div>
+
+            <div class="mt-2 pt-1 border-t border-border/50 flex items-center justify-between">
+              <span class="font-mono text-sm font-semibold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-status-warning">monetization_on</span>
+                <span>320 GN</span>
+              </span>
+              <span class="text-[11px] font-mono text-text-muted flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px] text-status-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <span>512</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= BOOK CARD 5 ================= -->
+      <div class="relative overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+        <div class="absolute inset-y-0 right-0 w-24 bg-primary flex flex-col items-center justify-center gap-1 text-text-on-accent font-semibold text-xs active:bg-primary-hover transition-colors z-0" onclick="openPlaylistSheet('Lexicon of Antiquity: Root Dialects')">
+          <span class="material-symbols-outlined text-[26px]">playlist_add</span>
+          <span>Add List</span>
+        </div>
+
+        <div class="card-swipe-track relative flex bg-surface z-10 transition-transform duration-200" data-card-id="5" style="transform: translateX(0px);">
+          <div class="relative w-28 h-36 flex-shrink-0 bg-canvas overflow-hidden">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjJaQadzK0QSIc34J2y6CPljiMSvHhx4aym8WeoZ-atUUUe74j896qSgrhOrDzg2EwbakhpoQw2RGru_BYP4CVJ1Xj32qqB82kFZ0QKNjaSqA-zdqrDoIMEN_Y6cnXSrtH5s6A1Ntt9Uy82qQ-FXGTWlrBK3NOnkRF6OlM4JXtVhQlc_5JEp8FlfRE-eQhfJohqYCkMPIPosNP8P7pnFVcqmA6YufEcn2iRa2VBPXbpDGUOUuUUon-"
+              alt="Lexicon of Antiquity"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="flex-1 p-3 min-w-0 flex flex-col justify-between" onclick="handleCardClick('Lexicon of Antiquity', 'Brother Kenneth')">
+            <div>
+              <h3 class="text-[15px] font-semibold text-text-primary leading-tight line-clamp-1">Lexicon of Antiquity: Root Dialects</h3>
+              <p class="mt-0.5 text-[13px] text-text-secondary truncate">Brother Kenneth</p>
+
+              <div class="mt-1.5 flex items-center gap-1.5">
+                <div class="flex items-center gap-0.5 text-status-warning">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-xs font-mono text-text-primary font-medium">4.89</span>
+                </div>
+                <span class="text-[11px] text-text-muted">(52 reviews)</span>
+              </div>
+
+              <div class="mt-1.5 flex items-center gap-1.5 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Linguistics</span>
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Manuscripts</span>
+              </div>
+            </div>
+
+            <div class="mt-2 pt-1 border-t border-border/50 flex items-center justify-between">
+              <span class="font-mono text-sm font-semibold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-status-warning">monetization_on</span>
+                <span>140 GN</span>
+              </span>
+              <span class="text-[11px] font-mono text-text-muted flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px] text-status-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <span>94</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= BOOK CARD 6 ================= -->
+      <div class="relative overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+        <div class="absolute inset-y-0 right-0 w-24 bg-primary flex flex-col items-center justify-center gap-1 text-text-on-accent font-semibold text-xs active:bg-primary-hover transition-colors z-0" onclick="openPlaylistSheet('Tractatus de Umbris: Shadow Geometry')">
+          <span class="material-symbols-outlined text-[26px]">playlist_add</span>
+          <span>Add List</span>
+        </div>
+
+        <div class="card-swipe-track relative flex bg-surface z-10 transition-transform duration-200" data-card-id="6" style="transform: translateX(0px);">
+          <div class="relative w-28 h-36 flex-shrink-0 bg-canvas overflow-hidden">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9ZAm7HMcCiviVJ2iHt0UfAcAud8qu2X2u9bqzQ04tfNkfRF1mEj8DWHPhvTj0741ys4afHfpRpY50qJ-FOBdKvbZglY579vK036g6hAezzJ4fmWiqy1nkCqVzRLDKj0hxt5nLvtT1Fjbf_1p1Yc_IbLpbn7RB307cwtnvjeVTa6ARdpgIj0KzGULc80S71l1IrB4JHOX43bFFEgG-GntNqcH3ets-VlE0B6I1aju6_bTDK0xW7FGf"
+              alt="Tractatus de Umbris"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-status-success text-text-primary text-[9px] font-mono font-bold tracking-wider uppercase">
+              Free
+            </span>
+          </div>
+
+          <div class="flex-1 p-3 min-w-0 flex flex-col justify-between" onclick="handleCardClick('Tractatus de Umbris', 'Archivist Moros')">
+            <div>
+              <h3 class="text-[15px] font-semibold text-text-primary leading-tight line-clamp-1">Tractatus de Umbris: Shadow Geometry</h3>
+              <p class="mt-0.5 text-[13px] text-text-secondary truncate">Archivist Moros</p>
+
+              <div class="mt-1.5 flex items-center gap-1.5">
+                <div class="flex items-center gap-0.5 text-status-warning">
+                  <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-xs font-mono text-text-primary font-medium">4.79</span>
+                </div>
+                <span class="text-[11px] text-text-muted">(39 reviews)</span>
+              </div>
+
+              <div class="mt-1.5 flex items-center gap-1.5 flex-wrap">
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Geometry</span>
+                <span class="px-2 py-0.5 rounded-full bg-border text-[10px] text-text-secondary">Optics</span>
+              </div>
+            </div>
+
+            <div class="mt-2 pt-1 border-t border-border/50 flex items-center justify-between">
+              <span class="font-mono text-sm font-semibold text-status-success">
+                Free Edition
+              </span>
+              <span class="text-[11px] font-mono text-text-muted flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px] text-status-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <span>83</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infinite Scroll Trigger Sentinel -->
+      <div id="infinite-scroll-indicator" class="py-6 flex flex-col items-center justify-center gap-2 text-text-muted">
+        <div class="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+        <span class="font-mono text-xs text-text-secondary">Unsealing deeper codices...</span>
+      </div>
+
+    </div>
+
+    <!-- 2. SKELETON LOADING VIEW (Alternative State) -->
+    <div id="skeleton-container" class="hidden flex-col space-y-4">
+      <!-- Search Skeleton bar -->
+      <div class="w-full h-11 rounded-lg bg-border animate-pulse mb-1"></div>
+
+      <!-- 3 Skeleton Cards -->
+      <div class="w-full rounded-xl bg-surface border border-border overflow-hidden animate-pulse">
+        <div class="flex">
+          <div class="w-28 h-36 bg-border flex-shrink-0"></div>
+          <div class="flex-1 p-3 space-y-2">
+            <div class="h-4 bg-border rounded w-3/4"></div>
+            <div class="h-3 bg-border rounded w-1/2"></div>
+            <div class="h-3 bg-border rounded w-1/3 mt-2"></div>
+            <div class="h-4 bg-border rounded w-1/4 mt-4"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full rounded-xl bg-surface border border-border overflow-hidden animate-pulse">
+        <div class="flex">
+          <div class="w-28 h-36 bg-border flex-shrink-0"></div>
+          <div class="flex-1 p-3 space-y-2">
+            <div class="h-4 bg-border rounded w-4/5"></div>
+            <div class="h-3 bg-border rounded w-2/5"></div>
+            <div class="h-3 bg-border rounded w-1/3 mt-2"></div>
+            <div class="h-4 bg-border rounded w-1/4 mt-4"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full rounded-xl bg-surface border border-border overflow-hidden animate-pulse">
+        <div class="flex">
+          <div class="w-28 h-36 bg-border flex-shrink-0"></div>
+          <div class="flex-1 p-3 space-y-2">
+            <div class="h-4 bg-border rounded w-2/3"></div>
+            <div class="h-3 bg-border rounded w-1/2"></div>
+            <div class="h-3 bg-border rounded w-1/4 mt-2"></div>
+            <div class="h-4 bg-border rounded w-1/4 mt-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. EMPTY STATE VIEW (Alternative State) -->
+    <div id="empty-state-container" class="hidden flex-col items-center justify-center text-center py-16 px-4">
+      <div class="w-16 h-16 rounded-full bg-surface border border-border flex items-center justify-center text-text-muted mb-4">
+        <span class="material-symbols-outlined text-[32px]">search_off</span>
+      </div>
+      <h3 class="font-display text-lg font-bold text-text-primary">No treatises found</h3>
+      <p class="mt-1.5 text-sm text-text-secondary max-w-xs leading-relaxed">
+        No codices match your search or applied guild filters. Try broadening your criteria.
+      </p>
+      <button
+        id="empty-reset-filters-btn"
+        type="button"
+        class="mt-5 h-11 px-6 rounded-lg bg-surface border border-border text-sm font-medium text-text-primary active:scale-95 transition-transform"
+      >
+        Clear Filters &amp; Search
+      </button>
+    </div>
+
+    <!-- 4. ERROR STATE VIEW (Alternative State) -->
+    <div id="error-state-container" class="hidden flex-col items-center justify-center text-center py-12 px-4 bg-surface rounded-xl border border-status-error/30 mt-4">
+      <span class="material-symbols-outlined text-status-error text-[36px] mb-2">warning</span>
+      <p class="text-sm font-medium text-status-error">Failed to connect to the Guild Ledger archive.</p>
+      <p class="mt-1 text-xs text-text-muted">A connection timeout occurred while synchronizing catalog indexes.</p>
+      <button
+        id="error-retry-btn"
+        type="button"
+        class="mt-4 h-11 px-6 rounded-lg bg-border text-text-primary text-sm font-medium active:scale-95 transition-transform"
+      >
+        Retry Synchronization
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ================= BOTTOM NAVIGATION BAR (FIXED, Z-50, PB-SAFE) ================= -->
+  <nav class="fixed bottom-0 inset-x-0 z-50 bg-canvas/95 backdrop-blur-md border-t border-border pb-safe">
+    <div class="flex items-center justify-around h-14 max-w-md mx-auto">
+      <!-- 1. Home tab -->
+      <a href="#" class="relative flex flex-col items-center justify-center min-h-[44px] min-w-[44px] text-text-secondary active:text-text-primary transition-colors">
+        <span class="material-symbols-outlined text-[22px]">cottage</span>
+        <span class="text-[10px] mt-0.5 font-medium">Home</span>
+      </a>
+
+      <!-- 2. Books tab (ACTIVE with 2px accent indicator bar) -->
+      <a href="#" class="relative flex flex-col items-center justify-center min-h-[44px] min-w-[44px] text-primary">
+        <span class="absolute top-0 w-6 h-[2.5px] bg-primary rounded-full"></span>
+        <span class="material-symbols-outlined text-[22px]">auto_stories</span>
+        <span class="text-[10px] mt-0.5 font-semibold">Books</span>
+      </a>
+
+      <!-- 3. Lists tab -->
+      <a href="#" class="relative flex flex-col items-center justify-center min-h-[44px] min-w-[44px] text-text-secondary active:text-text-primary transition-colors">
+        <span class="material-symbols-outlined text-[22px]">collections_bookmark</span>
+        <span class="text-[10px] mt-0.5 font-medium">Lists</span>
+      </a>
+
+      <!-- 4. Me / Profile tab -->
+      <a href="#" class="relative flex flex-col items-center justify-center min-h-[44px] min-w-[44px] text-text-secondary active:text-text-primary transition-colors">
+        <span class="material-symbols-outlined text-[22px]">account_circle</span>
+        <span class="text-[10px] mt-0.5 font-medium">Me</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ================= BOTTOM SHEET 1: FILTER MODAL ================= -->
+  <div id="filter-sheet-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity opacity-0"></div>
+  <div id="filter-sheet" class="fixed bottom-0 inset-x-0 z-50 max-w-md mx-auto bg-surface border-t border-border rounded-t-2xl max-h-[85vh] overflow-y-auto transform translate-y-full sheet-transition pb-safe hidden">
+    <!-- Header with Drag Handle -->
+    <div class="sticky top-0 bg-surface px-5 pt-3 pb-3 border-b border-border z-10 flex flex-col items-center">
+      <div class="w-10 h-1 rounded-full bg-border mb-3"></div>
+      <div class="w-full flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+          <h3 class="text-lg font-display font-semibold text-text-primary">Catalog Filters</h3>
+        </div>
+        <button id="close-filter-sheet-btn" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-text-secondary active:scale-90">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter Form Options -->
+    <div class="p-5 space-y-6">
+      <!-- 1. Price Filter -->
+      <div>
+        <label class="block text-sm font-medium text-text-secondary mb-2.5">Access Tier / Price</label>
+        <div class="flex gap-2">
+          <button type="button" class="filter-option-btn flex-1 h-11 px-3 rounded-lg bg-canvas border border-border text-sm text-text-secondary active:scale-95 transition-all" data-group="price" data-val="all">All</button>
+          <button type="button" class="filter-option-btn flex-1 h-11 px-3 rounded-lg bg-primary/10 border border-primary text-sm text-primary font-semibold active:scale-95 transition-all" data-group="price" data-val="free">Free</button>
+          <button type="button" class="filter-option-btn flex-1 h-11 px-3 rounded-lg bg-canvas border border-border text-sm text-text-secondary active:scale-95 transition-all" data-group="price" data-val="premium">Premium</button>
+        </div>
+      </div>
+
+      <!-- 2. Minimum Rating Filter -->
+      <div>
+        <label class="block text-sm font-medium text-text-secondary mb-2.5">Minimum Scholar Rating</label>
+        <div class="flex gap-2">
+          <button type="button" class="filter-option-btn flex-1 h-11 px-2 rounded-lg bg-canvas border border-border text-sm text-text-secondary active:scale-95 transition-all" data-group="rating" data-val="0">Any</button>
+          <button type="button" class="filter-option-btn flex-1 h-11 px-2 rounded-lg bg-canvas border border-border text-sm text-text-secondary active:scale-95 transition-all" data-group="rating" data-val="3">3.0+</button>
+          <button type="button" class="filter-option-btn flex-1 h-11 px-2 rounded-lg bg-canvas border border-border text-sm text-text-secondary active:scale-95 transition-all" data-group="rating" data-val="4">4.0+</button>
+          <button type="button" class="filter-option-btn flex-1 h-11 px-2 rounded-lg bg-primary/10 border border-primary text-sm text-primary font-semibold active:scale-95 transition-all" data-group="rating" data-val="4.5">★ 4.5+</button>
+        </div>
+      </div>
+
+      <!-- 3. Guild Subject Taxonomy Filter -->
+      <div>
+        <label class="block text-sm font-medium text-text-secondary mb-2.5">Taxonomy &amp; Field</label>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="filter-pill-btn h-9 px-3.5 rounded-full bg-primary/10 border border-primary text-primary text-xs font-medium active:scale-95 transition-all" data-tag="Alchemy">Alchemy &amp; Metallurgy</button>
+          <button type="button" class="filter-pill-btn h-9 px-3.5 rounded-full bg-canvas border border-border text-text-secondary text-xs font-medium active:scale-95 transition-all" data-tag="Philosophy">Philosophy</button>
+          <button type="button" class="filter-pill-btn h-9 px-3.5 rounded-full bg-canvas border border-border text-text-secondary text-xs font-medium active:scale-95 transition-all" data-tag="Astronomy">Celestial Astronomy</button>
+          <button type="button" class="filter-pill-btn h-9 px-3.5 rounded-full bg-canvas border border-border text-text-secondary text-xs font-medium active:scale-95 transition-all" data-tag="Geometry">Sacred Geometry</button>
+          <button type="button" class="filter-pill-btn h-9 px-3.5 rounded-full bg-canvas border border-border text-text-secondary text-xs font-medium active:scale-95 transition-all" data-tag="Manuscripts">Monastic Manuscripts</button>
+        </div>
+      </div>
+
+      <!-- Apply & Reset Buttons -->
+      <div class="pt-2 flex flex-col gap-2">
+        <button
+          id="apply-filters-btn"
+          type="button"
+          class="w-full h-12 rounded-lg bg-primary text-text-on-accent font-semibold text-sm active:scale-[0.98] transition-transform shadow-md"
+        >
+          Apply Filters (2 Active)
+        </button>
+        <button
+          id="reset-filter-modal-btn"
+          type="button"
+          class="w-full h-10 rounded-lg text-text-muted text-xs font-medium hover:text-text-primary active:scale-[0.98]"
+        >
+          Reset to Default
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= BOTTOM SHEET 2: SORT MODAL ================= -->
+  <div id="sort-sheet-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity opacity-0"></div>
+  <div id="sort-sheet" class="fixed bottom-0 inset-x-0 z-50 max-w-md mx-auto bg-surface border-t border-border rounded-t-2xl transform translate-y-full sheet-transition pb-safe hidden">
+    <div class="sticky top-0 bg-surface px-5 pt-3 pb-3 border-b border-border flex flex-col items-center">
+      <div class="w-10 h-1 rounded-full bg-border mb-3"></div>
+      <div class="w-full flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[20px]">swap_vert</span>
+          <h3 class="text-lg font-display font-semibold text-text-primary">Sort Treatises By</h3>
+        </div>
+        <button id="close-sort-sheet-btn" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-text-secondary active:scale-90">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sort Options List -->
+    <div class="p-5 flex flex-col space-y-1">
+      <button type="button" class="sort-option-btn w-full h-12 flex items-center justify-between px-4 rounded-lg text-sm text-primary bg-primary/10 font-medium active:bg-surface-hover transition-colors" data-sort="popular" data-label="Most Popular">
+        <span>Most Popular &amp; Endorsed</span>
+        <span class="material-symbols-outlined text-[20px] text-primary">check</span>
+      </button>
+
+      <button type="button" class="sort-option-btn w-full h-12 flex items-center justify-between px-4 rounded-lg text-sm text-text-primary active:bg-surface-hover transition-colors" data-sort="recent" data-label="Recently Added">
+        <span>Recently Added to Archive</span>
+        <span class="material-symbols-outlined text-[20px] text-transparent check-icon">check</span>
+      </button>
+
+      <button type="button" class="sort-option-btn w-full h-12 flex items-center justify-between px-4 rounded-lg text-sm text-text-primary active:bg-surface-hover transition-colors" data-sort="rating" data-label="Highest Rated">
+        <span>Highest Scholar Rating</span>
+        <span class="material-symbols-outlined text-[20px] text-transparent check-icon">check</span>
+      </button>
+
+      <button type="button" class="sort-option-btn w-full h-12 flex items-center justify-between px-4 rounded-lg text-sm text-text-primary active:bg-surface-hover transition-colors" data-sort="price-asc" data-label="Price: Low to High">
+        <span>Token Price (Low to High)</span>
+        <span class="material-symbols-outlined text-[20px] text-transparent check-icon">check</span>
+      </button>
+
+      <button type="button" class="sort-option-btn w-full h-12 flex items-center justify-between px-4 rounded-lg text-sm text-text-primary active:bg-surface-hover transition-colors" data-sort="title-asc" data-label="Title A–Z">
+        <span>Treatise Title (A to Z)</span>
+        <span class="material-symbols-outlined text-[20px] text-transparent check-icon">check</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= BOTTOM SHEET 3: ADD TO PLAYLIST MODAL ================= -->
+  <div id="playlist-sheet-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity opacity-0"></div>
+  <div id="playlist-sheet" class="fixed bottom-0 inset-x-0 z-50 max-w-md mx-auto bg-surface border-t border-border rounded-t-2xl transform translate-y-full sheet-transition pb-safe hidden">
+    <div class="sticky top-0 bg-surface px-5 pt-3 pb-3 border-b border-border flex flex-col items-center">
+      <div class="w-10 h-1 rounded-full bg-border mb-3"></div>
+      <div class="w-full flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-mono text-primary uppercase tracking-wider">Quick Ingestion</span>
+          <h3 class="text-base font-semibold text-text-primary" id="playlist-book-target">Add to Reading List</h3>
+        </div>
+        <button id="close-playlist-sheet-btn" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-text-secondary active:scale-90">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- User playlists -->
+    <div class="p-5 flex flex-col space-y-2">
+      <button type="button" class="playlist-select-item w-full min-h-[48px] px-4 py-2.5 rounded-lg bg-canvas border border-border hover:border-primary flex items-center justify-between text-left active:scale-[0.98] transition-all" onclick="confirmAddToPlaylist('Master Metallurgical Compendia')">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded bg-surface flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">bookmark</span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-text-primary">Master Metallurgical Compendia</p>
+            <p class="text-[11px] text-text-secondary font-mono">14 codices • Curated by Alistair Vance</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-primary text-[20px]">add_circle</span>
+      </button>
+
+      <button type="button" class="playlist-select-item w-full min-h-[48px] px-4 py-2.5 rounded-lg bg-canvas border border-border hover:border-primary flex items-center justify-between text-left active:scale-[0.98] transition-all" onclick="confirmAddToPlaylist('Ancient Celestial Astrolabes')">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded bg-surface flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">stars</span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-text-primary">Ancient Celestial Astrolabes</p>
+            <p class="text-[11px] text-text-secondary font-mono">8 codices • Private Study</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-primary text-[20px]">add_circle</span>
+      </button>
+
+      <button type="button" class="playlist-select-item w-full min-h-[48px] px-4 py-2.5 rounded-lg bg-canvas border border-border hover:border-primary flex items-center justify-between text-left active:scale-[0.98] transition-all" onclick="confirmAddToPlaylist('Sacred Geometry & Mind Logic')">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded bg-surface flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">architecture</span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-text-primary">Sacred Geometry &amp; Mind Logic</p>
+            <p class="text-[11px] text-text-secondary font-mono">22 codices • Guild Public</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-primary text-[20px]">add_circle</span>
+      </button>
+
+      <button type="button" class="w-full h-11 mt-2 rounded-lg border border-dashed border-border text-text-secondary text-sm font-medium flex items-center justify-center gap-2 hover:border-primary hover:text-primary active:scale-95 transition-all">
+        <span class="material-symbols-outlined text-[18px]">add</span>
+        <span>Create New Playlist</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= BOTTOM SHEET 4: CONTEXT MENU (LONG PRESS) ================= -->
+  <div id="context-sheet-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity opacity-0"></div>
+  <div id="context-sheet" class="fixed bottom-0 inset-x-0 z-50 max-w-md mx-auto bg-surface border-t border-border rounded-t-2xl transform translate-y-full sheet-transition pb-safe hidden">
+    <div class="sticky top-0 bg-surface px-5 pt-3 pb-3 border-b border-border flex flex-col items-center">
+      <div class="w-10 h-1 rounded-full bg-border mb-3"></div>
+      <div class="w-full flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-mono text-text-secondary uppercase tracking-wider">Treatise Options</span>
+          <h3 class="text-base font-semibold text-text-primary" id="context-sheet-title">Book Actions</h3>
+        </div>
+        <button id="close-context-sheet-btn" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-text-secondary active:scale-90">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="p-5 flex flex-col space-y-1">
+      <button type="button" class="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-canvas hover:bg-surface-hover flex items-center gap-3 text-text-primary text-sm font-medium active:scale-[0.98] transition-all" onclick="showToast('Opening Folio Reader...')">
+        <span class="material-symbols-outlined text-primary text-[20px]">menu_book</span>
+        <span>View Full Treatise &amp; Reader</span>
+      </button>
+
+      <button type="button" class="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-canvas hover:bg-surface-hover flex items-center gap-3 text-text-primary text-sm font-medium active:scale-[0.98] transition-all" onclick="openPlaylistSheet(document.getElementById('context-sheet-title').textContent); closeContextSheet();">
+        <span class="material-symbols-outlined text-primary text-[20px]">playlist_add</span>
+        <span>Add to Archival Reading List</span>
+      </button>
+
+      <button type="button" class="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-canvas hover:bg-surface-hover flex items-center gap-3 text-text-primary text-sm font-medium active:scale-[0.98] transition-all" onclick="showToast('Treatise permalink copied to clipboard')">
+        <span class="material-symbols-outlined text-primary text-[20px]">share</span>
+        <span>Share Treatise Link</span>
+      </button>
+
+      <button type="button" class="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-canvas hover:bg-surface-hover flex items-center gap-3 text-status-error text-sm font-medium active:scale-[0.98] transition-all" onclick="showToast('Navigating to violation report...')">
+        <span class="material-symbols-outlined text-status-error text-[20px]">flag</span>
+        <span>Report Violation to Archivist</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= POPUP TOAST NOTIFICATION ================= -->
+  <div id="toast" class="fixed top-4 inset-x-5 max-w-md mx-auto z-50 transform -translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 p-3.5 rounded-xl bg-surface border border-primary text-text-primary shadow-2xl">
+    <span class="material-symbols-outlined text-primary text-[22px]">verified</span>
+    <span id="toast-message" class="text-xs font-medium">Added to playlist</span>
+  </div>
+
+  <!-- ================= CLIENT JAVASCRIPT INTERACTIONS ================= -->
+  <script>
+    // Haptic feedback helper
+    function triggerHaptic(duration = 10) {
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        try { navigator.vibrate(duration); } catch (e) {}
+      }
+    }
+
+    // Toast notification
+    function showToast(message) {
+      triggerHaptic(15);
+      const toast = document.getElementById('toast');
+      const msgElem = document.getElementById('toast-message');
+      msgElem.textContent = message;
+      toast.classList.remove('-translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('-translate-y-24', 'opacity-0');
+      }, 2600);
+    }
+
+    // 1. Search Bar Functionality
+    const searchInput = document.getElementById('search-input');
+    const clearSearchBtn = document.getElementById('clear-search-btn');
+
+    searchInput.addEventListener('input', (e) => {
+      if (e.target.value.trim().length > 0) {
+        clearSearchBtn.classList.remove('hidden');
+      } else {
+        clearSearchBtn.classList.add('hidden');
+      }
+    });
+
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      triggerHaptic(8);
+      showToast('Search query cleared');
+    });
+
+    // 2. Bottom Sheet Management Helper
+    function openSheet(sheetId, overlayId) {
+      triggerHaptic(10);
+      const sheet = document.getElementById(sheetId);
+      const overlay = document.getElementById(overlayId);
+
+      overlay.classList.remove('hidden');
+      sheet.classList.remove('hidden');
+
+      setTimeout(() => {
+        overlay.classList.remove('opacity-0');
+        overlay.classList.add('opacity-100');
+        sheet.classList.remove('translate-y-full');
+      }, 10);
+    }
+
+    function closeSheet(sheetId, overlayId) {
+      triggerHaptic(8);
+      const sheet = document.getElementById(sheetId);
+      const overlay = document.getElementById(overlayId);
+
+      overlay.classList.remove('opacity-100');
+      overlay.classList.add('opacity-0');
+      sheet.classList.add('translate-y-full');
+
+      setTimeout(() => {
+        sheet.classList.add('hidden');
+        overlay.classList.add('hidden');
+      }, 280);
+    }
+
+    // Filter Sheet Trigger
+    const openFilterBtn = document.getElementById('open-filter-btn');
+    const closeFilterSheetBtn = document.getElementById('close-filter-sheet-btn');
+    const filterSheetOverlay = document.getElementById('filter-sheet-overlay');
+    const applyFiltersBtn = document.getElementById('apply-filters-btn');
+
+    openFilterBtn.addEventListener('click', () => openSheet('filter-sheet', 'filter-sheet-overlay'));
+    closeFilterSheetBtn.addEventListener('click', () => closeSheet('filter-sheet', 'filter-sheet-overlay'));
+    filterSheetOverlay.addEventListener('click', () => closeSheet('filter-sheet', 'filter-sheet-overlay'));
+    applyFiltersBtn.addEventListener('click', () => {
+      closeSheet('filter-sheet', 'filter-sheet-overlay');
+      showToast('Filters applied to collection');
+    });
+
+    // Sort Sheet Trigger
+    const openSortBtn = document.getElementById('open-sort-btn');
+    const closeSortSheetBtn = document.getElementById('close-sort-sheet-btn');
+    const sortSheetOverlay = document.getElementById('sort-sheet-overlay');
+    const activeSortLabel = document.getElementById('active-sort-label');
+    const sortOptions = document.querySelectorAll('.sort-option-btn');
+
+    openSortBtn.addEventListener('click', () => openSheet('sort-sheet', 'sort-sheet-overlay'));
+    closeSortSheetBtn.addEventListener('click', () => closeSheet('sort-sheet', 'sort-sheet-overlay'));
+    sortSheetOverlay.addEventListener('click', () => closeSheet('sort-sheet', 'sort-sheet-overlay'));
+
+    sortOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        sortOptions.forEach(o => {
+          o.classList.remove('text-primary', 'bg-primary/10', 'font-medium');
+          o.classList.add('text-text-primary');
+          const chk = o.querySelector('.material-symbols-outlined');
+          if (chk) chk.classList.add('text-transparent');
+        });
+        opt.classList.add('text-primary', 'bg-primary/10', 'font-medium');
+        opt.classList.remove('text-text-primary');
+        const chk = opt.querySelector('.material-symbols-outlined');
+        if (chk) chk.classList.remove('text-transparent');
+
+        const newLabel = opt.getAttribute('data-label');
+        activeSortLabel.textContent = newLabel;
+        closeSheet('sort-sheet', 'sort-sheet-overlay');
+        showToast(`Sorted by: ${newLabel}`);
+      });
+    });
+
+    // Playlist Sheet Actions
+    const playlistSheetOverlay = document.getElementById('playlist-sheet-overlay');
+    const closePlaylistSheetBtn = document.getElementById('close-playlist-sheet-btn');
+
+    function openPlaylistSheet(title) {
+      document.getElementById('playlist-book-target').textContent = title;
+      openSheet('playlist-sheet', 'playlist-sheet-overlay');
+    }
+
+    closePlaylistSheetBtn.addEventListener('click', () => closeSheet('playlist-sheet', 'playlist-sheet-overlay'));
+    playlistSheetOverlay.addEventListener('click', () => closeSheet('playlist-sheet', 'playlist-sheet-overlay'));
+
+    function confirmAddToPlaylist(listName) {
+      closeSheet('playlist-sheet', 'playlist-sheet-overlay');
+      showToast(`Added to "${listName}"`);
+    }
+
+    // Context Menu Sheet Actions
+    const contextSheetOverlay = document.getElementById('context-sheet-overlay');
+    const closeContextSheetBtn = document.getElementById('close-context-sheet-btn');
+
+    function closeContextSheet() {
+      closeSheet('context-sheet', 'context-sheet-overlay');
+    }
+    closeContextSheetBtn.addEventListener('click', closeContextSheet);
+    contextSheetOverlay.addEventListener('click', closeContextSheet);
+
+    function openContextMenu(title) {
+      document.getElementById('context-sheet-title').textContent = title;
+      openSheet('context-sheet', 'context-sheet-overlay');
+    }
+
+    // 3. Swipe-to-Reveal Gesture Implementation on Cards
+    const swipeTracks = document.querySelectorAll('.card-swipe-track');
+
+    swipeTracks.forEach(track => {
+      let startX = 0;
+      let currentX = 0;
+      let isDragging = false;
+      let isRevealed = false;
+      let pressTimer = null;
+
+      // Touch events
+      track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        track.style.transition = 'none';
+
+        // Long press detection (500ms)
+        const cardTitle = track.querySelector('h3') ? track.querySelector('h3').textContent : 'Book Details';
+        pressTimer = setTimeout(() => {
+          if (isDragging && Math.abs(currentX) < 10) {
+            triggerHaptic(25);
+            openContextMenu(cardTitle);
+            isDragging = false;
+          }
+        }, 520);
+      }, { passive: true });
+
+      track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.touches[0].clientX - startX;
+
+        if (Math.abs(deltaX) > 10 && pressTimer) {
+          clearTimeout(pressTimer);
+        }
+
+        // Only allow swiping left (negative deltaX)
+        if (deltaX < 0 && deltaX > -120) {
+          currentX = deltaX;
+          track.style.transform = `translateX(${currentX}px)`;
+        }
+      }, { passive: true });
+
+      track.addEventListener('touchend', () => {
+        if (pressTimer) clearTimeout(pressTimer);
+        track.style.transition = 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)';
+
+        if (currentX < -50) {
+          // Snap open
+          track.style.transform = 'translateX(-96px)';
+          isRevealed = true;
+          triggerHaptic(12);
+        } else {
+          // Snap closed
+          track.style.transform = 'translateX(0px)';
+          isRevealed = false;
+        }
+        isDragging = false;
+        currentX = 0;
+      });
+
+      // Quick toggle for desktop click demonstration
+      track.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        const cardTitle = track.querySelector('h3') ? track.querySelector('h3').textContent : 'Treatise';
+        openContextMenu(cardTitle);
+      });
+    });
+
+    // Tap on card body opens details
+    function handleCardClick(title, author) {
+      triggerHaptic(8);
+      showToast(`Selected: "${title}" by ${author}`);
+    }
+
+    // 4. Chip Removal & Reset
+    const chipRemoveBtns = document.querySelectorAll('.remove-chip-btn');
+    chipRemoveBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const chip = btn.closest('.filter-chip');
+        if (chip) {
+          triggerHaptic(8);
+          chip.remove();
+          updateBadgeCounter();
+          showToast('Filter removed');
+        }
+      });
+    });
+
+    const clearAllChipsBtn = document.getElementById('clear-all-chips-btn');
+    clearAllChipsBtn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(c => c.remove());
+      updateBadgeCounter();
+      showToast('All filters cleared');
+    });
+
+    function updateBadgeCounter() {
+      const count = document.querySelectorAll('.filter-chip').length;
+      const badge = document.getElementById('filter-count-badge');
+      if (count > 0) {
+        badge.classList.remove('hidden');
+        badge.textContent = count;
+      } else {
+        badge.classList.add('hidden');
+      }
+      document.getElementById('results-count').textContent = `Showing ${count > 0 ? '6' : '14'} treatises`;
+    }
+
+    // 5. State Toggle Simulation (Normal Catalog vs Skeletons vs Empty vs Error)
+    let currentStateIdx = 0;
+    const states = ['Catalog Mode', 'Loading Skeletons', 'Empty Catalog', 'Network Error'];
+    const toggleViewBtn = document.getElementById('toggle-view-btn');
+    const bookListContainer = document.getElementById('book-list-container');
+    const skeletonContainer = document.getElementById('skeleton-container');
+    const emptyStateContainer = document.getElementById('empty-state-container');
+    const errorStateContainer = document.getElementById('error-state-container');
+
+    toggleViewBtn.addEventListener('click', () => {
+      triggerHaptic(15);
+      currentStateIdx = (currentStateIdx + 1) % states.length;
+      renderActiveState();
+    });
+
+    function renderActiveState() {
+      toggleViewBtn.querySelector('span:last-child').textContent = states[currentStateIdx];
+
+      // Hide all
+      bookListContainer.classList.add('hidden');
+      skeletonContainer.classList.add('hidden');
+      skeletonContainer.classList.remove('flex');
+      emptyStateContainer.classList.add('hidden');
+      emptyStateContainer.classList.remove('flex');
+      errorStateContainer.classList.add('hidden');
+      errorStateContainer.classList.remove('flex');
+
+      if (currentStateIdx === 0) {
+        bookListContainer.classList.remove('hidden');
+      } else if (currentStateIdx === 1) {
+        skeletonContainer.classList.remove('hidden');
+        skeletonContainer.classList.add('flex');
+      } else if (currentStateIdx === 2) {
+        emptyStateContainer.classList.remove('hidden');
+        emptyStateContainer.classList.add('flex');
+      } else if (currentStateIdx === 3) {
+        errorStateContainer.classList.remove('hidden');
+        errorStateContainer.classList.add('flex');
+      }
+    }
+
+    // Reset buttons inside alternate states
+    document.getElementById('empty-reset-filters-btn').addEventListener('click', () => {
+      currentStateIdx = 0;
+      renderActiveState();
+      showToast('Filters cleared. Catalog restored.');
+    });
+
+    document.getElementById('error-retry-btn').addEventListener('click', () => {
+      currentStateIdx = 1;
+      renderActiveState();
+      setTimeout(() => {
+        currentStateIdx = 0;
+        renderActiveState();
+        showToast('Ledger reconnected successfully');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

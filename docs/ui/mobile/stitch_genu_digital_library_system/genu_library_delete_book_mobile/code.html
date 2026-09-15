@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#16110f]" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Delete Manuscript — Genu Library</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: {
+              DEFAULT: '#211a17',
+              dim: '#18120f',
+              bright: '#403734',
+            },
+            accent: '#e8693f',
+            danger: {
+              DEFAULT: '#c44d4d',
+              hover: '#b33d3d',
+            },
+            border: '#3a322d',
+            primary: '#ece0dc',
+            secondary: '#a89c93',
+            muted: '#7a706a',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+<style data-purpose="safe-areas">
+    /* iOS Safe Area Padding Support */
+    .pt-safe-top {
+      padding-top: max(env(safe-area-inset-top), 16px);
+    }
+    .pb-safe-bottom {
+      padding-bottom: max(env(safe-area-inset-bottom), 24px);
+    }
+    /* Prevent selection and mobile bounce behavior */
+    .touch-manipulation {
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+  </style>
+<style data-purpose="animations">
+    @keyframes subtle-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+    .animate-subtle {
+      animation: subtle-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
+<body class="h-full bg-[#16110f] text-[#ece0dc] font-sans antialiased flex flex-col justify-between select-none">
+<!-- BEGIN: NavigationBar -->
+<!-- Top App Bar with back action respecting iOS safe-area -->
+<header class="w-full max-w-md mx-auto pt-safe-top px-4 flex items-center justify-between" data-purpose="top-navigation">
+<button aria-label="Return to manuscript details" class="min-h-[44px] min-w-[44px] flex items-center gap-2 text-sm font-medium text-[#a89c93] hover:text-[#ece0dc] active:opacity-70 transition-colors touch-manipulation focus:outline-none" id="btn-back" type="button">
+<svg class="w-5 h-5 stroke-current" fill="none" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Back</span>
+</button>
+<span class="text-xs uppercase tracking-widest text-[#7a706a] font-semibold pr-2">Ledger Action</span>
+</header>
+<!-- END: NavigationBar -->
+<!-- BEGIN: MainContent -->
+<!-- Main centered confirmation surface card -->
+<main class="w-full max-w-md mx-auto px-4 flex-1 flex flex-col justify-center my-4" data-purpose="destructive-confirmation">
+<div class="w-full bg-[#211a17] border border-[#3a322d] rounded-2xl p-6 shadow-2xl relative overflow-hidden" data-purpose="confirmation-card">
+<!-- Top aesthetic accent indicator -->
+<div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#c44d4d] to-transparent opacity-60"></div>
+<!-- Book Preview Section -->
+<div class="flex flex-col items-center">
+<!-- Thumbnail Cover with fallback styling -->
+<div class="relative w-24 h-32 rounded-lg overflow-hidden border border-[#3a322d] shadow-lg bg-[#18120f] flex items-center justify-center">
+<img alt="The Alchemist's Codex cover" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('cover-fallback').style.display='flex';" src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k"/>
+<!-- Fallback if image asset fails to load -->
+<div class="hidden absolute inset-0 bg-[#1e1714] p-2 flex-col justify-between text-center items-center" id="cover-fallback">
+<svg class="w-6 h-6 text-[#7a706a] mt-2" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+<span class="text-[9px] uppercase tracking-wider text-[#a89c93] leading-tight">Codex 084</span>
+</div>
+</div>
+<!-- Book Identification -->
+<h1 class="font-serif font-bold text-lg text-[#ece0dc] text-center mt-4 tracking-tight leading-snug px-2">
+          The Alchemist's Codex: Arcane Wisdom &amp; Hermetic Arts
+        </h1>
+<p class="text-xs font-normal text-[#a89c93] text-center mt-1">
+          Prof. Alistair Vance • Codex #084
+        </p>
+</div>
+<!-- Subtle Hairline Separator -->
+<div class="h-px bg-[#3a322d] w-full my-5" role="separator"></div>
+<!-- Warning Description -->
+<div class="text-center px-1">
+<h2 class="text-base font-semibold text-[#ece0dc] flex items-center justify-center gap-1.5">
+<svg class="w-4 h-4 text-[#c44d4d] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+          Are you sure you want to delete this book?
+        </h2>
+<p class="text-xs text-[#a89c93] mt-2 leading-relaxed">
+          This action cannot be undone. All annotations, curations, and ledger entries associated with this folio will be permanently archived.
+        </p>
+</div>
+<!-- BEGIN: ActionButtons -->
+<!-- Interactive Confirmation Controls -->
+<div class="mt-6 flex flex-col gap-3" data-purpose="destructive-actions">
+<!-- Long-Press / Double-Tap Primary Destructive Button -->
+<button aria-live="polite" class="w-full relative overflow-hidden bg-[#c44d4d] hover:bg-[#b33d3d] active:scale-[0.98] text-[#ece0dc] font-semibold text-sm rounded-lg min-h-[48px] py-3.5 px-4 flex items-center justify-center gap-2 shadow-sm touch-manipulation transition-all cursor-pointer" id="btn-delete" type="button">
+<!-- Dynamic Fill Progress Line -->
+<div aria-hidden="true" class="absolute bottom-0 left-0 top-0 bg-white/20 pointer-events-none w-0 transition-[width] duration-75 ease-linear" id="delete-progress"></div>
+<!-- Spinner (hidden by default) -->
+<svg class="hidden w-4 h-4 text-[#ece0dc] animate-spin shrink-0" fill="none" id="delete-spinner" viewbox="0 0 24 24">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+<!-- Button Trash Icon -->
+<svg class="w-4 h-4 stroke-current shrink-0" fill="none" id="delete-icon" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<!-- Label -->
+<span class="relative z-10 font-medium" id="delete-label">Hold to Delete</span>
+</button>
+<!-- Cancel / Safe Exit Button -->
+<button class="w-full bg-transparent border border-[#3a322d] hover:border-[#4d433d] text-[#ece0dc] font-semibold text-sm rounded-lg min-h-[48px] py-3 px-4 flex items-center justify-center active:scale-[0.98] transition-all touch-manipulation" id="btn-cancel" type="button">
+          Cancel &amp; Keep Manuscript
+        </button>
+</div>
+<!-- END: ActionButtons -->
+<p class="text-[11px] text-[#7a706a] text-center mt-3 font-normal">
+        Tip: Press and hold 500ms or double tap to confirm
+      </p>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: ToastNotification -->
+<!-- Feedback toast element for state confirmations -->
+<aside aria-live="polite" class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-xs bg-[#18120f] border border-[#3a322d] text-[#ece0dc] text-xs px-4 py-3 rounded-lg shadow-xl opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center gap-2 z-50" data-purpose="toast-message" id="toast" role="status">
+<span id="toast-text">Folio archived safely</span>
+</aside>
+<!-- END: ToastNotification -->
+<!-- BEGIN: SafeBottomPlaceholder -->
+<footer class="pb-safe-bottom w-full"></footer>
+<!-- END: SafeBottomPlaceholder -->
+<!-- BEGIN: LogicScript -->
+<script data-purpose="event-handlers">
+    document.addEventListener('DOMContentLoaded', () => {
+      const deleteBtn = document.getElementById('btn-delete');
+      const deleteProgress = document.getElementById('delete-progress');
+      const deleteLabel = document.getElementById('delete-label');
+      const deleteIcon = document.getElementById('delete-icon');
+      const deleteSpinner = document.getElementById('delete-spinner');
+      const cancelBtn = document.getElementById('btn-cancel');
+      const backBtn = document.getElementById('btn-back');
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+
+      const REQUIRED_HOLD_TIME = 500; // 500ms long-press required
+      let holdTimer = null;
+      let startTimestamp = null;
+      let isCompleted = false;
+      let lastTapTimestamp = 0;
+
+      function triggerHaptic() {
+        if ('vibrate' in navigator) {
+          navigator.vibrate(40);
+        }
+      }
+
+      function showToast(message, duration = 2500) {
+        toastText.textContent = message;
+        toast.classList.remove('opacity-0', 'pointer-events-none');
+        toast.classList.add('opacity-100');
+        setTimeout(() => {
+          toast.classList.remove('opacity-100');
+          toast.classList.add('opacity-0', 'pointer-events-none');
+        }, duration);
+      }
+
+      function executeDelete() {
+        if (isCompleted) return;
+        isCompleted = true;
+        triggerHaptic();
+
+        // Switch to progress spinner state
+        deleteLabel.textContent = 'Deleting manuscript...';
+        deleteIcon.classList.add('hidden');
+        deleteSpinner.classList.remove('hidden');
+        deleteProgress.style.width = '100%';
+        deleteProgress.style.backgroundColor = 'rgba(255,255,255,0.3)';
+        deleteBtn.classList.add('pointer-events-none');
+        cancelBtn.classList.add('pointer-events-none', 'opacity-50');
+
+        // Simulate API archive request
+        setTimeout(() => {
+          showToast('Manuscript #084 successfully archived.');
+          setTimeout(() => {
+            if (window.history.length > 1) {
+              window.history.back();
+            } else {
+              window.location.reload();
+            }
+          }, 1200);
+        }, 900);
+      }
+
+      function startHold(e) {
+        if (isCompleted) return;
+
+        // Check for double-tap alternative (within 300ms)
+        const now = Date.now();
+        if (now - lastTapTimestamp < 300) {
+          executeDelete();
+          return;
+        }
+        lastTapTimestamp = now;
+
+        startTimestamp = performance.now();
+        deleteLabel.textContent = 'Release to Confirm';
+        deleteProgress.style.transitionDuration = `${REQUIRED_HOLD_TIME}ms`;
+        deleteProgress.style.width = '100%';
+
+        holdTimer = setTimeout(() => {
+          executeDelete();
+        }, REQUIRED_HOLD_TIME);
+      }
+
+      function cancelHold() {
+        if (isCompleted) return;
+        clearTimeout(holdTimer);
+        deleteLabel.textContent = 'Hold to Delete';
+        deleteProgress.style.transitionDuration = '120ms';
+        deleteProgress.style.width = '0%';
+      }
+
+      // Pointer event listeners for robust cross-browser touch/mouse long-press
+      deleteBtn.addEventListener('pointerdown', startHold);
+      deleteBtn.addEventListener('pointerup', cancelHold);
+      deleteBtn.addEventListener('pointerleave', cancelHold);
+      deleteBtn.addEventListener('pointercancel', cancelHold);
+
+      // Cancel button interactions
+      cancelBtn.addEventListener('click', () => {
+        showToast('Action cancelled');
+        setTimeout(() => {
+          if (window.history.length > 1) {
+            window.history.back();
+          }
+        }, 500);
+      });
+
+      // Back navigation button
+      backBtn.addEventListener('click', () => {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          showToast('Navigating back...');
+        }
+      });
+    });
+  </script>
+<!-- END: LogicScript -->
+</body></html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#251e1b","text-on-accent":"#16110f","text-muted":"#7a706a","inverse-surface":"#eee0da","status-info":"#5b8fb9","border":"#3a322d","secondary-fixed":"#ffdead","on-tertiary":"#00363f","on-surface":"#eee0da","primary-container":"#ea6a40","error":"#ffb4ab","on-error-container":"#ffdad6","surface":"#211a17","outline":"#a68b82","surface-container-high":"#302825","surface-dim":"#18120f","outline-variant":"#58423b","inverse-primary":"#a73a13","on-background":"#eee0da","on-tertiary-fixed":"#001f25","status-warning":"#d4a24e","on-secondary-fixed":"#281900","canvas":"#16110f","secondary-fixed-dim":"#f3be67","on-primary-fixed-variant":"#842500","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","text-secondary":"#a89c93","background":"#18120f","primary":"#ffb59e","surface-tint":"#ffb59e","surface-container-highest":"#3b3330","on-primary-container":"#521300","tertiary-fixed-dim":"#61d6ed","text-primary":"#ece0dc","surface-container-low":"#211a17","on-tertiary-container":"#002f36","surface-variant":"#3b3330","on-secondary-container":"#ffcd7d","tertiary-container":"#049fb5","status-success":"#4a7c59","inverse-on-surface":"#372f2b","on-secondary":"#432c00","tertiary":"#61d6ed","surface-bright":"#403734","primary-fixed-dim":"#ffb59e","status-error":"#c44d4d","on-tertiary-fixed-variant":"#004e5a","on-primary":"#5e1700","secondary":"#f3be67","error-container":"#93000a","surface-container-lowest":"#130d0a","primary-hover":"#d45a30","on-error":"#690005","on-secondary-fixed-variant":"#604100","tertiary-fixed":"#a4eeff","secondary-container":"#7c5400","border-hover":"#4d433d","surface-active":"#332a24","surface-hover":"#2a211c","on-surface-variant":"#dfc0b7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","margin-mobile":"1rem","space-xl":"2rem","space-sm":"0.5rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem"},"fontFamily":{"display":["Playfair Display"],"headline-1":["Playfair Display"],"body-large":["Inter"],"headline-2":["Playfair Display"],"overline":["JetBrains Mono"],"body-default":["Inter"],"caption":["Inter"],"display-mobile":["Playfair Display"],"display-xl-mobile":["Playfair Display"],"headline-3":["Playfair Display"],"display-xl":["Playfair Display"],"label-mono":["JetBrains Mono"],"body-small":["Inter"]},"fontSize":{"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-1":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-large":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-2":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"body-default":["16px",{"lineHeight":"24px","fontWeight":"400"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-xl-mobile":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-3":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-xl":["60px",{"lineHeight":"68px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-mono":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"500"}],"body-small":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-canvas font-body-default text-body-default text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-canvas/80 backdrop-blur-xl border-b border-border transition-colors duration-200"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg shrink-0"><a class="flex items-center gap-space-sm group text-text-primary" data-path="home" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border group-hover:border-primary transition-colors"><span class="material-symbols-outlined text-primary text-[22px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary tracking-tight">Genu Library</span></a><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary border-b-2 border-primary"><a aria-current="page" class="font-body-default transition-colors py-space-xs text-primary border-b-2 border-primary" data-path="home" href="#">Home</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="books" href="#">Books</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="playlists" href="#">Playlists</a><a class="font-body-default text-body-default text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="upload" href="#">Upload</a></nav></div><div class="hidden md:flex flex-1 max-w-md mx-space-md relative"><div class="w-full flex items-center bg-canvas border border-border rounded-lg px-space-sm py-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all"><span class="material-symbols-outlined text-text-muted text-[20px] mr-2">search</span><input class="w-full bg-transparent border-none outline-none font-body-small text-body-small text-text-primary placeholder:text-text-muted" placeholder="Search codex, folio, author, or seal..." type="text"/><span class="font-label-mono text-overline text-text-muted bg-surface-container border border-border px-1.5 py-0.5 rounded">⌘K</span></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-1.5 bg-surface-container border border-border px-space-sm py-1.5 rounded-lg"><span class="text-secondary text-[16px]">🪙</span><span class="font-label-mono text-label-mono font-medium text-secondary">1.4K</span></div><div class="flex items-center gap-space-sm"><div class="relative group cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></div></header><main class="w-full pt-20 bg-canvas min-h-screen"><div class="flex flex-col w-full">
+<div class="max-w-7xl mx-auto w-full px-margin py-space-lg">
+<!-- Breadcrumb & Top Page Header -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
+<div class="space-y-space-xs">
+<nav aria-label="Breadcrumbs" class="flex items-center gap-2 font-label-mono text-overline uppercase tracking-widest text-text-muted">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[13px] text-border-hover">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Profile</a>
+<span class="material-symbols-outlined text-[13px] text-border-hover">chevron_right</span>
+<span class="text-secondary">Edit Profile</span>
+</nav>
+<h1 class="font-headline-1 text-headline-1 text-text-primary tracking-tight">Edit Profile</h1>
+<p class="font-body-default text-body-small text-text-secondary">
+          Manage your personal details, reading persona, and guild sanctum presentation.
+        </p>
+</div>
+<!-- Quick Action Header Buttons (Desktop Top-Right) -->
+<div class="hidden md:flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-hover text-text-secondary hover:text-text-primary font-body-default text-body-small font-medium transition-all shadow-sm" onclick="handleFormReset()" type="button">
+          Cancel
+        </button>
+<button class="save-btn-master px-space-lg py-2 rounded-lg bg-primary-container hover:bg-primary-hover text-text-on-accent font-body-default text-body-small font-semibold inline-flex items-center gap-2 shadow-md transition-all" onclick="triggerSaveFlow(this)" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>Save Changes</span>
+</button>
+</div>
+</section>
+<!-- Main Workspace Layout: Two Distinct Asymmetrical Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- LEFT COLUMN: Avatar & Archivist Credential Card (4 cols) -->
+<aside class="lg:col-span-4 space-y-space-lg">
+<!-- Interactive Avatar Card -->
+<div class="bg-surface-container rounded-xl p-space-lg shadow-md flex flex-col items-center text-center relative overflow-hidden">
+<!-- Ambient Ember Flare behind avatar -->
+<div class="absolute -top-12 -left-12 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -right-10 w-44 h-44 bg-secondary/10 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Avatar Image Container with Golden Halo Ring -->
+<div class="relative group mt-2 mb-space-md">
+<div class="p-1 rounded-full bg-gradient-to-tr from-secondary via-primary to-surface-bright shadow-lg transition-transform duration-300 group-hover:scale-105">
+<div class="relative w-44 h-44 rounded-full overflow-hidden bg-surface-container-lowest cursor-pointer shadow-inner" id="avatarPreviewContainer" onclick="document.getElementById('avatarFileInput').click()">
+<img alt="Elena Rostova Avatar" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" id="avatarImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVEsPuZGYXxVaHADXLyRQSYF1bHYKkWSfZeKgEnCXhD5I_i4X2yHrRM68TX49r_osjw_Ijl6kzI5qP60_RoWLajmchDj14l9Zz9t-SMdR-HlSqpQXI4iERDcOjoicnQN7atWdK-Cd-llCWyazZrQwmqo_DUY-_3NfJjmpezib_GqKgu5VwZVra5zoLWw_tV9292mw3X5fdk8Qxfn1vswgrHh2S-rK0Ft-l9kitHJm5Kj6x4vSpNQv2"/>
+<!-- Hover Overlay with Camera Icon -->
+<div class="absolute inset-0 bg-canvas/80 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center gap-1.5 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 text-text-primary">
+<span class="material-symbols-outlined text-primary text-[28px]">photo_camera</span>
+<span class="font-label-mono text-overline uppercase tracking-wider text-text-primary">Change Photo</span>
+</div>
+</div>
+</div>
+<!-- Real Hidden File Input for live preview -->
+<input accept="image/png, image/jpeg, image/webp" class="hidden" id="avatarFileInput" onchange="previewAvatar(event)" type="file"/>
+<!-- Floating Quick Edit Badge button -->
+<button class="absolute bottom-1 right-2 w-9 h-9 rounded-full bg-primary-container text-text-on-accent flex items-center justify-center shadow-md hover:bg-primary-hover transition-transform hover:scale-110" onclick="document.getElementById('avatarFileInput').click()" title="Upload new folio seal" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<!-- User Display Info -->
+<h2 class="font-headline-3 text-headline-3 text-text-primary">Elena Rostova</h2>
+<p class="font-label-mono text-overline text-secondary uppercase tracking-wider mt-0.5">Archivist Level VII</p>
+<!-- Helper Text -->
+<p class="font-body-small text-caption text-text-muted mt-space-sm max-w-xs leading-relaxed">
+            JPG, PNG or WEBP. Max 1MB.<br/>Standard square 400×400px recommended.
+          </p>
+<!-- Badges / Tags -->
+<div class="flex flex-wrap items-center justify-center gap-2 mt-space-md">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-high text-secondary font-label-mono text-overline uppercase tracking-wide">
+<span class="material-symbols-outlined text-[13px] text-secondary">verified</span>
+              Verified Scholar
+            </span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-high text-text-muted font-label-mono text-overline uppercase tracking-wide">
+<span class="material-symbols-outlined text-[13px]">calendar_month</span>
+              Since Oct 2022
+            </span>
+</div>
+<!-- Remove Photo / Action -->
+<div class="mt-space-md pt-space-sm w-full flex items-center justify-center">
+<button class="text-caption font-body-small text-error hover:text-error-container transition-colors inline-flex items-center gap-1" onclick="removeAvatar()" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+              Remove photo
+            </button>
+</div>
+</div>
+<!-- Public Preview Mini-Summary Card -->
+<div class="bg-surface-container rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-label-mono text-overline uppercase text-text-muted tracking-wider">Sanctum Ledger</h3>
+<span class="w-2 h-2 rounded-full bg-status-success shadow-[0_0_8px_currentColor]"></span>
+</div>
+<div class="space-y-space-sm font-label-mono text-label-mono text-text-secondary">
+<div class="flex items-center justify-between py-1 bg-surface-container-low px-3 rounded-lg">
+<span class="text-text-muted text-caption">Folios Read</span>
+<span class="text-text-primary font-semibold">148 Works</span>
+</div>
+<div class="flex items-center justify-between py-1 bg-surface-container-low px-3 rounded-lg">
+<span class="text-text-muted text-caption">Archival Seals</span>
+<span class="text-secondary font-semibold">19 Guild Marks</span>
+</div>
+<div class="flex items-center justify-between py-1 bg-surface-container-low px-3 rounded-lg">
+<span class="text-text-muted text-caption">Guild Coins</span>
+<span class="text-secondary font-semibold">🪙 1,420 GC</span>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">auto_stories</span>
+<p class="font-body-small text-caption text-text-secondary leading-normal">
+              Elena's shelf is publicly listed under the <strong class="text-text-primary font-medium">Bloomsbury Classical Index</strong>.
+            </p>
+</div>
+</div>
+</aside>
+<!-- RIGHT COLUMN: Main Edit Profile Form (8 cols) -->
+<main class="lg:col-span-8">
+<div class="bg-surface-container rounded-xl p-6 sm:p-space-lg md:p-10 shadow-md">
+<form class="space-y-space-lg" id="profileForm" onsubmit="event.preventDefault(); triggerSaveFlow(document.getElementById('bottomSaveBtn'));">
+<!-- Section 1: Identity & Vital Statistics -->
+<div class="space-y-space-md">
+<div class="pb-2">
+<h2 class="font-headline-2 text-headline-2 text-text-primary">Archivist Identity</h2>
+<p class="font-body-small text-body-small text-text-secondary">Personal records bound to the Sovereign Archive registry.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<!-- Full Name -->
+<div class="md:col-span-8 space-y-1.5">
+<label class="block font-body-small text-body-small font-medium text-text-secondary" for="fullName">
+                    Full Name <span class="text-primary">*</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-text-muted text-[18px] absolute left-3.5 pointer-events-none">person</span>
+<input class="w-full bg-canvas rounded-lg pl-10 pr-3.5 py-2.5 font-body-default text-body-default text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="fullName" required="" type="text" value="Elena Rostova"/>
+</div>
+<p class="font-body-small text-caption text-text-muted">Visible on published annotations and folio marginalia.</p>
+</div>
+<!-- Age -->
+<div class="md:col-span-4 space-y-1.5">
+<label class="block font-body-small text-body-small font-medium text-text-secondary" for="age">
+                    Age
+                  </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-text-muted text-[18px] absolute left-3.5 pointer-events-none">hourglass_empty</span>
+<input class="w-full bg-canvas rounded-lg pl-10 pr-3.5 py-2.5 font-label-mono text-label-mono text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="age" max="130" min="12" type="number" value="34"/>
+</div>
+<p class="font-body-small text-caption text-text-muted">Years on terrestrial timeline.</p>
+</div>
+</div>
+<!-- Gender Selection: Styled Interactive Pill Cards -->
+<div class="space-y-2 pt-1">
+<label class="block font-body-small text-body-small font-medium text-text-secondary">
+                  Gender Designation
+                </label>
+<div aria-label="Gender selection" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="radiogroup">
+<!-- Female (Selected by default) -->
+<label class="gender-card cursor-pointer relative flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-high hover:bg-surface-hover text-center transition-all group" data-selected="true">
+<input checked="" class="sr-only" name="gender" onchange="updateGenderSelection(this)" type="radio" value="female"/>
+<span class="material-symbols-outlined text-[20px] text-primary mb-1">female</span>
+<span class="font-body-small text-body-small font-medium text-text-primary">Female</span>
+</label>
+<!-- Male -->
+<label class="gender-card cursor-pointer relative flex flex-col items-center justify-center p-3 rounded-lg bg-canvas hover:bg-surface-hover text-center transition-all group" data-selected="false">
+<input class="sr-only" name="gender" onchange="updateGenderSelection(this)" type="radio" value="male"/>
+<span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-text-primary mb-1">male</span>
+<span class="font-body-small text-body-small font-medium text-text-secondary group-hover:text-text-primary">Male</span>
+</label>
+<!-- Non-binary -->
+<label class="gender-card cursor-pointer relative flex flex-col items-center justify-center p-3 rounded-lg bg-canvas hover:bg-surface-hover text-center transition-all group" data-selected="false">
+<input class="sr-only" name="gender" onchange="updateGenderSelection(this)" type="radio" value="non-binary"/>
+<span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-text-primary mb-1">transgender</span>
+<span class="font-body-small text-body-small font-medium text-text-secondary group-hover:text-text-primary">Non-binary</span>
+</label>
+<!-- Prefer not to say -->
+<label class="gender-card cursor-pointer relative flex flex-col items-center justify-center p-3 rounded-lg bg-canvas hover:bg-surface-hover text-center transition-all group" data-selected="false">
+<input class="sr-only" name="gender" onchange="updateGenderSelection(this)" type="radio" value="unspecified"/>
+<span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-text-primary mb-1">visibility_off</span>
+<span class="font-body-small text-body-small font-medium text-text-secondary group-hover:text-text-primary">Undisclosed</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Divider Gradient Accent -->
+<div class="h-0.5 w-full bg-surface-container-high rounded-full my-space-md"></div>
+<!-- Section 2: Contact & Guild Coordinates -->
+<div class="space-y-space-md">
+<div>
+<h2 class="font-headline-2 text-headline-2 text-text-primary">Sanctum Transmission</h2>
+<p class="font-body-small text-body-small text-text-secondary">Direct pathways for scrolls, dispatches, and inter-library loan requests.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Phone -->
+<div class="space-y-1.5">
+<label class="block font-body-small text-body-small font-medium text-text-secondary" for="phone">
+                    Secure Dispatch Line (Phone)
+                  </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-text-muted text-[18px] absolute left-3.5 pointer-events-none">phone</span>
+<input class="w-full bg-canvas rounded-lg pl-10 pr-3.5 py-2.5 font-label-mono text-label-mono text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="phone" type="tel" value="+1 (555) 234-8901"/>
+</div>
+<p class="font-body-small text-caption text-text-muted">SMS emergency recalls for illuminated folios.</p>
+</div>
+<!-- Social Link / Website -->
+<div class="space-y-1.5">
+<label class="block font-body-small text-body-small font-medium text-text-secondary" for="website">
+                    Sanctum Link / Guild Domain
+                  </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-text-muted text-[18px] absolute left-3.5 pointer-events-none">link</span>
+<input class="w-full bg-canvas rounded-lg pl-10 pr-3.5 py-2.5 font-label-mono text-label-mono text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="website" type="url" value="https://readingsanctuary.org/@elena"/>
+</div>
+<p class="font-body-small text-caption text-text-muted">External catalog or federated scholarly profile.</p>
+</div>
+</div>
+<!-- Address / Physical Location -->
+<div class="space-y-1.5">
+<label class="block font-body-small text-body-small font-medium text-text-secondary" for="physicalAddress">
+                  Physical Reading Quarters &amp; Guild Scriptorium
+                </label>
+<div class="relative">
+<span class="material-symbols-outlined text-text-muted text-[18px] absolute left-3.5 top-3.5 pointer-events-none">pin_drop</span>
+<textarea class="w-full bg-canvas rounded-lg pl-10 pr-3.5 py-2.5 font-body-default text-body-small text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary-container transition-all resize-none" id="physicalAddress" rows="2">The Mews, 42 Old Library Court, Bloomsbury, London WC1B 3QH, United Kingdom</textarea>
+</div>
+<p class="font-body-small text-caption text-text-muted">Used exclusively for courier dispatches of rare printed materials.</p>
+</div>
+</div>
+<!-- Divider Gradient Accent -->
+<div class="h-0.5 w-full bg-surface-container-high rounded-full my-space-md"></div>
+<!-- Section 3: Reader Philosophy & Bio -->
+<div class="space-y-space-md">
+<div>
+<h2 class="font-headline-2 text-headline-2 text-text-primary">Reader Philosophy</h2>
+<p class="font-body-small text-body-small text-text-secondary">Articulate your affinity for classical codices, binding methods, or auditory studies.</p>
+</div>
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="block font-body-small text-body-small font-medium text-text-secondary" for="readerBio">
+                    Personal Ex Libris Statement
+                  </label>
+<span class="font-label-mono text-overline text-secondary" id="charCountDisplay">
+                    186 / 300
+                  </span>
+</div>
+<div class="relative">
+<textarea class="w-full bg-canvas rounded-lg p-3.5 font-body-default text-body-small text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary-container transition-all leading-relaxed" id="readerBio" maxlength="300" oninput="updateCharCounter(this)" rows="4">Devoted to the tactile preservation of 17th-century European cartography, hand-sewn leather bindings, and ambient night-reading codices. Always searching for lost translations of Byzantine botanicals.</textarea>
+</div>
+<p class="font-body-small text-caption text-text-muted">Summarized in catalog indexes and shared reading room directories.</p>
+</div>
+</div>
+<!-- Divider Gradient Accent -->
+<div class="h-0.5 w-full bg-surface-container-high rounded-full my-space-md"></div>
+<!-- Section 4: Privacy & Visibility Toggle -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="space-y-1 max-w-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">public</span>
+<h4 class="font-body-default text-body-default font-semibold text-text-primary">
+                    Show reading activity on public profile
+                  </h4>
+</div>
+<p class="font-body-small text-caption text-text-muted leading-normal">
+                  When enabled, fellow archivists can inspect currently active bookmarks, audio tracks in rotation, and recent marginalia contributions.
+                </p>
+</div>
+<!-- Interactive Switch Toggle -->
+<div class="shrink-0 flex items-center">
+<button aria-checked="true" class="w-14 h-8 rounded-full bg-primary-container p-1 transition-colors duration-200 ease-in-out relative focus:outline-none focus:ring-2 focus:ring-primary" id="privacyToggle" onclick="togglePrivacy(this)" role="switch" type="button">
+<span class="sr-only">Toggle public reading activity</span>
+<span class="block w-6 h-6 rounded-full bg-canvas shadow-md transform translate-x-6 transition-transform duration-200 ease-in-out flex items-center justify-center" id="toggleKnob">
+<span class="material-symbols-outlined text-[13px] text-primary">visibility</span>
+</span>
+</button>
+</div>
+</div>
+<!-- Section 5: Bottom Form Actions -->
+<div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Timestamp indicator -->
+<div class="flex items-center gap-2 text-text-muted font-label-mono text-overline">
+<span class="w-2 h-2 rounded-full bg-status-warning/80"></span>
+<span>Last saved: <span id="lastSavedTime">14 minutes ago</span></span>
+</div>
+<!-- Action buttons -->
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-hover text-text-secondary hover:text-text-primary font-body-default text-body-small font-medium transition-all" onclick="handleFormReset()" type="button">
+                  Cancel
+                </button>
+<button class="save-btn-master px-space-xl py-2.5 rounded-lg bg-primary-container hover:bg-primary-hover text-text-on-accent font-body-default text-body-small font-semibold inline-flex items-center justify-center gap-2 shadow-md hover:shadow-primary/20 transition-all min-w-[160px]" id="bottomSaveBtn" onclick="triggerSaveFlow(this)" type="button">
+<span class="material-symbols-outlined text-[18px] btn-icon">check</span>
+<span class="btn-text">Save Changes</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+</main>
+</div>
+<!-- Notification Toast Modal Simulation (Discreet bottom-right corner) -->
+<div class="fixed bottom-6 right-6 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 z-50" id="saveToast">
+<div class="bg-surface-container-highest px-space-md py-3 rounded-xl shadow-xl flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-status-success/20 flex items-center justify-center text-status-success">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div>
+<p class="font-body-default text-body-small font-semibold text-text-primary">Archivist Folio Updated</p>
+<p class="font-label-mono text-overline text-text-muted">Changes synchronized across the sovereign ledger.</p>
+</div>
+<button class="ml-2 text-text-muted hover:text-text-primary" onclick="hideToast()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic Character Counter for Reader Philosophy
+  function updateCharCounter(textarea) {
+    const counter = document.getElementById('charCountDisplay');
+    const currentLength = textarea.value.length;
+    counter.textContent = `${currentLength} / 300`;
+    if (currentLength > 280) {
+      counter.classList.remove('text-secondary');
+      counter.classList.add('text-status-warning');
+    } else {
+      counter.classList.add('text-secondary');
+      counter.classList.remove('text-status-warning');
+    }
+  }
+
+  // Gender Radio Card Interactive Selection
+  function updateGenderSelection(radio) {
+    const cards = document.querySelectorAll('.gender-card');
+    cards.forEach(card => {
+      const cardRadio = card.querySelector('input[type="radio"]');
+      const icon = card.querySelector('.material-symbols-outlined');
+      const label = card.querySelector('span:not(.material-symbols-outlined)');
+      
+      if (cardRadio && cardRadio.checked) {
+        card.setAttribute('data-selected', 'true');
+        card.classList.add('bg-surface-container-high');
+        card.classList.remove('bg-canvas');
+        if (icon) {
+          icon.classList.add('text-primary');
+          icon.classList.remove('text-text-muted');
+        }
+        if (label) {
+          label.classList.add('text-text-primary');
+          label.classList.remove('text-text-secondary');
+        }
+      } else {
+        card.setAttribute('data-selected', 'false');
+        card.classList.remove('bg-surface-container-high');
+        card.classList.add('bg-canvas');
+        if (icon) {
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-text-muted');
+        }
+        if (label) {
+          label.classList.remove('text-text-primary');
+          label.classList.add('text-text-secondary');
+        }
+      }
+    });
+  }
+
+  // Privacy Switch Toggle
+  function togglePrivacy(btn) {
+    const isChecked = btn.getAttribute('aria-checked') === 'true';
+    const newState = !isChecked;
+    btn.setAttribute('aria-checked', newState);
+    const knob = document.getElementById('toggleKnob');
+    const icon = knob.querySelector('.material-symbols-outlined');
+
+    if (newState) {
+      btn.classList.remove('bg-surface-container-highest');
+      btn.classList.add('bg-primary-container');
+      knob.classList.remove('translate-x-0');
+      knob.classList.add('translate-x-6');
+      icon.textContent = 'visibility';
+      icon.classList.add('text-primary');
+      icon.classList.remove('text-text-muted');
+    } else {
+      btn.classList.remove('bg-primary-container');
+      btn.classList.add('bg-surface-container-highest');
+      knob.classList.remove('translate-x-6');
+      knob.classList.add('translate-x-0');
+      icon.textContent = 'visibility_off';
+      icon.classList.remove('text-primary');
+      icon.classList.add('text-text-muted');
+    }
+  }
+
+  // Live Avatar Preview via FileReader
+  function previewAvatar(event) {
+    const file = event.target.files[0];
+    if (file) {
+      if (file.size > 1024 * 1024) {
+        alert('Notice: Image exceeds 1MB limit. Please choose an artisan folio seal under 1MB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('avatarImage').src = e.target.result;
+        showToastNotification('New archival portrait applied. Remember to save changes.');
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  // Remove Avatar Handler
+  function removeAvatar() {
+    if (confirm('Revert avatar to standard Guild Crest silhouette?')) {
+      document.getElementById('avatarImage').src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 24 24" fill="%23e8693f"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
+      showToastNotification('Archival portrait cleared.');
+    }
+  }
+
+  // Form Reset / Cancel
+  function handleFormReset() {
+    if (confirm('Discard any unsaved modifications to your archivist profile?')) {
+      document.getElementById('profileForm').reset();
+      updateCharCounter(document.getElementById('readerBio'));
+      showToastNotification('Draft changes restored to previous ledger state.');
+    }
+  }
+
+  // Save Flow with Kinetic Button State Morphing
+  function triggerSaveFlow(triggerBtn) {
+    const saveButtons = document.querySelectorAll('.save-btn-master');
+    
+    saveButtons.forEach(btn => {
+      btn.disabled = true;
+      btn.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span>
+        <span>Binding Folio...</span>
+      `;
+    });
+
+    setTimeout(() => {
+      saveButtons.forEach(btn => {
+        btn.classList.remove('bg-primary-container', 'hover:bg-primary-hover');
+        btn.classList.add('bg-status-success', 'text-canvas');
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>Preserved!</span>
+        `;
+      });
+
+      document.getElementById('lastSavedTime').textContent = 'Just now';
+      showToastNotification('Sanctum records successfully synchronized.');
+
+      setTimeout(() => {
+        saveButtons.forEach(btn => {
+          btn.disabled = false;
+          btn.classList.remove('bg-status-success', 'text-canvas');
+          btn.classList.add('bg-primary-container', 'hover:bg-primary-hover');
+          btn.innerHTML = `
+            <span class="material-symbols-outlined text-[18px]">check</span>
+            <span>Save Changes</span>
+          `;
+        });
+      }, 2500);
+
+    }, 850);
+  }
+
+  // Discreet Toast Notification
+  function showToastNotification(msg) {
+    const toast = document.getElementById('saveToast');
+    if (msg) {
+      toast.querySelector('p.text-body-small').textContent = msg;
+    }
+    toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => {
+      hideToast();
+    }, 4000);
+  }
+
+  function hideToast() {
+    const toast = document.getElementById('saveToast');
+    toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+    toast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+  }
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-border mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 space-y-space-md"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center border border-border"><span class="material-symbols-outlined text-primary text-[18px]">local_fire_department</span></div><span class="font-display text-headline-3 font-semibold text-text-primary">Genu Library</span></div><p class="font-body-default text-body-small text-text-secondary max-w-sm">An artisan guild repository and deluxe reading sanctum curated for digital archivists, scholars, and craftspeople safeguarding rare manuscripts and auditory codices.</p><div class="flex items-center gap-space-sm text-text-muted"><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">terminal</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a><a class="w-9 h-9 rounded-lg bg-surface-container border border-border flex items-center justify-center text-text-muted hover:text-primary hover:border-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">hub</span></a></div></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Navigation</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="home" href="#">Home</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="books" href="#">Books Catalog</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="playlists" href="#">Auditory Playlists</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" data-path="upload" href="#">Upload Folio</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">Guild Archive</h4><ul class="space-y-2"><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Guild Concordat</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Ledger Rarity</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Archivist API</a></li><li class="list-none"><a class="font-body-small text-body-small text-text-secondary hover:text-text-primary transition-colors" href="#">Terms of Preservation</a></li></ul></div><div class="space-y-space-md"><h4 class="font-overline text-overline uppercase text-text-muted tracking-wider">The Monthly Dispatch</h4><p class="font-body-small text-body-small text-text-secondary">Receive curated codex summaries and ledger updates directly to your station.</p><form class="space-y-2"><div class="flex flex-col gap-2"><input class="w-full bg-canvas border border-border rounded-lg px-space-sm py-2 font-body-small text-body-small text-text-primary placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors" placeholder="archivist@guild.internal" type="email"/><button class="w-full bg-primary text-text-on-accent font-body-default text-body-small font-semibold px-space-md py-2 rounded-lg hover:bg-primary-hover transition-colors" type="button">Subscribe</button></div></form></div></div><div class="border-t border-border mt-space-xl pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-small text-caption text-text-muted">© 2025 Genu Library Guild. All rights reserved under the Sovereign Archives.</p><div class="flex items-center gap-space-md font-body-small text-caption text-text-muted"><a class="hover:text-text-secondary transition-colors" href="#">Sanctum Privacy</a><a class="hover:text-text-secondary transition-colors" href="#">Ledger Index</a><a class="hover:text-text-secondary transition-colors" href="#">Status Core</a></div></div></div></footer></body></html>

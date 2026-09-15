@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Create New Tag — Genu Library</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            'surface-hover': '#2a211c',
+            'surface-active': '#332a24',
+            'surface-container': '#261e1a',
+            primary: '#e8693f',
+            'primary-hover': '#d45a30',
+            'primary-muted': 'rgba(232, 105, 63, 0.12)',
+            border: '#3a322d',
+            'border-hover': '#4d433d',
+            'text-primary': '#ece0dc',
+            'text-secondary': '#a89c93',
+            'text-muted': '#7a706a',
+            'text-on-accent': '#16110f',
+            'status-error': '#c44d4d',
+            'status-success': '#4a7c59',
+            'status-warning': '#d4a24e',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Mobile-first and smooth scroll utilities */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #16110f;
+      color: #ece0dc;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .snap-x-mandatory {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .snap-start-child {
+      scroll-snap-align: start;
+    }
+
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    .skeleton-pulse {
+      animation: pulse-subtle 1.5s ease-in-out infinite;
+    }
+
+    @keyframes springIn {
+      0% { transform: scale(0.8) translateX(20px); opacity: 0; }
+      70% { transform: scale(1.05) translateX(-2px); opacity: 1; }
+      100% { transform: scale(1) translateX(0); opacity: 1; }
+    }
+    .chip-spring-in {
+      animation: springIn 320ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes toastSlideUp {
+      0% { transform: translate(-50%, 100%); opacity: 0; }
+      100% { transform: translate(-50%, 0); opacity: 1; }
+    }
+    @keyframes toastSlideDown {
+      0% { transform: translate(-50%, 0); opacity: 1; }
+      100% { transform: translate(-50%, 100%); opacity: 0; }
+    }
+    .toast-enter {
+      animation: toastSlideUp 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .toast-exit {
+      animation: toastSlideDown 250ms cubic-bezier(0.7, 0, 0.84, 0) forwards;
+    }
+
+    .edge-fade {
+      mask-image: linear-gradient(to right, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-canvas flex flex-col justify-between selection:bg-primary selection:text-canvas">
+
+  <!-- Mobile Container (Centered, max 640px) -->
+  <div class="relative w-full max-w-[640px] mx-auto min-h-screen flex flex-col bg-canvas shadow-2xl border-x border-[#231b17]">
+    
+    <!-- Top Header Bar (Fixed) -->
+    <header class="fixed top-0 left-0 right-0 max-w-[640px] mx-auto z-40 h-14 bg-canvas/90 backdrop-blur-md border-b border-border flex items-center justify-between px-2 pt-[env(safe-area-inset-top)]">
+      <div class="flex items-center gap-2">
+        <button id="backBtn" type="button" class="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-text-secondary hover:text-text-primary active:scale-95 transition-transform" aria-label="Go back">
+          <span class="material-symbols-outlined text-[22px]">arrow_back</span>
+        </button>
+        <h1 class="font-serif text-lg font-semibold text-text-primary tracking-tight">Create Tag</h1>
+      </div>
+      <!-- Subtle Guild Pill -->
+      <div class="pr-2 flex items-center">
+        <span class="inline-flex items-center gap-1 text-[11px] font-mono text-primary bg-primary-muted border border-primary/20 px-2 py-0.5 rounded-full">
+          <span class="material-symbols-outlined text-[12px]">local_fire_department</span>
+          Sanctum
+        </span>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 w-full px-4 pt-20 pb-44 flex flex-col">
+      
+      <!-- Guidance Context Note -->
+      <div class="mb-4">
+        <p class="text-xs font-sans text-text-secondary leading-relaxed">
+          Tags categorize archaic treatises, alchemical codices, and scholarly folios across the library archive.
+        </p>
+      </div>
+
+      <!-- Tag Form Group -->
+      <div class="space-y-2">
+        <label for="tagNameInput" class="block font-sans text-xs font-semibold text-text-secondary tracking-wide uppercase">
+          Tag Name
+        </label>
+        
+        <div class="relative">
+          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted material-symbols-outlined text-[18px]">
+            sell
+          </span>
+          <input 
+            type="text" 
+            id="tagNameInput" 
+            maxlength="30"
+            autofocus
+            placeholder="e.g. hermeticism, astrology, binding..."
+            autocomplete="off"
+            spellcheck="false"
+            class="w-full h-12 bg-surface text-text-primary placeholder:text-text-muted pl-10 pr-12 rounded-lg border border-border focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all text-sm font-sans"
+          />
+          <!-- Clear Button -->
+          <button id="clearInputBtn" type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary p-1 rounded-full active:scale-90">
+            <span class="material-symbols-outlined text-[18px]">cancel</span>
+          </button>
+        </div>
+
+        <!-- Meta Bar below input: Status / Error / Character Count -->
+        <div class="flex items-center justify-between min-h-[22px] px-1 pt-1">
+          <!-- Duplicate Warning (conditionally rendered) -->
+          <div id="duplicateWarning" class="hidden items-center gap-1.5 text-status-error transition-all duration-200">
+            <span class="material-symbols-outlined text-[16px]">warning</span>
+            <span id="duplicateWarningText" class="text-xs font-sans font-medium">"fantasy" already exists</span>
+          </div>
+
+          <!-- Tag availability hint (when valid and not duplicate) -->
+          <div id="availableHint" class="hidden items-center gap-1 text-[#4a7c59] text-xs font-sans">
+            <span class="material-symbols-outlined text-[14px]">check_circle</span>
+            <span>Available</span>
+          </div>
+
+          <!-- Spacer if no warning -->
+          <div id="statusSpacer" class="flex-1"></div>
+
+          <!-- Character Count -->
+          <span id="charCount" class="font-mono text-xs text-text-muted tracking-tight">
+            0/30
+          </span>
+        </div>
+      </div>
+
+      <!-- Live Canonical Preview Card -->
+      <div id="previewContainer" class="mt-4 p-3 rounded-lg bg-surface/50 border border-border/70 flex items-center justify-between transition-all">
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-mono text-text-muted uppercase tracking-wider">Preview:</span>
+          <span id="previewChip" class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-sans font-medium bg-surface border border-border text-text-primary">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+            <span id="previewChipText">#new-tag</span>
+            <span class="font-mono text-[10px] text-text-muted">0 folios</span>
+          </span>
+        </div>
+        <span class="text-[11px] font-mono text-text-muted">slug: <span id="previewSlug" class="text-text-secondary">#</span></span>
+      </div>
+
+      <!-- Existing Tags Section -->
+      <section class="mt-8">
+        <div class="flex items-center justify-between mb-3 px-1">
+          <div class="flex items-center gap-2">
+            <h2 class="font-mono text-[11px] font-semibold text-text-muted uppercase tracking-widest">
+              EXISTING TAGS
+            </h2>
+            <span id="tagCountBadge" class="inline-flex items-center justify-center font-mono text-[11px] text-text-secondary bg-surface px-2 py-0.5 rounded-full border border-border">
+              24 tags
+            </span>
+          </div>
+          <span class="text-[11px] text-text-muted font-sans flex items-center gap-0.5">
+            Swipe <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+          </span>
+        </div>
+
+        <!-- Horizontal Scrollable Chip List with Snap -->
+        <div class="relative w-full">
+          <div 
+            id="existingTagsContainer" 
+            class="overflow-x-auto flex gap-2 pb-2 snap-x-mandatory hide-scrollbar edge-fade"
+          >
+            <!-- Skeleton Loading State (Initial 6 pulsing chips) -->
+            <div id="skeletonTags" class="flex gap-2 shrink-0">
+              <div class="shrink-0 w-20 h-8 rounded-full bg-surface-container skeleton-pulse border border-border/40"></div>
+              <div class="shrink-0 w-24 h-8 rounded-full bg-surface-container skeleton-pulse border border-border/40"></div>
+              <div class="shrink-0 w-28 h-8 rounded-full bg-surface-container skeleton-pulse border border-border/40"></div>
+              <div class="shrink-0 w-20 h-8 rounded-full bg-surface-container skeleton-pulse border border-border/40"></div>
+              <div class="shrink-0 w-24 h-8 rounded-full bg-surface-container skeleton-pulse border border-border/40"></div>
+              <div class="shrink-0 w-22 h-8 rounded-full bg-surface-container skeleton-pulse border border-border/40"></div>
+            </div>
+
+            <!-- Populated Chips Wrapper (hidden while skeleton active) -->
+            <div id="actualChipsList" class="flex gap-2 shrink-0">
+              <!-- Dynamically populated chips -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick filter / tag suggestion categories -->
+        <div class="mt-6 pt-5 border-t border-border/60">
+          <span class="text-[11px] font-mono text-text-muted uppercase tracking-wider block mb-2 px-1">
+            Common Guild Disciplines
+          </span>
+          <div class="flex flex-wrap gap-1.5 px-1">
+            <button type="button" onclick="suggestTag('hermetics')" class="text-xs font-sans px-2.5 py-1 rounded-md bg-surface hover:bg-surface-hover border border-border text-text-secondary active:scale-95 transition-all">
+              + hermetics
+            </button>
+            <button type="button" onclick="suggestTag('astrolabe')" class="text-xs font-sans px-2.5 py-1 rounded-md bg-surface hover:bg-surface-hover border border-border text-text-secondary active:scale-95 transition-all">
+              + astrolabe
+            </button>
+            <button type="button" onclick="suggestTag('incunabula')" class="text-xs font-sans px-2.5 py-1 rounded-md bg-surface hover:bg-surface-hover border border-border text-text-secondary active:scale-95 transition-all">
+              + incunabula
+            </button>
+            <button type="button" onclick="suggestTag('calligraphy')" class="text-xs font-sans px-2.5 py-1 rounded-md bg-surface hover:bg-surface-hover border border-border text-text-secondary active:scale-95 transition-all">
+              + calligraphy
+            </button>
+            <button type="button" onclick="suggestTag('metallurgy')" class="text-xs font-sans px-2.5 py-1 rounded-md bg-surface hover:bg-surface-hover border border-border text-text-secondary active:scale-95 transition-all">
+              + metallurgy
+            </button>
+          </div>
+        </div>
+
+        <!-- Tips Callout -->
+        <div class="mt-6 p-3.5 rounded-xl bg-surface border border-border flex items-start gap-3">
+          <span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">lightbulb</span>
+          <p class="text-xs text-text-secondary font-sans leading-relaxed">
+            Tags are immutable once cataloged to preserve the sanctuary ledger citation integrity. Ensure correct orthography before confirming.
+          </p>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Fixed Bottom Submit Section (Anchored in Thumb Zone above Bottom Nav) -->
+    <div class="fixed bottom-[60px] left-0 right-0 max-w-[640px] mx-auto z-40 bg-gradient-to-t from-canvas via-canvas/95 to-transparent pt-4 pb-2 px-4">
+      <button 
+        id="submitBtn" 
+        type="button" 
+        disabled
+        class="w-full h-12 rounded-lg bg-primary text-text-on-accent font-sans font-semibold text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-md disabled:bg-surface-container disabled:text-text-muted disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
+      >
+        <span id="btnIcon" class="material-symbols-outlined text-[18px]">add_circle</span>
+        <span id="btnText">Create Tag</span>
+      </button>
+    </div>
+
+    <!-- Bottom Navigation Bar (Fixed 4 tabs) -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-[640px] mx-auto z-50 h-[60px] bg-canvas/95 backdrop-blur-md border-t border-border flex items-center justify-around px-2 pb-[env(safe-area-inset-bottom)]">
+      <!-- Library Tab -->
+      <a href="#" class="flex flex-col items-center justify-center min-h-[44px] min-w-[56px] text-text-muted hover:text-text-primary transition-colors">
+        <span class="material-symbols-outlined text-[20px]">local_library</span>
+        <span class="text-[10px] font-sans mt-0.5">Library</span>
+      </a>
+
+      <!-- Browse / Catalog Tab -->
+      <a href="#" class="flex flex-col items-center justify-center min-h-[44px] min-w-[56px] text-text-muted hover:text-text-primary transition-colors">
+        <span class="material-symbols-outlined text-[20px]">menu_book</span>
+        <span class="text-[10px] font-sans mt-0.5">Browse</span>
+      </a>
+
+      <!-- Search Tab -->
+      <a href="#" class="flex flex-col items-center justify-center min-h-[44px] min-w-[56px] text-text-muted hover:text-text-primary transition-colors">
+        <span class="material-symbols-outlined text-[20px]">search</span>
+        <span class="text-[10px] font-sans mt-0.5">Search</span>
+      </a>
+
+      <!-- Tags Tab (ACTIVE) -->
+      <a href="#" class="flex flex-col items-center justify-center min-h-[44px] min-w-[56px] text-primary transition-colors">
+        <span class="material-symbols-outlined text-[20px]">label</span>
+        <span class="text-[10px] font-sans font-medium mt-0.5">Tags</span>
+      </a>
+
+      <!-- Profile Tab -->
+      <a href="#" class="flex flex-col items-center justify-center min-h-[44px] min-w-[56px] text-text-muted hover:text-text-primary transition-colors">
+        <span class="material-symbols-outlined text-[20px]">person</span>
+        <span class="text-[10px] font-sans mt-0.5">Profile</span>
+      </a>
+    </nav>
+
+    <!-- Success Toast Notification (Floating) -->
+    <div 
+      id="toast" 
+      class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2 px-4 py-2.5 rounded-full bg-surface border border-primary/40 text-text-primary shadow-2xl"
+    >
+      <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+      <span id="toastMessage" class="text-xs font-sans font-medium">Tag created successfully</span>
+    </div>
+
+    <!-- Discard Confirmation Bottom Sheet Modal -->
+    <div id="discardSheetBackdrop" class="fixed inset-0 z-50 bg-black/60 hidden transition-opacity duration-200 backdrop-blur-sm">
+      <div 
+        id="discardSheet" 
+        class="absolute bottom-0 left-0 right-0 max-w-[640px] mx-auto bg-surface border-t border-border rounded-t-2xl p-5 transform translate-y-full transition-transform duration-300 pb-[calc(1.5rem+env(safe-area-inset-bottom))]"
+      >
+        <div class="w-12 h-1 bg-border rounded-full mx-auto mb-4"></div>
+        <h3 class="font-serif text-lg font-semibold text-text-primary text-center">Discard new tag?</h3>
+        <p class="text-xs font-sans text-text-secondary text-center mt-1.5 mb-6 px-4">
+          You have drafted an uncataloged tag. Leaving this sanctum view will abandon these changes.
+        </p>
+        <div class="space-y-2.5">
+          <button 
+            id="confirmDiscardBtn" 
+            type="button" 
+            class="w-full h-11 rounded-lg bg-status-error text-text-primary font-sans font-semibold text-sm active:scale-[0.98] transition-all"
+          >
+            Discard Tag
+          </button>
+          <button 
+            id="cancelDiscardBtn" 
+            type="button" 
+            class="w-full h-11 rounded-lg bg-transparent border border-border text-text-primary font-sans font-medium text-sm active:scale-[0.98] transition-all hover:bg-surface-hover"
+          >
+            Keep Editing
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive Logic -->
+  <script>
+    // Initial known tags from the Genu Library database
+    let existingTags = [
+      { name: "alchemy", count: 84 },
+      { name: "astronomy", count: 62 },
+      { name: "metallurgy", count: 48 },
+      { name: "incunabula", count: 39 },
+      { name: "paleography", count: 31 },
+      { name: "folklore", count: 29 },
+      { name: "geometry", count: 27 },
+      { name: "latin", count: 54 },
+      { name: "manuscripts", count: 96 },
+      { name: "botany", count: 22 },
+      { name: "philosophy", count: 71 },
+      { name: "cartography", count: 18 },
+      { name: "cryptography", count: 15 },
+      { name: "theology", count: 43 }
+    ];
+
+    // DOM Elements
+    const tagNameInput = document.getElementById('tagNameInput');
+    const clearInputBtn = document.getElementById('clearInputBtn');
+    const duplicateWarning = document.getElementById('duplicateWarning');
+    const duplicateWarningText = document.getElementById('duplicateWarningText');
+    const availableHint = document.getElementById('availableHint');
+    const charCount = document.getElementById('charCount');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
+    const skeletonTags = document.getElementById('skeletonTags');
+    const actualChipsList = document.getElementById('actualChipsList');
+    const existingTagsContainer = document.getElementById('existingTagsContainer');
+    const tagCountBadge = document.getElementById('tagCountBadge');
+    const previewChip = document.getElementById('previewChip');
+    const previewChipText = document.getElementById('previewChipText');
+    const previewSlug = document.getElementById('previewSlug');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const backBtn = document.getElementById('backBtn');
+    const discardSheetBackdrop = document.getElementById('discardSheetBackdrop');
+    const discardSheet = document.getElementById('discardSheet');
+    const confirmDiscardBtn = document.getElementById('confirmDiscardBtn');
+    const cancelDiscardBtn = document.getElementById('cancelDiscardBtn');
+
+    let debounceTimer = null;
+    let isCreating = false;
+
+    // Initialize Skeleton and render tag chips
+    function initTags() {
+      // Simulate rapid network data population (400ms)
+      setTimeout(() => {
+        skeletonTags.classList.add('hidden');
+        renderTagChips();
+        updateBadge();
+      }, 450);
+    }
+
+    function renderTagChips(newTagAdded = null) {
+      actualChipsList.innerHTML = '';
+      existingTags.forEach(tag => {
+        const chip = document.createElement('div');
+        chip.className = `shrink-0 snap-start-child px-3 py-1.5 rounded-full bg-surface border border-border text-text-secondary text-xs font-sans flex items-center gap-1.5 transition-all hover:border-border-hover`;
+        
+        if (newTagAdded && tag.name.toLowerCase() === newTagAdded.toLowerCase()) {
+          chip.classList.add('chip-spring-in', 'border-primary', 'text-primary', 'bg-primary-muted');
+        }
+
+        chip.innerHTML = `
+          <span>#${tag.name}</span>
+          <span class="font-mono text-[10px] text-text-muted">(${tag.count})</span>
+        `;
+        actualChipsList.appendChild(chip);
+      });
+    }
+
+    function updateBadge() {
+      tagCountBadge.textContent = `${existingTags.length} tags`;
+    }
+
+    function formatSlug(text) {
+      return text
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+
+    // Input handlers
+    tagNameInput.addEventListener('input', () => {
+      const val = tagNameInput.value;
+      charCount.textContent = `${val.length}/30`;
+      
+      if (val.length > 0) {
+        clearInputBtn.classList.remove('hidden');
+      } else {
+        clearInputBtn.classList.add('hidden');
+      }
+
+      // Update Preview
+      const slug = formatSlug(val);
+      if (slug.length > 0) {
+        previewChipText.textContent = `#${slug}`;
+        previewSlug.textContent = `#${slug}`;
+        previewChip.classList.remove('opacity-50');
+      } else {
+        previewChipText.textContent = '#new-tag';
+        previewSlug.textContent = '#';
+      }
+
+      // Real-time debounce duplicate check
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        checkDuplicateAndValidate(val);
+      }, 250);
+    });
+
+    clearInputBtn.addEventListener('click', () => {
+      tagNameInput.value = '';
+      tagNameInput.focus();
+      charCount.textContent = '0/30';
+      clearInputBtn.classList.add('hidden');
+      duplicateWarning.classList.add('hidden');
+      availableHint.classList.add('hidden');
+      previewChipText.textContent = '#new-tag';
+      previewSlug.textContent = '#';
+      submitBtn.disabled = true;
+    });
+
+    function checkDuplicateAndValidate(rawVal) {
+      const clean = rawVal.trim().toLowerCase();
+      if (!clean) {
+        duplicateWarning.classList.add('hidden');
+        availableHint.classList.add('hidden');
+        submitBtn.disabled = true;
+        return;
+      }
+
+      const match = existingTags.find(t => t.name.toLowerCase() === clean);
+      if (match) {
+        duplicateWarningText.textContent = `"${match.name}" already exists`;
+        duplicateWarning.classList.remove('hidden');
+        duplicateWarning.classList.add('flex');
+        availableHint.classList.add('hidden');
+        submitBtn.disabled = true;
+      } else {
+        duplicateWarning.classList.add('hidden');
+        duplicateWarning.classList.remove('flex');
+        availableHint.classList.remove('hidden');
+        availableHint.classList.add('flex');
+        submitBtn.disabled = false;
+      }
+    }
+
+    // Tag Suggestion Click
+    window.suggestTag = function(name) {
+      tagNameInput.value = name;
+      tagNameInput.dispatchEvent(new Event('input'));
+      tagNameInput.focus();
+    };
+
+    // Form Submit
+    submitBtn.addEventListener('click', () => {
+      if (submitBtn.disabled || isCreating) return;
+      const raw = tagNameInput.value.trim();
+      const slug = formatSlug(raw);
+      if (!slug) return;
+
+      isCreating = true;
+      submitBtn.disabled = true;
+      btnText.textContent = 'Creating...';
+      btnIcon.innerHTML = `<span class="inline-block w-4 h-4 border-2 border-text-on-accent border-t-transparent rounded-full animate-spin"></span>`;
+
+      // Simulate API call (800ms)
+      setTimeout(() => {
+        // Haptic feedback if supported
+        if (window.navigator && window.navigator.vibrate) {
+          window.navigator.vibrate(50);
+        }
+
+        // Add to array at beginning
+        existingTags.unshift({ name: slug, count: 1 });
+        renderTagChips(slug);
+        updateBadge();
+
+        // Auto-scroll chip container to the newly added chip (far left)
+        existingTagsContainer.scrollTo({ left: 0, behavior: 'smooth' });
+
+        // Reset UI
+        isCreating = false;
+        tagNameInput.value = '';
+        clearInputBtn.classList.add('hidden');
+        charCount.textContent = '0/30';
+        availableHint.classList.add('hidden');
+        previewChipText.textContent = '#new-tag';
+        previewSlug.textContent = '#';
+        btnText.textContent = 'Create Tag';
+        btnIcon.innerHTML = 'add_circle';
+        submitBtn.disabled = true;
+
+        // Show Toast
+        showToast(`Tag "#${slug}" cataloged`);
+      }, 750);
+    });
+
+    function showToast(msg) {
+      toastMessage.textContent = msg;
+      toast.classList.remove('hidden', 'toast-exit');
+      toast.classList.add('flex', 'toast-enter');
+
+      setTimeout(() => {
+        toast.classList.remove('toast-enter');
+        toast.classList.add('toast-exit');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+          toast.classList.remove('flex', 'toast-exit');
+        }, 250);
+      }, 2000);
+    }
+
+    // Back button & Discard Bottom Sheet logic
+    backBtn.addEventListener('click', () => {
+      const hasContent = tagNameInput.value.trim().length > 0;
+      if (hasContent) {
+        openDiscardSheet();
+      } else {
+        showToast("Returned to catalog");
+      }
+    });
+
+    function openDiscardSheet() {
+      discardSheetBackdrop.classList.remove('hidden');
+      setTimeout(() => {
+        discardSheet.classList.remove('translate-y-full');
+      }, 10);
+    }
+
+    function closeDiscardSheet() {
+      discardSheet.classList.add('translate-y-full');
+      setTimeout(() => {
+        discardSheetBackdrop.classList.add('hidden');
+      }, 250);
+    }
+
+    cancelDiscardBtn.addEventListener('click', closeDiscardSheet);
+    discardSheetBackdrop.addEventListener('click', (e) => {
+      if (e.target === discardSheetBackdrop) closeDiscardSheet();
+    });
+
+    confirmDiscardBtn.addEventListener('click', () => {
+      closeDiscardSheet();
+      tagNameInput.value = '';
+      tagNameInput.dispatchEvent(new Event('input'));
+      showToast("Draft discarded");
+    });
+
+    // Enter key submits form
+    tagNameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (!submitBtn.disabled) {
+          submitBtn.click();
+        }
+      }
+    });
+
+    // Start
+    initTags();
+  </script>
+</body>
+</html>

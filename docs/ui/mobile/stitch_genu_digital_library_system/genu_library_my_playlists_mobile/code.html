@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Genu Library — My Playlists</title>
+<!-- Google Fonts: Playfair Display, Inter, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            'surface-raised': '#2a211c',
+            'surface-alt': '#1b1411',
+            border: '#3a322d',
+            'border-hover': '#4d433d',
+            forge: {
+              DEFAULT: '#e8693f',
+              hover: '#d45a30',
+              muted: 'rgba(232, 105, 63, 0.12)'
+            },
+            txt: {
+              primary: '#ece0dc',
+              secondary: '#a89c93',
+              muted: '#7a706a'
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for Forge Aesthetic & Touch Interactions -->
+<style data-purpose="base-theme">
+    body {
+      background-color: #16110f;
+      color: #ece0dc;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    
+    /* Custom scrollbar matching forge theme */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #16110f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3a322d;
+      border-radius: 2px;
+    }
+
+    /* Long-press active scale feedback */
+    .touch-card {
+      transition: transform 0.15s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .touch-card:active {
+      transform: scale(0.985);
+    }
+    
+    /* Pattern texture overlays for atmospheric codex covers */
+    .bg-vellum-texture {
+      background-color: #1a120e;
+      background-image: radial-gradient(#3a322d 0.75px, transparent 0.75px);
+      background-size: 8px 8px;
+    }
+    .bg-astronomy {
+      background: linear-gradient(135deg, #10151a 0%, #1c1511 100%);
+    }
+    .bg-leather {
+      background: linear-gradient(180deg, #2b1810 0%, #19100d 100%);
+    }
+    .bg-lead {
+      background: linear-gradient(145deg, #1c1a19 0%, #12100f 100%);
+    }
+  </style>
+</head>
+<body class="bg-[#16110f] text-[#ece0dc] antialiased min-h-screen">
+<!-- Main Mobile Container (Strict max-w-[640px] single-column iOS view) -->
+<div class="max-w-[640px] mx-auto min-h-screen bg-[#16110f] relative pb-28 border-x border-[#3a322d]/40 flex flex-col shadow-2xl">
+<!-- BEGIN: TopBar -->
+<header class="sticky top-0 z-40 bg-[#16110f]/95 backdrop-blur-sm border-b border-[#3a322d] px-4 pt-3 pb-2.5 transition-all">
+<!-- Pull-to-refresh subtle visual indicator -->
+<div class="flex justify-center -mt-1 mb-1.5 opacity-60">
+<div class="w-8 h-1 bg-[#3a322d] rounded-full"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<!-- Small forge mark icon -->
+<svg class="w-5 h-5 text-[#e8693f]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h1 class="font-serif text-2xl font-bold text-[#ece0dc] tracking-tight">My Playlists</h1>
+</div>
+<!-- Playlist count pill badge -->
+<span class="font-mono text-xs text-[#e8693f] bg-[#e8693f]/10 px-2.5 py-1 rounded-full border border-[#e8693f]/30 font-medium">
+          8 Curations
+        </span>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: SearchAndControls -->
+<section class="px-4 pt-3.5 pb-2" data-purpose="search-and-filtering">
+<!-- Search Input Container -->
+<div class="relative w-full mb-3">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#a89c93]">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="w-full min-h-[44px] bg-[#211a17] border border-[#3a322d] rounded-xl pl-11 pr-10 py-2.5 text-[#ece0dc] placeholder:text-[#7a706a] text-sm focus:outline-none focus:border-[#e8693f] focus:ring-1 focus:ring-[#e8693f] transition-colors" id="playlist-search-input" placeholder="Filter codices &amp; treatises..." type="text"/>
+<!-- Clear 'X' button (Touch area 44x44) -->
+<button aria-label="Clear search" class="absolute inset-y-0 right-0 w-11 h-11 flex items-center justify-center text-[#7a706a] hover:text-[#ece0dc] active:text-[#e8693f] transition-colors" id="clear-search-btn">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Filter Chips & Sort Trigger Row -->
+<div class="flex items-center justify-between gap-2 text-sm pt-0.5">
+<!-- Sort trigger button -->
+<button class="min-h-[44px] px-2 -ml-2 flex items-center gap-1.5 text-xs font-medium text-[#a89c93] hover:text-[#ece0dc] active:text-[#e8693f] rounded-lg transition-colors" id="open-sort-sheet-btn">
+<svg class="w-4 h-4 text-[#e8693f]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Sort by: <strong class="text-[#ece0dc] font-semibold" id="current-sort-label">Newest</strong></span>
+<svg class="w-3.5 h-3.5 text-[#a89c93]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Category Tag Chips -->
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1 text-xs rounded-full bg-[#e8693f]/15 text-[#e8693f] border border-[#e8693f]/30 font-medium">All</button>
+<button class="px-2.5 py-1 text-xs rounded-full bg-[#211a17] text-[#a89c93] border border-[#3a322d] hover:text-[#ece0dc]">Public</button>
+<button class="px-2.5 py-1 text-xs rounded-full bg-[#211a17] text-[#a89c93] border border-[#3a322d] hover:text-[#ece0dc]">Private</button>
+</div>
+</div>
+</section>
+<!-- END: SearchAndControls -->
+<!-- BEGIN: PlaylistCardsList -->
+<main class="flex-1 px-4 pt-1 pb-4 flex flex-col gap-3.5" data-purpose="playlist-stream">
+<!-- Card 1: Archaic Metallurgy & Crucible Folios (Uses Provided Image) -->
+<article class="touch-card rounded-2xl border border-[#3a322d] bg-[#211a17] hover:border-[#4d433d] transition-all overflow-hidden cursor-pointer" data-playlist="Archaic Metallurgy &amp; Crucible Folios">
+<!-- 2x2 Collage Cover Header -->
+<div class="h-36 bg-[#130d0a] grid grid-cols-2 grid-rows-2 gap-[1.5px] p-[1.5px]">
+<!-- Tile 1: User requested codex photo -->
+<div class="relative overflow-hidden bg-[#1f1612]">
+<img alt="The Alchemist's Codex Cover" class="w-full h-full object-cover brightness-90 hover:brightness-100 transition-all" src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k"/>
+</div>
+<!-- Tile 2: Deep amber illuminated folio book cover with gilded compass -->
+<div class="relative bg-[#26180f] flex items-center justify-center p-2 border-l border-b border-[#3a322d]/30 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-[#c97d3e]/20 to-transparent"></div>
+<svg class="w-8 h-8 text-[#d48e4d] opacity-85" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<polygon fill="#c97d3e" fill-opacity="0.3" points="12 4 14.5 12 12 20 9.5 12"></polygon>
+<circle cx="12" cy="12" fill="#d48e4d" r="2"></circle>
+</svg>
+<span class="absolute bottom-1 right-1.5 font-mono text-[9px] text-[#a89c93]/80">VOL. IV</span>
+</div>
+<!-- Tile 3: Ornate dark leather spine with gold stamped lettering -->
+<div class="relative bg-[#1a110d] flex items-center justify-center p-2 border-r border-[#3a322d]/30 bg-leather overflow-hidden">
+<div class="w-full h-full border border-[#523e32]/40 rounded-sm flex flex-col justify-between p-1">
+<span class="font-serif text-[8px] tracking-widest text-[#e8c07d] uppercase">METALLUM</span>
+<div class="h-0.5 bg-[#d48e4d]/40 w-3/4 mx-auto"></div>
+<span class="font-mono text-[7px] text-[#a89c93] self-end">1648</span>
+</div>
+</div>
+<!-- Tile 4: Vintage copper-engraved anatomical diagram folio -->
+<div class="relative bg-[#201712] flex items-center justify-center p-2 overflow-hidden bg-vellum-texture">
+<svg class="w-7 h-7 text-[#b58b66] opacity-75" fill="none" stroke="currentColor" stroke-width="1.25" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="8"></circle>
+<path d="M12 4v16M4 12h16M7 7l10 10M17 7L7 17"></path>
+</svg>
+<span class="absolute top-1 left-1.5 font-serif italic text-[8px] text-[#e8693f]">Crucible</span>
+</div>
+</div>
+<!-- Info Section -->
+<div class="p-3.5 bg-[#211a17]">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1 min-w-0">
+<h2 class="font-serif text-base font-semibold text-[#ece0dc] truncate">Archaic Metallurgy &amp; Crucible Folios</h2>
+<p class="font-sans text-xs text-[#a89c93] truncate mt-0.5">14 codices · Restored Flemish treatise on alchemical transmutations and alloys</p>
+</div>
+<!-- Quick Options trigger (min 44x44 touch) -->
+<button aria-label="Playlist actions" class="card-options-btn w-9 h-9 -mr-1.5 -mt-1 flex items-center justify-center text-[#7a706a] hover:text-[#ece0dc] active:text-[#e8693f] rounded-lg transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Badges / Metadata Footer -->
+<div class="flex items-center gap-2 mt-2.5 pt-2 border-t border-[#3a322d]/60 text-[11px]">
+<span class="px-2 py-0.5 rounded bg-[#3a322d]/50 text-[#ece0dc] font-mono font-medium">Public</span>
+<span class="px-2 py-0.5 rounded bg-[#e8693f]/10 text-[#e8693f] font-mono border border-[#e8693f]/25">Restored</span>
+<span class="text-[#7a706a] ml-auto font-sans flex items-center gap-1">
+<svg class="w-3 h-3 text-[#7a706a]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+              2 hours ago
+            </span>
+</div>
+</div>
+</article>
+<!-- Card 2: Celestial Navigation & Astrolabes -->
+<article class="touch-card rounded-2xl border border-[#3a322d] bg-[#211a17] hover:border-[#4d433d] transition-all overflow-hidden cursor-pointer" data-playlist="Celestial Navigation &amp; Astrolabes">
+<!-- 2x2 Collage -->
+<div class="h-36 bg-[#130d0a] grid grid-cols-2 grid-rows-2 gap-[1.5px] p-[1.5px]">
+<!-- Tile 1: Ptolemaic Chart -->
+<div class="relative bg-astronomy flex items-center justify-center p-2 overflow-hidden">
+<svg class="w-8 h-8 text-[#90a4ae] opacity-80" fill="none" stroke="currentColor" stroke-width="1.3" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(30 12 12)"></ellipse>
+<circle cx="12" cy="12" fill="#ece0dc" r="1.5"></circle>
+</svg>
+<span class="absolute top-1 left-1.5 font-mono text-[8px] text-[#a89c93]">LAT 52°N</span>
+</div>
+<!-- Tile 2: Celestial Globe Cover -->
+<div class="relative bg-[#19151c] flex items-center justify-center p-2 border-l border-[#3a322d]/30">
+<svg class="w-8 h-8 text-[#cda882] opacity-80" fill="none" stroke="currentColor" stroke-width="1.3" viewbox="0 0 24 24">
+<path d="M12 2v20M2 12h20"></path>
+<circle cx="12" cy="12" r="7"></circle>
+<path d="M12 5a7 7 0 0 1 7 7"></path>
+</svg>
+<span class="absolute bottom-1 right-1.5 font-serif text-[8px] text-[#e8693f]">ORION</span>
+</div>
+<!-- Tile 3: Brass Armillary Sphere -->
+<div class="relative bg-[#211713] flex items-center justify-center p-2 border-r border-[#3a322d]/30">
+<svg class="w-7 h-7 text-[#e5a968]" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="8"></circle>
+<ellipse cx="12" cy="12" rx="3" ry="8"></ellipse>
+<line x1="4" x2="20" y1="12" y2="12"></line>
+</svg>
+</div>
+<!-- Tile 4: Vintage Astronomical Ledger -->
+<div class="relative bg-[#181514] flex flex-col justify-between p-2">
+<div class="flex justify-between items-center">
+<span class="font-mono text-[8px] text-[#7a706a]">EPOCH</span>
+<span class="font-mono text-[8px] text-[#e8693f]">1492</span>
+</div>
+<div class="space-y-0.5">
+<div class="h-0.5 bg-[#3a322d] w-full"></div>
+<div class="h-0.5 bg-[#3a322d] w-4/5"></div>
+<div class="h-0.5 bg-[#3a322d] w-2/3"></div>
+</div>
+<span class="font-serif italic text-[8px] text-[#a89c93]">Folio Decima</span>
+</div>
+</div>
+<!-- Info -->
+<div class="p-3.5 bg-[#211a17]">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1 min-w-0">
+<h2 class="font-serif text-base font-semibold text-[#ece0dc] truncate">Celestial Navigation &amp; Astrolabes</h2>
+<p class="font-sans text-xs text-[#a89c93] truncate mt-0.5">9 codices · Fifteenth-century Ptolemaic map projections and astrolabe dials</p>
+</div>
+<button aria-label="Playlist actions" class="card-options-btn w-9 h-9 -mr-1.5 -mt-1 flex items-center justify-center text-[#7a706a] hover:text-[#ece0dc] active:text-[#e8693f] rounded-lg transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="flex items-center gap-2 mt-2.5 pt-2 border-t border-[#3a322d]/60 text-[11px]">
+<span class="px-2 py-0.5 rounded bg-[#ef4444]/15 text-[#ef4444] font-mono font-medium border border-[#ef4444]/20 flex items-center gap-1">
+<svg class="w-2.5 h-2.5" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path></svg>
+              Private
+            </span>
+<span class="px-2 py-0.5 rounded bg-[#3a322d]/50 text-[#a89c93] font-mono">Astronomia</span>
+<span class="text-[#7a706a] ml-auto font-sans">Yesterday</span>
+</div>
+</div>
+</article>
+<!-- Card 3: Gutenberg Typography & Movable Types -->
+<article class="touch-card rounded-2xl border border-[#3a322d] bg-[#211a17] hover:border-[#4d433d] transition-all overflow-hidden cursor-pointer" data-playlist="Gutenberg Typography &amp; Movable Types">
+<!-- 2x2 Collage -->
+<div class="h-36 bg-[#130d0a] grid grid-cols-2 grid-rows-2 gap-[1.5px] p-[1.5px]">
+<!-- Tile 1: Lead Type Matrix -->
+<div class="relative bg-lead flex items-center justify-center p-2 border-r border-[#3a322d]/40">
+<div class="w-8 h-8 border border-[#52443d] flex items-center justify-center bg-[#151210]">
+<span class="font-serif text-xl font-bold text-[#ece0dc]">¶</span>
+</div>
+<span class="absolute bottom-1 left-1.5 font-mono text-[7px] text-[#7a706a]">MAINZ 1455</span>
+</div>
+<!-- Tile 2: Rubricated Initial -->
+<div class="relative bg-[#221310] flex items-center justify-center p-2">
+<span class="font-serif text-3xl font-bold text-[#e8693f]">G</span>
+<div class="absolute inset-x-2 bottom-1 flex justify-between text-[7px] font-mono text-[#a89c93]">
+<span>LEAD</span><span>42-LINE</span>
+</div>
+</div>
+<!-- Tile 3: Movable Lead Punches -->
+<div class="relative bg-[#171412] flex items-center justify-center gap-1 p-2 border-r border-[#3a322d]/30">
+<div class="w-3 h-5 bg-[#2a221d] border border-[#4d433d] flex items-center justify-center text-[9px] font-mono text-[#ece0dc]">a</div>
+<div class="w-3 h-5 bg-[#2a221d] border border-[#4d433d] flex items-center justify-center text-[9px] font-mono text-[#ece0dc]">b</div>
+<div class="w-3 h-5 bg-[#2a221d] border border-[#4d433d] flex items-center justify-center text-[9px] font-mono text-[#e8693f]">c</div>
+</div>
+<!-- Tile 4: Blackletter Specimen -->
+<div class="relative bg-[#1f1915] p-2 flex flex-col justify-center overflow-hidden">
+<span class="font-serif text-[10px] tracking-wider text-[#d48e4d] truncate">In principio erat</span>
+<span class="font-serif italic text-[9px] text-[#a89c93] truncate">Verbum et Verbum</span>
+<div class="w-full h-px bg-[#3a322d] my-1"></div>
+<span class="font-mono text-[7px] text-[#7a706a]">Incunabula Folio</span>
+</div>
+</div>
+<!-- Info -->
+<div class="p-3.5 bg-[#211a17]">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1 min-w-0">
+<h2 class="font-serif text-base font-semibold text-[#ece0dc] truncate">Gutenberg Typography &amp; Movable Types</h2>
+<p class="font-sans text-xs text-[#a89c93] truncate mt-0.5">22 codices · Historical studies in early European typography</p>
+</div>
+<button aria-label="Playlist actions" class="card-options-btn w-9 h-9 -mr-1.5 -mt-1 flex items-center justify-center text-[#7a706a] hover:text-[#ece0dc] active:text-[#e8693f] rounded-lg transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="flex items-center gap-2 mt-2.5 pt-2 border-t border-[#3a322d]/60 text-[11px]">
+<span class="px-2 py-0.5 rounded bg-[#3a322d]/50 text-[#ece0dc] font-mono font-medium">Public</span>
+<span class="px-2 py-0.5 rounded bg-[#e8693f]/10 text-[#e8693f] font-mono border border-[#e8693f]/25">Typography</span>
+<span class="text-[#7a706a] ml-auto font-sans">Oct 14</span>
+</div>
+</div>
+</article>
+<!-- Card 4: Hermetic Dialectics & Natural Philosophy -->
+<article class="touch-card rounded-2xl border border-[#3a322d] bg-[#211a17] hover:border-[#4d433d] transition-all overflow-hidden cursor-pointer" data-playlist="Hermetic Dialectics &amp; Natural Philosophy">
+<!-- 2x2 Collage -->
+<div class="h-36 bg-[#130d0a] grid grid-cols-2 grid-rows-2 gap-[1.5px] p-[1.5px]">
+<!-- Tile 1: Cipher manuscript -->
+<div class="relative bg-[#1c1410] p-2 flex flex-col justify-center">
+<span class="font-mono text-[9px] text-[#e8693f] tracking-widest">▲ ● ◊ ■ ◆</span>
+<span class="font-mono text-[8px] text-[#a89c93] tracking-wider mt-1">TABULA SMARAGDINA</span>
+</div>
+<!-- Tile 2: Latin Commentaries -->
+<div class="relative bg-[#231713] flex items-center justify-center p-2 border-l border-[#3a322d]/30">
+<svg class="w-8 h-8 text-[#a89c93]/70" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24">
+<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+</svg>
+<span class="absolute bottom-1 right-1.5 font-serif italic text-[7px] text-[#e8693f]">Liber II</span>
+</div>
+<!-- Tile 3: Geometric Proofs -->
+<div class="relative bg-[#171210] flex items-center justify-center p-2">
+<svg class="w-8 h-8 text-[#d48e4d]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24">
+<polygon points="12 2 2 22 22 22"></polygon>
+<circle cx="12" cy="15" r="4"></circle>
+</svg>
+</div>
+<!-- Tile 4: Dark leather spine -->
+<div class="relative bg-leather flex items-center justify-center p-2 border-l border-t border-[#3a322d]/30">
+<span class="font-serif text-[9px] text-[#ece0dc] tracking-widest uppercase rotate-90">OXONIA</span>
+</div>
+</div>
+<!-- Info -->
+<div class="p-3.5 bg-[#211a17]">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1 min-w-0">
+<h2 class="font-serif text-base font-semibold text-[#ece0dc] truncate">Hermetic Dialectics &amp; Natural Philosophy</h2>
+<p class="font-sans text-xs text-[#a89c93] truncate mt-0.5">6 codices · Oxford guild discussions on early Cartesian thought</p>
+</div>
+<button aria-label="Playlist actions" class="card-options-btn w-9 h-9 -mr-1.5 -mt-1 flex items-center justify-center text-[#7a706a] hover:text-[#ece0dc] active:text-[#e8693f] rounded-lg transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="flex items-center gap-2 mt-2.5 pt-2 border-t border-[#3a322d]/60 text-[11px]">
+<span class="px-2 py-0.5 rounded bg-[#3a322d]/50 text-[#a89c93] font-mono font-medium">Unlisted</span>
+<span class="px-2 py-0.5 rounded bg-[#3a322d]/30 text-[#a89c93] font-mono">Philosophy</span>
+<span class="text-[#7a706a] ml-auto font-sans">Sep 28</span>
+</div>
+</div>
+</article>
+<!-- Card 5: Guild Scriptorium Masterworks -->
+<article class="touch-card rounded-2xl border border-[#3a322d] bg-[#211a17] hover:border-[#4d433d] transition-all overflow-hidden cursor-pointer" data-playlist="Guild Scriptorium Masterworks">
+<!-- 2x2 Collage -->
+<div class="h-36 bg-[#130d0a] grid grid-cols-2 grid-rows-2 gap-[1.5px] p-[1.5px]">
+<!-- Tile 1: Gold leaf illumination -->
+<div class="relative bg-[#281c13] flex items-center justify-center p-2 border-r border-[#3a322d]/30">
+<div class="w-8 h-8 rounded-full border border-[#d48e4d] flex items-center justify-center bg-[#1c130e]">
+<span class="font-serif text-sm font-bold text-[#e8c07d]">✤</span>
+</div>
+<span class="absolute top-1 left-1.5 font-mono text-[7px] text-[#e8693f]">VELLUM</span>
+</div>
+<!-- Tile 2: Scribe Register -->
+<div class="relative bg-vellum-texture p-2 flex flex-col justify-around">
+<span class="font-serif italic text-[8px] text-[#ece0dc]">Anno Domini</span>
+<div class="h-0.5 bg-[#4d433d] w-full"></div>
+<div class="h-0.5 bg-[#4d433d] w-3/4"></div>
+</div>
+<!-- Tile 3: Miniature Illumination -->
+<div class="relative bg-[#1f1712] flex items-center justify-center p-2 border-r border-[#3a322d]/30">
+<svg class="w-7 h-7 text-[#b38558]" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L1 21h22L12 2zm0 4.5l6.5 11.5h-13L12 6.5z"></path>
+</svg>
+</div>
+<!-- Tile 4: Binding Clasp -->
+<div class="relative bg-[#161210] flex items-center justify-center p-2">
+<div class="px-2 py-1 border border-[#6b584d] rounded text-[8px] font-mono text-[#d48e4d] bg-[#221b16]">
+              CLASP I
+            </div>
+</div>
+</div>
+<!-- Info -->
+<div class="p-3.5 bg-[#211a17]">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1 min-w-0">
+<h2 class="font-serif text-base font-semibold text-[#ece0dc] truncate">Guild Scriptorium Masterworks</h2>
+<p class="font-sans text-xs text-[#a89c93] truncate mt-0.5">31 codices · Formal treasury of the Imperial Scriptorium</p>
+</div>
+<button aria-label="Playlist actions" class="card-options-btn w-9 h-9 -mr-1.5 -mt-1 flex items-center justify-center text-[#7a706a] hover:text-[#ece0dc] active:text-[#e8693f] rounded-lg transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="flex items-center gap-2 mt-2.5 pt-2 border-t border-[#3a322d]/60 text-[11px]">
+<span class="px-2 py-0.5 rounded bg-[#3a322d]/50 text-[#ece0dc] font-mono font-medium">Public</span>
+<span class="px-2 py-0.5 rounded bg-[#e8693f]/10 text-[#e8693f] font-mono border border-[#e8693f]/25">Imperial</span>
+<span class="text-[#7a706a] ml-auto font-sans">Aug 19</span>
+</div>
+</div>
+</article>
+</main>
+<!-- END: PlaylistCardsList -->
+<!-- BEGIN: FloatingActionButton -->
+<div class="fixed right-4 bottom-20 z-40 max-w-[640px]">
+<button aria-label="Create new playlist" class="w-14 h-14 rounded-full bg-[#e8693f] hover:bg-[#d45a30] flex items-center justify-center text-[#16110f] shadow-[0_4px_18px_rgba(232,105,63,0.38)] active:scale-95 transition-all focus:outline-none" id="fab-create-playlist">
+<svg class="w-7 h-7 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- END: FloatingActionButton -->
+<!-- BEGIN: FixedMobileBottomNav -->
+<nav class="fixed bottom-0 inset-x-0 z-50 bg-[#16110f]/95 backdrop-blur-md border-t border-[#3a322d] pb-[env(safe-area-inset-bottom)]">
+<div class="max-w-[640px] mx-auto flex items-center justify-around h-16 px-1">
+<!-- Tab 1: Home -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] text-[#a89c93] hover:text-[#ece0dc] transition-colors" href="/">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-medium tracking-tight">Home</span>
+</a>
+<!-- Tab 2: Search / Explore -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] text-[#a89c93] hover:text-[#ece0dc] transition-colors" href="/explore">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-medium tracking-tight">Explore</span>
+</a>
+<!-- Tab 3: Playlists (Active!) -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] text-[#e8693f] transition-colors relative" href="/playlists">
+<!-- Active pip marker -->
+<div class="absolute top-1 w-1 h-1 rounded-full bg-[#e8693f]"></div>
+<svg class="w-5 h-5 mb-0.5 fill-[#e8693f]/20 text-[#e8693f]" fill="currentColor" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-semibold tracking-tight text-[#e8693f]">Playlists</span>
+</a>
+<!-- Tab 4: Profile -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] text-[#a89c93] hover:text-[#ece0dc] transition-colors" href="/profile">
+<div class="w-5 h-5 mb-0.5 rounded-full border border-[#a89c93] flex items-center justify-center text-[10px] font-mono">
+<span>☩</span>
+</div>
+<span class="text-[10px] font-medium tracking-tight">Profile</span>
+</a>
+</div>
+</nav>
+<!-- END: FixedMobileBottomNav -->
+</div>
+<!-- BEGIN: BottomSheetSort -->
+<!-- Backdrop -->
+<div class="fixed inset-0 bg-black/70 z-50 transition-opacity hidden" id="sort-sheet-backdrop"></div>
+<!-- Sheet Container -->
+<div class="fixed bottom-0 inset-x-0 max-w-[640px] mx-auto bg-[#211a17] border-t border-[#3a322d] rounded-t-2xl p-4 z-50 transform translate-y-full transition-transform duration-300 ease-out flex flex-col" id="sort-bottom-sheet">
+<!-- Pull handle bar -->
+<div class="w-10 h-1 bg-[#3a322d] rounded-full mx-auto mb-3"></div>
+<div class="flex items-center justify-between mb-3 px-1">
+<h3 class="font-serif text-lg font-bold text-[#ece0dc]">Sort Playlists</h3>
+<button class="text-xs font-mono text-[#a89c93] hover:text-[#ece0dc] p-1" id="close-sort-sheet-btn">DONE</button>
+</div>
+<!-- Options List -->
+<div class="flex flex-col space-y-1">
+<button class="sort-option-btn min-h-[48px] px-3.5 rounded-xl flex items-center justify-between text-sm text-[#ece0dc] bg-[#2a211c] border border-[#e8693f]/30" data-sort="Newest">
+<span class="font-medium">Newest First</span>
+<svg class="w-4 h-4 text-[#e8693f]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<button class="sort-option-btn min-h-[48px] px-3.5 rounded-xl flex items-center justify-between text-sm text-[#a89c93] hover:text-[#ece0dc] hover:bg-[#2a211c] transition-colors" data-sort="Oldest">
+<span>Oldest First</span>
+<div class="w-4 h-4"></div>
+</button>
+<button class="sort-option-btn min-h-[48px] px-3.5 rounded-xl flex items-center justify-between text-sm text-[#a89c93] hover:text-[#ece0dc] hover:bg-[#2a211c] transition-colors" data-sort="Name A–Z">
+<span>Name (A – Z)</span>
+<div class="w-4 h-4"></div>
+</button>
+<button class="sort-option-btn min-h-[48px] px-3.5 rounded-xl flex items-center justify-between text-sm text-[#a89c93] hover:text-[#ece0dc] hover:bg-[#2a211c] transition-colors" data-sort="Most Books">
+<span>Most Codices</span>
+<div class="w-4 h-4"></div>
+</button>
+</div>
+</div>
+<!-- END: BottomSheetSort -->
+<!-- BEGIN: BottomSheetActions -->
+<!-- Backdrop for action sheet -->
+<div class="fixed inset-0 bg-black/70 z-50 transition-opacity hidden" id="action-sheet-backdrop"></div>
+<!-- Action Sheet -->
+<div class="fixed bottom-0 inset-x-0 max-w-[640px] mx-auto bg-[#211a17] border-t border-[#3a322d] rounded-t-2xl p-4 z-50 transform translate-y-full transition-transform duration-300 ease-out flex flex-col" id="action-bottom-sheet">
+<div class="w-10 h-1 bg-[#3a322d] rounded-full mx-auto mb-3"></div>
+<!-- Active Playlist Details in Header -->
+<div class="px-1 pb-3 mb-2 border-b border-[#3a322d]">
+<span class="text-[10px] font-mono uppercase text-[#e8693f] tracking-wider">Playlist Actions</span>
+<h3 class="font-serif text-base font-semibold text-[#ece0dc] truncate mt-0.5" id="action-playlist-title">Selected Playlist</h3>
+</div>
+<!-- Actions List -->
+<div class="flex flex-col space-y-1">
+<button class="action-btn min-h-[48px] px-3 rounded-xl flex items-center gap-3 text-sm text-[#ece0dc] hover:bg-[#2a211c] transition-colors">
+<svg class="w-5 h-5 text-[#a89c93]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Edit Playlist Details</span>
+</button>
+<button class="action-btn min-h-[48px] px-3 rounded-xl flex items-center gap-3 text-sm text-[#ece0dc] hover:bg-[#2a211c] transition-colors">
+<svg class="w-5 h-5 text-[#a89c93]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Share Treatise Collection</span>
+</button>
+<button class="action-btn min-h-[48px] px-3 rounded-xl flex items-center gap-3 text-sm text-[#ece0dc] hover:bg-[#2a211c] transition-colors">
+<svg class="w-5 h-5 text-[#a89c93]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Change Visibility (Public / Private)</span>
+</button>
+<button class="action-btn min-h-[48px] px-3 rounded-xl flex items-center gap-3 text-sm text-[#ef4444] hover:bg-[#ef4444]/10 transition-colors">
+<svg class="w-5 h-5 text-[#ef4444]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Delete Playlist</span>
+</button>
+<button class="min-h-[48px] mt-2 px-3 rounded-xl text-center text-sm font-medium text-[#a89c93] hover:text-[#ece0dc] bg-[#16110f] border border-[#3a322d] transition-colors" id="cancel-action-sheet-btn">
+        Cancel
+      </button>
+</div>
+</div>
+<!-- END: BottomSheetActions -->
+<!-- JavaScript for Interactive Sheets & Quick Filtering -->
+<script data-purpose="sheet-controller">
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sort Sheet Elements
+      const openSortBtn = document.getElementById('open-sort-sheet-btn');
+      const sortBackdrop = document.getElementById('sort-sheet-backdrop');
+      const sortSheet = document.getElementById('sort-bottom-sheet');
+      const closeSortBtn = document.getElementById('close-sort-sheet-btn');
+      const sortOptions = document.querySelectorAll('.sort-option-btn');
+      const currentSortLabel = document.getElementById('current-sort-label');
+
+      // Action Sheet Elements
+      const actionBackdrop = document.getElementById('action-sheet-backdrop');
+      const actionSheet = document.getElementById('action-bottom-sheet');
+      const cancelActionBtn = document.getElementById('cancel-action-sheet-btn');
+      const actionTitle = document.getElementById('action-playlist-title');
+      const cardOptionBtns = document.querySelectorAll('.card-options-btn');
+      const playlistCards = document.querySelectorAll('.touch-card');
+
+      // Search & Clear Elements
+      const searchInput = document.getElementById('playlist-search-input');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+
+      // FAB Button
+      const fabBtn = document.getElementById('fab-create-playlist');
+
+      // Function to open Sort Sheet
+      function openSortSheet() {
+        sortBackdrop.classList.remove('hidden');
+        setTimeout(() => {
+          sortBackdrop.classList.remove('opacity-0');
+          sortSheet.classList.remove('translate-y-full');
+        }, 10);
+      }
+
+      // Function to close Sort Sheet
+      function closeSortSheet() {
+        sortSheet.classList.add('translate-y-full');
+        sortBackdrop.classList.add('opacity-0');
+        setTimeout(() => {
+          sortBackdrop.classList.add('hidden');
+        }, 300);
+      }
+
+      openSortBtn.addEventListener('click', openSortSheet);
+      closeSortBtn.addEventListener('click', closeSortSheet);
+      sortBackdrop.addEventListener('click', closeSortSheet);
+
+      // Handle Sort Options selection
+      sortOptions.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selectedSort = btn.getAttribute('data-sort');
+          currentSortLabel.textContent = selectedSort;
+
+          // Update UI checkmarks
+          sortOptions.forEach(b => {
+            b.classList.remove('bg-[#2a211c]', 'border', 'border-[#e8693f]/30', 'text-[#ece0dc]');
+            b.classList.add('text-[#a89c93]');
+            b.querySelector('svg')?.remove();
+          });
+
+          btn.classList.remove('text-[#a89c93]');
+          btn.classList.add('bg-[#2a211c]', 'border', 'border-[#e8693f]/30', 'text-[#ece0dc]');
+          
+          const checkmark = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          checkmark.setAttribute('class', 'w-4 h-4 text-[#e8693f]');
+          checkmark.setAttribute('fill', 'none');
+          checkmark.setAttribute('stroke', 'currentColor');
+          checkmark.setAttribute('viewBox', '0 0 24 24');
+          checkmark.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>';
+          btn.appendChild(checkmark);
+
+          setTimeout(closeSortSheet, 200);
+        });
+      });
+
+      // Function to open Action Sheet
+      function openActionSheet(titleText) {
+        actionTitle.textContent = titleText || 'Curated Codex';
+        actionBackdrop.classList.remove('hidden');
+        setTimeout(() => {
+          actionBackdrop.classList.remove('opacity-0');
+          actionSheet.classList.remove('translate-y-full');
+        }, 10);
+      }
+
+      // Function to close Action Sheet
+      function closeActionSheet() {
+        actionSheet.classList.add('translate-y-full');
+        actionBackdrop.classList.add('opacity-0');
+        setTimeout(() => {
+          actionBackdrop.classList.add('hidden');
+        }, 300);
+      }
+
+      cancelActionBtn.addEventListener('click', closeActionSheet);
+      actionBackdrop.addEventListener('click', closeActionSheet);
+
+      // Trigger action sheet on three-dot buttons
+      cardOptionBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.touch-card');
+          const title = card.getAttribute('data-playlist');
+          openActionSheet(title);
+        });
+      });
+
+      // Support Long Press on playlist card for mobile feel
+      playlistCards.forEach(card => {
+        let pressTimer;
+        
+        card.addEventListener('touchstart', (e) => {
+          pressTimer = setTimeout(() => {
+            const title = card.getAttribute('data-playlist');
+            openActionSheet(title);
+            if (window.navigator.vibrate) {
+              window.navigator.vibrate(40);
+            }
+          }, 600);
+        }, { passive: true });
+
+        card.addEventListener('touchend', () => {
+          clearTimeout(pressTimer);
+        });
+
+        card.addEventListener('touchmove', () => {
+          clearTimeout(pressTimer);
+        });
+      });
+
+      // Clear search handler
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.focus();
+        filterCards('');
+      });
+
+      // Real-time simple filter
+      searchInput.addEventListener('input', (e) => {
+        filterCards(e.target.value.toLowerCase());
+      });
+
+      function filterCards(query) {
+        playlistCards.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          if (text.includes(query)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Quick visual feedback on FAB
+      fabBtn.addEventListener('click', () => {
+        openActionSheet("Create New Codex Playlist");
+      });
+    });
+  </script>
+</body></html>

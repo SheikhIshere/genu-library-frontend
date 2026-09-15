@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genu Library — Tablet Home</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#16110f',
+            surface: '#211a17',
+            'surface-hover': '#2a211c',
+            'surface-active': '#332a24',
+            primary: '#e8693f',
+            'primary-hover': '#d45a30',
+            'primary-muted': 'rgba(232, 105, 63, 0.12)',
+            'primary-glow': 'rgba(232, 105, 63, 0.15)',
+            border: '#3a322d',
+            'border-hover': '#4d433d',
+            'text-primary': '#ece0dc',
+            'text-secondary': '#a89c93',
+            'text-muted': '#7a706a',
+            'text-on-accent': '#16110f',
+            'status-success': '#4a7c59',
+            'status-error': '#c44d4d',
+            'status-warning': '#d4a24e',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbar and snap behavior */
+    .snap-x-mandatory {
+      scroll-snap-type: x mandatory;
+    }
+    .snap-item {
+      scroll-snap-align: start;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    /* Animation Keyframes */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .anim-fade-in {
+      animation: fadeInUp 0.35s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+    .anim-hero-card {
+      animation: slideInLeft 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    .anim-featured-card {
+      animation: slideInRight 0.45s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    /* Staggered items */
+    .stagger-1 { animation: fadeInUp 0.35s 0.05s ease-out both; }
+    .stagger-2 { animation: fadeInUp 0.35s 0.10s ease-out both; }
+    .stagger-3 { animation: fadeInUp 0.35s 0.15s ease-out both; }
+    .stagger-4 { animation: fadeInUp 0.35s 0.20s ease-out both; }
+
+    /* Touch targets and accessibility focus rings */
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px #e8693f;
+    }
+  </style>
+</head>
+<body class="bg-[#16110f] text-[#ece0dc] font-sans antialiased min-h-screen selection:bg-[#e8693f] selection:text-[#16110f]">
+
+  <!-- Top Navigation Bar (Sticky, No Bottom Nav for Tablet) -->
+  <nav class="sticky top-0 z-50 bg-[#16110f] border-b border-[#3a322d]">
+    <div class="max-w-5xl mx-auto flex items-center h-14 px-6 gap-6">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex-shrink-0 flex items-center gap-2.5 group min-h-[40px] min-w-[40px] focus:outline-none" aria-label="Genu Library Home">
+        <div class="w-8 h-8 rounded-lg bg-[#e8693f20] border border-[#e8693f]/40 flex items-center justify-center text-[#e8693f] group-hover:border-[#e8693f] transition-colors">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+            <path d="M6 6h10"></path>
+            <path d="M6 10h10"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-bold tracking-tight text-[#ece0dc] font-serif leading-none">Genu</span>
+          <span class="text-[9px] uppercase tracking-widest text-[#a89c93] font-mono mt-0.5">Sanctum</span>
+        </div>
+      </a>
+
+      <!-- Expanded Search Bar for Tablet -->
+      <div class="flex-1 max-w-md relative">
+        <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#7a706a]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input
+          id="tablet-search"
+          type="search"
+          placeholder="Search codices, treatises, authors..."
+          class="w-full h-10 pl-10 pr-12 rounded-lg bg-[#211a17] border border-[#3a322d] text-sm text-[#ece0dc] placeholder:text-[#7a706a] focus:outline-none focus:border-[#e8693f] focus:shadow-[0_0_0_3px_rgba(232,105,63,0.15)] transition-colors hover:border-[#4d433d]"
+        />
+        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#7a706a] border border-[#3a322d] px-1.5 py-0.5 rounded bg-[#16110f]">⌘K</span>
+      </div>
+
+      <!-- Nav Links -->
+      <div class="flex items-center gap-1.5">
+        <a href="/" class="h-10 px-4 rounded-lg bg-[#e8693f20] text-[#e8693f] border border-[#e8693f]/30 text-sm font-semibold flex items-center min-h-[40px] min-w-[40px] justify-center transition-colors">
+          Home
+        </a>
+        <a href="/books" class="h-10 px-4 rounded-lg text-[#a89c93] hover:text-[#ece0dc] hover:bg-[#2a211c] text-sm font-medium flex items-center min-h-[40px] min-w-[40px] justify-center transition-colors">
+          Books
+        </a>
+        <a href="/playlists" class="h-10 px-4 rounded-lg text-[#a89c93] hover:text-[#ece0dc] hover:bg-[#2a211c] text-sm font-medium flex items-center min-h-[40px] min-w-[40px] justify-center transition-colors">
+          Lists
+        </a>
+      </div>
+
+      <!-- Profile Avatar & Token Indicator -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#211a17] border border-[#3a322d] text-xs font-mono text-[#d4a24e]">
+          <span>🪙</span>
+          <span>1,480</span>
+        </div>
+        <a href="/profile" class="flex-shrink-0 w-9 h-9 rounded-full bg-[#e8693f20] border border-[#3a322d] hover:border-[#e8693f] flex items-center justify-center text-[#e8693f] text-sm font-semibold transition-colors min-h-[40px] min-w-[40px] overflow-hidden" title="View Profile">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1XKf_GjtJwts4LnXYu2b91y8Hb7HemOhyoilAxQXGMe3qdQ4SlRllZjTE0ZiMHsW1XR7v6SRgEkFvubZkdqPVT46T4Y7-hX3PndE43a9RR1psx91yN5ANyBdb9ePSCUHIChheXtNgzrzI0r-8yrCDvlqx2GnFLJhA4IfATJOjGRRkXWUyvvkNrJZflBAvZqIo10iFDzT52sLCRpyyWeQ6eOxJWGAkSeeVBK4C7reLmE4FYIyoT7HUm5xog" alt="Alistair Vance Avatar" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span style="display:none;">AV</span>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Page Main Scroll Container (Max-W 5xl for Tablet Landscape/Portrait 641-1024px) -->
+  <main class="max-w-5xl mx-auto pb-16 anim-fade-in">
+
+    <!-- Hero Card + Featured Carousel (Side-by-Side) -->
+    <section class="px-6 mt-6">
+      <div class="flex flex-row gap-6 items-stretch">
+        
+        <!-- Hero Card (Left Side) -->
+        <div class="flex-1 rounded-2xl bg-[#211a17] border border-[#3a322d] p-6 flex flex-col justify-between hover:border-[#4d433d] transition-colors anim-hero-card">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs uppercase tracking-widest text-[#a89c93] font-mono font-medium">Welcome back • Scholar</span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#e8693f15] text-[#e8693f] text-[11px] font-mono border border-[#e8693f]/30">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#e8693f] animate-pulse"></span>
+                Archivist Grade
+              </span>
+            </div>
+            
+            <h1 class="mt-3 text-3xl font-bold text-[#ece0dc] leading-tight font-serif">
+              Genu Library
+            </h1>
+            <p class="mt-2 text-sm text-[#a89c93] leading-relaxed">
+              Discover illuminated codices, rare metallurgical folios, and ancient treatises. Preview inline, inspect typography, and leave guild endorsements.
+            </p>
+          </div>
+
+          <div class="pt-6 mt-2 border-t border-[#3a322d]/60 flex items-center gap-4">
+            <a href="/books"
+               class="inline-flex items-center justify-center h-10 px-6 rounded-lg bg-[#e8693f] text-[#16110f] text-sm font-semibold hover:bg-[#d45a30] active:scale-[0.98] transition-all min-h-[40px] min-w-[40px] shadow-[0_0_20px_rgba(232,105,63,0.15)]">
+              Browse Books
+            </a>
+            <a href="/books/new" class="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-[#16110f] border border-[#3a322d] text-sm text-[#ece0dc] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.98] transition-all min-h-[40px]">
+              + Deposit Folio
+            </a>
+          </div>
+        </div>
+
+        <!-- Featured Carousel (Right Side) -->
+        <div class="flex-1 rounded-2xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] transition-colors flex flex-col justify-between anim-featured-card">
+          <div class="px-5 py-3.5 border-b border-[#3a322d] flex items-center justify-between bg-[#1f1815]">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#e8693f]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <h2 class="text-sm font-semibold text-[#ece0dc] font-serif tracking-wide">Featured Treatise</h2>
+            </div>
+            <span class="text-[11px] font-mono text-[#a89c93]">Swipe or auto-advancing</span>
+          </div>
+
+          <!-- Carousel Container with Smooth Snap Scroll -->
+          <div class="relative overflow-hidden flex-1 flex flex-col justify-center">
+            <div id="featured-carousel" class="flex overflow-x-auto snap-x-mandatory no-scrollbar scroll-smooth">
+              
+              <!-- Slide 1: The Alchemist's Codex -->
+              <a href="/books/the-alchemists-codex" class="snap-item flex-shrink-0 w-full p-5 flex gap-4 hover:bg-[#2a211c] transition-colors group">
+                <div class="w-20 h-28 flex-shrink-0 rounded-lg bg-[#16110f] border border-[#3a322d] overflow-hidden shadow-md">
+                  <img src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k" alt="The Alchemist's Codex" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                </div>
+                <div class="flex-1 min-w-0 py-1 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-1.5 mb-1">
+                      <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#e8693f]/15 text-[#e8693f]">CODEX #841</span>
+                      <span class="text-[11px] text-[#7a706a]">• 1484 AD</span>
+                    </div>
+                    <h3 class="text-base font-semibold text-[#ece0dc] group-hover:text-[#e8693f] transition-colors truncate font-serif">
+                      The Alchemist's Codex
+                    </h3>
+                    <p class="text-xs text-[#a89c93] truncate mt-0.5">Hermes Trismegistus & Vance</p>
+                  </div>
+                  
+                  <div class="flex items-center justify-between mt-2 pt-2 border-t border-[#3a322d]/40">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-[#d4a24e] text-xs">★</span>
+                      <span class="text-xs text-[#ece0dc] font-mono font-semibold">5.0</span>
+                      <span class="text-[11px] text-[#7a706a]">(94 reviews)</span>
+                    </div>
+                    <span class="text-xs font-mono text-[#d4a24e] font-semibold">🪙 420 GN</span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Slide 2: The Architecture of Thought -->
+              <a href="/books/architecture-of-thought" class="snap-item flex-shrink-0 w-full p-5 flex gap-4 hover:bg-[#2a211c] transition-colors group">
+                <div class="w-20 h-28 flex-shrink-0 rounded-lg bg-[#16110f] border border-[#3a322d] overflow-hidden flex items-center justify-center p-2 text-center bg-gradient-to-br from-[#2a211c] to-[#16110f]">
+                  <div class="border border-[#e8693f]/30 w-full h-full rounded flex flex-col items-center justify-center p-1">
+                    <span class="text-[9px] uppercase font-serif text-[#e8693f]">Folio</span>
+                    <span class="text-[8px] font-mono text-[#a89c93]">#420</span>
+                  </div>
+                </div>
+                <div class="flex-1 min-w-0 py-1 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-1.5 mb-1">
+                      <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#4a7c59]/20 text-[#4a7c59]">FREE ACCESS</span>
+                      <span class="text-[11px] text-[#7a706a]">• Mainz Guild</span>
+                    </div>
+                    <h3 class="text-base font-semibold text-[#ece0dc] group-hover:text-[#e8693f] transition-colors truncate font-serif">
+                      The Architecture of Thought
+                    </h3>
+                    <p class="text-xs text-[#a89c93] truncate mt-0.5">Prof. Alistair Vance</p>
+                  </div>
+                  
+                  <div class="flex items-center justify-between mt-2 pt-2 border-t border-[#3a322d]/40">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-[#d4a24e] text-xs">★</span>
+                      <span class="text-xs text-[#ece0dc] font-mono font-semibold">4.9</span>
+                      <span class="text-[11px] text-[#7a706a]">(68 reviews)</span>
+                    </div>
+                    <span class="text-xs font-mono text-[#4a7c59] font-semibold">0 GN</span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Slide 3: Chronicles of the Iron Foundry -->
+              <a href="/books/iron-foundry" class="snap-item flex-shrink-0 w-full p-5 flex gap-4 hover:bg-[#2a211c] transition-colors group">
+                <div class="w-20 h-28 flex-shrink-0 rounded-lg bg-[#16110f] border border-[#3a322d] overflow-hidden flex items-center justify-center p-2 text-center bg-[#1f1714]">
+                  <div class="border border-[#d4a24e]/30 w-full h-full rounded flex flex-col items-center justify-center p-1">
+                    <span class="text-[9px] uppercase font-serif text-[#d4a24e]">Metallurgy</span>
+                    <span class="text-[8px] font-mono text-[#a89c93]">#112</span>
+                  </div>
+                </div>
+                <div class="flex-1 min-w-0 py-1 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-1.5 mb-1">
+                      <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#e8693f]/15 text-[#e8693f]">TREATISE</span>
+                      <span class="text-[11px] text-[#7a706a]">• 1510 AD</span>
+                    </div>
+                    <h3 class="text-base font-semibold text-[#ece0dc] group-hover:text-[#e8693f] transition-colors truncate font-serif">
+                      Chronicles of Iron Foundry
+                    </h3>
+                    <p class="text-xs text-[#a89c93] truncate mt-0.5">Master Vulcanus</p>
+                  </div>
+                  
+                  <div class="flex items-center justify-between mt-2 pt-2 border-t border-[#3a322d]/40">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-[#d4a24e] text-xs">★</span>
+                      <span class="text-xs text-[#ece0dc] font-mono font-semibold">4.8</span>
+                      <span class="text-[11px] text-[#7a706a]">(42 reviews)</span>
+                    </div>
+                    <span class="text-xs font-mono text-[#d4a24e] font-semibold">🪙 180 GN</span>
+                  </div>
+                </div>
+              </a>
+
+            </div>
+
+            <!-- Carousel Dots -->
+            <div class="flex justify-center items-center gap-2 pb-3.5 pt-1">
+              <button onclick="setSlide(0)" class="carousel-dot w-2 h-2 rounded-full bg-[#e8693f] transition-all min-h-[16px] min-w-[16px] flex items-center justify-center" aria-label="Slide 1"></button>
+              <button onclick="setSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-[#3a322d] hover:bg-[#a89c93] transition-all min-h-[16px] min-w-[16px] flex items-center justify-center" aria-label="Slide 2"></button>
+              <button onclick="setSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-[#3a322d] hover:bg-[#a89c93] transition-all min-h-[16px] min-w-[16px] flex items-center justify-center" aria-label="Slide 3"></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions Row (3 Cards, Grid-cols-3) -->
+    <section class="px-6 mt-8">
+      <div class="grid grid-cols-3 gap-4">
+        
+        <a href="/books" class="h-24 rounded-xl bg-[#211a17] border border-[#3a322d] flex flex-col items-center justify-center gap-2 hover:bg-[#2a211c] hover:border-[#4d433d] active:scale-[0.97] transition-all min-h-[40px] group">
+          <div class="w-9 h-9 rounded-lg bg-[#e8693f15] flex items-center justify-center text-[#e8693f] group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+              <path d="M6 6h10"></path>
+              <path d="M6 10h10"></path>
+            </svg>
+          </div>
+          <span class="text-sm text-[#ece0dc] font-medium tracking-wide">Browse Archive</span>
+        </a>
+
+        <a href="/books/new" class="h-24 rounded-xl bg-[#211a17] border border-[#3a322d] flex flex-col items-center justify-center gap-2 hover:bg-[#2a211c] hover:border-[#4d433d] active:scale-[0.97] transition-all min-h-[40px] group">
+          <div class="w-9 h-9 rounded-lg bg-[#e8693f15] flex items-center justify-center text-[#e8693f] group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </div>
+          <span class="text-sm text-[#ece0dc] font-medium tracking-wide">Deposit New Book</span>
+        </a>
+
+        <a href="/playlists" class="h-24 rounded-xl bg-[#211a17] border border-[#3a322d] flex flex-col items-center justify-center gap-2 hover:bg-[#2a211c] hover:border-[#4d433d] active:scale-[0.97] transition-all min-h-[40px] group">
+          <div class="w-9 h-9 rounded-lg bg-[#e8693f15] flex items-center justify-center text-[#e8693f] group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+          </div>
+          <span class="text-sm text-[#ece0dc] font-medium tracking-wide">My Curations</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Stats Row (3-Column Grid) -->
+    <section class="px-6 mt-8">
+      <div class="grid grid-cols-3 gap-4">
+        
+        <div class="rounded-xl bg-[#211a17] border border-[#3a322d] p-4 text-center hover:border-[#4d433d] transition-colors">
+          <p class="text-2xl font-bold text-[#ece0dc] font-mono tracking-tight">1,428</p>
+          <p class="mt-1 text-xs uppercase tracking-wider text-[#a89c93] font-medium">Total Codices</p>
+        </div>
+
+        <div class="rounded-xl bg-[#211a17] border border-[#3a322d] p-4 text-center hover:border-[#4d433d] transition-colors">
+          <p class="text-2xl font-bold text-[#4a7c59] font-mono tracking-tight">894</p>
+          <p class="mt-1 text-xs uppercase tracking-wider text-[#a89c93] font-medium">Open Access (Free)</p>
+        </div>
+
+        <div class="rounded-xl bg-[#211a17] border border-[#3a322d] p-4 text-center hover:border-[#4d433d] transition-colors">
+          <p class="text-2xl font-bold text-[#e8693f] font-mono tracking-tight">+36</p>
+          <p class="mt-1 text-xs uppercase tracking-wider text-[#a89c93] font-medium">Archived This Cycle</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Recently Added Section (2-Column Tablet Grid) -->
+    <section class="px-6 mt-10">
+      <div class="flex items-center justify-between pb-3 border-b border-[#3a322d]/60 mb-5">
+        <div>
+          <h2 class="text-xl font-semibold text-[#ece0dc] font-serif">Recently Added</h2>
+          <p class="text-xs text-[#a89c93] mt-0.5">Fresh acquisitions ingested into the guild ledger</p>
+        </div>
+        <a href="/books" class="text-sm text-[#e8693f] font-medium hover:text-[#d45a30] active:scale-[0.97] min-h-[40px] min-w-[40px] flex items-center justify-center transition-colors">
+          See all codices &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        
+        <!-- Book Card 1 -->
+        <a href="/books/the-alchemists-codex" class="block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] transition-all group">
+          <div class="relative w-full h-52 bg-[#16110f] overflow-hidden flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida/AEtjO1U4i7Bvv1eCjbGnBci34nK435ouZRZn5X2sMTopixGH7pFI5PEbtTQSrBm6P7i7K6h3kR3tjW_7ru3c20KpHrd8Yc_AWgSlnt2pD5BYW4jXf9Fu0FH_N7vWSmWpzaOjfkoFo8dQ6PZlBl_ndvhPg7B_tuAGXHuBofZcqR2od7ODS0tUdi1p_UQ9JTHwiGQeLlkexz2tw5gZviwsPyIlrZQPMvGNFRlwTTdDJSm-b1-dgwe-zpfs_jlAn9k" alt="The Alchemist's Codex" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-[#16110f]/90 border border-[#3a322d] text-[#ece0dc] text-[10px] font-mono font-semibold">1484 AD</span>
+            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-[#e8693f] text-[#16110f] text-[10px] font-mono font-bold">🪙 420 GN</span>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-semibold text-[#ece0dc] truncate group-hover:text-[#e8693f] transition-colors font-serif">
+              The Alchemist's Codex
+            </h3>
+            <p class="mt-0.5 text-sm text-[#a89c93] truncate">Prof. Alistair Vance</p>
+            <div class="mt-3 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[#d4a24e]">★</span>
+                <span class="text-sm text-[#ece0dc] font-mono font-medium">5.0</span>
+                <span class="text-[#7a706a]">(94)</span>
+              </div>
+              <span class="text-[#a89c93] font-mono text-[11px]">Hermetic Arts</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Book Card 2 -->
+        <a href="/books/architecture-of-thought" class="block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] transition-all group">
+          <div class="relative w-full h-52 bg-[#1b1512] flex items-center justify-center border-b border-[#3a322d]">
+            <div class="w-32 h-40 rounded border border-[#3a322d] bg-[#16110f] flex flex-col items-center justify-center p-3 text-center shadow-inner group-hover:border-[#e8693f]/40 transition-colors">
+              <svg class="w-8 h-8 text-[#e8693f] mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <rect width="16" height="20" x="4" y="2" rx="2"></rect>
+                <line x1="8" y1="6" x2="16" y2="6"></line>
+                <line x1="8" y1="10" x2="16" y2="10"></line>
+                <line x1="8" y1="14" x2="12" y2="14"></line>
+              </svg>
+              <span class="text-[10px] font-serif text-[#ece0dc] leading-tight">Architecture of Thought</span>
+            </div>
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-[#4a7c59] text-[#ece0dc] text-[10px] font-semibold">Free</span>
+            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-[#16110f]/90 border border-[#3a322d] text-[#ece0dc] text-[10px] font-mono font-semibold">Folio #420</span>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-semibold text-[#ece0dc] truncate group-hover:text-[#e8693f] transition-colors font-serif">
+              The Architecture of Thought
+            </h3>
+            <p class="mt-0.5 text-sm text-[#a89c93] truncate">Alistair Vance</p>
+            <div class="mt-3 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[#d4a24e]">★</span>
+                <span class="text-sm text-[#ece0dc] font-mono font-medium">4.9</span>
+                <span class="text-[#7a706a]">(68)</span>
+              </div>
+              <span class="text-[#a89c93] font-mono text-[11px]">Philosophy</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Book Card 3 -->
+        <a href="/books/de-sphaera-mundi" class="block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] transition-all group">
+          <div class="relative w-full h-52 bg-[#151a1e] flex items-center justify-center border-b border-[#3a322d]">
+            <div class="w-32 h-40 rounded border border-[#3a322d] bg-[#16110f] flex flex-col items-center justify-center p-3 text-center shadow-inner group-hover:border-[#e8693f]/40 transition-colors">
+              <svg class="w-8 h-8 text-[#d4a24e] mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                <path d="M2 12h20"></path>
+              </svg>
+              <span class="text-[10px] font-serif text-[#ece0dc] leading-tight">De Sphaera Mundi</span>
+            </div>
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-[#16110f]/90 border border-[#3a322d] text-[#ece0dc] text-[10px] font-mono font-semibold">1230 AD</span>
+            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-[#e8693f] text-[#16110f] text-[10px] font-mono font-bold">🪙 310 GN</span>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-semibold text-[#ece0dc] truncate group-hover:text-[#e8693f] transition-colors font-serif">
+              De Sphaera Mundi & Celestial Atlas
+            </h3>
+            <p class="mt-0.5 text-sm text-[#a89c93] truncate">Johannes de Sacrobosco</p>
+            <div class="mt-3 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[#d4a24e]">★</span>
+                <span class="text-sm text-[#ece0dc] font-mono font-medium">4.7</span>
+                <span class="text-[#7a706a]">(53)</span>
+              </div>
+              <span class="text-[#a89c93] font-mono text-[11px]">Astronomy</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Book Card 4 -->
+        <a href="/books/chronicles-iron-foundry" class="block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] transition-all group">
+          <div class="relative w-full h-52 bg-[#1b1411] flex items-center justify-center border-b border-[#3a322d]">
+            <div class="w-32 h-40 rounded border border-[#3a322d] bg-[#16110f] flex flex-col items-center justify-center p-3 text-center shadow-inner group-hover:border-[#e8693f]/40 transition-colors">
+              <svg class="w-8 h-8 text-[#e8693f] mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+              </svg>
+              <span class="text-[10px] font-serif text-[#ece0dc] leading-tight">Chronicles of Foundry</span>
+            </div>
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-[#4a7c59] text-[#ece0dc] text-[10px] font-semibold">Free</span>
+            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-[#16110f]/90 border border-[#3a322d] text-[#ece0dc] text-[10px] font-mono font-semibold">Folio #112</span>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-semibold text-[#ece0dc] truncate group-hover:text-[#e8693f] transition-colors font-serif">
+              Chronicles of the Iron Foundry
+            </h3>
+            <p class="mt-0.5 text-sm text-[#a89c93] truncate">Master Vulcanus</p>
+            <div class="mt-3 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[#d4a24e]">★</span>
+                <span class="text-sm text-[#ece0dc] font-mono font-medium">4.8</span>
+                <span class="text-[#7a706a]">(37)</span>
+              </div>
+              <span class="text-[#a89c93] font-mono text-[11px]">Metallurgy</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Trending Section (2-Column Tablet Grid) -->
+    <section class="px-6 mt-10">
+      <div class="flex items-center justify-between pb-3 border-b border-[#3a322d]/60 mb-5">
+        <div>
+          <h2 class="text-xl font-semibold text-[#ece0dc] font-serif">Trending in Sanctum</h2>
+          <p class="text-xs text-[#a89c93] mt-0.5">Most consulted folios this moon cycle</p>
+        </div>
+        <a href="/books?sort=trending" class="text-sm text-[#e8693f] font-medium hover:text-[#d45a30] active:scale-[0.97] min-h-[40px] min-w-[40px] flex items-center justify-center transition-colors">
+          View all trending &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        
+        <!-- Trending Card 1 -->
+        <a href="/books/lexicon-of-antiquity" class="block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] transition-all group">
+          <div class="relative w-full h-52 bg-[#171412] flex items-center justify-center border-b border-[#3a322d]">
+            <div class="w-32 h-40 rounded border border-[#3a322d] bg-[#16110f] flex flex-col items-center justify-center p-3 text-center shadow-inner group-hover:border-[#e8693f]/40 transition-colors">
+              <svg class="w-8 h-8 text-[#a89c93] mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="m18 16 4-4-4-4"></path>
+                <path d="m6 8-4 4 4 4"></path>
+                <path d="m14.5 4-5 16"></path>
+              </svg>
+              <span class="text-[10px] font-serif text-[#ece0dc] leading-tight">Lexicon of Antiquity</span>
+            </div>
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-[#d4a24e]/20 text-[#d4a24e] border border-[#d4a24e]/30 text-[10px] font-mono font-semibold">🔥 #1 Trending</span>
+            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-[#e8693f] text-[#16110f] text-[10px] font-mono font-bold">🪙 260 GN</span>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-semibold text-[#ece0dc] truncate group-hover:text-[#e8693f] transition-colors font-serif">
+              Lexicon of Antiquity & Guild Dialects
+            </h3>
+            <p class="mt-0.5 text-sm text-[#a89c93] truncate">Guild Scribe Marcus</p>
+            <div class="mt-3 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[#d4a24e]">★</span>
+                <span class="text-sm text-[#ece0dc] font-mono font-medium">4.9</span>
+                <span class="text-[#7a706a]">(112)</span>
+              </div>
+              <span class="text-[#a89c93] font-mono text-[11px]">Paleography</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Trending Card 2 -->
+        <a href="/books/illuminated-manuscripts-mainz" class="block rounded-xl bg-[#211a17] border border-[#3a322d] overflow-hidden hover:border-[#4d433d] hover:bg-[#2a211c] active:scale-[0.98] transition-all group">
+          <div class="relative w-full h-52 bg-[#191517] flex items-center justify-center border-b border-[#3a322d]">
+            <div class="w-32 h-40 rounded border border-[#3a322d] bg-[#16110f] flex flex-col items-center justify-center p-3 text-center shadow-inner group-hover:border-[#e8693f]/40 transition-colors">
+              <svg class="w-8 h-8 text-[#e8693f] mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <span class="text-[10px] font-serif text-[#ece0dc] leading-tight">Illuminated Mainz Folios</span>
+            </div>
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-[#4a7c59] text-[#ece0dc] text-[10px] font-semibold">Free</span>
+            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-[#16110f]/90 border border-[#3a322d] text-[#ece0dc] text-[10px] font-mono font-semibold">Folio #019</span>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-semibold text-[#ece0dc] truncate group-hover:text-[#e8693f] transition-colors font-serif">
+              Illuminated Manuscripts of Mainz
+            </h3>
+            <p class="mt-0.5 text-sm text-[#a89c93] truncate">Fra Benedict</p>
+            <div class="mt-3 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[#d4a24e]">★</span>
+                <span class="text-sm text-[#ece0dc] font-mono font-medium">4.9</span>
+                <span class="text-[#7a706a]">(84)</span>
+              </div>
+              <span class="text-[#a89c93] font-mono text-[11px]">Incunabula</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Genre Chips (flex-wrap 2 rows, natural wrapping on tablet) -->
+    <section class="px-6 mt-10">
+      <div class="p-6 rounded-2xl bg-[#211a17] border border-[#3a322d]">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl font-semibold text-[#ece0dc] font-serif">Browse by Archival Discipline</h2>
+            <p class="text-xs text-[#a89c93] mt-0.5">Filter the eternal ledger by specialized field of inquiry</p>
+          </div>
+          <span class="text-xs font-mono text-[#a89c93]">12 Disciplines</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button class="h-10 px-4 rounded-full bg-[#e8693f20] border border-[#e8693f] text-sm text-[#e8693f] font-semibold active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            All Codices
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #alchemy (84)
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #astrolabes (48)
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #metallurgy (62)
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #gutenberg (31)
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #incunabula (39)
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #dialectics (22)
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #cartography (27)
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #paleography (18)
+          </button>
+          <button class="h-10 px-4 rounded-full bg-[#16110f] border border-[#3a322d] text-sm text-[#a89c93] hover:bg-[#e8693f20] hover:border-[#e8693f] hover:text-[#e8693f] active:scale-[0.97] transition-all min-h-[40px] min-w-[40px]">
+            #pigments (15)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tablet Centered Call to Action Section -->
+    <section class="px-6 mt-10 mb-6">
+      <div class="max-w-2xl mx-auto rounded-2xl bg-[#211a17] border border-[#3a322d] p-8 text-center hover:border-[#4d433d] transition-colors relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 rounded-full bg-[#e8693f08] pointer-events-none blur-xl"></div>
+        <div class="absolute -left-10 -top-10 w-40 h-40 rounded-full bg-[#e8693f08] pointer-events-none blur-xl"></div>
+
+        <div class="w-12 h-12 rounded-xl bg-[#e8693f15] border border-[#e8693f]/30 flex items-center justify-center mx-auto text-[#e8693f] mb-4">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+
+        <h2 class="text-2xl font-bold text-[#ece0dc] font-serif">Ready to inspect the library?</h2>
+        <p class="mt-2 text-sm text-[#a89c93] max-w-md mx-auto leading-relaxed">
+          Unlock uncompressed digital facsimiles, rare illuminated folios, and direct commentary from Master Archivists.
+        </p>
+
+        <div class="mt-6 flex items-center justify-center gap-3">
+          <a href="/books"
+             class="inline-flex items-center justify-center h-11 px-8 rounded-lg bg-[#e8693f] text-[#16110f] text-sm font-semibold hover:bg-[#d45a30] active:scale-[0.98] transition-all min-h-[40px] min-w-[40px] shadow-[0_0_24px_rgba(232,105,63,0.18)]">
+            Explore Library
+          </a>
+          <a href="/playlists/new"
+             class="inline-flex items-center justify-center h-11 px-6 rounded-lg bg-[#16110f] border border-[#3a322d] text-sm text-[#ece0dc] hover:border-[#e8693f] active:scale-[0.98] transition-all min-h-[40px]">
+            Create Curation
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tablet Footer Navigation Bar & Copyright -->
+    <footer class="mt-12 pt-8 border-t border-[#3a322d] px-6 text-center text-xs text-[#7a706a]">
+      <div class="flex items-center justify-center gap-6 mb-3 text-sm text-[#a89c93]">
+        <a href="/books" class="hover:text-[#ece0dc] transition-colors">Catalog</a>
+        <a href="/playlists" class="hover:text-[#ece0dc] transition-colors">Curations</a>
+        <a href="/tags" class="hover:text-[#ece0dc] transition-colors">Sanctum Tags</a>
+        <a href="/profile" class="hover:text-[#ece0dc] transition-colors">Archivist Profile</a>
+      </div>
+      <p class="font-mono text-[11px]">© MMXXIV GENU SANCTUM GUILD. ALL RIGHTS PRESERVED.</p>
+    </footer>
+
+  </main>
+
+  <!-- Interactive JavaScript for Carousel and Quick Filter -->
+  <script>
+    const carousel = document.getElementById('featured-carousel');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    const totalSlides = 3;
+
+    function setSlide(index) {
+      currentSlide = index;
+      if (carousel) {
+        carousel.scrollTo({
+          left: index * carousel.clientWidth,
+          behavior: 'smooth'
+        });
+      }
+      updateDots();
+    }
+
+    function updateDots() {
+      dots.forEach((dot, idx) => {
+        if (idx === currentSlide) {
+          dot.classList.remove('bg-[#3a322d]');
+          dot.classList.add('bg-[#e8693f]');
+        } else {
+          dot.classList.remove('bg-[#e8693f]');
+          dot.classList.add('bg-[#3a322d]');
+        }
+      });
+    }
+
+    // Auto-advance every 5 seconds as specified
+    let autoInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      setSlide(currentSlide);
+    }, 5000);
+
+    // Pause on user interaction
+    if (carousel) {
+      carousel.addEventListener('mouseenter', () => clearInterval(autoInterval));
+      carousel.addEventListener('touchstart', () => clearInterval(autoInterval), { passive: true });
+    }
+
+    // Listen to scroll to sync dots if swiped manually
+    if (carousel) {
+      carousel.addEventListener('scroll', () => {
+        const slideIndex = Math.round(carousel.scrollLeft / carousel.clientWidth);
+        if (slideIndex !== currentSlide && slideIndex >= 0 && slideIndex < totalSlides) {
+          currentSlide = slideIndex;
+          updateDots();
+        }
+      });
+    }
+
+    // Search input enter feedback
+    const searchInput = document.getElementById('tablet-search');
+    if (searchInput) {
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && searchInput.value.trim().length > 0) {
+          window.location.href = `/books?search=${encodeURIComponent(searchInput.value.trim())}`;
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
