@@ -10,6 +10,16 @@
 
 ---
 
+<p align="center">
+  <img src="./docs/ui/desktop/p1/dark_fantasy_atmospheric_interior_of_an_ancient_grand_library_guild_sanctuary/screen.png" alt="Genu Library - Guild Sanctuary" width="100%">
+</p>
+
+<p align="center">
+  <em>A fantasy-themed digital library platform built with the "Forge & Guild" aesthetic — warm browns, amber accents, parchment textures, and the language of artisans and archivists.</em>
+</p>
+
+---
+
 ## Table of Contents
 
 1. [What This Is](#1-what-this-is)
@@ -17,16 +27,17 @@
 3. [How It Works (Architecture)](#3-how-it-works-architecture)
 4. [Project Structure](#4-project-structure)
 5. [Design System](#5-design-system)
-6. [Every Page -- What It Does](#6-every-page--what-it-does)
-7. [Every Component -- What It Does](#7-every-component--what-it-does)
-8. [API Client Layer](#8-api-client-layer)
-9. [Data Flow -- How a Request Travels](#9-data-flow--how-a-request-travels)
-10. [Authentication System](#10-authentication-system)
-11. [Routing Map](#11-routing-map)
-12. [Configuration Files](#12-configuration-files)
-13. [Docker](#13-docker)
-14. [Local Development Setup](#14-local-development-setup)
-15. [Known Limitations & TODOs](#15-known-limitations--todos)
+6. [UI Showcase](#6-ui-showcase)
+7. [Every Page -- What It Does](#7-every-page--what-it-does)
+8. [Every Component -- What It Does](#8-every-component--what-it-does)
+9. [API Client Layer](#9-api-client-layer)
+10. [Data Flow -- How a Request Travels](#10-data-flow--how-a-request-travels)
+11. [Authentication System](#11-authentication-system)
+12. [Routing Map](#12-routing-map)
+13. [Configuration Files](#13-configuration-files)
+14. [Docker](#14-docker)
+15. [Local Development Setup](#15-local-development-setup)
+16. [Known Limitations & TODOs](#16-known-limitations--todos)
 
 ---
 
@@ -168,7 +179,11 @@ Library-frontend/
 |-- public/                       # Static assets
 |   |-- placeholder-book.svg      # Fallback book cover image
 |
-|-- docs/                         # (does not exist -- no docs folder)
+|-- docs/                         # UI design reference images & prompts
+|   |-- ui/desktop/               # Desktop screenshots & HTML prototypes
+|   |-- ui/tablet/                # Tablet screenshots & HTML prototypes
+|   |-- ui/mobile/                # Mobile screenshots & HTML prototypes
+|   |-- prompt/                   # Design prompt specs (desktop, mobile, tablet)
 |
 |-- Dockerfile                    # Multi-stage Docker build
 |-- package.json                  # Dependencies and scripts
@@ -224,9 +239,192 @@ The entire UI is built on a custom Tailwind CSS theme defined in `tailwind.confi
 - `animate-fade-in`: Opacity fade-in (used on toast notifications)
 - `animate-slide-in`: Slide-up entrance (used on toast notifications)
 
+### Design Philosophy
+
+The design system embodies the warmth, tactile focus, and deliberate atmosphere of an **artisan guild library and luxury reading room**. It replaces sterile, cold-tech dark modes with deep, carbonized hearth tones, aged wood subtleties, and molten amber-orange accents.
+
+- Layered warm-black substrates evoke textured stone and dark oak
+- Sharp, subtle structural boundary lines define components without heavy elevation shadows
+- Warm ember highlights and molten glows activate upon user interaction
+- Micro-interactions lean on organic spring physics
+
+> See [`docs/ui/desktop/p1/forge_flux/DESIGN.md`](./docs/ui/desktop/p1/forge_flux/DESIGN.md) for the complete design specification.
+
 ---
 
-## 6. Every Page -- What It Does
+## 6. UI Showcase
+
+### Desktop Views
+
+#### Homepage -- Discover Your Next Great Read
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/genu_library_discover_your_next_great_read/screen.png" alt="Homepage - Discover Your Next Great Read" width="100%">
+</p>
+
+The homepage features a hero section with search, trending tags, a featured book carousel, recently added books, and platform statistics.
+
+---
+
+#### Book Catalog
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/genu_library_book_collection/screen.png" alt="Book Catalog" width="100%">
+</p>
+
+Browse, search, filter by tag, and sort books. Each card shows cover image, favorite toggle, star rating, and price.
+
+---
+
+#### Book Detail
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/book_detail_the_architecture_of_thought/screen.png" alt="Book Detail" width="100%">
+</p>
+
+Full book detail with cover art, metadata, PDF viewer, interactive rating system, comments, and related books.
+
+---
+
+#### Sign In
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/genu_library_sign_in_to_sanctum/screen.png" alt="Sign In" width="100%">
+</p>
+
+Two-panel login layout with atmospheric imagery and the authentication form.
+
+---
+
+#### Register Account
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/genu_library_register_account/screen.png" alt="Register Account" width="100%">
+</p>
+
+Registration with real-time username validation, password strength meter, and confirm password indicator.
+
+---
+
+#### Add New Book
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/add_new_book_genu_library/screen.png" alt="Add New Book" width="100%">
+</p>
+
+Four-phase book creation form: metadata, tags, visibility/pricing, and file uploads (cover + PDF manuscript).
+
+---
+
+#### Edit Book
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/edit_book_the_alchemist_s_codex/screen.png" alt="Edit Book" width="100%">
+</p>
+
+Edit existing book metadata with dirty-state tracking and a digital custody record display.
+
+---
+
+#### Delete Book Confirmation
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/genu_library_delete_book_confirmation/screen.png" alt="Delete Book Confirmation" width="100%">
+</p>
+
+Danger-themed confirmation page with book preview and guild oath certification checkbox.
+
+---
+
+#### Master Archivist Profile
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/genu_library_master_archivist_profile_alistair_vance/screen.png" alt="Master Archivist Profile" width="100%">
+</p>
+
+User profile with avatar, stats (uploads, favorites, avg rating), tabs for overview/books/reviews/playlists, and social actions.
+
+---
+
+#### Edit Profile
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/edit_profile_genu_library/screen.png" alt="Edit Profile" width="100%">
+</p>
+
+Profile editing with avatar upload, sanctum ledger stats, and form fields for personal information.
+
+---
+
+#### Edit Playlist
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/edit_playlist_genu_library/screen.png" alt="Edit Playlist" width="100%">
+</p>
+
+Playlist editing with title, description, and visibility settings.
+
+---
+
+#### Bulk Book Upload
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/bulk_book_upload_genu_library/screen.png" alt="Bulk Book Upload" width="100%">
+</p>
+
+Admin tool with plaintext manifest editor, drag-and-drop PDF uploader, parsed staging table, and PowerShell script generator.
+
+---
+
+#### Book Cover Art
+
+<p align="center">
+  <img src="./docs/ui/desktop/p1/a_gorgeous_ornate_leather_bound_antique_book_cover_titled_the_alchemist_s_codex/screen.png" alt="Book Cover Art - The Alchemist's Codex" width="100%">
+</p>
+
+Example of the ornate, antique book cover aesthetic used throughout the platform.
+
+---
+
+### Tablet Views
+
+<p align="center">
+  <img src="./docs/ui/tablet/stitch_genu_digital_library_system/genu_library_books_catalog_tablet/screen.png" alt="Tablet - Book Catalog" width="48%">
+  &nbsp;&nbsp;
+  <img src="./docs/ui/tablet/stitch_genu_digital_library_system/genu_library_my_playlists_tablet/screen.png" alt="Tablet - My Playlists" width="48%">
+</p>
+
+<p align="center">
+  <img src="./docs/ui/tablet/stitch_genu_digital_library_system/genu_library_sign_in_tablet/screen.png" alt="Tablet - Sign In" width="48%">
+  &nbsp;&nbsp;
+  <img src="./docs/ui/tablet/stitch_genu_digital_library_system/genu_library_profile_tablet/screen.png" alt="Tablet - Profile" width="48%">
+</p>
+
+### Mobile Views
+
+<p align="center">
+  <img src="./docs/ui/mobile/stitch_genu_digital_library_system/genu_library_mobile_home/screen.png" alt="Mobile - Home" width="24%">
+  &nbsp;
+  <img src="./docs/ui/mobile/stitch_genu_digital_library_system/genu_library_books_catalog_mobile/screen.png" alt="Mobile - Book Catalog" width="24%">
+  &nbsp;
+  <img src="./docs/ui/mobile/stitch_genu_digital_library_system/book_detail_the_alchemist_s_codex_mobile/screen.png" alt="Mobile - Book Detail" width="24%">
+  &nbsp;
+  <img src="./docs/ui/mobile/stitch_genu_digital_library_system/genu_library_sign_in_mobile/screen.png" alt="Mobile - Sign In" width="24%">
+</p>
+
+<p align="center">
+  <img src="./docs/ui/mobile/stitch_genu_digital_library_system/genu_library_register_account_mobile/screen.png" alt="Mobile - Register" width="24%">
+  &nbsp;
+  <img src="./docs/ui/mobile/stitch_genu_digital_library_system/genu_library_edit_book_mobile/screen.png" alt="Mobile - Edit Book" width="24%">
+  &nbsp;
+  <img src="./docs/ui/mobile/stitch_genu_digital_library_system/genu_library_create_playlist_mobile/screen.png" alt="Mobile - Create Playlist" width="24%">
+  &nbsp;
+  <img src="./docs/ui/mobile/stitch_genu_digital_library_system/genu_library_playlist_detail_mobile/screen.png" alt="Mobile - Playlist Detail" width="24%">
+</p>
+
+---
+
+## 7. Every Page -- What It Does
 
 ### `/` -- Homepage (`app/page.tsx`, 397 lines)
 
@@ -447,7 +645,7 @@ Four violation categories (copyright, adult, spam, other) with radio selection. 
 
 ---
 
-## 7. Every Component -- What It Does
+## 8. Every Component -- What It Does
 
 ### `Header` (`components/Header.tsx`, 195 lines)
 
@@ -528,7 +726,7 @@ A mock "Illuminated Codex Reader" -- does **not** render actual PDF content. Sho
 
 ---
 
-## 8. API Client Layer
+## 9. API Client Layer
 
 The entire backend communication lives in `lib/api.ts` (124 lines). It provides:
 
@@ -598,7 +796,7 @@ mediaUrl(path: string | null | undefined): string
 
 ---
 
-## 9. Data Flow -- How a Request Travels
+## 10. Data Flow -- How a Request Travels
 
 ### Example: User Logs In
 
@@ -656,7 +854,7 @@ mediaUrl(path: string | null | undefined): string
 
 ---
 
-## 10. Authentication System
+## 11. Authentication System
 
 ### Token Storage
 
@@ -697,7 +895,7 @@ Token Refresh (automatic):
 
 ---
 
-## 11. Routing Map
+## 12. Routing Map
 
 | URL | File | Type | Auth Required |
 |-----|------|------|---------------|
@@ -726,7 +924,7 @@ Token Refresh (automatic):
 
 ---
 
-## 12. Configuration Files
+## 13. Configuration Files
 
 ### `package.json`
 
@@ -765,7 +963,7 @@ The `NEXT_PUBLIC_` prefix makes this available to both server and client code. I
 
 ---
 
-## 13. Docker
+## 14. Docker
 
 ### Dockerfile (Multi-Stage Build)
 
@@ -797,7 +995,7 @@ The frontend depends on the backend being available at the URL specified by `NEX
 
 ---
 
-## 14. Local Development Setup
+## 15. Local Development Setup
 
 ### Prerequisites
 
@@ -831,7 +1029,7 @@ npm run dev
 
 ---
 
-## 15. Known Limitations & TODOs
+## 16. Known Limitations & TODOs
 
 ### Not Implemented
 
@@ -863,3 +1061,21 @@ npm run dev
 - **No image optimization**: Book cover images use standard `<img>` tags, not Next.js `<Image>` component.
 - **No code splitting beyond dynamic imports**: Only `PdfViewer` uses dynamic import. All other pages load their full JavaScript bundle.
 - **No service worker or offline support**.
+
+---
+
+## UI Design Reference
+
+The `docs/ui/` directory contains high-fidelity UI screenshots and HTML prototypes organized by device class:
+
+| Directory | Contents |
+|-----------|----------|
+| `docs/ui/desktop/p1/` | Desktop designs (Phase 1) -- 14 screens with HTML prototypes |
+| `docs/ui/desktop/p2/` | Desktop designs (Phase 2) -- 7 screens with HTML prototypes |
+| `docs/ui/tablet/` | Tablet layouts -- 13 screens across 2 device sets |
+| `docs/ui/mobile/` | Mobile layouts -- 17 screens across 2 device sets |
+| `docs/prompt/` | Design prompt specifications for each page (desktop, mobile, tablet) |
+
+Each screen directory contains:
+- `screen.png` -- The rendered UI screenshot
+- `code.html` -- The HTML/CSS prototype source code
